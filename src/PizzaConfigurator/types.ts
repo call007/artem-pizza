@@ -1,7 +1,7 @@
 export type SelectedOption = {
   id: number;
   value: string;
-  price?: number;
+  price: number;
 };
 
 export enum FieldsName {
@@ -17,7 +17,7 @@ export type SelectedOptions = { [key in FieldsName]: SelectedOption[] };
 
 export type InputType = "checkbox" | "radio";
 
-export type State = { fields: SelectedOptions; totalPrice: number };
+export type State = { pizza: SelectedOptions; totalPrice: number };
 
 type Payload = {
   name: FieldsName;

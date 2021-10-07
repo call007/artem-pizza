@@ -6,7 +6,7 @@ interface Props {
 }
 
 const data: SelectedOption[] = [
-  { id: 0, value: "Тонкое" },
+  { id: 0, value: "Тонкое", price: 0 },
   { id: 1, value: "Пышное", price: 50 },
 ];
 
@@ -15,7 +15,7 @@ export function PizzaDough(props: Props) {
     <Fieldset legend="Тесто">
       {data.map((option) => (
         <Radiobox
-          key={`${FieldsName.Dough}-${option.id}`}
+          key={option.id}
           name={FieldsName.Dough}
           value={option.value}
           id={`${FieldsName.Dough}-${option.id}`}

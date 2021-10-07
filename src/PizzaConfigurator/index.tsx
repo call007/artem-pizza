@@ -11,10 +11,10 @@ import { PizzaMeat } from "./PizzaMeat";
 import { PizzaResult } from "./PizzaResult";
 
 const initialState: State = {
-  fields: {
-    size: [{ id: 0, value: "30 см" }],
-    dough: [{ id: 0, value: "Тонкое" }],
-    sauce: [{ id: 0, value: "Томатный" }],
+  pizza: {
+    size: [{ id: 0, value: "30 см", price: 0 }],
+    dough: [{ id: 0, value: "Тонкое", price: 0 }],
+    sauce: [{ id: 0, value: "Томатный", price: 0 }],
     cheese: [],
     vegetables: [],
     meat: [],
@@ -24,45 +24,42 @@ const initialState: State = {
 
 export function PizzaConfigurator() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [isVisibleResult, setIsVisibleResult] = useState<boolean>(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false);
 
   const handleChange = (e: ChangeEvent<HTMLFormElement & HTMLInputElement>) => {
     const inputElement = e.target;
-    const id = Number((inputElement.id.match(/\d+$/) || [])[0]);
-    const price = Number(inputElement.dataset.price) || undefined;
-    const name = inputElement.name as FieldsName;
-    const type = inputElement.type as InputType;
-    const value = inputElement.value;
 
     dispatch({
       type: inputElement.checked ? "add-option" : "remove-option",
       payload: {
-        id,
-        name,
-        price,
-        value,
-        type,
+        id: Number((inputElement.id.match(/\d+$/) || [])[0]),
+        name: inputElement.name as FieldsName,
+        price: Number(inputElement.dataset.price),
+        value: inputElement.value,
+        type: inputElement.type as InputType,
       },
     });
   };
 
   const handleSumbit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsVisibleResult(true);
+    setIsFormSubmitted(true);
   };
 
-  return isVisibleResult ? (
-    <PizzaResult fields={state.fields} totalPrice={state.totalPrice} />
-  ) : (
+  if (isFormSubmitted) {
+    return <PizzaResult fields={state.pizza} totalPrice={state.totalPrice} />;
+  }
+
+  return (
     <form onChange={handleChange} onSubmit={handleSumbit}>
       <h1>Собери свою пиццу</h1>
 
-      <PizzaSize checkedOptions={state.fields.size} />
-      <PizzaDough checkedOptions={state.fields.dough} />
-      <PizzaSauce checkedOptions={state.fields.sauce} />
-      <PizzaCheese checkedOptions={state.fields.cheese} />
-      <PizzaVegetables checkedOptions={state.fields.vegetables} />
-      <PizzaMeat checkedOptions={state.fields.meat} />
+      <PizzaSize checkedOptions={state.pizza.size} />
+      <PizzaDough checkedOptions={state.pizza.dough} />
+      <PizzaSauce checkedOptions={state.pizza.sauce} />
+      <PizzaCheese checkedOptions={state.pizza.cheese} />
+      <PizzaVegetables checkedOptions={state.pizza.vegetables} />
+      <PizzaMeat checkedOptions={state.pizza.meat} />
 
       <div>
         <button type="submit">Заказать за {state.totalPrice} руб</button>

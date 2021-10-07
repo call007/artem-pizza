@@ -16,7 +16,7 @@ export function PizzaCheese(props: Props) {
     <Fieldset legend="Добавьте сыр">
       {data.map((option) => (
         <Checkbox
-          key={`${FieldsName.Cheese}-${option.id}`}
+          key={option.id}
           name={FieldsName.Cheese}
           value={option.value}
           id={`${FieldsName.Cheese}-${option.id}`}

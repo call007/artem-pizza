@@ -6,8 +6,8 @@ interface Props {
 }
 
 const data: SelectedOption[] = [
-  { id: 0, value: "30 см" },
-  { id: 1, value: "35 см" },
+  { id: 0, value: "30 см", price: 0 },
+  { id: 1, value: "35 см", price: 0 },
 ];
 
 export function PizzaSize(props: Props) {
@@ -15,7 +15,7 @@ export function PizzaSize(props: Props) {
     <Fieldset legend="Размер">
       {data.map((option) => (
         <Radiobox
-          key={`${FieldsName.Size}-${option.id}`}
+          key={option.id}
           name={FieldsName.Size}
           value={option.value}
           id={`${FieldsName.Size}-${option.id}`}
