@@ -1,11 +1,11 @@
-import { SelectedOption, SelectedOptions } from "../types";
+import { Option, Options } from "../types";
 
 interface Props {
-  fields: SelectedOptions;
+  fields: Options;
   totalPrice: number;
 }
 
-const getOptions = (options: SelectedOption[]) =>
+const getOptions = (options: Option[]) =>
   options.map((item, index) => (
     <span key={item.id}>
       {index !== 0 && " • "}

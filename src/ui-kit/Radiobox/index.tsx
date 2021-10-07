@@ -9,8 +9,9 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 export function Radiobox({ id, price, ...props }: Props) {
   return (
     <div>
-      <input {...props} type="radio" id={id} data-price={price} />
+      <input {...props} type="radio" id={id} />
       <label htmlFor={id}>{props.value}</label>
+      {!!price && ` ${price} ₽`}
     </div>
   );
 }

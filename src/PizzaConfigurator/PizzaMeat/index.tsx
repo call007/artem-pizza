@@ -1,27 +1,23 @@
 import { Checkbox, Fieldset } from "@ui-kit";
-import { FieldsName, SelectedOption } from "../types";
+import { FieldsName, Option } from "../types";
 
 interface Props {
-  checkedOptions?: SelectedOption[];
+  dataOptions: Option[];
+  checkedOptions?: Option[];
 }
-
-const data: SelectedOption[] = [
-  { id: 0, value: "Бекон", price: 29 },
-  { id: 1, value: "Пепперони", price: 29 },
-  { id: 2, value: "Ветчина", price: 29 },
-];
 
 export function PizzaMeat(props: Props) {
   return (
     <Fieldset legend="Добавьте мясо">
-      {data.map((option) => (
+      {props.dataOptions.map((option) => (
         <Checkbox
           key={option.id}
-          name={FieldsName.Meat}
+          data-id={option.id}
           value={option.value}
-          id={`${FieldsName.Meat}-${option.id}`}
           price={option.price}
-          checked={
+          name={FieldsName.Meat}
+          id={`${FieldsName.Meat}-${option.id}`}
+          defaultChecked={
             !!props.checkedOptions?.find((item) => item.id === option.id)
           }
         />

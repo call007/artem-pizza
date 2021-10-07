@@ -9,9 +9,10 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 export function Checkbox({ id, price, ...props }: Props) {
   return (
     <div>
-      <input {...props} type="checkbox" id={id} data-price={price} />
+      <input {...props} type="checkbox" id={id} />
       <label htmlFor={id}>
-        {props.value} {price} ₽
+        {props.value}
+        {!!price && ` ${price} ₽`}
       </label>
     </div>
   );

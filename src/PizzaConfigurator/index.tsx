@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useReducer, useState } from "react";
-import { FieldsName, InputType, State } from "./types";
+import { FieldsName, InputType, Option, State } from "./types";
 import { reducer } from "./reducer";
+import { data } from "./data";
 
 import { PizzaSize } from "./PizzaSize";
 import { PizzaSauce } from "./PizzaSauce";
@@ -12,9 +13,9 @@ import { PizzaResult } from "./PizzaResult";
 
 const initialState: State = {
   pizza: {
-    size: [{ id: 0, value: "30 см", price: 0 }],
-    dough: [{ id: 0, value: "Тонкое", price: 0 }],
-    sauce: [{ id: 0, value: "Томатный", price: 0 }],
+    size: data.size.filter((item) => item.id === 0),
+    dough: data.size.filter((item) => item.id === 0),
+    sauce: data.size.filter((item) => item.id === 0),
     cheese: [],
     vegetables: [],
     meat: [],
@@ -28,17 +29,21 @@ export function PizzaConfigurator() {
 
   const handleChange = (e: ChangeEvent<HTMLFormElement & HTMLInputElement>) => {
     const inputElement = e.target;
+    const name = inputElement.name as FieldsName;
 
-    dispatch({
-      type: inputElement.checked ? "add-option" : "remove-option",
-      payload: {
-        id: Number((inputElement.id.match(/\d+$/) || [])[0]),
-        name: inputElement.name as FieldsName,
-        price: Number(inputElement.dataset.price),
-        value: inputElement.value,
-        type: inputElement.type as InputType,
-      },
-    });
+    const option = data[name].find(
+      (item) => item.id === Number(inputElement.dataset.id)
+    );
+
+    if (option) {
+      dispatch({
+        type: inputElement.checked ? "add-option" : "remove-option",
+        payload: {
+          ...option,
+          name,
+        },
+      });
+    }
   };
 
   const handleSumbit = (e: FormEvent<HTMLFormElement>) => {
@@ -54,12 +59,18 @@ export function PizzaConfigurator() {
     <form onChange={handleChange} onSubmit={handleSumbit}>
       <h1>Собери свою пиццу</h1>
 
-      <PizzaSize checkedOptions={state.pizza.size} />
-      <PizzaDough checkedOptions={state.pizza.dough} />
-      <PizzaSauce checkedOptions={state.pizza.sauce} />
-      <PizzaCheese checkedOptions={state.pizza.cheese} />
-      <PizzaVegetables checkedOptions={state.pizza.vegetables} />
-      <PizzaMeat checkedOptions={state.pizza.meat} />
+      <PizzaSize dataOptions={data.size} checkedOptions={state.pizza.size} />
+      <PizzaDough dataOptions={data.dough} checkedOptions={state.pizza.dough} />
+      <PizzaSauce dataOptions={data.sauce} checkedOptions={state.pizza.sauce} />
+      <PizzaCheese
+        dataOptions={data.cheese}
+        checkedOptions={state.pizza.cheese}
+      />
+      <PizzaVegetables
+        dataOptions={data.vegetables}
+        checkedOptions={state.pizza.vegetables}
+      />
+      <PizzaMeat dataOptions={data.meat} checkedOptions={state.pizza.meat} />
 
       <div>
         <button type="submit">Заказать за {state.totalPrice} руб</button>

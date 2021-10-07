@@ -1,26 +1,23 @@
 import { Fieldset, Radiobox } from "@ui-kit";
-import { FieldsName, SelectedOption } from "../types";
+import { FieldsName, Option } from "../types";
 
 interface Props {
-  checkedOptions?: SelectedOption[];
+  dataOptions: Option[];
+  checkedOptions?: Option[];
 }
-
-const data: SelectedOption[] = [
-  { id: 0, value: "Тонкое", price: 0 },
-  { id: 1, value: "Пышное", price: 50 },
-];
 
 export function PizzaDough(props: Props) {
   return (
     <Fieldset legend="Тесто">
-      {data.map((option) => (
+      {props.dataOptions.map((option) => (
         <Radiobox
           key={option.id}
-          name={FieldsName.Dough}
+          data-id={option.id}
           value={option.value}
-          id={`${FieldsName.Dough}-${option.id}`}
           price={option.price}
-          checked={
+          name={FieldsName.Dough}
+          id={`${FieldsName.Dough}-${option.id}`}
+          defaultChecked={
             !!props.checkedOptions?.find((item) => item.id === option.id)
           }
         />

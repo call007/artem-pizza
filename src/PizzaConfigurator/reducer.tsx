@@ -1,12 +1,13 @@
-import { Action, SelectedOption, State } from "./types";
+import { Action, Option, State } from "./types";
 
 export function reducer(state: State, { type, payload }: Action): State {
   switch (type) {
     case "add-option":
-      const option: SelectedOption = {
+      const option: Option = {
         id: payload.id,
         value: payload.value,
         price: payload.price,
+        type: payload.type,
       };
 
       return payload.type === "checkbox"
