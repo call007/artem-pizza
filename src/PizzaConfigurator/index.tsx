@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useReducer, useState } from "react";
-import { FieldsName, InputType, Option, State } from "./types";
+import { FieldsName, State } from "./types";
 import { reducer } from "./reducer";
 import { data } from "./data";
 
