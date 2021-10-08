@@ -2,9 +2,9 @@ name: NodeJS with Webpack
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
@@ -13,18 +13,17 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-    
+
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - run: npm install -g yarn
-    - name: yarn install; build and test
-      run: |
-        yarn install
-        yarn build
-        yarn test
+      - run: npm install -g yarn
+      - name: yarn install; build
+        run: |
+          yarn install
+          yarn build
