@@ -14,8 +14,8 @@ import { PizzaResult } from "./PizzaResult";
 const initialState: State = {
   pizza: {
     size: data.size.filter((item) => item.id === 0),
-    dough: data.size.filter((item) => item.id === 0),
-    sauce: data.size.filter((item) => item.id === 0),
+    dough: data.dough.filter((item) => item.id === 0),
+    sauce: data.sauce.filter((item) => item.id === 0),
     cheese: [],
     vegetables: [],
     meat: [],

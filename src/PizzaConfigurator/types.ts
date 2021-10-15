@@ -8,12 +8,12 @@ export type Option = {
 };
 
 export enum FieldsName {
-  Size = "size",
-  Dough = "dough",
-  Sauce = "sauce",
-  Cheese = "cheese",
-  Vegetables = "vegetables",
-  Meat = "meat",
+  SIZE = "size",
+  DOUGH = "dough",
+  SAUCE = "sauce",
+  CHEESE = "cheese",
+  VEGETABLES = "vegetables",
+  MEAT = "meat",
 }
 
 export type Options = { [key in FieldsName]: Option[] };

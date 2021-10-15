@@ -1,4 +1,4 @@
-import { Fieldset, Radiobox } from "@ui-kit";
+import { Fieldset, Radiobox } from "../../common";
 import { FieldsName, Option } from "../types";
 
 interface Props {
@@ -15,8 +15,8 @@ export function PizzaSize(props: Props) {
           data-id={option.id}
           value={option.value}
           price={option.price}
-          name={FieldsName.Size}
-          id={`${FieldsName.Size}-${option.id}`}
+          name={FieldsName.SIZE}
+          id={`${FieldsName.SIZE}-${option.id}`}
           defaultChecked={
             !!props.checkedOptions?.find((item) => item.id === option.id)
           }

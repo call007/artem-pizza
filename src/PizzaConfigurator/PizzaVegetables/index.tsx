@@ -1,4 +1,4 @@
-import { Checkbox, Fieldset } from "@ui-kit";
+import { Checkbox, Fieldset } from "../../common";
 import { FieldsName, Option } from "../types";
 
 interface Props {
@@ -15,8 +15,8 @@ export function PizzaVegetables(props: Props) {
           data-id={option.id}
           value={option.value}
           price={option.price}
-          name={FieldsName.Vegetables}
-          id={`${FieldsName.Vegetables}-${option.id}`}
+          name={FieldsName.VEGETABLES}
+          id={`${FieldsName.VEGETABLES}-${option.id}`}
           defaultChecked={
             !!props.checkedOptions?.find((item) => item.id === option.id)
           }

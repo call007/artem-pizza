@@ -1,8 +1,0 @@
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@ui-kit": ["./src/ui-kit"]
-    }
-  }
-}
