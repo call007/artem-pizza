@@ -28,7 +28,7 @@ export function LogIn() {
 
         <p>
           Если вы не зарегистрированы{" "}
-          <Link to={Path.SIGNUP}>пройдите регистрацию</Link>
+          <Link to={Path.Signup}>пройдите регистрацию</Link>
         </p>
       </form>
     </div>

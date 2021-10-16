@@ -8,12 +8,7 @@ interface Props {
 }
 
 const getOptions = (options: Option[]) =>
-  options.map((item, index) => (
-    <span key={item.id}>
-      {index !== 0 && " • "}
-      {item.value}
-    </span>
-  ));
+  options.map((item) => item.value).join(" • ");
 
 export function PizzaResult({ fields, ...props }: Props) {
   return (
@@ -41,7 +36,7 @@ export function PizzaResult({ fields, ...props }: Props) {
       <p>{getOptions(fields.vegetables)}</p>
       <p>{getOptions(fields.meat)}</p>
 
-      <Link to={Path.CHECKOUT}>Заказать за {props.totalPrice} руб</Link>
+      <Link to={Path.Checkout}>Заказать за {props.totalPrice} руб</Link>
     </div>
   );
 }

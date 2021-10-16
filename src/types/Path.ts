@@ -1,9 +1,9 @@
 export enum Path {
-  HOME = "/",
-  LOGIN = "/log-in",
-  SIGNUP = "/sign-up",
-  CHECKOUT = "/checkout",
-  CHECKOUT_SUCCESS = "/checkout-success",
-  RESULT = "/result",
-  ORDERS = "/orders",
+  Home = "/",
+  Login = "/log-in",
+  Signup = "/sign-up",
+  Checkout = "/checkout",
+  CheckoutSuccess = "/checkout-success",
+  Result = "/result",
+  Orders = "/orders",
 }

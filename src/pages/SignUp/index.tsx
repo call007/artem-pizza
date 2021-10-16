@@ -38,7 +38,7 @@ export function SignUp() {
 
         <p>
           Если вы уже зарегистрированы{" "}
-          <Link to={Path.LOGIN}>авторизуйтесь</Link>
+          <Link to={Path.Login}>авторизуйтесь</Link>
         </p>
       </form>
     </div>

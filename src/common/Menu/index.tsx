@@ -6,22 +6,22 @@ export function Menu() {
     <nav>
       <ul>
         <li>
-          <Link to={Path.HOME}>Конфигуратор</Link>
+          <Link to={Path.Home}>Конфигуратор</Link>
         </li>
         <li>
-          <Link to={Path.LOGIN}>Авторизация</Link>
+          <Link to={Path.Login}>Авторизация</Link>
         </li>
         <li>
-          <Link to={Path.SIGNUP}>Регистрация</Link>
+          <Link to={Path.Signup}>Регистрация</Link>
         </li>
         <li>
-          <Link to={Path.CHECKOUT}>Оформление заказа</Link>
+          <Link to={Path.Checkout}>Оформление заказа</Link>
         </li>
         <li>
-          <Link to={Path.CHECKOUT_SUCCESS}>Оформление заказа (успех)</Link>
+          <Link to={Path.CheckoutSuccess}>Оформление заказа (успех)</Link>
         </li>
         <li>
-          <Link to={Path.ORDERS}>Мои заказы</Link>
+          <Link to={Path.Orders}>Мои заказы</Link>
         </li>
       </ul>
     </nav>

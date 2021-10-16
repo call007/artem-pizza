@@ -15,8 +15,8 @@ export function PizzaSauce(props: Props) {
           data-id={option.id}
           value={option.value}
           price={option.price}
-          name={FieldsName.SAUCE}
-          id={`${FieldsName.SAUCE}-${option.id}`}
+          name={FieldsName.Sauce}
+          id={`${FieldsName.Sauce}-${option.id}`}
           defaultChecked={
             !!props.checkedOptions?.find((item) => item.id === option.id)
           }

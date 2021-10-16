@@ -14,27 +14,27 @@ function App() {
       <Menu />
 
       <Switch>
-        <Route path={Path.HOME} exact>
+        <Route path={Path.Home} exact>
           <PizzaConfigurator />
         </Route>
 
-        <Route path={Path.LOGIN}>
+        <Route path={Path.Login}>
           <LogIn />
         </Route>
 
-        <Route path={Path.SIGNUP}>
+        <Route path={Path.Signup}>
           <SignUp />
         </Route>
 
-        <Route path={Path.CHECKOUT}>
+        <Route path={Path.Checkout}>
           <Сheckout />
         </Route>
 
-        <Route path={Path.CHECKOUT_SUCCESS}>
+        <Route path={Path.CheckoutSuccess}>
           <СheckoutSuccess />
         </Route>
 
-        <Route path={Path.ORDERS}>
+        <Route path={Path.Orders}>
           <Orders />
         </Route>
       </Switch>
