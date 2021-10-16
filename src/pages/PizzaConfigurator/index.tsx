@@ -2,13 +2,8 @@ import { ChangeEvent, FormEvent, useReducer, useState } from "react";
 import { FieldsName, State } from "./types";
 import { reducer } from "./reducer";
 import { data } from "./data";
-
-import { PizzaSize } from "./PizzaSize";
-import { PizzaSauce } from "./PizzaSauce";
-import { PizzaDough } from "./PizzaDough";
-import { PizzaCheese } from "./PizzaCheese";
-import { PizzaVegetables } from "./PizzaVegetables";
-import { PizzaMeat } from "./PizzaMeat";
+import { FieldsetCheckboxGroup } from "./FieldsetCheckboxGroup";
+import { FieldsetRadioGroup } from "./FieldsetRadioGroup";
 import { PizzaResult } from "./PizzaResult";
 
 const initialState: State = {
@@ -59,18 +54,47 @@ export function PizzaConfigurator() {
     <form onChange={handleChange} onSubmit={handleSumbit}>
       <h1>Собери свою пиццу</h1>
 
-      <PizzaSize dataOptions={data.size} checkedOptions={state.pizza.size} />
-      <PizzaDough dataOptions={data.dough} checkedOptions={state.pizza.dough} />
-      <PizzaSauce dataOptions={data.sauce} checkedOptions={state.pizza.sauce} />
-      <PizzaCheese
+      <FieldsetRadioGroup
+        title="Размер"
+        name={FieldsName.Size}
+        dataOptions={data.size}
+        checkedOptions={state.pizza.size}
+      />
+
+      <FieldsetRadioGroup
+        title="Тесто"
+        name={FieldsName.Dough}
+        dataOptions={data.dough}
+        checkedOptions={state.pizza.dough}
+      />
+
+      <FieldsetRadioGroup
+        title="Выберите соус"
+        name={FieldsName.Sauce}
+        dataOptions={data.sauce}
+        checkedOptions={state.pizza.sauce}
+      />
+
+      <FieldsetCheckboxGroup
+        title="Добавьте сыр"
+        name={FieldsName.Cheese}
         dataOptions={data.cheese}
         checkedOptions={state.pizza.cheese}
       />
-      <PizzaVegetables
+
+      <FieldsetCheckboxGroup
+        title="Добавьте овощи"
+        name={FieldsName.Vegetables}
         dataOptions={data.vegetables}
         checkedOptions={state.pizza.vegetables}
       />
-      <PizzaMeat dataOptions={data.meat} checkedOptions={state.pizza.meat} />
+
+      <FieldsetCheckboxGroup
+        title="Добавьте овощи"
+        name={FieldsName.Meat}
+        dataOptions={data.meat}
+        checkedOptions={state.pizza.meat}
+      />
 
       <div>
         <button type="submit">Заказать за {state.totalPrice} руб</button>

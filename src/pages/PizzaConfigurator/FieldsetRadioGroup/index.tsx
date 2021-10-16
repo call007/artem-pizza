@@ -2,21 +2,23 @@ import { Fieldset, Radiobox } from "../../../common";
 import { FieldsName, Option } from "../types";
 
 interface Props {
+  title: string;
+  name: FieldsName;
   dataOptions: Option[];
   checkedOptions?: Option[];
 }
 
-export function PizzaSauce(props: Props) {
+export function FieldsetRadioGroup(props: Props) {
   return (
-    <Fieldset legend="Выберите соус">
+    <Fieldset legend={props.title}>
       {props.dataOptions.map((option) => (
         <Radiobox
           key={option.id}
           data-id={option.id}
           value={option.value}
           price={option.price}
-          name={FieldsName.Sauce}
-          id={`${FieldsName.Sauce}-${option.id}`}
+          name={props.name}
+          id={`${props.name}-${option.id}`}
           defaultChecked={
             !!props.checkedOptions?.find((item) => item.id === option.id)
           }
