@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Pages } from "../types";
+import { Path } from "../../types";
 
 export function SignUp() {
   return (
@@ -38,7 +38,7 @@ export function SignUp() {
 
         <p>
           Если вы уже зарегистрированы{" "}
-          <Link to={Pages.LOGIN}>авторизуйтесь</Link>
+          <Link to={Path.LOGIN}>авторизуйтесь</Link>
         </p>
       </form>
     </div>

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { Path } from "../../../types";
 import { Option, Options } from "../types";
 
 interface Props {
@@ -39,7 +41,7 @@ export function PizzaResult({ fields, ...props }: Props) {
       <p>{getOptions(fields.vegetables)}</p>
       <p>{getOptions(fields.meat)}</p>
 
-      <button type="button">Заказать за {props.totalPrice} руб</button>
+      <Link to={Path.CHECKOUT}>Заказать за {props.totalPrice} руб</Link>
     </div>
   );
 }

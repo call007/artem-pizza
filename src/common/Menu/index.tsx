@@ -1,18 +1,27 @@
 import { Link } from "react-router-dom";
-import { Pages } from "../../types";
+import { Path } from "../../types";
 
 export function Menu() {
   return (
     <nav>
       <ul>
         <li>
-          <Link to={Pages.HOME}>Конфигуратор</Link>
+          <Link to={Path.HOME}>Конфигуратор</Link>
         </li>
         <li>
-          <Link to={Pages.LOGIN}>Авторизация</Link>
+          <Link to={Path.LOGIN}>Авторизация</Link>
         </li>
         <li>
-          <Link to={Pages.SIGNUP}>Регистрация</Link>
+          <Link to={Path.SIGNUP}>Регистрация</Link>
+        </li>
+        <li>
+          <Link to={Path.CHECKOUT}>Оформление заказа</Link>
+        </li>
+        <li>
+          <Link to={Path.CHECKOUT_SUCCESS}>Оформление заказа (успех)</Link>
+        </li>
+        <li>
+          <Link to={Path.ORDERS}>Мои заказы</Link>
         </li>
       </ul>
     </nav>

@@ -1,9 +1,12 @@
 import { Menu } from "./common/Menu";
-import { PizzaConfigurator } from "./PizzaConfigurator";
+import { PizzaConfigurator } from "./pages/PizzaConfigurator";
 import { Route, Switch } from "react-router-dom";
-import { Pages } from "./types";
-import { LogIn } from "./LogIn";
-import { SignUp } from "./SignUp";
+import { Path } from "./types";
+import { LogIn } from "./pages/LogIn";
+import { SignUp } from "./pages/SignUp";
+import { Сheckout } from "./pages/Сheckout";
+import { СheckoutSuccess } from "./pages/СheckoutSuccess";
+import { Orders } from "./pages/Orders";
 
 function App() {
   return (
@@ -11,16 +14,28 @@ function App() {
       <Menu />
 
       <Switch>
-        <Route path={Pages.HOME} exact>
+        <Route path={Path.HOME} exact>
           <PizzaConfigurator />
         </Route>
 
-        <Route path={Pages.LOGIN}>
+        <Route path={Path.LOGIN}>
           <LogIn />
         </Route>
 
-        <Route path={Pages.SIGNUP}>
+        <Route path={Path.SIGNUP}>
           <SignUp />
+        </Route>
+
+        <Route path={Path.CHECKOUT}>
+          <Сheckout />
+        </Route>
+
+        <Route path={Path.CHECKOUT_SUCCESS}>
+          <СheckoutSuccess />
+        </Route>
+
+        <Route path={Path.ORDERS}>
+          <Orders />
         </Route>
       </Switch>
     </div>

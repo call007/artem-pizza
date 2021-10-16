@@ -1,4 +1,4 @@
-import { Checkbox, Fieldset } from "../../common";
+import { Fieldset, Radiobox } from "../../../common";
 import { FieldsName, Option } from "../types";
 
 interface Props {
@@ -6,17 +6,17 @@ interface Props {
   checkedOptions?: Option[];
 }
 
-export function PizzaCheese(props: Props) {
+export function PizzaSauce(props: Props) {
   return (
-    <Fieldset legend="Добавьте сыр">
+    <Fieldset legend="Выберите соус">
       {props.dataOptions.map((option) => (
-        <Checkbox
+        <Radiobox
           key={option.id}
           data-id={option.id}
           value={option.value}
           price={option.price}
-          name={FieldsName.CHEESE}
-          id={`${FieldsName.CHEESE}-${option.id}`}
+          name={FieldsName.SAUCE}
+          id={`${FieldsName.SAUCE}-${option.id}`}
           defaultChecked={
             !!props.checkedOptions?.find((item) => item.id === option.id)
           }
