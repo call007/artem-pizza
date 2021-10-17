@@ -1,4 +1,5 @@
-import { Action, Option, State } from "./types";
+import { Action, State } from "./types";
+import { Option } from "./types/Option";
 
 export function reducer(
   state: State,

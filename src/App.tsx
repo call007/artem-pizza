@@ -7,6 +7,8 @@ import { SignUp } from "./pages/SignUp";
 import { Сheckout } from "./pages/Сheckout";
 import { СheckoutSuccess } from "./pages/СheckoutSuccess";
 import { Orders } from "./pages/Orders";
+import { PizzaPreview } from "./pages/PizzaPreview";
+import { NotFound } from "./pages/NotFound";
 
 function App() {
   return (
@@ -14,8 +16,12 @@ function App() {
       <Menu />
 
       <Switch>
-        <Route path={Path.Home} exact>
+        <Route path={Path.PizzaConfigurator} exact>
           <PizzaConfigurator />
+        </Route>
+
+        <Route path={Path.Preview}>
+          <PizzaPreview />
         </Route>
 
         <Route path={Path.Login}>
@@ -36,6 +42,10 @@ function App() {
 
         <Route path={Path.Orders}>
           <Orders />
+        </Route>
+
+        <Route>
+          <NotFound />
         </Route>
       </Switch>
     </div>

@@ -1,25 +1,13 @@
-import { ChangeEvent, FormEvent, useReducer, useState } from "react";
-import { FieldsName, State } from "./types";
-import { reducer } from "./reducer";
-import { data } from "./data";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { Redirect } from "react-router";
+import { data } from "../../data";
+import { FieldsName, Path } from "../../types";
+import { usePizzaContext } from "../../PizzaContext";
 import { FieldsetCheckboxGroup } from "./FieldsetCheckboxGroup";
 import { FieldsetRadioGroup } from "./FieldsetRadioGroup";
-import { PizzaResult } from "./PizzaResult";
-
-const initialState: State = {
-  pizza: {
-    size: data.size.filter((item) => item.id === 0),
-    dough: data.dough.filter((item) => item.id === 0),
-    sauce: data.sauce.filter((item) => item.id === 0),
-    cheese: [],
-    vegetables: [],
-    meat: [],
-  },
-  totalPrice: 200,
-};
 
 export function PizzaConfigurator() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const { state, dispatch } = usePizzaContext();
   const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false);
 
   const handleChange = (e: ChangeEvent<HTMLFormElement & HTMLInputElement>) => {
@@ -47,7 +35,7 @@ export function PizzaConfigurator() {
   };
 
   if (isFormSubmitted) {
-    return <PizzaResult fields={state.pizza} totalPrice={state.totalPrice} />;
+    return <Redirect to={Path.Preview} push />;
   }
 
   return (

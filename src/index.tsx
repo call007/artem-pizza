@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 
 import "./index.css";
+import { PizzaProvider } from "./PizzaContext";
 
 Sentry.init({
   dsn: "https://bd8c58643e2244afaa46a6e31e91e60a@o1033219.ingest.sentry.io/6000000",
@@ -17,9 +18,11 @@ Sentry.init({
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <PizzaProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </PizzaProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
