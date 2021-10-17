@@ -1,11 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { usePizzaContext } from "../../PizzaContext";
 import { Option, Path } from "../../types";
 
 export function PizzaPreview() {
   const {
     state: { pizza, totalPrice },
+    isPizzaBuilded,
   } = usePizzaContext();
+
+  if (!isPizzaBuilded) {
+    return <Redirect to={Path.PizzaConfigurator} />;
+  }
 
   return (
     <div>

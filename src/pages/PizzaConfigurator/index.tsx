@@ -1,5 +1,5 @@
-import { ChangeEvent, FormEvent, useState } from "react";
-import { Redirect } from "react-router";
+import { ChangeEvent, FormEvent } from "react";
+import { useHistory } from "react-router";
 import { data } from "../../data";
 import { FieldsName, Path } from "../../types";
 import { usePizzaContext } from "../../PizzaContext";
@@ -7,8 +7,8 @@ import { FieldsetCheckboxGroup } from "./FieldsetCheckboxGroup";
 import { FieldsetRadioGroup } from "./FieldsetRadioGroup";
 
 export function PizzaConfigurator() {
-  const { state, dispatch } = usePizzaContext();
-  const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false);
+  const history = useHistory();
+  const { state, dispatch, setIsPizzaBuilded } = usePizzaContext();
 
   const handleChange = (e: ChangeEvent<HTMLFormElement & HTMLInputElement>) => {
     const inputElement = e.target;
@@ -31,12 +31,9 @@ export function PizzaConfigurator() {
 
   const handleSumbit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsFormSubmitted(true);
+    setIsPizzaBuilded(true);
+    history.push(Path.Preview);
   };
-
-  if (isFormSubmitted) {
-    return <Redirect to={Path.Preview} push />;
-  }
 
   return (
     <form onChange={handleChange} onSubmit={handleSumbit}>

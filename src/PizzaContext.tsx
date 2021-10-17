@@ -3,6 +3,7 @@ import React, {
   PropsWithChildren,
   useContext,
   useReducer,
+  useState,
 } from "react";
 import { data } from "./data";
 import { reducer } from "./reducer";
@@ -24,14 +25,19 @@ const PizzaContext = createContext(
   {} as {
     state: State;
     dispatch: React.Dispatch<Action>;
+    isPizzaBuilded: boolean;
+    setIsPizzaBuilded: (value: boolean) => void;
   }
 );
 
 export const PizzaProvider = (props: PropsWithChildren<{}>) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [isPizzaBuilded, setIsPizzaBuilded] = useState(false);
 
   return (
-    <PizzaContext.Provider value={{ state, dispatch }}>
+    <PizzaContext.Provider
+      value={{ state, dispatch, isPizzaBuilded, setIsPizzaBuilded }}
+    >
       {props.children}
     </PizzaContext.Provider>
   );
