@@ -1,4 +1,4 @@
-import { Checkbox, Fieldset } from "../../../common";
+import { Checkbox, Fieldset } from "../../../components";
 import { FieldsName, Option } from "../../../types";
 
 interface Props {

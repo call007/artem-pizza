@@ -6,7 +6,10 @@ export function Menu() {
     <nav>
       <ul>
         <li>
-          <Link to={Path.PizzaConfigurator}>Конфигуратор</Link>
+          <Link to={Path.PizzaConfigurator}>Конфигуратор пиццы</Link>
+        </li>
+        <li>
+          <Link to={Path.PizzaPreview}>Превью пиццы</Link>
         </li>
         <li>
           <Link to={Path.Login}>Авторизация</Link>

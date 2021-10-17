@@ -1,4 +1,4 @@
-import { Menu } from "./common/Menu";
+import { Menu } from "./components/Menu";
 import { PizzaConfigurator } from "./pages/PizzaConfigurator";
 import { Route, Switch } from "react-router-dom";
 import { Path } from "./types";
@@ -20,7 +20,7 @@ function App() {
           <PizzaConfigurator />
         </Route>
 
-        <Route path={Path.Preview}>
+        <Route path={Path.PizzaPreview}>
           <PizzaPreview />
         </Route>
 

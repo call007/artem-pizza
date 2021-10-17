@@ -32,7 +32,7 @@ export function PizzaConfigurator() {
   const handleSumbit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsPizzaBuilded(true);
-    history.push(Path.Preview);
+    history.push(Path.PizzaPreview);
   };
 
   return (

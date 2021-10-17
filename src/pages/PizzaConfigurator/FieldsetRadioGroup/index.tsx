@@ -1,4 +1,4 @@
-import { Fieldset, Radiobox } from "../../../common";
+import { Fieldset, Radiobox } from "../../../components";
 import { FieldsName, Option } from "../../../types";
 
 interface Props {
