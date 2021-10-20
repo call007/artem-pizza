@@ -9,8 +9,8 @@ export function SignUp() {
       <form>
         <ul role="none">
           <li>
-            <label htmlFor="SignUp-email">E-mail</label>{" "}
-            <input type="email" id="SignUp-email" name="email" required />
+            <label htmlFor="signup-email">E-mail</label>{" "}
+            <input type="email" id="signup-email" name="email" required />
           </li>
 
           <li>
