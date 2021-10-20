@@ -17,7 +17,7 @@ export function SignUp() {
             <label htmlFor="login-password">Пароль</label>{" "}
             <input
               type="password"
-              id="SignUp-password"
+              id="signup-password"
               name="password"
               required
             />
@@ -27,7 +27,7 @@ export function SignUp() {
             <label htmlFor="login-password">Подтвердите пароль</label>{" "}
             <input
               type="password"
-              id="SignUp-password"
+              id="signup-password"
               name="password"
               required
             />
