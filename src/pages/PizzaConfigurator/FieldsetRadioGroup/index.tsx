@@ -1,22 +1,24 @@
-import { Checkbox, Fieldset } from "@ui-kit";
-import { FieldsName, Option } from "../types";
+import { Fieldset, Radiobox } from "../../../components";
+import { FieldsName, Option } from "../../../types";
 
 interface Props {
+  title: string;
+  name: FieldsName;
   dataOptions: Option[];
   checkedOptions?: Option[];
 }
 
-export function PizzaCheese(props: Props) {
+export function FieldsetRadioGroup(props: Props) {
   return (
-    <Fieldset legend="Добавьте сыр">
+    <Fieldset legend={props.title}>
       {props.dataOptions.map((option) => (
-        <Checkbox
+        <Radiobox
           key={option.id}
           data-id={option.id}
           value={option.value}
           price={option.price}
-          name={FieldsName.Cheese}
-          id={`${FieldsName.Cheese}-${option.id}`}
+          name={props.name}
+          id={`${props.name}-${option.id}`}
           defaultChecked={
             !!props.checkedOptions?.find((item) => item.id === option.id)
           }
