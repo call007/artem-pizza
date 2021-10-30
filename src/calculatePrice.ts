@@ -6,10 +6,7 @@ export function calculatePrice(
   initialPrice: number = 200
 ) {
   const dataValues = Object.values(data).flat();
-
-  const checkedValues = Object.values(statePizza)
-    .filter((item) => !!item)
-    .flat();
+  const checkedValues = Object.values(statePizza).flat();
 
   return checkedValues.reduce((totalPrice, value) => {
     const price = dataValues.find((item) => item.value === value)?.price || 0;
