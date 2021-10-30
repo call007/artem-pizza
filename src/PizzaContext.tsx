@@ -9,11 +9,11 @@ import { data } from "./data";
 import { reducer } from "./reducer";
 import { Action, State } from "./types";
 
-const initialState: State = {
+export const initialState: State = {
   pizza: {
-    size: [data.size[0]],
-    dough: [data.dough[0]],
-    sauce: [data.sauce[0]],
+    size: data.size[0].value,
+    dough: data.dough[0].value,
+    sauce: data.sauce[0].value,
     cheese: [],
     vegetables: [],
     meat: [],

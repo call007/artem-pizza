@@ -1,6 +1,6 @@
-import { FieldsetHTMLAttributes, PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 
-interface Props extends FieldsetHTMLAttributes<HTMLFieldSetElement> {
+interface Props extends React.HTMLProps<HTMLFieldSetElement> {
   legend: string;
 }
 

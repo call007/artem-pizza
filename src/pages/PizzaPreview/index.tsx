@@ -1,6 +1,6 @@
 import { Link, Redirect } from "react-router-dom";
 import { usePizzaContext } from "../../PizzaContext";
-import { Option, Path } from "../../types";
+import { Path, StateOption, StateOptions } from "../../types";
 
 export function PizzaPreview() {
   const {
@@ -17,24 +17,17 @@ export function PizzaPreview() {
       <h2>Твоя пицца</h2>
 
       <p>
-        {getOptions(pizza.size)}{" "}
-        {pizza.dough.map((item) => {
-          switch (item.id) {
-            case 0:
-              return "на тонком тесте";
-            case 1:
-              return "на пышном тесте";
-            default:
-              return item.value;
-          }
-        })}
+        {pizza.size} {getPizzaDoughText(pizza.dough)}
       </p>
+
       <p>
-        {getOptions(pizza.sauce)} соус
-        {!!pizza.cheese.length && " • "}
+        {pizza.sauce} соус
+        {pizza.cheese.length > 0 && " • "}
         {getOptions(pizza.cheese)}
       </p>
+
       <p>{getOptions(pizza.vegetables)}</p>
+
       <p>{getOptions(pizza.meat)}</p>
 
       <Link to={Path.Checkout}>Заказать за {totalPrice} руб</Link>
@@ -42,6 +35,17 @@ export function PizzaPreview() {
   );
 }
 
-function getOptions(options: Option[]) {
-  return options.map((item) => item.value).join(" • ");
+function getOptions(options: StateOptions) {
+  return options.join(" • ");
+}
+
+function getPizzaDoughText(dough: StateOption) {
+  switch (dough) {
+    case "Тонкое":
+      return "на тонком тесте";
+    case "Пышное":
+      return "на пышном тесте";
+    default:
+      return dough;
+  }
 }

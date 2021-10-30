@@ -1,8 +1,10 @@
-import { ChangeEvent, FormEvent } from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router";
+import { useForm, useWatch } from "react-hook-form";
 import { data } from "../../data";
-import { FieldsName, Path } from "../../types";
-import { usePizzaContext } from "../../PizzaContext";
+import { FieldsName, Path, StatePizza } from "../../types";
+import { calculatePrice } from "../../calculatePrice";
+import { initialState, usePizzaContext } from "../../PizzaContext";
 import { FieldsetCheckboxGroup } from "./FieldsetCheckboxGroup";
 import { FieldsetRadioGroup } from "./FieldsetRadioGroup";
 
@@ -10,75 +12,69 @@ export function PizzaConfigurator() {
   const history = useHistory();
   const { state, dispatch, setIsPizzaBuilded } = usePizzaContext();
 
-  const handleChange = (e: ChangeEvent<HTMLFormElement & HTMLInputElement>) => {
-    const inputElement = e.target;
-    const name = inputElement.name as FieldsName;
+  const { register, control } = useForm<StatePizza>({
+    defaultValues: initialState.pizza,
+  });
 
-    const option = data[name].find(
-      (item) => item.id === Number(inputElement.dataset.id)
-    );
+  const formValues = useWatch({
+    control: control,
+  }) as StatePizza;
 
-    if (option) {
-      dispatch({
-        type: inputElement.checked ? "add-option" : "remove-option",
-        payload: {
-          ...option,
-          name,
-        },
-      });
-    }
-  };
+  useEffect(() => {
+    dispatch({ type: "update-pizza", payload: formValues });
+    dispatch({ type: "update-price", payload: calculatePrice(formValues) });
+  }, [formValues, dispatch]);
 
-  const handleSumbit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit: React.ReactEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     setIsPizzaBuilded(true);
     history.push(Path.PizzaPreview);
   };
 
   return (
-    <form onChange={handleChange} onSubmit={handleSumbit}>
+    <form onSubmit={handleSubmit}>
       <h1>Собери свою пиццу</h1>
 
       <FieldsetRadioGroup
         title="Размер"
         name={FieldsName.Size}
         dataOptions={data.size}
-        checkedOptions={state.pizza.size}
+        register={register}
       />
 
       <FieldsetRadioGroup
         title="Тесто"
         name={FieldsName.Dough}
         dataOptions={data.dough}
-        checkedOptions={state.pizza.dough}
+        register={register}
       />
 
       <FieldsetRadioGroup
         title="Выберите соус"
         name={FieldsName.Sauce}
         dataOptions={data.sauce}
-        checkedOptions={state.pizza.sauce}
+        register={register}
       />
 
       <FieldsetCheckboxGroup
         title="Добавьте сыр"
         name={FieldsName.Cheese}
         dataOptions={data.cheese}
-        checkedOptions={state.pizza.cheese}
+        register={register}
       />
 
       <FieldsetCheckboxGroup
         title="Добавьте овощи"
         name={FieldsName.Vegetables}
         dataOptions={data.vegetables}
-        checkedOptions={state.pizza.vegetables}
+        register={register}
       />
 
       <FieldsetCheckboxGroup
-        title="Добавьте овощи"
+        title="Добавьте мясо"
         name={FieldsName.Meat}
         dataOptions={data.meat}
-        checkedOptions={state.pizza.meat}
+        register={register}
       />
 
       <div>

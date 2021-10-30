@@ -1,9 +1,9 @@
 import { render, fireEvent } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router";
-import { PizzaProvider, usePizzaContext } from "../../PizzaContext";
+import { PizzaProvider } from "../../PizzaContext";
 import { PizzaConfigurator } from ".";
-import { renderHook } from "@testing-library/react-hooks";
 
 function renderPizzaConfigurator() {
   const history = createMemoryHistory();
@@ -28,10 +28,6 @@ describe("PizzaConfigurator page", () => {
 
   describe(".handleChange", () => {
     it("changes pizza price when ingredients value changed", () => {
-      // const { result } = renderHook(usePizzaContext);
-
-      // console.log(result.current.state.totalPrice);
-
       const { getByText } = renderPizzaConfigurator();
 
       fireEvent.click(getByText(/Моцарелла/i));
@@ -40,10 +36,12 @@ describe("PizzaConfigurator page", () => {
       expect(getByText("Заказать за 258 руб")).toBeInTheDocument();
     });
 
-    it("navigates to `/pizza-preview`", () => {
+    it("navigates to `/pizza-preview`", async () => {
       const { getByText, history } = renderPizzaConfigurator();
 
-      fireEvent.click(getByText(/Заказать за/i));
+      await act(async () => {
+        fireEvent.click(getByText(/Заказать за/i));
+      });
 
       expect(history.location.pathname).toEqual("/pizza-preview");
     });

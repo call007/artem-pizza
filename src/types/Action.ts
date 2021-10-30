@@ -1,16 +1,11 @@
-import { FieldsName } from "./FieldsName";
-import { Option } from "./Option";
-
-type Payload = {
-  name: FieldsName;
-} & Option;
+import { State } from "./State";
 
 export type Action =
   | {
-      type: "add-option";
-      payload: Payload;
+      type: "update-pizza";
+      payload: State["pizza"];
     }
   | {
-      type: "remove-option";
-      payload: Payload;
+      type: "update-price";
+      payload: number;
     };
