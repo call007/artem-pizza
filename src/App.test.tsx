@@ -18,7 +18,7 @@ function renderApp() {
   };
 }
 
-describe("App", () => {
+describe("App navifation", () => {
   describe("pizza configurator link click", () => {
     it("navigates to pizza configurator page", () => {
       const history = createMemoryHistory();
@@ -28,7 +28,7 @@ describe("App", () => {
 
       fireEvent.click(getByText(/Конфигуратор пиццы/i));
 
-      expect(history.location.pathname).toMatch("/");
+      expect(history.location.pathname).toEqual("/");
     });
   });
 

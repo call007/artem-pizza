@@ -21,7 +21,7 @@ export const initialState: State = {
   totalPrice: 200,
 };
 
-const PizzaContext = createContext(
+export const PizzaContext = createContext(
   {} as {
     state: State;
     dispatch: React.Dispatch<Action>;

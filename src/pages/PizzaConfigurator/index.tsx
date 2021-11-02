@@ -39,6 +39,7 @@ export function PizzaConfigurator() {
         title="Размер"
         name={FieldsName.Size}
         dataOptions={data.size}
+        isVisiblePrice={false}
         register={register}
       />
 

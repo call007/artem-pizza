@@ -2,8 +2,8 @@ import { Options } from "./types";
 
 export const data: Options = {
   size: [
-    { id: 0, price: 0, value: "30 см" },
-    { id: 1, price: 0, value: "35 см" },
+    { id: 0, price: 200, value: "30 см" },
+    { id: 1, price: 200, value: "35 см" },
   ],
   dough: [
     { id: 0, price: 0, value: "Тонкое" },

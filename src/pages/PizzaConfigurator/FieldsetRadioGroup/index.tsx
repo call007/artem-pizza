@@ -7,16 +7,17 @@ interface Props {
   name: FieldsName;
   dataOptions: Option[];
   register: UseFormRegister<FieldValues>;
+  isVisiblePrice?: boolean;
 }
 
-export function FieldsetRadioGroup(props: Props) {
+export function FieldsetRadioGroup({ isVisiblePrice = true, ...props }: Props) {
   return (
     <Fieldset legend={props.title}>
       {props.dataOptions.map((option) => (
         <Radiobox
           key={option.id}
           value={option.value}
-          price={option.price}
+          price={isVisiblePrice ? option.price : undefined}
           {...props.register(props.name)}
           id={`${props.name}-${option.id}`}
         />
