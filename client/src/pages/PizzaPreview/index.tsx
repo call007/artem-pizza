@@ -1,6 +1,7 @@
 import { Link, Redirect } from "react-router-dom";
 import { usePizzaContext } from "../../PizzaContext";
-import { Path, StateOption, StateOptions } from "../../types";
+import { Path } from "../../consts";
+import { StateOption, StateOptions } from "../../types";
 
 export function PizzaPreview() {
   const {

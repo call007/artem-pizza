@@ -18,8 +18,8 @@ export function FieldsetRadioGroup({ isVisiblePrice = true, ...props }: Props) {
           key={option.id}
           value={option.value}
           price={isVisiblePrice ? option.price : undefined}
-          {...props.register(props.name)}
           id={`${props.name}-${option.id}`}
+          {...props.register(props.name)}
         />
       ))}
     </Fieldset>

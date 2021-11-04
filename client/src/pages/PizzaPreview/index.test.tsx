@@ -1,9 +1,9 @@
 import { render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router";
+import { Path } from "../../consts";
 import { PizzaPreview } from ".";
 import { initialState, PizzaContext, PizzaProvider } from "../../PizzaContext";
-import { Path } from "../../types";
 
 describe("PizzaPreview", () => {
   it("renders correctly", () => {

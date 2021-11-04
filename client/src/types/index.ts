@@ -1,4 +1,3 @@
-export * from "./Path";
 export * from "./FieldsName";
 export * from "./Option";
 export * from "./State";

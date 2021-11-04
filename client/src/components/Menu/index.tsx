@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Path } from "../../types";
+import { Path } from "../../consts";
 
 export function Menu() {
   return (

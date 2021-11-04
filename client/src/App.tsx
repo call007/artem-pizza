@@ -1,14 +1,16 @@
 import { Menu } from "./components/Menu";
-import { PizzaConfigurator } from "./pages/PizzaConfigurator";
 import { Route, Switch } from "react-router-dom";
-import { Path } from "./types";
-import { LogIn } from "./pages/LogIn";
-import { SignUp } from "./pages/SignUp";
-import { Сheckout } from "./pages/Сheckout";
-import { СheckoutSuccess } from "./pages/СheckoutSuccess";
-import { Orders } from "./pages/Orders";
-import { PizzaPreview } from "./pages/PizzaPreview";
-import { NotFound } from "./pages/NotFound";
+import { Path } from "./consts";
+import {
+  LogIn,
+  NotFound,
+  Orders,
+  PizzaConfigurator,
+  PizzaPreview,
+  SignUp,
+  Сheckout,
+  СheckoutSuccess,
+} from "./pages";
 
 function App() {
   return (

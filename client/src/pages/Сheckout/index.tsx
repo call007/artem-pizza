@@ -1,15 +1,15 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useValidators } from "../../hooks/useValidators";
+import { useValidators } from "../../validators/useValidators";
 
 type FormValues = {
   address: string;
-  entrance?: string;
-  floor?: string;
-  apartment?: string;
-  cardNumber?: string;
-  cardExpiration?: string;
-  cardCCV?: number;
-  cardName?: string;
+  entrance: string;
+  floor: string;
+  apartment: string;
+  cardNumber: string;
+  cardExpiration: string;
+  cardCCV: number;
+  cardName: string;
 };
 
 const getPaymentSystem = (value?: string) => {
@@ -26,14 +26,14 @@ const getPaymentSystem = (value?: string) => {
 };
 
 export function Сheckout() {
+  const { required, cardNumber, cardExpiration, cardCVV, cardName } =
+    useValidators();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm<FormValues>();
-
-  const { required, cardNumber, cardExpiration } = useValidators();
 
   const watchCardNumber = watch("cardNumber");
   const paymentSystem = getPaymentSystem(watchCardNumber);
@@ -54,7 +54,7 @@ export function Сheckout() {
                 type="text"
                 placeholder="Введите адрес"
                 autoComplete="street-address"
-                {...register("address", { required })}
+                {...register("address", required)}
               />
               {errors.address?.message}
             </li>
@@ -62,29 +62,29 @@ export function Сheckout() {
             <li>
               <label htmlFor="order-entrance">подъезд</label>{" "}
               <input
-                {...register("entrance")}
                 type="text"
                 inputMode="decimal"
                 id="order-entrance"
+                {...register("entrance")}
               />
             </li>
 
             <li>
               <label htmlFor="order-floor">этаж</label>{" "}
               <input
-                {...register("floor")}
                 type="text"
                 inputMode="decimal"
                 id="order-floor"
+                {...register("floor")}
               />
             </li>
 
             <li>
               <label htmlFor="order-apartment">квартира</label>{" "}
               <input
-                {...register("apartment")}
-                type="number"
+                type="text"
                 id="order-apartment"
+                {...register("apartment")}
               />
             </li>
           </ul>
@@ -96,51 +96,52 @@ export function Сheckout() {
           <ul role="none">
             <li>
               <input
-                {...register("cardNumber", {
-                  required,
-                  ...cardNumber.register,
-                })}
                 type="text"
                 placeholder="Номер карты"
                 inputMode="decimal"
                 autoComplete="cc-number"
-                onKeyPress={cardNumber.onKeyPress}
+                {...register("cardNumber", {
+                  ...required,
+                  ...cardNumber,
+                })}
               />
-              {errors.cardNumber ? errors.cardNumber?.message : paymentSystem}
+              {errors.cardNumber?.message || paymentSystem}
             </li>
 
             <li>
               <input
-                {...register("cardExpiration", {
-                  required,
-                  ...cardExpiration.register,
-                })}
                 type="text"
                 placeholder="MM/YYYY"
                 inputMode="decimal"
                 autoComplete="cc-exp"
-                onKeyPress={cardExpiration.onKeyPress}
+                {...register("cardExpiration", {
+                  ...required,
+                  ...cardExpiration,
+                })}
               />
               {errors.cardExpiration?.message}
             </li>
 
             <li>
               <input
-                {...register("cardCCV", { required })}
                 type="text"
                 placeholder="CVV"
                 inputMode="decimal"
                 autoComplete="cc-csc"
+                {...register("cardCCV", {
+                  ...required,
+                  ...cardCVV,
+                })}
               />
               {errors.cardCCV?.message}
             </li>
 
             <li>
               <input
-                {...register("cardName", { required })}
                 type="text"
                 placeholder="Имя как на карте"
                 autoComplete="cc-name"
+                {...register("cardName", { ...required, ...cardName })}
               />
               {errors.cardName?.message}
             </li>
