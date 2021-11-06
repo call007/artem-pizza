@@ -58,7 +58,7 @@ describe("App navifation", () => {
 
       fireEvent.click(getByText("Оформление заказа"));
 
-      expect(container.innerHTML).toMatch("Заполните форму заказа");
+      expect(container.innerHTML).toMatch("Отправить");
     });
   });
 
