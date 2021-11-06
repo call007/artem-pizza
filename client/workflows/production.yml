@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [develop]
+    branches: [master]
   pull_request:
-    branches: [develop]
+    branches: [master]
 
 jobs:
   build:
@@ -23,10 +23,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: cd client && npm install -g yarn
+      - run: npm install -g yarn
       - name: yarn install, build, and test
         run: |
-          cd client && yarn install && yarn release && yarn test
+          yarn install
+          yarn release
+          yarn test
       - name: Create Sentry release
         uses: getsentry/action-release@v1
         env:
@@ -34,13 +36,13 @@ jobs:
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
-          environment: staging
-          sourcemaps: ./client/build
+          environment: production
+          sourcemaps: ./build
       - name: Deploy to netlify
         uses: netlify/actions/cli@master
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.DEV_NETLIFY_SITE_ID }}
+          NETLIFY_SITE_ID: ${{ secrets.PROD_NETLIFY_SITE_ID }}
         with:
-          args: deploy --dir=build --message 'Dev deploy ${{ github.event.head_commit.message }}' --prod
+          args: deploy --dir=build --message 'Prod deploy ${{ github.event.head_commit.message }} --prod
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
