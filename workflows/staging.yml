@@ -23,11 +23,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install -g yarn
-      - name: yarn install, build
+      - run: cd client && npm install -g yarn
+      - name: yarn install, build, and test
         run: |
-          yarn install
-          yarn release
+          cd client && yarn install && yarn release && yarn test
       - name: Create Sentry release
         uses: getsentry/action-release@v1
         env:
