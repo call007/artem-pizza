@@ -14,5 +14,4 @@ export type StatePizza = {
 
 export type State = {
   pizza: StatePizza;
-  totalPrice: number;
 };

@@ -18,7 +18,6 @@ export const initialState: State = {
     vegetables: [],
     meat: [],
   },
-  totalPrice: 200,
 };
 
 export const PizzaContext = createContext(

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router";
 import { useForm, useWatch } from "react-hook-form";
 import { data } from "../../data";
@@ -11,7 +11,7 @@ import { FieldsetRadioGroup } from "./FieldsetRadioGroup";
 
 export function PizzaConfigurator() {
   const history = useHistory();
-  const { state, dispatch, setIsPizzaBuilded } = usePizzaContext();
+  const { dispatch, setIsPizzaBuilded } = usePizzaContext();
 
   const { register, control } = useForm<StatePizza>({
     defaultValues: initialState.pizza,
@@ -21,14 +21,10 @@ export function PizzaConfigurator() {
     control: control,
   }) as StatePizza;
 
-  useEffect(() => {
-    dispatch({ type: "update-pizza", payload: formValues });
-    dispatch({ type: "update-price", payload: calculatePrice(formValues) });
-  }, [formValues, dispatch]);
-
   const handleSubmit: React.ReactEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     setIsPizzaBuilded(true);
+    dispatch({ type: "update-pizza", payload: formValues });
     history.push(Path.PizzaPreview);
   };
 
@@ -80,7 +76,9 @@ export function PizzaConfigurator() {
       />
 
       <div>
-        <button type="submit">Заказать за {state.totalPrice} руб</button>
+        <button type="submit">
+          Заказать за {calculatePrice(formValues)} руб
+        </button>
       </div>
     </form>
   );

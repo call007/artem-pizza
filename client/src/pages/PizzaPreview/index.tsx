@@ -2,10 +2,11 @@ import { Link, Redirect } from "react-router-dom";
 import { usePizzaContext } from "../../PizzaContext";
 import { Path } from "../../consts";
 import { StateOption, StateOptions } from "../../types";
+import { calculatePrice } from "../../calculatePrice";
 
 export function PizzaPreview() {
   const {
-    state: { pizza, totalPrice },
+    state: { pizza },
     isPizzaBuilded,
   } = usePizzaContext();
 
@@ -31,7 +32,7 @@ export function PizzaPreview() {
 
       <p>{getOptions(pizza.meat)}</p>
 
-      <Link to={Path.Checkout}>Заказать за {totalPrice} руб</Link>
+      <Link to={Path.Checkout}>Заказать за {calculatePrice(pizza)} руб</Link>
     </div>
   );
 }

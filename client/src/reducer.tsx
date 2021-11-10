@@ -8,12 +8,6 @@ export function reducer(state: State, { type, payload }: Action): State {
         pizza: payload as StatePizza,
       };
 
-    case "update-price":
-      return {
-        ...state,
-        totalPrice: payload as number,
-      };
-
     default:
       throw new Error("Unknown action type");
   }
