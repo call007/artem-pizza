@@ -11,7 +11,6 @@ export const cardCVV: RegisterOptions = {
   maxLength: 3,
   onChange: (event: ChangeEvent<HTMLInputElement>) => {
     const target = event.target;
-    const { value } = target;
-    target.value = normalizeNumber(value);
+    target.value = normalizeNumber(target.value);
   },
 };

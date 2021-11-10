@@ -11,7 +11,6 @@ export const cardNumber: RegisterOptions = {
   maxLength: 19,
   onChange: (event: ChangeEvent<HTMLInputElement>) => {
     const target = event.target;
-    const { value } = target;
-    target.value = normalizeCardNumber(value);
+    target.value = normalizeCardNumber(target.value);
   },
 };
