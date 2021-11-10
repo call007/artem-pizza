@@ -5,16 +5,23 @@ import { data } from "../../data";
 import { Path } from "../../consts";
 import { FieldsName, StatePizza } from "../../types";
 import { calculatePrice } from "../../calculatePrice";
-import { initialState, usePizzaContext } from "../../PizzaContext";
+import { usePizzaContext } from "../../PizzaContext";
 import { FieldsetCheckboxGroup } from "./FieldsetCheckboxGroup";
 import { FieldsetRadioGroup } from "./FieldsetRadioGroup";
 
 export function PizzaConfigurator() {
   const history = useHistory();
-  const { dispatch, setIsPizzaBuilded } = usePizzaContext();
+  const { dispatch } = usePizzaContext();
 
   const { register, control } = useForm<StatePizza>({
-    defaultValues: initialState.pizza,
+    defaultValues: {
+      size: data.size[0].value,
+      dough: data.dough[0].value,
+      sauce: data.sauce[0].value,
+      cheese: [],
+      vegetables: [],
+      meat: [],
+    },
   });
 
   const formValues = useWatch({
@@ -23,7 +30,6 @@ export function PizzaConfigurator() {
 
   const handleSubmit: React.ReactEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    setIsPizzaBuilded(true);
     dispatch({ type: "update-pizza", payload: formValues });
     history.push(Path.PizzaPreview);
   };

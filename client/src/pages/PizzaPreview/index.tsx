@@ -7,10 +7,9 @@ import { calculatePrice } from "../../calculatePrice";
 export function PizzaPreview() {
   const {
     state: { pizza },
-    isPizzaBuilded,
   } = usePizzaContext();
 
-  if (!isPizzaBuilded) {
+  if (!pizza) {
     return <Redirect to={Path.PizzaConfigurator} />;
   }
 

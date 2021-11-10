@@ -13,5 +13,5 @@ export type StatePizza = {
 };
 
 export type State = {
-  pizza: StatePizza;
+  pizza?: StatePizza;
 };

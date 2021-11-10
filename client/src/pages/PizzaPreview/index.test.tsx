@@ -1,27 +1,34 @@
 import { render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
-import { Router } from "react-router";
+import { MemoryRouter, Router } from "react-router";
 import { Path } from "../../consts";
 import { PizzaPreview } from ".";
-import { initialState, PizzaContext, PizzaProvider } from "../../PizzaContext";
+import { PizzaContext, PizzaProvider } from "../../PizzaContext";
+import { data } from "../../data";
 
 describe("PizzaPreview", () => {
   it("renders correctly", () => {
-    const history = createMemoryHistory();
-
     const { getByText } = render(
-      <Router history={history}>
+      <MemoryRouter>
         <PizzaContext.Provider
           value={
             {
-              state: initialState,
-              isPizzaBuilded: true,
+              state: {
+                pizza: {
+                  size: data.size[0].value,
+                  dough: data.dough[0].value,
+                  sauce: data.sauce[0].value,
+                  cheese: [],
+                  vegetables: [],
+                  meat: [],
+                },
+              },
             } as any
           }
         >
           <PizzaPreview />
         </PizzaContext.Provider>
-      </Router>
+      </MemoryRouter>
     );
 
     expect(getByText("30 см на тонком тесте")).toBeInTheDocument();
