@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useValidators } from "../../../validators";
+import { validators } from "../../../validators";
 
 type FormValues = {
   address: string;
@@ -30,8 +30,6 @@ const getPaymentSystem = (value?: string) => {
 };
 
 export function СheckoutForm({ formSubmit }: Props) {
-  const { required, cardNumber, cardExpiration, cardCVV, cardName } =
-    useValidators();
   const {
     register,
     handleSubmit,
@@ -55,7 +53,7 @@ export function СheckoutForm({ formSubmit }: Props) {
               type="text"
               placeholder="Введите адрес"
               autoComplete="street-address"
-              {...register("address", required)}
+              {...register("address", validators.required)}
             />
             {errors.address?.message}
           </li>
@@ -102,8 +100,8 @@ export function СheckoutForm({ formSubmit }: Props) {
               inputMode="decimal"
               autoComplete="cc-number"
               {...register("cardNumber", {
-                ...required,
-                ...cardNumber,
+                ...validators.required,
+                ...validators.cardNumber,
               })}
             />
             {errors.cardNumber?.message || paymentSystem}
@@ -116,8 +114,8 @@ export function СheckoutForm({ formSubmit }: Props) {
               inputMode="decimal"
               autoComplete="cc-exp"
               {...register("cardExpiration", {
-                ...required,
-                ...cardExpiration,
+                ...validators.required,
+                ...validators.cardExpiration,
               })}
             />
             {errors.cardExpiration?.message}
@@ -130,8 +128,8 @@ export function СheckoutForm({ formSubmit }: Props) {
               inputMode="decimal"
               autoComplete="cc-csc"
               {...register("cardCVV", {
-                ...required,
-                ...cardCVV,
+                ...validators.required,
+                ...validators.cardCVV,
               })}
             />
             {errors.cardCVV?.message}
@@ -142,7 +140,10 @@ export function СheckoutForm({ formSubmit }: Props) {
               type="text"
               placeholder="Имя как на карте"
               autoComplete="cc-name"
-              {...register("cardName", { ...required, ...cardName })}
+              {...register("cardName", {
+                ...validators.required,
+                ...validators.cardName,
+              })}
             />
             {errors.cardName?.message}
           </li>

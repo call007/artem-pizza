@@ -1,6 +1,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Messages } from "../../../consts";
-import { useValidators } from "../../../validators";
+import { validators } from "../../../validators";
 
 type FormValues = {
   email: string;
@@ -13,7 +13,6 @@ interface Props {
 }
 
 export function SignUpForm({ formSubmit }: Props) {
-  const { required, email, password } = useValidators();
   const {
     register,
     handleSubmit,
@@ -35,7 +34,10 @@ export function SignUpForm({ formSubmit }: Props) {
             id="signup-email"
             inputMode="email"
             autoComplete="username"
-            {...register("email", { ...required, ...email })}
+            {...register("email", {
+              ...validators.required,
+              ...validators.email,
+            })}
           />
           {errors.email?.message}
         </li>
@@ -46,7 +48,10 @@ export function SignUpForm({ formSubmit }: Props) {
             type="password"
             id="signup-password"
             autoComplete="new-password"
-            {...register("password", { ...required, ...password })}
+            {...register("password", {
+              ...validators.required,
+              ...validators.password,
+            })}
           />
           {errors.password?.message}
         </li>
@@ -58,8 +63,8 @@ export function SignUpForm({ formSubmit }: Props) {
             id="signup-password-repeat"
             autoComplete="new-password"
             {...register("passwordRepeat", {
-              ...required,
-              ...password,
+              ...validators.required,
+              ...validators.password,
               validate: (value) =>
                 value === watchPassword || Messages.PasswordMismatch,
             })}

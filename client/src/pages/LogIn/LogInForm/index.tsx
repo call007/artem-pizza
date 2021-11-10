@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useValidators } from "../../../validators";
+import { validators } from "../../../validators";
 
 type FormValues = {
   email: string;
@@ -11,7 +11,6 @@ interface Props {
 }
 
 export function LogInForm({ formSubmit }: Props) {
-  const { required, email } = useValidators();
   const {
     register,
     handleSubmit,
@@ -30,7 +29,10 @@ export function LogInForm({ formSubmit }: Props) {
             id="login-email"
             inputMode="email"
             autoComplete="username"
-            {...register("email", { ...required, ...email })}
+            {...register("email", {
+              ...validators.required,
+              ...validators.email,
+            })}
           />
           {errors.email?.message}
         </li>
@@ -41,7 +43,7 @@ export function LogInForm({ formSubmit }: Props) {
             type="password"
             id="login-password"
             autoComplete="current-password"
-            {...register("password", { ...required })}
+            {...register("password", { ...validators.required })}
           />
           {errors.password?.message}
         </li>
