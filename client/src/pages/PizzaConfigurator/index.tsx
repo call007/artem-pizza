@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { data } from "../../data";
 import { Path } from "../../consts";
 import { FieldsName, StatePizza } from "../../types";
@@ -13,7 +13,7 @@ export function PizzaConfigurator() {
   const history = useHistory();
   const { dispatch } = usePizzaContext();
 
-  const { register, control } = useForm<StatePizza>({
+  const { register, watch } = useForm<StatePizza>({
     defaultValues: {
       size: data.size[0].value,
       dough: data.dough[0].value,
@@ -24,9 +24,7 @@ export function PizzaConfigurator() {
     },
   });
 
-  const formValues = useWatch({
-    control: control,
-  }) as StatePizza;
+  const formValues = watch();
 
   const handleSubmit: React.ReactEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
