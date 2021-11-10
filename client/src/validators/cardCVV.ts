@@ -10,7 +10,7 @@ export const cardCVV: RegisterOptions = {
   },
   maxLength: 3,
   onChange: (event: ChangeEvent<HTMLInputElement>) => {
-    const target = event.target;
+    const { target } = event;
     target.value = normalizeNumber(target.value);
   },
 };

@@ -10,7 +10,7 @@ export const cardNumber: RegisterOptions = {
   },
   maxLength: 19,
   onChange: (event: ChangeEvent<HTMLInputElement>) => {
-    const target = event.target;
+    const { target } = event;
     target.value = normalizeCardNumber(target.value);
   },
 };

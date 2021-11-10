@@ -10,7 +10,7 @@ export const cardExpiration: RegisterOptions = {
   },
   maxLength: 7,
   onChange: (event: ChangeEvent<HTMLInputElement>) => {
-    const target = event.target;
+    const { target } = event;
     target.value = normalizeCardExpiration(target.value);
   },
 };
