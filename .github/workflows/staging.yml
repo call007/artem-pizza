@@ -23,16 +23,26 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install -g yarn
-      - name: yarn install, build
-        run: |
-          yarn install
-          yarn build
+      - run: yarn install
+        working-directory: ./client
+      - run: yarn release
+        working-directory: ./client
+      - run: yarn test
+        working-directory: ./client
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        with:
+          environment: staging
+          sourcemaps: ./build
       - name: Deploy to netlify
         uses: netlify/actions/cli@master
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.DEV_NETLIFY_SITE_ID }}
         with:
-          args: deploy --dir=build --prod
+          args: deploy --dir=build --message 'Dev deploy ${{ github.event.head_commit.message }}' --prod
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
