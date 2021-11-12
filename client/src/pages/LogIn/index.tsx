@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Path } from "../../consts";
+import { PATH } from "../../consts";
 import { LogInForm } from "./LogInForm";
 
 export function LogIn() {
@@ -11,7 +11,7 @@ export function LogIn() {
 
       <p>
         Если вы не зарегистрированы{" "}
-        <Link to={Path.Signup}>пройдите регистрацию</Link>
+        <Link to={PATH.Signup}>пройдите регистрацию</Link>
       </p>
     </div>
   );

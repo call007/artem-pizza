@@ -1,6 +1,6 @@
 import { Link, Redirect } from "react-router-dom";
 import { usePizzaContext } from "../../PizzaContext";
-import { Path } from "../../consts";
+import { PATH } from "../../consts";
 import { StateOption, StateOptions } from "../../types";
 import { calculatePrice } from "../../calculatePrice";
 
@@ -10,7 +10,7 @@ export function PizzaPreview() {
   } = usePizzaContext();
 
   if (!pizza) {
-    return <Redirect to={Path.PizzaConfigurator} />;
+    return <Redirect to={PATH.PizzaConfigurator} />;
   }
 
   return (
@@ -31,7 +31,7 @@ export function PizzaPreview() {
 
       <p>{getOptions(pizza.meat)}</p>
 
-      <Link to={Path.Checkout}>Заказать за {calculatePrice(pizza)} руб</Link>
+      <Link to={PATH.Checkout}>Заказать за {calculatePrice(pizza)} руб</Link>
     </div>
   );
 }

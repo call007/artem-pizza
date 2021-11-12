@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Messages } from "../../../consts";
+import { MESSAGES } from "../../../consts";
 import { validators } from "../../../validators";
 
 type FormValues = {
@@ -66,7 +66,7 @@ export function SignUpForm({ formSubmit }: Props) {
               ...validators.required,
               ...validators.password,
               validate: (value) =>
-                value === watchPassword || Messages.PasswordMismatch,
+                value === watchPassword || MESSAGES.PasswordMismatch,
             })}
           />
           {errors.passwordRepeat?.message}

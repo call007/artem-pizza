@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
 import { data } from "../../data";
-import { Path } from "../../consts";
+import { PATH } from "../../consts";
 import { FieldsName, StatePizza } from "../../types";
 import { calculatePrice } from "../../calculatePrice";
 import { usePizzaContext } from "../../PizzaContext";
@@ -29,7 +29,7 @@ export function PizzaConfigurator() {
   const handleSubmit: React.ReactEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     dispatch({ type: "update-pizza", payload: formValues });
-    history.push(Path.PizzaPreview);
+    history.push(PATH.PizzaPreview);
   };
 
   return (

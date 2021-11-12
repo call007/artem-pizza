@@ -1,4 +1,4 @@
-export enum Path {
+export enum PATH {
   PizzaConfigurator = "/",
   PizzaPreview = "/pizza-preview",
   Login = "/log-in",

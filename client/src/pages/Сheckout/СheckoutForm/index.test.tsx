@@ -1,7 +1,7 @@
 import { render, fireEvent } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { СheckoutForm } from ".";
-import { Messages } from "../../../consts";
+import { MESSAGES } from "../../../consts";
 
 describe("СheckoutForm", () => {
   it("renders correctly", () => {
@@ -178,23 +178,23 @@ describe("СheckoutForm", () => {
 
       expect(
         getByPlaceholderText("Введите адрес").parentElement?.innerHTML
-      ).toMatch(Messages.Required);
+      ).toMatch(MESSAGES.Required);
 
       expect(
         getByPlaceholderText("Номер карты").parentElement?.innerHTML
-      ).toMatch(Messages.Required);
+      ).toMatch(MESSAGES.Required);
 
       expect(getByPlaceholderText("MM/YYYY").parentElement?.innerHTML).toMatch(
-        Messages.Required
+        MESSAGES.Required
       );
 
       expect(getByPlaceholderText("CVV").parentElement?.innerHTML).toMatch(
-        Messages.Required
+        MESSAGES.Required
       );
 
       expect(
         getByPlaceholderText("Имя как на карте").parentElement?.innerHTML
-      ).toMatch(Messages.Required);
+      ).toMatch(MESSAGES.Required);
     });
 
     it("validates that card name is correct", async () => {
@@ -214,7 +214,7 @@ describe("СheckoutForm", () => {
 
       expect(
         getByPlaceholderText("Номер карты").parentElement?.innerHTML
-      ).toMatch(Messages.CardNumber);
+      ).toMatch(MESSAGES.CardNumber);
     });
 
     it("validates that card expiration is correct", async () => {
@@ -232,7 +232,7 @@ describe("СheckoutForm", () => {
         fireEvent.click(getByText("Отправить"));
       });
 
-      expect(ccInput.parentElement?.innerHTML).toMatch(Messages.CardExpiration);
+      expect(ccInput.parentElement?.innerHTML).toMatch(MESSAGES.CardExpiration);
     });
 
     it("validates that card CVV code is correct", async () => {
@@ -250,7 +250,7 @@ describe("СheckoutForm", () => {
         fireEvent.click(getByText("Отправить"));
       });
 
-      expect(ccInput.parentElement?.innerHTML).toMatch(Messages.CardCVV);
+      expect(ccInput.parentElement?.innerHTML).toMatch(MESSAGES.CardCVV);
     });
 
     it("validates that card name is correct", async () => {
@@ -268,7 +268,7 @@ describe("СheckoutForm", () => {
         fireEvent.click(getByText("Отправить"));
       });
 
-      expect(ccInput.parentElement?.innerHTML).toMatch(Messages.CardName);
+      expect(ccInput.parentElement?.innerHTML).toMatch(MESSAGES.CardName);
     });
   });
 });

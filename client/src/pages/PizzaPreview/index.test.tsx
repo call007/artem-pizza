@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import { MemoryRouter, Router } from "react-router";
-import { Path } from "../../consts";
+import { PATH } from "../../consts";
 import { PizzaPreview } from ".";
 import { PizzaContext, PizzaProvider } from "../../PizzaContext";
 import { data } from "../../data";
@@ -39,7 +39,7 @@ describe("PizzaPreview", () => {
     it("redirects to home page", () => {
       const history = createMemoryHistory();
 
-      history.push(Path.PizzaPreview);
+      history.push(PATH.PizzaPreview);
 
       render(
         <Router history={history}>

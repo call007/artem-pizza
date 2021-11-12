@@ -1,7 +1,7 @@
 import { render, fireEvent } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { SignUpForm } from ".";
-import { Messages } from "../../../consts";
+import { MESSAGES } from "../../../consts";
 
 describe("SignUpForm", () => {
   it("renders correctly", () => {
@@ -53,16 +53,16 @@ describe("SignUpForm", () => {
       });
 
       expect(getByLabelText("E-mail").parentElement?.innerHTML).toMatch(
-        Messages.Required
+        MESSAGES.Required
       );
 
       expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        Messages.Required
+        MESSAGES.Required
       );
 
       expect(
         getByLabelText("Подтвердите пароль").parentElement?.innerHTML
-      ).toMatch(Messages.Required);
+      ).toMatch(MESSAGES.Required);
     });
 
     it("validates that email is the correct email", async () => {
@@ -79,7 +79,7 @@ describe("SignUpForm", () => {
       });
 
       expect(getByLabelText("E-mail").parentElement?.innerHTML).toMatch(
-        Messages.Email
+        MESSAGES.Email
       );
     });
 
@@ -97,7 +97,7 @@ describe("SignUpForm", () => {
       });
 
       expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        Messages.Password
+        MESSAGES.Password
       );
     });
 
@@ -115,7 +115,7 @@ describe("SignUpForm", () => {
       });
 
       expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        Messages.Password
+        MESSAGES.Password
       );
     });
 
@@ -133,7 +133,7 @@ describe("SignUpForm", () => {
       });
 
       expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        Messages.Password
+        MESSAGES.Password
       );
     });
 
@@ -151,7 +151,7 @@ describe("SignUpForm", () => {
       });
 
       expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        Messages.Password
+        MESSAGES.Password
       );
     });
   });

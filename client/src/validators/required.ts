@@ -1,9 +1,9 @@
 import { RegisterOptions } from "react-hook-form";
-import { Messages } from "../consts";
+import { MESSAGES } from "../consts";
 
 export const required: RegisterOptions = {
   required: {
     value: true,
-    message: Messages.Required,
+    message: MESSAGES.Required,
   },
 };

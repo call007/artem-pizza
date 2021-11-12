@@ -1,4 +1,4 @@
-export enum Messages {
+export enum MESSAGES {
   Required = "Обязательное поле",
   CardNumber = "Неверный формат номера банковской карты",
   CardExpiration = "Неверный формат срока действия банковской карты",

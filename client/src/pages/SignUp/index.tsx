@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Path } from "../../consts";
+import { PATH } from "../../consts";
 import { SignUpForm } from "./SignUpForm";
 
 export function SignUp() {
@@ -10,7 +10,7 @@ export function SignUp() {
       <SignUpForm formSubmit={(data) => console.log(data)} />
 
       <p>
-        Если вы уже зарегистрированы <Link to={Path.Login}>авторизуйтесь</Link>
+        Если вы уже зарегистрированы <Link to={PATH.Login}>авторизуйтесь</Link>
       </p>
     </div>
   );

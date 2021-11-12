@@ -1,30 +1,30 @@
 import { Link } from "react-router-dom";
-import { Path } from "../../consts";
+import { PATH } from "../../consts";
 
 export function Menu() {
   return (
     <nav>
       <ul>
         <li>
-          <Link to={Path.PizzaConfigurator}>Конфигуратор пиццы</Link>
+          <Link to={PATH.PizzaConfigurator}>Конфигуратор пиццы</Link>
         </li>
         <li>
-          <Link to={Path.PizzaPreview}>Превью пиццы</Link>
+          <Link to={PATH.PizzaPreview}>Превью пиццы</Link>
         </li>
         <li>
-          <Link to={Path.Login}>Авторизация</Link>
+          <Link to={PATH.Login}>Авторизация</Link>
         </li>
         <li>
-          <Link to={Path.Signup}>Регистрация</Link>
+          <Link to={PATH.Signup}>Регистрация</Link>
         </li>
         <li>
-          <Link to={Path.Checkout}>Оформление заказа</Link>
+          <Link to={PATH.Checkout}>Оформление заказа</Link>
         </li>
         <li>
-          <Link to={Path.CheckoutSuccess}>Оформление заказа (успех)</Link>
+          <Link to={PATH.CheckoutSuccess}>Оформление заказа (успех)</Link>
         </li>
         <li>
-          <Link to={Path.Orders}>Мои заказы</Link>
+          <Link to={PATH.Orders}>Мои заказы</Link>
         </li>
       </ul>
     </nav>

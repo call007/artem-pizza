@@ -1,6 +1,6 @@
 import { Menu } from "./components/Menu";
 import { Route, Switch } from "react-router-dom";
-import { Path } from "./consts";
+import { PATH } from "./consts";
 import {
   LogIn,
   NotFound,
@@ -18,31 +18,31 @@ function App() {
       <Menu />
 
       <Switch>
-        <Route path={Path.PizzaConfigurator} exact>
+        <Route path={PATH.PizzaConfigurator} exact>
           <PizzaConfigurator />
         </Route>
 
-        <Route path={Path.PizzaPreview}>
+        <Route path={PATH.PizzaPreview}>
           <PizzaPreview />
         </Route>
 
-        <Route path={Path.Login}>
+        <Route path={PATH.Login}>
           <LogIn />
         </Route>
 
-        <Route path={Path.Signup}>
+        <Route path={PATH.Signup}>
           <SignUp />
         </Route>
 
-        <Route path={Path.Checkout}>
+        <Route path={PATH.Checkout}>
           <Сheckout />
         </Route>
 
-        <Route path={Path.CheckoutSuccess}>
+        <Route path={PATH.CheckoutSuccess}>
           <СheckoutSuccess />
         </Route>
 
-        <Route path={Path.Orders}>
+        <Route path={PATH.Orders}>
           <Orders />
         </Route>
 

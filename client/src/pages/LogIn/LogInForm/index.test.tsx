@@ -1,7 +1,7 @@
 import { render, fireEvent } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { LogInForm } from ".";
-import { Messages } from "../../../consts";
+import { MESSAGES } from "../../../consts";
 
 describe("LogInForm", () => {
   it("renders correctly", () => {
@@ -48,11 +48,11 @@ describe("LogInForm", () => {
       });
 
       expect(getByLabelText("E-mail").parentElement?.innerHTML).toMatch(
-        Messages.Required
+        MESSAGES.Required
       );
 
       expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        Messages.Required
+        MESSAGES.Required
       );
     });
 
@@ -70,7 +70,7 @@ describe("LogInForm", () => {
       });
 
       expect(getByLabelText("E-mail").parentElement?.innerHTML).toMatch(
-        Messages.Email
+        MESSAGES.Email
       );
     });
   });
