@@ -27,6 +27,8 @@ jobs:
         working-directory: ./client
       - run: yarn release
         working-directory: ./client
+      - run: yarn type-check
+        working-directory: ./client
       - run: yarn test
         working-directory: ./client
       - name: Create Sentry release
@@ -37,12 +39,12 @@ jobs:
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
           environment: production
-          sourcemaps: ./client/build
+          sourcemaps: ./build
       - name: Deploy to netlify
         uses: netlify/actions/cli@master
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.PROD_NETLIFY_SITE_ID }}
         with:
-          args: deploy --dir=build --message 'Prod deploy ${{ github.event.head_commit.message }} --prod
+          args: deploy --dir=client/build --message 'Prod deploy ${{ github.event.head_commit.message }} --prod
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
