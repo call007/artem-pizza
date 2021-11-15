@@ -1,9 +1,9 @@
-export const normalizeCardExpiration = (value: string) => {
-  if (+value[0] > 3) {
+export const normalizeCardExpiration = (value: string): string => {
+  if (+value[0] > 1) {
     return "";
   }
 
-  if (+value.substr(0, 2) > 31) {
+  if (+value.substr(0, 2) > 12) {
     return value.charAt(0);
   }
 

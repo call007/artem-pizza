@@ -1,4 +1,4 @@
-export const normalizeCardNumber = (value: string) =>
+export const normalizeCardNumber = (value: string): string =>
   value
     .replace(/[^0-9]/g, "")
     .match(/.{1,4}/g)

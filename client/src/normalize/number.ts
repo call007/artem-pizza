@@ -1,1 +1,2 @@
-export const normalizeNumber = (value: string) => value.replace(/[^0-9]/g, "");
+export const normalizeNumber = (value: string): string =>
+  value.replace(/[^0-9]/g, "");

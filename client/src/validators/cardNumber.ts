@@ -3,7 +3,10 @@ import { RegisterOptions } from "react-hook-form";
 import { REG_EXP, MESSAGES } from "../consts";
 import { normalizeCardNumber } from "../normalize";
 
-export const cardNumber: RegisterOptions = {
+export const cardNumber: Pick<
+  RegisterOptions,
+  "pattern" | "maxLength" | "onChange"
+> = {
   pattern: {
     value: REG_EXP.cardNumber,
     message: MESSAGES.CardNumber,
