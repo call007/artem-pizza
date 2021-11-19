@@ -6,7 +6,7 @@ export function calculatePrice(statePizza: StatePizza) {
   const checkedValues = Object.values(statePizza).flat();
 
   return checkedValues.reduce((totalPrice, value) => {
-    const price = dataValues.find((item) => item.value === value)?.price || 0;
+    const price = dataValues.find((item) => item.slug === value)?.price || 0;
 
     return totalPrice + price;
   }, 0);

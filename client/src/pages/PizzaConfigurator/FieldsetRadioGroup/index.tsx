@@ -1,25 +1,29 @@
 import { FieldValues, UseFormRegister } from "react-hook-form";
 import { Fieldset, Radiobox } from "../../../components";
-import { FieldsName, Option } from "../../../types";
+import { Ingredient } from "../../../types";
 
 interface Props {
   title: string;
-  name: FieldsName;
-  dataOptions: Option[];
+  dataIngredients?: Ingredient[];
   register: UseFormRegister<FieldValues>;
   isVisiblePrice?: boolean;
 }
 
 export function FieldsetRadioGroup({ isVisiblePrice = true, ...props }: Props) {
+  if (!props.dataIngredients) {
+    return <span>Загрузка...</span>;
+  }
+
   return (
     <Fieldset legend={props.title}>
-      {props.dataOptions.map((option) => (
+      {props.dataIngredients.map((ingredient) => (
         <Radiobox
-          key={option.id}
-          value={option.value}
-          price={isVisiblePrice ? option.price : undefined}
-          id={`${props.name}-${option.id}`}
-          {...props.register(props.name)}
+          key={ingredient.id}
+          value={ingredient.slug}
+          label={ingredient.name}
+          price={isVisiblePrice ? ingredient.price : undefined}
+          id={`${ingredient.slug}-${ingredient.category}`}
+          {...props.register(ingredient.category)}
         />
       ))}
     </Fieldset>

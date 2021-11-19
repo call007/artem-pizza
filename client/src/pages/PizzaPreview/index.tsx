@@ -1,12 +1,11 @@
 import { Link, Redirect } from "react-router-dom";
 import { usePizzaContext } from "../../PizzaContext";
 import { PATH } from "../../consts";
-import { StateOption, StateOptions } from "../../types";
-import { calculatePrice } from "../../calculatePrice";
+import { StateIngredient, StateIngredients } from "../../types";
 
 export function PizzaPreview() {
   const {
-    state: { pizza },
+    state: { pizza, price },
   } = usePizzaContext();
 
   if (!pizza) {
@@ -22,7 +21,7 @@ export function PizzaPreview() {
       </p>
 
       <p>
-        {pizza.sauce} соус
+        {pizza.sauces} соус
         {pizza.cheese.length > 0 && " • "}
         {getOptions(pizza.cheese)}
       </p>
@@ -31,16 +30,16 @@ export function PizzaPreview() {
 
       <p>{getOptions(pizza.meat)}</p>
 
-      <Link to={PATH.Checkout}>Заказать за {calculatePrice(pizza)} руб</Link>
+      <Link to={PATH.Checkout}>Заказать за {price} руб</Link>
     </div>
   );
 }
 
-function getOptions(options: StateOptions) {
+function getOptions(options: StateIngredients) {
   return options.join(" • ");
 }
 
-function getPizzaDoughText(dough: StateOption) {
+function getPizzaDoughText(dough: StateIngredient) {
   switch (dough) {
     case "Тонкое":
       return "на тонком тесте";

@@ -27,15 +27,6 @@ describe("PizzaConfigurator page", () => {
   });
 
   describe(".handleChange", () => {
-    it("changes pizza price when ingredients value changed", () => {
-      const { getByText } = renderPizzaConfigurator();
-
-      fireEvent.click(getByText(/Моцарелла/i));
-      fireEvent.click(getByText(/Томаты/i));
-
-      expect(getByText("Заказать за 258 руб")).toBeInTheDocument();
-    });
-
     it("navigates to `/pizza-preview`", async () => {
       const { getByText, history } = renderPizzaConfigurator();
 

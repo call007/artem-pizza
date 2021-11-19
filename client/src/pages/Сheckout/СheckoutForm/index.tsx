@@ -6,10 +6,10 @@ type FormValues = {
   entrance: string;
   floor: string;
   apartment: string;
-  cardNumber: string;
-  cardExpiration: string;
-  cardCVV: number;
-  cardName: string;
+  card_number: string;
+  card_expiration: string;
+  card_CVV: number;
+  name: string;
 };
 
 interface Props {
@@ -37,7 +37,7 @@ export function СheckoutForm({ formSubmit }: Props) {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const watchCardNumber = watch("cardNumber");
+  const watchCardNumber = watch("card_number");
   const paymentSystem = getPaymentSystem(watchCardNumber);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => formSubmit(data);
@@ -99,12 +99,12 @@ export function СheckoutForm({ formSubmit }: Props) {
               placeholder="Номер карты"
               inputMode="decimal"
               autoComplete="cc-number"
-              {...register("cardNumber", {
+              {...register("card_number", {
                 ...validators.required,
                 ...validators.cardNumber,
               })}
             />
-            {errors.cardNumber?.message || paymentSystem}
+            {errors.card_number?.message || paymentSystem}
           </li>
 
           <li>
@@ -113,12 +113,12 @@ export function СheckoutForm({ formSubmit }: Props) {
               placeholder="MM/YYYY"
               inputMode="decimal"
               autoComplete="cc-exp"
-              {...register("cardExpiration", {
+              {...register("card_expiration", {
                 ...validators.required,
                 ...validators.cardExpiration,
               })}
             />
-            {errors.cardExpiration?.message}
+            {errors.card_expiration?.message}
           </li>
 
           <li>
@@ -127,12 +127,12 @@ export function СheckoutForm({ formSubmit }: Props) {
               placeholder="CVV"
               inputMode="decimal"
               autoComplete="cc-csc"
-              {...register("cardCVV", {
+              {...register("card_CVV", {
                 ...validators.required,
                 ...validators.cardCVV,
               })}
             />
-            {errors.cardCVV?.message}
+            {errors.card_CVV?.message}
           </li>
 
           <li>
@@ -140,12 +140,12 @@ export function СheckoutForm({ formSubmit }: Props) {
               type="text"
               placeholder="Имя как на карте"
               autoComplete="cc-name"
-              {...register("cardName", {
+              {...register("name", {
                 ...validators.required,
                 ...validators.cardName,
               })}
             />
-            {errors.cardName?.message}
+            {errors.name?.message}
           </li>
         </ul>
       </fieldset>

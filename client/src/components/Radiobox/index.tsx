@@ -1,6 +1,7 @@
 import React from "react";
 
 interface Props extends React.HTMLProps<HTMLInputElement> {
+  label: string;
   value: string;
   id: string;
   price?: number;
@@ -9,10 +10,10 @@ interface Props extends React.HTMLProps<HTMLInputElement> {
 export type RadioboxProps = Omit<Props, "type">;
 
 export const Radiobox = React.forwardRef<HTMLInputElement, RadioboxProps>(
-  ({ id, price, ...props }, ref) => (
+  ({ id, label, price, ...props }, ref) => (
     <div ref={ref}>
       <input {...props} type="radio" id={id} ref={ref} />
-      <label htmlFor={id}>{props.value}</label>
+      <label htmlFor={id}>{label}</label>
       {!!price && ` ${price} ₽`}
     </div>
   )

@@ -18,7 +18,7 @@ function renderApp() {
   };
 }
 
-describe("App navifation", () => {
+describe("App navigation", () => {
   describe("pizza configurator link click", () => {
     it("navigates to pizza configurator page", () => {
       const history = createMemoryHistory();
@@ -52,15 +52,15 @@ describe("App navifation", () => {
     });
   });
 
-  describe("checkout link click", () => {
-    it("navigates to checkout page", () => {
-      const { container, getByText } = renderApp();
+  // describe("checkout link click", () => {
+  //   it("navigates to checkout page", () => {
+  //     const { container, getByText } = renderApp();
 
-      fireEvent.click(getByText("Оформление заказа"));
+  //     fireEvent.click(getByText("Оформление заказа"));
 
-      expect(container.innerHTML).toMatch("Отправить");
-    });
-  });
+  //     expect(container.innerHTML).toMatch("Отправить");
+  //   });
+  // });
 
   describe("checkout success link click", () => {
     it("navigates to checkout success page", () => {

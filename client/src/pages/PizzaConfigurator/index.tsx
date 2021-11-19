@@ -1,23 +1,23 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
-import { data } from "../../data";
 import { PATH } from "../../consts";
-import { FieldsName, StatePizza } from "../../types";
+import { StatePizza } from "../../types";
 import { calculatePrice } from "../../calculatePrice";
-import { usePizzaContext } from "../../PizzaContext";
 import { FieldsetCheckboxGroup } from "./FieldsetCheckboxGroup";
 import { FieldsetRadioGroup } from "./FieldsetRadioGroup";
+import { useIngredients } from "./useIngredients";
 
 export function PizzaConfigurator() {
   const history = useHistory();
-  const { dispatch } = usePizzaContext();
+  const { size, dough, sauces, cheese, meat, vegetables, dispatch } =
+    useIngredients();
 
   const { register, watch } = useForm<StatePizza>({
     defaultValues: {
-      size: data.size[0].value,
-      dough: data.dough[0].value,
-      sauce: data.sauce[0].value,
+      size: "30cm",
+      dough: "thin",
+      sauces: "tomato",
       cheese: [],
       vegetables: [],
       meat: [],
@@ -29,6 +29,7 @@ export function PizzaConfigurator() {
   const handleSubmit: React.ReactEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     dispatch({ type: "update-pizza", payload: formValues });
+    dispatch({ type: "update-price", payload: calculatePrice(formValues) });
     history.push(PATH.PizzaPreview);
   };
 
@@ -38,44 +39,40 @@ export function PizzaConfigurator() {
 
       <FieldsetRadioGroup
         title="Размер"
-        name={FieldsName.Size}
-        dataOptions={data.size}
+        dataIngredients={size}
         isVisiblePrice={false}
         register={register}
       />
 
       <FieldsetRadioGroup
         title="Тесто"
-        name={FieldsName.Dough}
-        dataOptions={data.dough}
+        dataIngredients={dough}
+        isVisiblePrice={false}
         register={register}
       />
 
       <FieldsetRadioGroup
         title="Выберите соус"
-        name={FieldsName.Sauce}
-        dataOptions={data.sauce}
+        dataIngredients={sauces}
+        isVisiblePrice={false}
         register={register}
       />
 
       <FieldsetCheckboxGroup
         title="Добавьте сыр"
-        name={FieldsName.Cheese}
-        dataOptions={data.cheese}
+        dataOptions={cheese}
         register={register}
       />
 
       <FieldsetCheckboxGroup
         title="Добавьте овощи"
-        name={FieldsName.Vegetables}
-        dataOptions={data.vegetables}
+        dataOptions={vegetables}
         register={register}
       />
 
       <FieldsetCheckboxGroup
         title="Добавьте мясо"
-        name={FieldsName.Meat}
-        dataOptions={data.meat}
+        dataOptions={meat}
         register={register}
       />
 

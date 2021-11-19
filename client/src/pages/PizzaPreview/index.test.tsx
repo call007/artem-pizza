@@ -15,9 +15,15 @@ describe("PizzaPreview", () => {
             {
               state: {
                 pizza: {
-                  size: data.size[0].value,
-                  dough: data.dough[0].value,
-                  sauce: data.sauce[0].value,
+                  size: data.filter(
+                    (ingredient) => ingredient.category === "size"
+                  )[0].name,
+                  dough: data.filter(
+                    (ingredient) => ingredient.category === "dough"
+                  )[0].name,
+                  sauce: data.filter(
+                    (ingredient) => ingredient.category === "sauce"
+                  )[0].name,
                   cheese: [],
                   vegetables: [],
                   meat: [],

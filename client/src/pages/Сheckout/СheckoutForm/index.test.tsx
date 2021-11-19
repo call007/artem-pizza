@@ -160,10 +160,10 @@ describe("СheckoutForm", () => {
         entrance: "3",
         floor: "12",
         apartment: "254",
-        cardNumber: "1234 1234 1234 1234",
-        cardExpiration: "12/2024",
-        cardCVV: "125",
-        cardName: "IVAN IVANOV",
+        card_number: "1234 1234 1234 1234",
+        card_expiration: "12/2024",
+        card_CVV: "125",
+        name: "IVAN IVANOV",
       });
     });
 
