@@ -4,14 +4,15 @@ import { useForm } from "react-hook-form";
 import { PATH } from "../../consts";
 import { StatePizza } from "../../types";
 import { calculatePrice } from "../../calculatePrice";
+import { usePizzaContext } from "../../context/PizzaContext";
 import { FieldsetCheckboxGroup } from "./FieldsetCheckboxGroup";
 import { FieldsetRadioGroup } from "./FieldsetRadioGroup";
 import { useIngredients } from "./useIngredients";
 
 export function PizzaConfigurator() {
   const history = useHistory();
-  const { size, dough, sauces, cheese, meat, vegetables, dispatch } =
-    useIngredients();
+  const { dispatch } = usePizzaContext();
+  const { size, dough, sauces, cheese, meat, vegetables } = useIngredients();
 
   const { register, watch } = useForm<StatePizza>({
     defaultValues: {
@@ -60,19 +61,19 @@ export function PizzaConfigurator() {
 
       <FieldsetCheckboxGroup
         title="Добавьте сыр"
-        dataOptions={cheese}
+        dataIngredients={cheese}
         register={register}
       />
 
       <FieldsetCheckboxGroup
         title="Добавьте овощи"
-        dataOptions={vegetables}
+        dataIngredients={vegetables}
         register={register}
       />
 
       <FieldsetCheckboxGroup
         title="Добавьте мясо"
-        dataOptions={meat}
+        dataIngredients={meat}
         register={register}
       />
 

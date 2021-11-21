@@ -5,17 +5,17 @@ import { Ingredient } from "../../../types";
 interface Props {
   title: string;
   register: UseFormRegister<FieldValues>;
-  dataOptions?: Ingredient[];
+  dataIngredients?: Ingredient[];
 }
 
 export function FieldsetCheckboxGroup(props: Props) {
-  if (!props.dataOptions) {
+  if (props.dataIngredients?.length === 0) {
     return <span>Загрузка...</span>;
   }
 
   return (
     <Fieldset legend={props.title}>
-      {props.dataOptions.map((ingredient) => (
+      {props.dataIngredients?.map((ingredient) => (
         <Checkbox
           key={ingredient.id}
           value={ingredient.slug}

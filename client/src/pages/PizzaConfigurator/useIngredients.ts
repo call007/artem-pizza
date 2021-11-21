@@ -1,28 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getPizzaIngredients } from "../../api";
-import { usePizzaContext } from "../../PizzaContext";
-import { Ingredient } from "../../types";
+import { useIngredientsContext } from "../../context/IngredientsContext";
 
 export function useIngredients() {
-  const { dispatch } = usePizzaContext();
-  const [data, setData] = useState<Ingredient[]>();
-
-  const getIngredients = (category: string) =>
-    data?.filter((ingredient) => ingredient.category === category);
+  const { setIngredients, getIngredientsByCategory } = useIngredientsContext();
 
   useEffect(() => {
     getPizzaIngredients().then((data) => {
-      setData(data);
-      dispatch({ type: "update-ingredients", payload: data });
+      setIngredients(data);
     });
-  }, []);
+  }, [setIngredients]);
 
-  const size = getIngredients("size");
-  const dough = getIngredients("dough");
-  const sauces = getIngredients("sauces");
-  const cheese = getIngredients("cheese");
-  const meat = getIngredients("meat");
-  const vegetables = getIngredients("vegetables");
+  const size = getIngredientsByCategory("size");
+  const dough = getIngredientsByCategory("dough");
+  const sauces = getIngredientsByCategory("sauces");
+  const cheese = getIngredientsByCategory("cheese");
+  const meat = getIngredientsByCategory("meat");
+  const vegetables = getIngredientsByCategory("vegetables");
 
-  return { size, dough, sauces, cheese, meat, vegetables, dispatch };
+  return { size, dough, sauces, cheese, meat, vegetables };
 }

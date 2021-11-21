@@ -8,8 +8,4 @@ export type Action =
   | {
       type: "update-price";
       payload: State["price"];
-    }
-  | {
-      type: "update-ingredients";
-      payload: State["ingredients"];
     };

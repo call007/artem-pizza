@@ -14,12 +14,6 @@ export function reducer(state: State, { type, payload }: Action): State {
         price: payload as State["price"],
       };
 
-    case "update-ingredients":
-      return {
-        ...state,
-        ingredients: payload as State["ingredients"],
-      };
-
     default:
       throw new Error("Unknown action type");
   }

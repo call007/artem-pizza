@@ -1,6 +1,6 @@
 import { Redirect } from "react-router";
 import { PATH } from "../../consts";
-import { usePizzaContext } from "../../PizzaContext";
+import { usePizzaContext } from "../../context/PizzaContext";
 import { СheckoutForm } from "./СheckoutForm";
 
 export function Сheckout() {

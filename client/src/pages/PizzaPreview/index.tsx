@@ -1,9 +1,11 @@
 import { Link, Redirect } from "react-router-dom";
-import { usePizzaContext } from "../../PizzaContext";
+import { usePizzaContext } from "../../context/PizzaContext";
 import { PATH } from "../../consts";
-import { StateIngredient, StateIngredients } from "../../types";
+import { Category, StateIngredient, StateIngredients } from "../../types";
+import { useIngredientsContext } from "../../context/IngredientsContext";
 
 export function PizzaPreview() {
+  const { getIngredientsByCategory } = useIngredientsContext();
   const {
     state: { pizza, price },
   } = usePizzaContext();
@@ -12,34 +14,42 @@ export function PizzaPreview() {
     return <Redirect to={PATH.PizzaConfigurator} />;
   }
 
+  function getIngredients(ingredients: StateIngredients, category: Category) {
+    return ingredients
+      ?.map(
+        (stateIngredients) =>
+          getIngredientsByCategory(category).find(
+            (ingredient) => ingredient.slug === stateIngredients
+          )?.name
+      )
+      .join(" • ");
+  }
+
   return (
     <div>
       <h2>Твоя пицца</h2>
 
       <p>
-        {pizza.size} {getPizzaDoughText(pizza.dough)}
+        {getIngredients([pizza.size], Category.Size)}{" "}
+        {getPizzaDoughText(getIngredients([pizza.dough], Category.Dough))}
       </p>
 
       <p>
-        {pizza.sauces} соус
+        {getIngredients([pizza.sauces], Category.Sauces)} соус
         {pizza.cheese.length > 0 && " • "}
-        {getOptions(pizza.cheese)}
+        {getIngredients(pizza.cheese, Category.Cheese)}
       </p>
 
-      <p>{getOptions(pizza.vegetables)}</p>
+      <p>{getIngredients(pizza.vegetables, Category.Vegetables)}</p>
 
-      <p>{getOptions(pizza.meat)}</p>
+      <p>{getIngredients(pizza.meat, Category.Meat)}</p>
 
       <Link to={PATH.Checkout}>Заказать за {price} руб</Link>
     </div>
   );
 }
 
-function getOptions(options: StateIngredients) {
-  return options.join(" • ");
-}
-
-function getPizzaDoughText(dough: StateIngredient) {
+function getPizzaDoughText(dough?: StateIngredient) {
   switch (dough) {
     case "Тонкое":
       return "на тонком тесте";

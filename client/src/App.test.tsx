@@ -2,17 +2,21 @@ import { render, fireEvent } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router";
 import App from "./App";
-import { PizzaProvider } from "./PizzaContext";
+import { IngredientsProvider } from "./context/IngredientsContext";
+import { PizzaProvider } from "./context/PizzaContext";
 
 function renderApp() {
   const history = createMemoryHistory();
 
   return {
     ...render(
-      <Router history={history}>
-        <App />
-      </Router>,
-      { wrapper: PizzaProvider }
+      <IngredientsProvider>
+        <PizzaProvider>
+          <Router history={history}>
+            <App />
+          </Router>
+        </PizzaProvider>
+      </IngredientsProvider>
     ),
     history,
   };

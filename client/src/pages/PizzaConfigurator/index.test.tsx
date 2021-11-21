@@ -2,18 +2,22 @@ import { render, fireEvent } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router";
-import { PizzaProvider } from "../../PizzaContext";
+import { PizzaProvider } from "../../context/PizzaContext";
 import { PizzaConfigurator } from ".";
+import { IngredientsProvider } from "../../context/IngredientsContext";
 
 function renderPizzaConfigurator() {
   const history = createMemoryHistory();
 
   return {
     ...render(
-      <Router history={history}>
-        <PizzaConfigurator />
-      </Router>,
-      { wrapper: PizzaProvider }
+      <IngredientsProvider>
+        <PizzaProvider>
+          <Router history={history}>
+            <PizzaConfigurator />
+          </Router>
+        </PizzaProvider>
+      </IngredientsProvider>
     ),
     history,
   };

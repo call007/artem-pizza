@@ -1,4 +1,4 @@
-export enum FieldsName {
+export enum Category {
   Size = "size",
   Dough = "dough",
   Sauces = "sauces",

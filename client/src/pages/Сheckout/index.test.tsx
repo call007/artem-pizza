@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router";
 import { PATH } from "../../consts";
-import { PizzaProvider } from "../../PizzaContext";
+import { PizzaProvider } from "../../context/PizzaContext";
 import { Сheckout } from ".";
 
 describe("Сheckout", () => {
