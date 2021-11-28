@@ -1,14 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getPizzaIngredients } from "../../api";
 import { useIngredientsContext } from "../../context/IngredientsContext";
 
 export function useIngredients() {
-  const { setIngredients, getIngredientsByCategory } = useIngredientsContext();
+  const { ingredients, setIngredients, getIngredientsByCategory } =
+    useIngredientsContext();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    getPizzaIngredients().then((data) => {
-      setIngredients(data);
-    });
+    getPizzaIngredients()
+      .then((data) => {
+        setIngredients(data);
+      })
+      .catch((error) => setError(error))
+      .finally(() => setIsLoading(false));
   }, [setIngredients]);
 
   const size = getIngredientsByCategory("size");
@@ -18,5 +24,15 @@ export function useIngredients() {
   const meat = getIngredientsByCategory("meat");
   const vegetables = getIngredientsByCategory("vegetables");
 
-  return { size, dough, sauces, cheese, meat, vegetables };
+  return {
+    isLoading,
+    error,
+    ingredients,
+    size,
+    dough,
+    sauces,
+    cheese,
+    meat,
+    vegetables,
+  };
 }

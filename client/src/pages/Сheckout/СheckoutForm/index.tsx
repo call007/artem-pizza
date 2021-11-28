@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { validators } from "../../../validators";
 
-type FormValues = {
+export type FormValues = {
   address: string;
   entrance: string;
   floor: string;
@@ -14,6 +14,7 @@ type FormValues = {
 
 interface Props {
   formSubmit: (data: FormValues) => void;
+  isLoading: boolean;
 }
 
 const getPaymentSystem = (value?: string) => {
@@ -29,7 +30,7 @@ const getPaymentSystem = (value?: string) => {
   }
 };
 
-export function СheckoutForm({ formSubmit }: Props) {
+export function СheckoutForm({ formSubmit, isLoading }: Props) {
   const {
     register,
     handleSubmit,
@@ -155,7 +156,7 @@ export function СheckoutForm({ formSubmit }: Props) {
         бросает.
       </p>
 
-      <button type="submit">Отправить</button>
+      <button type="submit">{isLoading ? "Загрузка..." : "Отправить"}</button>
     </form>
   );
 }

@@ -5,13 +5,6 @@ export function Ingredients() {
   const { isLoading, error, getIngredientsByCategory } =
     useIngredientsContext();
 
-  const size = getIngredientsByCategory("size");
-  const dough = getIngredientsByCategory("dough");
-  const sauces = getIngredientsByCategory("sauces");
-  const cheese = getIngredientsByCategory("cheese");
-  const meat = getIngredientsByCategory("meat");
-  const vegetables = getIngredientsByCategory("vegetables");
-
   if (error) {
     return <>{error.message}</>;
   }
@@ -19,6 +12,13 @@ export function Ingredients() {
   if (isLoading) {
     return <>Загрузка...</>;
   }
+
+  const size = getIngredientsByCategory("size");
+  const dough = getIngredientsByCategory("dough");
+  const sauces = getIngredientsByCategory("sauces");
+  const cheese = getIngredientsByCategory("cheese");
+  const meat = getIngredientsByCategory("meat");
+  const vegetables = getIngredientsByCategory("vegetables");
 
   return (
     <>

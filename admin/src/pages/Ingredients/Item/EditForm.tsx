@@ -64,12 +64,12 @@ export function EditForm({ ingredient, setIsEditing }: Props) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <label htmlFor="slug">id:</label>
+        <label htmlFor="slug">slug:</label>
         <input
           type="text"
           id="slug"
           defaultValue={ingredient.slug}
-          {...register("slug", { ...validators.required, ...validators.latin })}
+          {...register("slug", { ...validators.required })}
         />
         {errors.slug?.message}
       </div>

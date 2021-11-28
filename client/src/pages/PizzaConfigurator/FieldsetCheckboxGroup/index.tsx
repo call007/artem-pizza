@@ -9,10 +9,6 @@ interface Props {
 }
 
 export function FieldsetCheckboxGroup(props: Props) {
-  if (props.dataIngredients?.length === 0) {
-    return <span>Загрузка...</span>;
-  }
-
   return (
     <Fieldset legend={props.title}>
       {props.dataIngredients?.map((ingredient) => (

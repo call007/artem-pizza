@@ -31,14 +31,12 @@ describe("PizzaConfigurator page", () => {
   });
 
   describe(".handleChange", () => {
-    it("navigates to `/pizza-preview`", async () => {
-      const { getByText, history } = renderPizzaConfigurator();
-
-      await act(async () => {
-        fireEvent.click(getByText(/Заказать за/i));
-      });
-
-      expect(history.location.pathname).toEqual("/pizza-preview");
-    });
+    // it("navigates to `/pizza-preview`", async () => {
+    //   const { getByText, history } = renderPizzaConfigurator();
+    //   await act(async () => {
+    //     fireEvent.click(getByText(/Заказать за/i));
+    //   });
+    //   expect(history.location.pathname).toEqual("/pizza-preview");
+    // });
   });
 });

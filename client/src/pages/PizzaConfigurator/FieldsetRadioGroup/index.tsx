@@ -10,10 +10,6 @@ interface Props {
 }
 
 export function FieldsetRadioGroup({ isVisiblePrice = true, ...props }: Props) {
-  if (props.dataIngredients?.length === 0) {
-    return <span>Загрузка...</span>;
-  }
-
   return (
     <Fieldset legend={props.title}>
       {props.dataIngredients?.map((ingredient) => (
