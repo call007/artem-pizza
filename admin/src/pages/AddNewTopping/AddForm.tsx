@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { addNewIngredient } from "./api";
-import { validators } from "./validators";
+import { addNewIngredient } from "../../api";
+import { validators } from "../../validators";
 
 type FormValues = {
   price: string;
@@ -12,7 +12,7 @@ type FormValues = {
   thumbnail: string;
 };
 
-export function AddNewToppingForm() {
+export function AddForm() {
   const {
     register,
     handleSubmit,
@@ -22,7 +22,7 @@ export function AddNewToppingForm() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [formError, setFormError] = useState<Error>();
+  const [formError, setFormError] = useState<Error | null>(null);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const formData: FormData = new FormData();
@@ -34,6 +34,9 @@ export function AddNewToppingForm() {
     formData.append("thumbnail", data.thumbnail[0]);
 
     setIsLoading(true);
+    setIsSuccess(false);
+    setFormError(null);
+
     addNewIngredient(formData)
       .then(() => {
         setIsLoading(false);
@@ -75,12 +78,16 @@ export function AddNewToppingForm() {
         <input
           type="text"
           id="slug"
-          {...register("slug", { ...validators.required, ...validators.latin })}
+          {...register("slug", {
+            ...validators.required,
+            ...validators.latin,
+          })}
         />
         {errors.slug?.message}
       </div>
 
       <div>
+        <label htmlFor="category">Категория</label>
         <select {...register("category", { ...validators.required })}>
           <option value="size">size</option>
           <option value="dough">dough</option>
@@ -103,7 +110,7 @@ export function AddNewToppingForm() {
       </div>
 
       <div>
-        <label htmlFor="picture">Картинка:</label>
+        <label htmlFor="picture">Превью картинка:</label>
         <input
           type="file"
           id="picture"
@@ -112,7 +119,9 @@ export function AddNewToppingForm() {
         {errors.thumbnail?.message}
       </div>
 
-      <button type="submit">{isLoading ? "Загрузка" : "Отправить"}</button>
+      <button type="submit">
+        {isLoading && !formError ? "Загрузка..." : "Отправить"}
+      </button>
       {formError && <p style={{ color: "red" }}>{formError.message}</p>}
       {isSuccess && (
         <p style={{ color: "green" }}>

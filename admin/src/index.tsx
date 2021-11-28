@@ -1,11 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { IngredientsProvider } from "./context/IngredientsContext";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <IngredientsProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </IngredientsProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

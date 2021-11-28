@@ -19,13 +19,13 @@ Sentry.init({
 
 ReactDOM.render(
   <React.StrictMode>
-    <IngredientsProvider>
-      <PizzaProvider>
-        <BrowserRouter>
+    <BrowserRouter>
+      <IngredientsProvider>
+        <PizzaProvider>
           <App />
-        </BrowserRouter>
-      </PizzaProvider>
-    </IngredientsProvider>
+        </PizzaProvider>
+      </IngredientsProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
