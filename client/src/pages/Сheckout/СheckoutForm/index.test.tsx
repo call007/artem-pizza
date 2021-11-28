@@ -3,11 +3,13 @@ import { act } from "react-dom/test-utils";
 import { СheckoutForm } from ".";
 import { MESSAGES } from "../../../consts";
 
+const renderСheckoutForm = () =>
+  render(<СheckoutForm formSubmit={() => null} isLoading={false} />);
+
 describe("СheckoutForm", () => {
   it("renders correctly", () => {
-    const { getByText, getByLabelText, getByPlaceholderText } = render(
-      <СheckoutForm formSubmit={() => null} />
-    );
+    const { getByText, getByLabelText, getByPlaceholderText } =
+      renderСheckoutForm();
 
     expect(getByPlaceholderText("Введите адрес")).toBeInTheDocument();
     expect(getByLabelText("подъезд")).toBeInTheDocument();
@@ -24,9 +26,7 @@ describe("СheckoutForm", () => {
 
   describe("on card number change", () => {
     it("breaks the card number into groups of four digits", () => {
-      const { getByPlaceholderText } = render(
-        <СheckoutForm formSubmit={() => null} />
-      );
+      const { getByPlaceholderText } = renderСheckoutForm();
 
       const ccInput = getByPlaceholderText("Номер карты") as HTMLInputElement;
       fireEvent.input(ccInput, { target: { value: "1234123412341234" } });
@@ -35,9 +35,7 @@ describe("СheckoutForm", () => {
     });
 
     it("limits the card number by 19 digits", () => {
-      const { getByPlaceholderText } = render(
-        <СheckoutForm formSubmit={() => null} />
-      );
+      const { getByPlaceholderText } = renderСheckoutForm();
 
       const ccInput = getByPlaceholderText("Номер карты") as HTMLInputElement;
       fireEvent.input(ccInput, { target: { value: "12341234123412341234" } });
@@ -46,9 +44,7 @@ describe("СheckoutForm", () => {
     });
 
     it("detects as MasterCard", () => {
-      const { getByPlaceholderText } = render(
-        <СheckoutForm formSubmit={() => null} />
-      );
+      const { getByPlaceholderText } = renderСheckoutForm();
 
       const ccInput = getByPlaceholderText("Номер карты");
 
@@ -58,9 +54,7 @@ describe("СheckoutForm", () => {
     });
 
     it("detects as Visa", () => {
-      const { getByPlaceholderText } = render(
-        <СheckoutForm formSubmit={() => null} />
-      );
+      const { getByPlaceholderText } = renderСheckoutForm();
 
       const ccInput = getByPlaceholderText("Номер карты");
 
@@ -72,9 +66,7 @@ describe("СheckoutForm", () => {
 
   describe("on card expiration change", () => {
     it("breaks the card date into groups of two and four symbols", () => {
-      const { getByPlaceholderText } = render(
-        <СheckoutForm formSubmit={() => null} />
-      );
+      const { getByPlaceholderText } = renderСheckoutForm();
 
       const ccInput = getByPlaceholderText("MM/YYYY") as HTMLInputElement;
       fireEvent.input(ccInput, { target: { value: "122021" } });
@@ -83,9 +75,7 @@ describe("СheckoutForm", () => {
     });
 
     it("limits the card date by seven symbols", () => {
-      const { getByPlaceholderText } = render(
-        <СheckoutForm formSubmit={() => null} />
-      );
+      const { getByPlaceholderText } = renderСheckoutForm();
 
       const ccInput = getByPlaceholderText("MM/YYYY") as HTMLInputElement;
       fireEvent.input(ccInput, { target: { value: "122021123" } });
@@ -94,9 +84,7 @@ describe("СheckoutForm", () => {
     });
 
     it("prevents input bigger than 31 into day group", () => {
-      const { getByPlaceholderText } = render(
-        <СheckoutForm formSubmit={() => null} />
-      );
+      const { getByPlaceholderText } = renderСheckoutForm();
 
       const ccInput = getByPlaceholderText("MM/YYYY") as HTMLInputElement;
       fireEvent.input(ccInput, { target: { value: "902021" } });
@@ -107,9 +95,7 @@ describe("СheckoutForm", () => {
 
   describe("on card CVV change", () => {
     it("limits the card number by 3 digits", () => {
-      const { getByPlaceholderText } = render(
-        <СheckoutForm formSubmit={() => null} />
-      );
+      const { getByPlaceholderText } = renderСheckoutForm();
 
       const ccInput = getByPlaceholderText("CVV") as HTMLInputElement;
       fireEvent.input(ccInput, { target: { value: "12345" } });
@@ -122,7 +108,7 @@ describe("СheckoutForm", () => {
     it("collects address, apartment, entrance, floor, cardCVV, cardExpiration, cardName, cardNumber", async () => {
       const formSubmit = jest.fn();
       const { getByText, getByLabelText, getByPlaceholderText } = render(
-        <СheckoutForm formSubmit={formSubmit} />
+        <СheckoutForm formSubmit={formSubmit} isLoading={false} />
       );
 
       fireEvent.input(getByPlaceholderText("Введите адрес"), {
@@ -168,9 +154,7 @@ describe("СheckoutForm", () => {
     });
 
     it("validates that address, cardCVV, cardExpiration, cardName, cardNumber are filled in", async () => {
-      const { getByText, getByPlaceholderText } = render(
-        <СheckoutForm formSubmit={() => null} />
-      );
+      const { getByText, getByPlaceholderText } = renderСheckoutForm();
 
       await act(async () => {
         fireEvent.click(getByText("Отправить"));
@@ -198,9 +182,7 @@ describe("СheckoutForm", () => {
     });
 
     it("validates that card name is correct", async () => {
-      const { getByText, getByPlaceholderText } = render(
-        <СheckoutForm formSubmit={() => null} />
-      );
+      const { getByText, getByPlaceholderText } = renderСheckoutForm();
 
       const ccInput = getByPlaceholderText("Номер карты");
 
@@ -218,9 +200,7 @@ describe("СheckoutForm", () => {
     });
 
     it("validates that card expiration is correct", async () => {
-      const { getByText, getByPlaceholderText } = render(
-        <СheckoutForm formSubmit={() => null} />
-      );
+      const { getByText, getByPlaceholderText } = renderСheckoutForm();
 
       const ccInput = getByPlaceholderText("MM/YYYY");
 
@@ -236,9 +216,7 @@ describe("СheckoutForm", () => {
     });
 
     it("validates that card CVV code is correct", async () => {
-      const { getByText, getByPlaceholderText } = render(
-        <СheckoutForm formSubmit={() => null} />
-      );
+      const { getByText, getByPlaceholderText } = renderСheckoutForm();
 
       const ccInput = getByPlaceholderText("CVV");
 
@@ -254,9 +232,7 @@ describe("СheckoutForm", () => {
     });
 
     it("validates that card name is correct", async () => {
-      const { getByText, getByPlaceholderText } = render(
-        <СheckoutForm formSubmit={() => null} />
-      );
+      const { getByText, getByPlaceholderText } = renderСheckoutForm();
 
       const ccInput = getByPlaceholderText("Имя как на карте");
 
