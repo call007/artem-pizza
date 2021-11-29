@@ -18,7 +18,7 @@ export function Item({
       <p>{card_number}</p>
       <p>
         <small>
-          {size} см • {dough} • {sauce} • {ingredients.join(" •")}
+          {size} см • {dough} • {sauce} • {ingredients?.join(" •")}
         </small>
       </p>
       <p>{address}</p>

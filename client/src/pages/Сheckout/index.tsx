@@ -31,12 +31,15 @@ export function Сheckout() {
       price: price || 0,
     };
 
-    console.log("orderData", orderData);
-
     postOrder(orderData)
-      .then(() => history.push(PATH.CheckoutSuccess))
-      .catch((error) => setError(error))
-      .finally(() => setIsLoading(false));
+      .then(() => {
+        setIsLoading(false);
+        history.push(PATH.CheckoutSuccess);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        setError(error);
+      });
   };
 
   return (

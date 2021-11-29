@@ -22,6 +22,7 @@ export const postOrder = (order: Order): Promise<Order[]> =>
   fetch(`${process.env.REACT_APP_API_URL}orders`, {
     method: "POST",
     body: JSON.stringify(order),
+    headers: { "Content-type": "application/json" },
   }).then((response) => {
     if (response.ok) {
       return response.json();
