@@ -3,6 +3,7 @@
   "description": "Delivery pizza from Artem",
   "version": "0.1.0",
   "private": true,
+  "repository": "https://github.com/call007/artem-pizza",
   "dependencies": {
     "@hookform/resolvers": "^2.8.2",
     "@sentry/react": "^6.13.3",
