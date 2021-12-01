@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { updateIngredient } from "../../../api";
 import { useIngredientsContext } from "../../../context/IngredientsContext";
@@ -33,14 +33,10 @@ export function EditForm({ ingredient, setIsEditing }: Props) {
     setIsEditing(false);
   };
 
+  const formRef = useRef<HTMLFormElement>(null);
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    const formData: FormData = new FormData();
-    formData.append("price", data.price);
-    formData.append("name", data.name);
-    formData.append("slug", data.slug);
-    formData.append("category", data.category);
-    formData.append("image", data.image[0]);
-    formData.append("thumbnail", data.thumbnail[0]);
+    const formData: FormData = new FormData(formRef.current || undefined);
 
     setIsLoading(true);
 
@@ -62,7 +58,7 @@ export function EditForm({ ingredient, setIsEditing }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} ref={formRef}>
       <div>
         <label htmlFor="slug">slug:</label>
         <input

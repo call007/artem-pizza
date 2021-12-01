@@ -15,7 +15,6 @@ export const addNewIngredient = (formData: FormData) =>
   fetch(`${process.env.REACT_APP_API_URL}ingredients`, {
     method: "POST",
     body: formData,
-    headers: { "Content-type": "application/json" },
   }).then((response) => {
     if (response.ok) {
       return response.json();
@@ -39,7 +38,6 @@ export const updateIngredient = (ingredientId: string, formData: FormData) =>
   fetch(`${process.env.REACT_APP_API_URL}ingredients/${ingredientId}`, {
     method: "PUT",
     body: formData,
-    headers: { "Content-type": "application/json" },
   }).then((response) => {
     if (response.ok) {
       return response.json();
