@@ -24,11 +24,10 @@ export function Summary({ ingredient, setIsEditing }: Props) {
         .then(() => {
           alert("Ингредиент был успешно удалён");
 
-          fetchIngredients()
-            .catch((error) => {
-              alert(error);
-            })
-            .finally(() => setIsLoading(false));
+          fetchIngredients().catch((error) => {
+            setIsLoading(false);
+            alert(error);
+          });
         })
         .catch((error) => {
           setIsLoading(false);

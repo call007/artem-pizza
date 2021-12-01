@@ -1,9 +1,9 @@
 import { required } from "./required";
 import { number } from "./number";
-import { latin } from "./latin";
+import { slug } from "./slug";
 
 export const validators = {
   required,
   number,
-  latin,
+  slug,
 };

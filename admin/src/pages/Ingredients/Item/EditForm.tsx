@@ -47,9 +47,9 @@ export function EditForm({ ingredient, setIsEditing }: Props) {
         fetchIngredients()
           .then(() => setIsEditing(false))
           .catch((error) => {
+            setIsLoading(false);
             alert(error);
-          })
-          .finally(() => setIsLoading(false));
+          });
       })
       .catch((error) => {
         setIsLoading(false);

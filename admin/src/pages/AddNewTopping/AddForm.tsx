@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { addNewIngredient } from "../../api";
+import { useIngredientsContext } from "../../context/IngredientsContext";
 import { validators } from "../../validators";
 
 type FormValues = {
@@ -19,6 +20,7 @@ export function AddForm() {
     watch,
     formState: { errors },
   } = useForm<FormValues>();
+  const { fetchIngredients } = useIngredientsContext();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -37,6 +39,10 @@ export function AddForm() {
       .then(() => {
         setIsLoading(false);
         setIsSuccess(true);
+
+        fetchIngredients().catch((error) => {
+          alert(error);
+        });
       })
       .catch((error) => setFormError(error));
   };
@@ -76,7 +82,7 @@ export function AddForm() {
           id="slug"
           {...register("slug", {
             ...validators.required,
-            ...validators.latin,
+            ...validators.slug,
           })}
         />
         {errors.slug?.message}
