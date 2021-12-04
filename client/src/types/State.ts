@@ -1,17 +1,18 @@
-import { FieldsName } from ".";
+import { Category } from ".";
 
-export type StateOption = string | null;
-export type StateOptions = string[];
+export type StateIngredient = string;
+export type StateIngredients = string[];
 
 export type StatePizza = {
-  [FieldsName.Size]: StateOption;
-  [FieldsName.Dough]: StateOption;
-  [FieldsName.Sauce]: StateOption;
-  [FieldsName.Cheese]: StateOptions;
-  [FieldsName.Vegetables]: StateOptions;
-  [FieldsName.Meat]: StateOptions;
+  [Category.Size]: StateIngredient;
+  [Category.Dough]: StateIngredient;
+  [Category.Sauces]: StateIngredient;
+  [Category.Cheese]: StateIngredients;
+  [Category.Vegetables]: StateIngredients;
+  [Category.Meat]: StateIngredients;
 };
 
 export type State = {
   pizza?: StatePizza;
+  price?: number;
 };

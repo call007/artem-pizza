@@ -1,24 +1,24 @@
 import { FieldValues, UseFormRegister } from "react-hook-form";
 import { Checkbox, Fieldset } from "../../../components";
-import { FieldsName, Option } from "../../../types";
+import { Ingredient } from "../../../types";
 
 interface Props {
   title: string;
-  name: FieldsName;
-  dataOptions: Option[];
   register: UseFormRegister<FieldValues>;
+  dataIngredients?: Ingredient[];
 }
 
 export function FieldsetCheckboxGroup(props: Props) {
   return (
     <Fieldset legend={props.title}>
-      {props.dataOptions.map((option) => (
+      {props.dataIngredients?.map((ingredient) => (
         <Checkbox
-          key={option.id}
-          value={option.value}
-          price={option.price}
-          id={`${props.name}-${option.id}`}
-          {...props.register(props.name)}
+          key={ingredient.id}
+          value={ingredient.slug}
+          label={ingredient.name}
+          price={ingredient.price}
+          id={`${ingredient.slug}-${ingredient.category}`}
+          {...props.register(ingredient.category)}
         />
       ))}
     </Fieldset>

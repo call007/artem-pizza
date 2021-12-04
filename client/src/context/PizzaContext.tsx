@@ -4,8 +4,8 @@ import React, {
   useContext,
   useReducer,
 } from "react";
-import { reducer } from "./reducer";
-import { Action, State } from "./types";
+import { reducer } from "../reducer";
+import { Action, State } from "../types";
 
 export const initialState: State = {};
 

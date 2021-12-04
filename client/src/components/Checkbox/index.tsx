@@ -1,6 +1,7 @@
 import React from "react";
 
 interface Props extends React.HTMLProps<HTMLInputElement> {
+  label: string;
   value: string;
   id: string;
   price?: number;
@@ -9,11 +10,11 @@ interface Props extends React.HTMLProps<HTMLInputElement> {
 export type CheckboxProps = Omit<Props, "type">;
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ id, price, ...props }, ref) => (
+  ({ id, label, price, ...props }, ref) => (
     <div>
       <input {...props} type="checkbox" id={id} ref={ref} />
       <label htmlFor={id}>
-        {props.value}
+        {label}
         {!!price && ` ${price} ₽`}
       </label>
     </div>

@@ -1,13 +1,23 @@
-import { data } from "./data";
-import { StatePizza } from "./types";
+import { Ingredient, StatePizza } from "./types";
 
-export function calculatePrice(statePizza: StatePizza) {
-  const dataValues = Object.values(data).flat();
-  const checkedValues = Object.values(statePizza).flat();
+export function calculatePrice(
+  statePizza: StatePizza,
+  dataPizza: Ingredient[]
+) {
+  const prices = Object.entries(statePizza)
+    .map(([category, slug]) => {
+      const slugs = typeof slug === "string" ? [slug] : slug;
 
-  return checkedValues.reduce((totalPrice, value) => {
-    const price = dataValues.find((item) => item.value === value)?.price || 0;
+      return slugs.map((slug) =>
+        Number(
+          dataPizza.find(
+            (ingredient) =>
+              ingredient.category === category && ingredient.slug === slug
+          )?.price
+        )
+      );
+    })
+    .flat();
 
-    return totalPrice + price;
-  }, 0);
+  return prices.reduce((totalPrice, price) => totalPrice + price, 0);
 }
