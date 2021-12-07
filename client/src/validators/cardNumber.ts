@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import { RegisterOptions } from "react-hook-form";
-import { REG_EXP, MESSAGES } from "../consts";
+import { MESSAGES, REG_EXP } from "../consts";
 import { normalizeCardNumber } from "../normalize";
 
 export const cardNumber: Pick<

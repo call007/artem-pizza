@@ -1,8 +1,8 @@
 import { Link, Redirect } from "react-router-dom";
-import { usePizzaContext } from "../../context/PizzaContext";
 import { PATH } from "../../consts";
-import { Category, StateIngredient, StateIngredients } from "../../types";
 import { useIngredientsContext } from "../../context/IngredientsContext";
+import { usePizzaContext } from "../../context/PizzaContext";
+import { Category, StateIngredient, StateIngredients } from "../../types";
 
 export function PizzaPreview() {
   const { getIngredientsByCategory } = useIngredientsContext();

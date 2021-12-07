@@ -1,6 +1,6 @@
-import { Action, State } from "./types";
+import { Action, State } from "../types";
 
-export function reducer(state: State, { type, payload }: Action): State {
+export function pizzaReducer(state: State, { type, payload }: Action): State {
   switch (type) {
     case "update-pizza":
       return {

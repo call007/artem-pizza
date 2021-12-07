@@ -1,10 +1,10 @@
 import { render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import { MemoryRouter, Router } from "react-router";
-import { PATH } from "../../consts";
 import { PizzaPreview } from ".";
-import { PizzaContext, PizzaProvider } from "../../context/PizzaContext";
+import { PATH } from "../../consts";
 import { IngredientsProvider } from "../../context/IngredientsContext";
+import { PizzaContext, PizzaProvider } from "../../context/PizzaContext";
 
 describe("PizzaPreview", () => {
   it("renders correctly", async () => {

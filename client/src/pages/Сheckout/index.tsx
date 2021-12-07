@@ -3,7 +3,7 @@ import { Redirect, useHistory } from "react-router";
 import { postOrder } from "../../api";
 import { PATH } from "../../consts";
 import { usePizzaContext } from "../../context/PizzaContext";
-import { СheckoutForm, FormValues } from "./СheckoutForm";
+import { FormValues, СheckoutForm } from "./СheckoutForm";
 
 export function Сheckout() {
   const history = useHistory();

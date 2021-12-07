@@ -4,8 +4,8 @@ import React, {
   useContext,
   useReducer,
 } from "react";
-import { reducer } from "../reducer";
 import { Action, State } from "../types";
+import { pizzaReducer } from "./PizzaReducer";
 
 export const initialState: State = {};
 
@@ -17,7 +17,7 @@ export const PizzaContext = createContext(
 );
 
 export const PizzaProvider = (props: PropsWithChildren<{}>) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(pizzaReducer, initialState);
 
   return (
     <PizzaContext.Provider value={{ state, dispatch }}>

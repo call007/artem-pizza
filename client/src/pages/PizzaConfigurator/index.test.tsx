@@ -1,10 +1,9 @@
-import { render, fireEvent } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
+import { render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router";
-import { PizzaProvider } from "../../context/PizzaContext";
 import { PizzaConfigurator } from ".";
 import { IngredientsProvider } from "../../context/IngredientsContext";
+import { PizzaProvider } from "../../context/PizzaContext";
 
 function renderPizzaConfigurator() {
   const history = createMemoryHistory();

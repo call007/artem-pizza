@@ -1,5 +1,5 @@
-import { Menu } from "./components/Menu";
 import { Route, Switch } from "react-router-dom";
+import { Menu } from "./components/Menu";
 import { PATH } from "./consts";
 import {
   LogIn,
