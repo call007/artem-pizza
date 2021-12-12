@@ -1,29 +1,37 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { calculatePrice } from "../../../calculatePrice";
 import { PATH } from "../../../consts";
-import { usePizzaContext } from "../../../context/PizzaContext";
-import { StatePizza } from "../../../types";
+import {
+  getError,
+  getIngredients,
+  getIngredientsByCategory,
+  getIsLoading,
+} from "../../../state/reducers/ingredients/selectors";
+import { fetchIngredients } from "../../../state/reducers/ingredients/thunk";
+import { useAppDispatch } from "../../../store/hooks";
+import { Category, Pizza } from "../../../types";
 import { FieldsetCheckboxGroup } from "../FieldsetCheckboxGroup";
 import { FieldsetRadioGroup } from "../FieldsetRadioGroup";
-import { useIngredients } from "../useIngredients";
 
 export function ConfiguratorForm() {
   const history = useHistory();
-  const { dispatch } = usePizzaContext();
-  const {
-    isLoading,
-    error,
-    ingredients,
-    size,
-    dough,
-    sauces,
-    cheese,
-    meat,
-    vegetables,
-  } = useIngredients();
+  const dispatch = useAppDispatch();
 
-  const { register, watch } = useForm<StatePizza>({
+  const isLoading = useSelector(getIsLoading);
+  const error = useSelector(getError);
+  const ingredients = useSelector(getIngredients);
+
+  const size = useSelector(getIngredientsByCategory(Category.Size));
+  const dough = useSelector(getIngredientsByCategory(Category.Dough));
+  const sauces = useSelector(getIngredientsByCategory(Category.Sauces));
+  const cheese = useSelector(getIngredientsByCategory(Category.Cheese));
+  const meat = useSelector(getIngredientsByCategory(Category.Meat));
+  const vegetables = useSelector(getIngredientsByCategory(Category.Vegetables));
+
+  const { register, watch } = useForm<Pizza>({
     defaultValues: {
       size: "30",
       dough: "thin",
@@ -36,11 +44,19 @@ export function ConfiguratorForm() {
 
   const formValues = watch();
 
+  useEffect(() => {
+    dispatch(fetchIngredients() as any);
+  }, []);
+
+  if (isLoading) {
+    return <>Загрузка...</>;
+  }
+
   const handleSubmit: React.ReactEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    dispatch({ type: "update-pizza", payload: formValues });
+    dispatch({ type: "set_pizza", payload: formValues });
     dispatch({
-      type: "update-price",
+      type: "set_price",
       payload: calculatePrice(formValues, ingredients),
     });
     history.push(PATH.PizzaPreview);
@@ -48,10 +64,6 @@ export function ConfiguratorForm() {
 
   if (error) {
     return <>{error.message}</>;
-  }
-
-  if (isLoading) {
-    return <>Загрузка...</>;
   }
 
   return (

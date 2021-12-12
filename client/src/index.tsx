@@ -5,11 +5,9 @@ import ReactDOM from "react-dom";
 import { Provider as ReduxProvider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { IngredientsProvider } from "./context/IngredientsContext";
-import { PizzaProvider } from "./context/PizzaContext";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { store } from "./store";
+import { store } from "./store/store";
 
 Sentry.init({
   dsn: "https://bd8c58643e2244afaa46a6e31e91e60a@o1033219.ingest.sentry.io/6000000",
@@ -22,11 +20,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ReduxProvider store={store}>
-        <IngredientsProvider>
-          <PizzaProvider>
-            <App />
-          </PizzaProvider>
-        </IngredientsProvider>
+        <App />
       </ReduxProvider>
     </BrowserRouter>
   </React.StrictMode>,

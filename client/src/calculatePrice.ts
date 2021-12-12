@@ -1,9 +1,6 @@
-import { Ingredient, StatePizza } from "./types";
+import { Ingredient, Pizza } from "./types";
 
-export function calculatePrice(
-  statePizza: StatePizza,
-  dataPizza: Ingredient[]
-) {
+export function calculatePrice(statePizza: Pizza, dataPizza: Ingredient[]) {
   const prices = Object.entries(statePizza)
     .map(([category, slug]) => {
       const slugs = typeof slug === "string" ? [slug] : slug;

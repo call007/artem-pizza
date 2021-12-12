@@ -1,15 +1,14 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router";
 import { postOrder } from "../../api";
 import { PATH } from "../../consts";
-import { usePizzaContext } from "../../context/PizzaContext";
+import { getPizza } from "../../state/pizza/selectors";
 import { FormValues, СheckoutForm } from "./СheckoutForm";
 
 export function Сheckout() {
   const history = useHistory();
-  const {
-    state: { pizza, price },
-  } = usePizzaContext();
+  const { pizza, price } = useSelector(getPizza);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 

@@ -1,28 +1,22 @@
-import { Link, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
+import { Link } from "react-router-dom";
 import { PATH } from "../../consts";
-import { useIngredientsContext } from "../../context/IngredientsContext";
-import { usePizzaContext } from "../../context/PizzaContext";
-import { Category, StateIngredient, StateIngredients } from "../../types";
+import { getPizza } from "../../state/pizza/selectors";
+import { getIngredientsByCategory } from "../../state/reducers/ingredients/selectors";
+import { Category, Ingredient } from "../../types";
 
 export function PizzaPreview() {
-  const { getIngredientsByCategory } = useIngredientsContext();
-  const {
-    state: { pizza, price },
-  } = usePizzaContext();
+  const { pizza, price } = useSelector(getPizza);
+  const size = useSelector(getIngredientsByCategory(Category.Size));
+  const dough = useSelector(getIngredientsByCategory(Category.Dough));
+  const sauces = useSelector(getIngredientsByCategory(Category.Sauces));
+  const cheese = useSelector(getIngredientsByCategory(Category.Cheese));
+  const meat = useSelector(getIngredientsByCategory(Category.Meat));
+  const vegetables = useSelector(getIngredientsByCategory(Category.Vegetables));
 
   if (!pizza) {
     return <Redirect to={PATH.PizzaConfigurator} />;
-  }
-
-  function getIngredients(ingredients: StateIngredients, category: Category) {
-    return ingredients
-      ?.map(
-        (stateIngredients) =>
-          getIngredientsByCategory(category).find(
-            (ingredient) => ingredient.slug === stateIngredients
-          )?.name
-      )
-      .join(" • ");
   }
 
   return (
@@ -30,26 +24,36 @@ export function PizzaPreview() {
       <h2>Твоя пицца</h2>
 
       <p>
-        {getIngredients([pizza.size], Category.Size)}{" "}
-        {getPizzaDoughText(getIngredients([pizza.dough], Category.Dough))}
+        {size.find((size) => size.slug === pizza.size)?.name}{" "}
+        {dough.find((dough) => dough.slug === pizza.dough)?.name}
       </p>
 
       <p>
-        {getIngredients([pizza.sauces], Category.Sauces)} соус
+        {sauces.find((sauces) => sauces.slug === pizza.sauces)?.name} соус
         {pizza.cheese.length > 0 && " • "}
-        {getIngredients(pizza.cheese, Category.Cheese)}
+        {getIngredients(pizza.cheese, cheese)}
       </p>
 
-      <p>{getIngredients(pizza.vegetables, Category.Vegetables)}</p>
+      <p>{getIngredients(pizza.vegetables, vegetables)}</p>
 
-      <p>{getIngredients(pizza.meat, Category.Meat)}</p>
+      <p>{getIngredients(pizza.meat, meat)}</p>
 
       <Link to={PATH.Checkout}>Заказать за {price} руб</Link>
     </div>
   );
 }
 
-function getPizzaDoughText(dough?: StateIngredient) {
+function getIngredients(pizzaIngredients: string[], ingredients: Ingredient[]) {
+  return pizzaIngredients
+    .map(
+      (pizzaIngredients) =>
+        ingredients.find((ingredient) => pizzaIngredients === ingredient.slug)
+          ?.name
+    )
+    .join(" • ");
+}
+
+function getPizzaDoughText(dough?: string) {
   switch (dough) {
     case "Тонкое":
       return "на тонком тесте";
