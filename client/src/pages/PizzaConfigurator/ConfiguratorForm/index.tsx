@@ -45,7 +45,7 @@ export function ConfiguratorForm() {
   const formValues = watch();
 
   useEffect(() => {
-    dispatch(fetchIngredients() as any);
+    dispatch(fetchIngredients() as any); // TODO: разобраться с типом
   }, [dispatch]);
 
   if (isLoading) {
