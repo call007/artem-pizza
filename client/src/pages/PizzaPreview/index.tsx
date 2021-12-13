@@ -2,8 +2,8 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import { PATH } from "../../consts";
+import { getIngredientsByCategory } from "../../state/ingredients/selectors";
 import { getPizza } from "../../state/pizza/selectors";
-import { getIngredientsByCategory } from "../../state/reducers/ingredients/selectors";
 import { Category, Ingredient } from "../../types";
 
 export function PizzaPreview() {

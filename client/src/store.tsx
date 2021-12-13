@@ -1,8 +1,8 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+import { ingredientsReducer } from "./state/ingredients/reducer";
 import { pizzaReducer } from "./state/pizza/reducer";
-import { ingredientsReducer } from "./state/reducers/ingredients/reducer";
 
 export const store = createStore(
   combineReducers({ pizza: pizzaReducer, ingredients: ingredientsReducer }),

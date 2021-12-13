@@ -9,8 +9,8 @@ import {
   getIngredients,
   getIngredientsByCategory,
   getIsLoading,
-} from "../../../state/reducers/ingredients/selectors";
-import { fetchIngredients } from "../../../state/reducers/ingredients/thunk";
+} from "../../../state/ingredients/selectors";
+import { fetchIngredients } from "../../../state/ingredients/thunk";
 import { AppDispatch } from "../../../store";
 import { Category, Pizza } from "../../../types";
 import { FieldsetCheckboxGroup } from "../FieldsetCheckboxGroup";

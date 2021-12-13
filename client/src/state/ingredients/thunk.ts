@@ -1,5 +1,5 @@
-import { getPizzaIngredients } from "../../../api";
-import { AppDispatch } from "../../../store";
+import { getPizzaIngredients } from "../../api";
+import { AppDispatch } from "../../store";
 
 export function fetchIngredients() {
   return (dispatch: AppDispatch) =>

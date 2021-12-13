@@ -1,11 +1,11 @@
 import { Pizza } from "../../types";
 
-type State = {
+export type State = {
   pizza?: Pizza;
   price?: number;
 };
 
-type Action =
+export type Action =
   | {
       type: "set_pizza";
       payload: State["pizza"];

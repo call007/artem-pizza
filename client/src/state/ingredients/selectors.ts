@@ -1,5 +1,5 @@
-import { RootState } from "../../../store";
-import { Category } from "../../../types";
+import { RootState } from "../../store";
+import { Category } from "../../types";
 
 export const getIngredients = (state: RootState) =>
   state.ingredients.ingredients;

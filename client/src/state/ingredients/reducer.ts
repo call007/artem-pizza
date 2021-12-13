@@ -1,4 +1,4 @@
-import { Ingredient } from "../../../types";
+import { Ingredient } from "../../types";
 
 export type State = {
   ingredients: Ingredient[];
@@ -6,7 +6,7 @@ export type State = {
   error?: Error;
 };
 
-type Action =
+export type Action =
   | {
       type: "set_ingredients";
       payload: Ingredient[];
