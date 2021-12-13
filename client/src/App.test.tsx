@@ -3,14 +3,14 @@ import { createMemoryHistory } from "history";
 import { Provider as ReduxProvider } from "react-redux";
 import { Router } from "react-router";
 import App from "./App";
-import { store } from "./store/store";
+import { mockStore } from "./mocks/store";
 
 function renderApp() {
   const history = createMemoryHistory();
 
   return {
     ...render(
-      <ReduxProvider store={store}>
+      <ReduxProvider store={mockStore}>
         <Router history={history}>
           <App />
         </Router>
@@ -54,15 +54,15 @@ describe("App navigation", () => {
     });
   });
 
-  // describe("checkout link click", () => {
-  //   it("navigates to checkout page", () => {
-  //     const { container, getByText } = renderApp();
+  describe("checkout link click", () => {
+    it("navigates to checkout page", () => {
+      const { container, getByText } = renderApp();
 
-  //     fireEvent.click(getByText("Оформление заказа"));
+      fireEvent.click(getByText("Оформление заказа"));
 
-  //     expect(container.innerHTML).toMatch("Отправить");
-  //   });
-  // });
+      expect(container.innerHTML).toMatch("Отправить");
+    });
+  });
 
   describe("checkout success link click", () => {
     it("navigates to checkout success page", () => {

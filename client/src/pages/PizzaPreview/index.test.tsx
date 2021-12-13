@@ -5,7 +5,7 @@ import { MemoryRouter, Router } from "react-router";
 import { PizzaPreview } from ".";
 import { PATH } from "../../consts";
 import { mockStore } from "../../mocks/store";
-import { store } from "../../store/store";
+import { store } from "../../store";
 
 describe("PizzaPreview", () => {
   it("renders correctly", async () => {

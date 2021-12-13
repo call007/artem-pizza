@@ -5,7 +5,7 @@ import { Router } from "react-router";
 import { Сheckout } from ".";
 import { PATH } from "../../consts";
 import { mockStore } from "../../mocks/store";
-import { store } from "../../store/store";
+import { store } from "../../store";
 
 describe("Сheckout", () => {
   describe("if the user has not submitted PizzaConfigurator form", () => {

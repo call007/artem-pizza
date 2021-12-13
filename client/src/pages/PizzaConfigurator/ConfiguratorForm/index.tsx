@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { calculatePrice } from "../../../calculatePrice";
 import { PATH } from "../../../consts";
@@ -11,14 +11,14 @@ import {
   getIsLoading,
 } from "../../../state/reducers/ingredients/selectors";
 import { fetchIngredients } from "../../../state/reducers/ingredients/thunk";
-import { useAppDispatch } from "../../../store/hooks";
+import { AppDispatch } from "../../../store";
 import { Category, Pizza } from "../../../types";
 import { FieldsetCheckboxGroup } from "../FieldsetCheckboxGroup";
 import { FieldsetRadioGroup } from "../FieldsetRadioGroup";
 
 export function ConfiguratorForm() {
   const history = useHistory();
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const isLoading = useSelector(getIsLoading);
   const error = useSelector(getError);
