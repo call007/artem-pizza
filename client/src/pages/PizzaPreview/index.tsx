@@ -24,12 +24,12 @@ export function PizzaPreview() {
       <h2>Твоя пицца</h2>
 
       <p>
-        {size.find((size) => size.slug === pizza.size)?.name}{" "}
-        {dough.find((dough) => dough.slug === pizza.dough)?.name}
+        {getIngredient(pizza.size, size)}{" "}
+        {getPizzaDoughText(getIngredient(pizza.dough, dough))}
       </p>
 
       <p>
-        {sauces.find((sauces) => sauces.slug === pizza.sauces)?.name} соус
+        {getIngredient(pizza.sauces, sauces)} соус
         {pizza.cheese.length > 0 && " • "}
         {getIngredients(pizza.cheese, cheese)}
       </p>
@@ -41,6 +41,10 @@ export function PizzaPreview() {
       <Link to={PATH.Checkout}>Заказать за {price} руб</Link>
     </div>
   );
+}
+
+function getIngredient(pizzaIngredient: string, ingredients: Ingredient[]) {
+  return ingredients.find((size) => size.slug === pizzaIngredient)?.name;
 }
 
 function getIngredients(pizzaIngredients: string[], ingredients: Ingredient[]) {

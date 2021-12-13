@@ -1,57 +1,44 @@
-// import { render } from "@testing-library/react";
-// import { createMemoryHistory } from "history";
-// import { MemoryRouter, Router } from "react-router";
-// import { PizzaPreview } from ".";
-// import { PATH } from "../../consts";
-// import { IngredientsProvider } from "../../context/IngredientsContext";
-// import { PizzaContext, PizzaProvider } from "../../context/PizzaContext";
+import { render } from "@testing-library/react";
+import { createMemoryHistory } from "history";
+import { Provider as ReduxProvider } from "react-redux";
+import { MemoryRouter, Router } from "react-router";
+import { PizzaPreview } from ".";
+import { PATH } from "../../consts";
+import { mockStore } from "../../mocks/store";
+import { store } from "../../store/store";
 
-// describe("PizzaPreview", () => {
-//   it("renders correctly", async () => {
-//     const { getByText } = render(
-//       <MemoryRouter>
-//         <IngredientsProvider>
-//           <PizzaContext.Provider
-//             value={
-//               {
-//                 state: {
-//                   pizza: {
-//                     size: "30cm",
-//                     dough: "thin",
-//                     sauces: "tomato",
-//                     cheese: [],
-//                     vegetables: [],
-//                     meat: [],
-//                   },
-//                 },
-//               } as any
-//             }
-//           >
-//             <PizzaPreview />
-//           </PizzaContext.Provider>
-//         </IngredientsProvider>
-//       </MemoryRouter>
-//     );
+describe("PizzaPreview", () => {
+  it("renders correctly", async () => {
+    const { getByText, container } = render(
+      <MemoryRouter>
+        <ReduxProvider store={mockStore}>
+          <PizzaPreview />
+        </ReduxProvider>
+      </MemoryRouter>
+    );
 
-//     // expect(getByText("30 см на тонком тесте")).toBeInTheDocument();
-//     // expect(getByText("Томатный соус")).toBeInTheDocument();
-//   });
+    expect(getByText("Твоя пицца")).toBeInTheDocument();
+    expect(container.innerHTML).toMatch("на тонком тесте");
+    expect(
+      getByText("Брокколи • Грибы • Оливки • Лук • Перец • Ананас • Томаты")
+    ).toBeInTheDocument();
+  });
 
-//   describe("if the user has not submitted PizzaConfigurator form", () => {
-//     it("redirects to home page", () => {
-//       const history = createMemoryHistory();
+  describe("if the user has not submitted PizzaConfigurator form", () => {
+    it("redirects to home page", () => {
+      const history = createMemoryHistory();
 
-//       history.push(PATH.PizzaPreview);
+      history.push(PATH.PizzaPreview);
 
-//       render(
-//         <Router history={history}>
-//           <PizzaProvider>
-//             <PizzaPreview />
-//           </PizzaProvider>
-//         </Router>
-//       );
+      render(
+        <ReduxProvider store={store}>
+          <Router history={history}>
+            <PizzaPreview />
+          </Router>
+        </ReduxProvider>
+      );
 
-//       expect(history.location.pathname).toEqual("/");
-//     });
-//   });
-// });
+      expect(history.location.pathname).toEqual("/");
+    });
+  });
+});

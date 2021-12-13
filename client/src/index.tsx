@@ -18,11 +18,11 @@ Sentry.init({
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ReduxProvider store={store}>
+    <ReduxProvider store={store}>
+      <BrowserRouter>
         <App />
-      </ReduxProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </ReduxProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
