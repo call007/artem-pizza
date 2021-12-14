@@ -13,16 +13,12 @@ describe("getPizza", () => {
       vegetables: [],
     };
 
-    const state: RootState = {
+    const state: Partial<RootState> = {
       pizza: {
         pizza: pizza,
         price: 2000,
       },
-      ingredients: {
-        ingredients: [],
-        isLoading: true,
-      },
     };
-    expect(getPizza(state)).toEqual(state.pizza);
+    expect(getPizza(state as any)).toEqual(state.pizza);
   });
 });

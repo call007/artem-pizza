@@ -17,47 +17,38 @@ describe("getIngredients", () => {
       category: "meat",
     };
 
-    const state: RootState = {
-      pizza: {
-        price: 2000,
-      },
+    const state: Partial<RootState> = {
       ingredients: {
         ingredients: [ingredient],
         isLoading: true,
       },
     };
-    expect(getIngredients(state)).toEqual([ingredient]);
+    expect(getIngredients(state as any)).toEqual([ingredient]);
   });
 });
 
 describe("getIsLoading", () => {
   it("returns ingredients property 'isLoading' from the state", () => {
-    const state: RootState = {
-      pizza: {
-        price: 2000,
-      },
+    const state: Partial<RootState> = {
       ingredients: {
         ingredients: [],
         isLoading: true,
       },
     };
-    expect(getIsLoading(state)).toEqual(true);
+    expect(getIsLoading(state as any)).toEqual(true);
   });
 });
 
 describe("getError", () => {
   it("returns ingredients property 'error' from the state", () => {
-    const state: RootState = {
-      pizza: {
-        price: 2000,
-      },
+    const state: Partial<RootState> = {
       ingredients: {
         ingredients: [],
         isLoading: true,
         error: new Error("Some error"),
       },
     };
-    expect(getError(state)).toEqual(new Error("Some error"));
+    expect(getError(state as any)).toEqual(new Error("Some error"));
   });
 });
 
@@ -80,16 +71,13 @@ describe("getIngredientsByCategory", () => {
       },
     ];
 
-    const state: RootState = {
-      pizza: {
-        price: 2000,
-      },
+    const state: Partial<RootState> = {
       ingredients: {
         ingredients: ingredients,
         isLoading: true,
       },
     };
-    expect(getIngredientsByCategory(Category.Meat)(state)).toEqual([
+    expect(getIngredientsByCategory(Category.Meat)(state as any)).toEqual([
       {
         id: "Odd5HuC4",
         name: "Бекон",

@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { validators } from "../../../validators";
 
-type FormValues = {
+export type FormValues = {
   email: string;
   password: string;
 };

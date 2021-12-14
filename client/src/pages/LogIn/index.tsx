@@ -1,18 +1,35 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { PATH } from "../../consts";
-import { LogInForm } from "./LogInForm";
+import { getIsAuthorized } from "../../state/user/selectors";
+import { AppDispatch } from "../../store";
+import { FormValues, LogInForm } from "./LogInForm";
 
 export function LogIn() {
+  const dispatch = useDispatch<AppDispatch>();
+  const isAuthorized = useSelector(getIsAuthorized);
+
+  const handleSubmit = (data: FormValues) => {
+    dispatch({ type: "set_isAuthorized", payload: true });
+    console.log(data);
+  };
+
   return (
     <div>
       <h1>Авторизация</h1>
 
-      <LogInForm formSubmit={(data) => console.log(data)} />
+      {isAuthorized ? (
+        <p>Вы успешно авторизовались.</p>
+      ) : (
+        <>
+          <LogInForm formSubmit={handleSubmit} />
 
-      <p>
-        Если вы не зарегистрированы{" "}
-        <Link to={PATH.Signup}>пройдите регистрацию</Link>
-      </p>
+          <p>
+            Если вы не зарегистрированы{" "}
+            <Link to={PATH.Signup}>пройдите регистрацию</Link>
+          </p>
+        </>
+      )}
     </div>
   );
 }
