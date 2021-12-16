@@ -3,7 +3,7 @@ import { createMemoryHistory } from "history";
 import { Provider as ReduxProvider } from "react-redux";
 import { Router } from "react-router";
 import App from "./App";
-import { mockStore } from "./mocks/store";
+import { mockStore } from "./mocks/mockStore";
 
 function renderApp() {
   const history = createMemoryHistory();

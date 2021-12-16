@@ -1,9 +1,9 @@
-export type State = {
+export type UserState = {
   isAuthorized?: boolean;
   isCheckoutSuccess?: boolean;
 };
 
-export type Action =
+export type UserAction =
   | {
       type: "set_isAuthorized";
       payload: boolean;
@@ -13,15 +13,15 @@ export type Action =
       payload: boolean;
     };
 
-const initialState: State = {
+const initialState: UserState = {
   isAuthorized: false,
   isCheckoutSuccess: false,
 };
 
 export function userReducer(
-  state: State = initialState,
-  action: Action
-): State {
+  state: UserState = initialState,
+  action: UserAction
+): UserState {
   switch (action.type) {
     case "set_isAuthorized":
       return { ...state, isAuthorized: action.payload };

@@ -1,33 +1,28 @@
-import { Action, pizzaReducer, State } from "./reducer";
+import { mockState } from "../../mocks/mockStore";
+import { PizzaAction, pizzaReducer, PizzaState } from "./reducer";
 
 describe("pizzaReducer", () => {
   describe("set_pizza", () => {
     it("sets pizza", () => {
-      const pizza: State["pizza"] = {
-        size: "30см",
-        dough: "Тонкое",
-        sauces: "Томатный",
-        cheese: ["Пармезан", "Дор-блю"],
-        meat: [],
-        vegetables: [],
-      };
-      const initialState: State = {};
-      const action: Action = {
+      const initialState: PizzaState = {};
+      const action: PizzaAction = {
         type: "set_pizza",
-        payload: pizza,
+        payload: mockState.pizza.pizza,
       };
-      expect(pizzaReducer(initialState, action)).toEqual<State>({ pizza });
+      expect(pizzaReducer(initialState, action)).toEqual<PizzaState>({
+        pizza: mockState.pizza.pizza,
+      });
     });
   });
 
   describe("set_price", () => {
     it("sets price", () => {
-      const initialState: State = {};
-      const action: Action = {
+      const initialState: PizzaState = {};
+      const action: PizzaAction = {
         type: "set_price",
         payload: 1500,
       };
-      expect(pizzaReducer(initialState, action)).toEqual<State>({
+      expect(pizzaReducer(initialState, action)).toEqual<PizzaState>({
         price: 1500,
       });
     });

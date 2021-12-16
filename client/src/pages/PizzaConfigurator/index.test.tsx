@@ -4,7 +4,7 @@ import { act } from "react-dom/test-utils";
 import { Provider as ReduxProvider } from "react-redux";
 import { Router } from "react-router";
 import { PizzaConfigurator } from ".";
-import { mockStore } from "../../mocks/store";
+import { mockStore } from "../../mocks/mockStore";
 
 function renderPizzaConfigurator() {
   const history = createMemoryHistory();

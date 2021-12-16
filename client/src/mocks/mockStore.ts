@@ -1,8 +1,9 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunk from "redux-thunk";
-import { State as IngredientsState } from "../state/ingredients/reducer";
-import { State as PizzaState } from "../state/pizza/reducer";
-import { State as UserState } from "../state/user/reducer";
+import { IngredientsState } from "../state/ingredients/reducer";
+import { PizzaState } from "../state/pizza/reducer";
+import { UserState } from "../state/user/reducer";
+import { RootState } from "../store";
 
 const initialPizzaState: PizzaState = {
   pizza: {
@@ -72,15 +73,6 @@ const initialIngredientsState: IngredientsState = {
       thumbnail: "dor-blue-thumb.png",
     },
     {
-      id: "Iieg-VZk",
-      name: "Ветчина",
-      slug: "ham",
-      price: 100,
-      category: "meat",
-      image: "ham.png",
-      thumbnail: "ham-thumb.png",
-    },
-    {
       id: "KfE8q4-l",
       name: "Грибы",
       slug: "mushrooms",
@@ -126,15 +118,6 @@ const initialIngredientsState: IngredientsState = {
       thumbnail: "pepper-thumb.png",
     },
     {
-      id: "KZKWP7Mt",
-      name: "Пепперони",
-      slug: "pepperoni",
-      price: 100,
-      category: "meat",
-      image: "pepperoni.png",
-      thumbnail: "pepperoni-thumb.png",
-    },
-    {
       id: "3EEnpHfa",
       name: "Ананас",
       slug: "pineapple",
@@ -142,15 +125,6 @@ const initialIngredientsState: IngredientsState = {
       category: "vegetables",
       image: "pineapple.png",
       thumbnail: "pineapple-thumb.png",
-    },
-    {
-      id: "qLdDrMz4",
-      name: "Салями",
-      slug: "salami",
-      price: 100,
-      category: "meat",
-      image: "salami.png",
-      thumbnail: "salami-thumb.png",
     },
     {
       id: "szPhZsmh",
@@ -258,6 +232,12 @@ const initialIngredientsState: IngredientsState = {
 const initialUserState: UserState = {
   isAuthorized: false,
   isCheckoutSuccess: true,
+};
+
+export const mockState: RootState = {
+  pizza: initialPizzaState,
+  ingredients: initialIngredientsState,
+  user: initialUserState,
 };
 
 export const mockStore = createStore(

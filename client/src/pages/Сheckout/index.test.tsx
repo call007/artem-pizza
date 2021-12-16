@@ -4,7 +4,7 @@ import { Provider as ReduxProvider } from "react-redux";
 import { Router } from "react-router";
 import { Сheckout } from ".";
 import { PATH } from "../../consts";
-import { mockStore } from "../../mocks/store";
+import { mockStore } from "../../mocks/mockStore";
 import { store } from "../../store";
 
 describe("Сheckout", () => {

@@ -4,7 +4,7 @@ import { Provider as ReduxProvider } from "react-redux";
 import { MemoryRouter, Router } from "react-router";
 import { PizzaPreview } from ".";
 import { PATH } from "../../consts";
-import { mockStore } from "../../mocks/store";
+import { mockStore } from "../../mocks/mockStore";
 import { store } from "../../store";
 
 describe("PizzaPreview", () => {

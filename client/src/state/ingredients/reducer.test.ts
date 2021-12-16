@@ -1,29 +1,26 @@
-import { Action, ingredientsReducer, State } from "./reducer";
+import { mockState } from "../../mocks/mockStore";
+import {
+  IngredientsAction,
+  ingredientsReducer,
+  IngredientsState,
+} from "./reducer";
 
 describe("ingredientsReducer", () => {
   describe("set_ingredients", () => {
     it("sets ingredients", () => {
-      const ingredients: State["ingredients"] = [
-        {
-          id: "Odd5HuC4",
-          name: "Бекон",
-          slug: "bacon",
-          price: 100,
-          category: "meat",
-          image: "bacon.png",
-          thumbnail: "bacon-thumb.png",
-        },
-      ];
-      const initialState: State = {
+      const initialState: IngredientsState = {
         ingredients: [],
         isLoading: true,
       };
-      const action: Action = {
+      const action: IngredientsAction = {
         type: "set_ingredients",
-        payload: ingredients,
+        payload: mockState.ingredients.ingredients,
       };
-      expect(ingredientsReducer(initialState, action)).toEqual<State>({
-        ingredients,
+
+      expect(
+        ingredientsReducer(initialState, action)
+      ).toEqual<IngredientsState>({
+        ingredients: mockState.ingredients.ingredients,
         isLoading: false,
       });
     });
@@ -32,15 +29,18 @@ describe("ingredientsReducer", () => {
   describe("set_ingredients_error", () => {
     it("sets error", () => {
       const error = new Error("Some error");
-      const initialState: State = {
+      const initialState: IngredientsState = {
         ingredients: [],
         isLoading: true,
       };
-      const action: Action = {
+      const action: IngredientsAction = {
         type: "set_ingredients_error",
         payload: error,
       };
-      expect(ingredientsReducer(initialState, action)).toEqual<State>({
+
+      expect(
+        ingredientsReducer(initialState, action)
+      ).toEqual<IngredientsState>({
         error,
         ingredients: [],
         isLoading: false,

@@ -1,14 +1,14 @@
-import { Action, State, userReducer } from "./reducer";
+import { UserAction, userReducer, UserState } from "./reducer";
 
 describe("pizzaReducer", () => {
   describe("set_isAuthorized", () => {
     it("sets isAuthorized", () => {
-      const initialState: State = {};
-      const action: Action = {
+      const initialState: UserState = {};
+      const action: UserAction = {
         type: "set_isAuthorized",
         payload: true,
       };
-      expect(userReducer(initialState, action)).toEqual<State>({
+      expect(userReducer(initialState, action)).toEqual<UserState>({
         isAuthorized: true,
       });
     });
@@ -16,12 +16,12 @@ describe("pizzaReducer", () => {
 
   describe("set_isCheckoutSuccess", () => {
     it("sets isCheckoutSuccess", () => {
-      const initialState: State = {};
-      const action: Action = {
+      const initialState: UserState = {};
+      const action: UserAction = {
         type: "set_isCheckoutSuccess",
         payload: true,
       };
-      expect(userReducer(initialState, action)).toEqual<State>({
+      expect(userReducer(initialState, action)).toEqual<UserState>({
         isCheckoutSuccess: true,
       });
     });

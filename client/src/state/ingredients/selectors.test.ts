@@ -1,5 +1,6 @@
+import { mockState } from "../../mocks/mockStore";
 import { RootState } from "../../store";
-import { Category, Ingredient } from "../../types";
+import { Category } from "../../types";
 import {
   getError,
   getIngredients,
@@ -9,81 +10,47 @@ import {
 
 describe("getIngredients", () => {
   it("returns the ingredients from the state", () => {
-    const ingredient: Ingredient = {
-      id: "Odd5HuC4",
-      name: "Бекон",
-      slug: "bacon",
-      price: 100,
-      category: "meat",
-    };
-
-    const state: Partial<RootState> = {
-      ingredients: {
-        ingredients: [ingredient],
-        isLoading: true,
-      },
-    };
-    expect(getIngredients(state as any)).toEqual([ingredient]);
+    expect(getIngredients(mockState)).toEqual(
+      mockState.ingredients.ingredients
+    );
   });
 });
 
 describe("getIsLoading", () => {
   it("returns ingredients property 'isLoading' from the state", () => {
-    const state: Partial<RootState> = {
-      ingredients: {
-        ingredients: [],
-        isLoading: true,
-      },
-    };
-    expect(getIsLoading(state as any)).toEqual(true);
+    expect(getIsLoading(mockState)).toEqual(false);
   });
 });
 
 describe("getError", () => {
   it("returns ingredients property 'error' from the state", () => {
-    const state: Partial<RootState> = {
-      ingredients: {
-        ingredients: [],
-        isLoading: true,
-        error: new Error("Some error"),
-      },
-    };
-    expect(getError(state as any)).toEqual(new Error("Some error"));
+    const state: RootState = { ...mockState };
+    state.ingredients.error = new Error("Some error");
+
+    expect(getError(state)).toEqual(new Error("Some error"));
   });
 });
 
 describe("getIngredientsByCategory", () => {
   it("returns the ingredients by category from the state", () => {
-    const ingredients: Ingredient[] = [
+    expect(getIngredientsByCategory(Category.Meat)(mockState)).toEqual([
       {
-        id: "Odd5HuC4",
-        name: "Бекон",
-        slug: "bacon",
-        price: 100,
         category: "meat",
-      },
-      {
-        id: "xXibhlsf",
-        name: "Брокколи",
-        slug: "broccoli",
-        price: 100,
-        category: "vegetables",
-      },
-    ];
-
-    const state: Partial<RootState> = {
-      ingredients: {
-        ingredients: ingredients,
-        isLoading: true,
-      },
-    };
-    expect(getIngredientsByCategory(Category.Meat)(state as any)).toEqual([
-      {
         id: "Odd5HuC4",
+        image: "bacon.png",
         name: "Бекон",
-        slug: "bacon",
         price: 100,
+        slug: "bacon",
+        thumbnail: "bacon-thumb.png",
+      },
+      {
         category: "meat",
+        id: "2T7Cta-s",
+        image: "chicken.png",
+        name: "Курица",
+        price: 100,
+        slug: "chicken",
+        thumbnail: "chicken-thumb.png",
       },
     ]);
   });
