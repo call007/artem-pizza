@@ -1,23 +1,21 @@
-import { render, fireEvent } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
+import { fireEvent, render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
+import { act } from "react-dom/test-utils";
+import { Provider as ReduxProvider } from "react-redux";
 import { Router } from "react-router";
-import { PizzaProvider } from "../../context/PizzaContext";
 import { PizzaConfigurator } from ".";
-import { IngredientsProvider } from "../../context/IngredientsContext";
+import { mockStore } from "../../mocks/mockStore";
 
 function renderPizzaConfigurator() {
   const history = createMemoryHistory();
 
   return {
     ...render(
-      <IngredientsProvider>
-        <PizzaProvider>
-          <Router history={history}>
-            <PizzaConfigurator />
-          </Router>
-        </PizzaProvider>
-      </IngredientsProvider>
+      <ReduxProvider store={mockStore}>
+        <Router history={history}>
+          <PizzaConfigurator />
+        </Router>
+      </ReduxProvider>
     ),
     history,
   };
@@ -31,12 +29,12 @@ describe("PizzaConfigurator page", () => {
   });
 
   describe(".handleChange", () => {
-    // it("navigates to `/pizza-preview`", async () => {
-    //   const { getByText, history } = renderPizzaConfigurator();
-    //   await act(async () => {
-    //     fireEvent.click(getByText(/Заказать за/i));
-    //   });
-    //   expect(history.location.pathname).toEqual("/pizza-preview");
-    // });
+    it("navigates to `/pizza-preview`", async () => {
+      const { getByText, history } = renderPizzaConfigurator();
+      await act(async () => {
+        fireEvent.click(getByText(/Заказать за/i));
+      });
+      expect(history.location.pathname).toEqual("/pizza-preview");
+    });
   });
 });

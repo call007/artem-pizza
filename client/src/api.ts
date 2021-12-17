@@ -9,13 +9,13 @@ const response = (response: Response) => {
 };
 
 export const getPizzaIngredients = (): Promise<Ingredient[]> =>
-  fetch(`${process.env.REACT_APP_API_URL}ingredients`).then(response);
+  fetch(`${process.env.REACT_APP_API_URL}/ingredients`).then(response);
 
 export const getOrders = (): Promise<Order[]> =>
-  fetch(`${process.env.REACT_APP_API_URL}orders`).then(response);
+  fetch(`${process.env.REACT_APP_API_URL}/orders`).then(response);
 
 export const postOrder = (order: Order): Promise<Order[]> =>
-  fetch(`${process.env.REACT_APP_API_URL}orders`, {
+  fetch(`${process.env.REACT_APP_API_URL}/orders`, {
     method: "POST",
     body: JSON.stringify(order),
     headers: { "Content-type": "application/json" },

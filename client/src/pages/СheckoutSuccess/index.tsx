@@ -1,4 +1,15 @@
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
+import { PATH } from "../../consts";
+import { getIsCheckoutSuccess } from "../../state/user/selectors";
+
 export function СheckoutSuccess() {
+  const isCheckoutSuccess = useSelector(getIsCheckoutSuccess);
+
+  if (!isCheckoutSuccess) {
+    return <Redirect to={PATH.Checkout} />;
+  }
+
   return (
     <div>
       <h1>Оформление заказа</h1>

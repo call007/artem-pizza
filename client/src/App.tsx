@@ -1,5 +1,6 @@
-import { Menu } from "./components/Menu";
 import { Route, Switch } from "react-router-dom";
+import { Menu } from "./components/Menu";
+import { PrivateRoute } from "./components/PrivatePage";
 import { PATH } from "./consts";
 import {
   LogIn,
@@ -42,9 +43,9 @@ function App() {
           <СheckoutSuccess />
         </Route>
 
-        <Route path={PATH.Orders}>
+        <PrivateRoute path={PATH.Orders} redirectPath={PATH.Login}>
           <Orders />
-        </Route>
+        </PrivateRoute>
 
         <Route>
           <NotFound />

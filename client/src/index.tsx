@@ -1,14 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider as ReduxProvider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-
+import App from "./App";
 import "./index.css";
-import { PizzaProvider } from "./context/PizzaContext";
-import { IngredientsProvider } from "./context/IngredientsContext";
+import reportWebVitals from "./reportWebVitals";
+import { store } from "./store";
 
 Sentry.init({
   dsn: "https://bd8c58643e2244afaa46a6e31e91e60a@o1033219.ingest.sentry.io/6000000",
@@ -19,13 +18,11 @@ Sentry.init({
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <IngredientsProvider>
-        <PizzaProvider>
-          <App />
-        </PizzaProvider>
-      </IngredientsProvider>
-    </BrowserRouter>
+    <ReduxProvider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ReduxProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

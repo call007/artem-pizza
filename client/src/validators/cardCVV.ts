@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import { RegisterOptions } from "react-hook-form";
-import { normalizeNumber } from "../normalize";
 import { MESSAGES } from "../consts";
+import { normalizeNumber } from "../normalize";
 
 export const cardCVV: Pick<
   RegisterOptions,
