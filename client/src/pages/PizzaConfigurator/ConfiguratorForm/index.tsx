@@ -11,7 +11,7 @@ import {
   getIsLoading,
 } from "../../../state/ingredients/selectors";
 import { fetchIngredients } from "../../../state/ingredients/thunk";
-import { AppDispatch } from "../../../store";
+import { AppDispatch, useThunkDispatch } from "../../../store";
 import { Category, Pizza } from "../../../types";
 import { FieldsetCheckboxGroup } from "../FieldsetCheckboxGroup";
 import { FieldsetRadioGroup } from "../FieldsetRadioGroup";
@@ -19,6 +19,7 @@ import { FieldsetRadioGroup } from "../FieldsetRadioGroup";
 export function ConfiguratorForm() {
   const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
+  const thunkDispatch = useThunkDispatch();
 
   const isLoading = useSelector(getIsLoading);
   const error = useSelector(getError);
@@ -45,7 +46,7 @@ export function ConfiguratorForm() {
   const formValues = watch();
 
   useEffect(() => {
-    dispatch(fetchIngredients() as any); // TODO: разобраться с типом
+    thunkDispatch(fetchIngredients());
   }, [dispatch]);
 
   if (isLoading) {

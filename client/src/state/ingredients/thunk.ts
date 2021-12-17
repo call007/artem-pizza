@@ -1,7 +1,14 @@
+import { ThunkAction } from "redux-thunk";
 import { getPizzaIngredients } from "../../api";
-import { AppDispatch } from "../../store";
+import { AppDispatch, RootState } from "../../store";
+import { IngredientsAction } from "./reducer";
 
-export function fetchIngredients() {
+export function fetchIngredients(): ThunkAction<
+  void,
+  RootState,
+  unknown,
+  IngredientsAction
+> {
   return (dispatch: AppDispatch) =>
     getPizzaIngredients().then(
       (ingredients) => {
