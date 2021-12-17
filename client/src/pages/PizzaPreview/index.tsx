@@ -3,11 +3,12 @@ import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import { PATH } from "../../consts";
 import { getIngredientsByCategory } from "../../state/ingredients/selectors";
-import { getPizza } from "../../state/pizza/selectors";
+import { getPizza, getPizzaPrice } from "../../state/pizza/selectors";
 import { Category, Ingredient } from "../../types";
 
 export function PizzaPreview() {
-  const { pizza, price } = useSelector(getPizza);
+  const pizza = useSelector(getPizza);
+  const price = useSelector(getPizzaPrice);
   const size = useSelector(getIngredientsByCategory(Category.Size));
   const dough = useSelector(getIngredientsByCategory(Category.Dough));
   const sauces = useSelector(getIngredientsByCategory(Category.Sauces));

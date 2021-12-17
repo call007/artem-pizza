@@ -1,5 +1,5 @@
 import { calculatePrice } from "./calculatePrice";
-import { mockData } from "./mocks/mockData";
+import { mockDataIngredients } from "./mocks/mockDataIngredients";
 
 describe("calculatePrice", () => {
   it("returns the sum price of all selected pizza parts", () => {
@@ -13,7 +13,7 @@ describe("calculatePrice", () => {
           vegetables: ["broccoli", "mushrooms", "olives"],
           meat: ["bacon", "chicken", "ham"],
         },
-        mockData
+        mockDataIngredients
       )
     ).toEqual(1150);
   });

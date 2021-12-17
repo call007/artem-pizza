@@ -1,7 +1,7 @@
 import { Ingredient } from "../../types";
 
 export type IngredientsState = {
-  ingredients: Ingredient[];
+  data: Ingredient[];
   isLoading: boolean;
   error?: Error;
 };
@@ -17,7 +17,7 @@ export type IngredientsAction =
     };
 
 const initialState: IngredientsState = {
-  ingredients: [],
+  data: [],
   isLoading: true,
 };
 
@@ -27,7 +27,7 @@ export function ingredientsReducer(
 ): IngredientsState {
   switch (action.type) {
     case "set_ingredients":
-      return { ingredients: action.payload, isLoading: false };
+      return { data: action.payload, isLoading: false };
 
     case "set_ingredients_error":
       return { ...state, error: action.payload, isLoading: false };

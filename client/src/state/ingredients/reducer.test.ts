@@ -9,18 +9,18 @@ describe("ingredientsReducer", () => {
   describe("set_ingredients", () => {
     it("sets ingredients", () => {
       const initialState: IngredientsState = {
-        ingredients: [],
+        data: [],
         isLoading: true,
       };
       const action: IngredientsAction = {
         type: "set_ingredients",
-        payload: mockState.ingredients.ingredients,
+        payload: mockState.ingredients.data,
       };
 
       expect(
         ingredientsReducer(initialState, action)
       ).toEqual<IngredientsState>({
-        ingredients: mockState.ingredients.ingredients,
+        data: mockState.ingredients.data,
         isLoading: false,
       });
     });
@@ -30,7 +30,7 @@ describe("ingredientsReducer", () => {
     it("sets error", () => {
       const error = new Error("Some error");
       const initialState: IngredientsState = {
-        ingredients: [],
+        data: [],
         isLoading: true,
       };
       const action: IngredientsAction = {
@@ -42,7 +42,7 @@ describe("ingredientsReducer", () => {
         ingredientsReducer(initialState, action)
       ).toEqual<IngredientsState>({
         error,
-        ingredients: [],
+        data: [],
         isLoading: false,
       });
     });

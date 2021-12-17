@@ -3,12 +3,13 @@ import { useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router";
 import { postOrder } from "../../api";
 import { PATH } from "../../consts";
-import { getPizza } from "../../state/pizza/selectors";
+import { getPizza, getPizzaPrice } from "../../state/pizza/selectors";
 import { FormValues, СheckoutForm } from "./СheckoutForm";
 
 export function Сheckout() {
   const history = useHistory();
-  const { pizza, price } = useSelector(getPizza);
+  const pizza = useSelector(getPizza);
+  const price = useSelector(getPizzaPrice);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 

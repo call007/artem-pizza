@@ -1,11 +1,11 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunk from "redux-thunk";
 import { IngredientsState } from "../state/ingredients/reducer";
-import { PizzaState } from "../state/pizza/reducer";
+import { OrderState } from "../state/pizza/reducer";
 import { UserState } from "../state/user/reducer";
 import { RootState } from "../store";
 
-const initialPizzaState: PizzaState = {
+const initialOrderState: OrderState = {
   pizza: {
     size: "30",
     dough: "thin",
@@ -26,7 +26,7 @@ const initialPizzaState: PizzaState = {
 };
 
 const initialIngredientsState: IngredientsState = {
-  ingredients: [
+  data: [
     {
       id: "Odd5HuC4",
       name: "Бекон",
@@ -235,14 +235,14 @@ const initialUserState: UserState = {
 };
 
 export const mockState: RootState = {
-  pizza: initialPizzaState,
+  order: initialOrderState,
   ingredients: initialIngredientsState,
   user: initialUserState,
 };
 
 export const mockStore = createStore(
   combineReducers({
-    pizza: (state = initialPizzaState) => state,
+    order: (state = initialOrderState) => state,
     ingredients: (state = initialIngredientsState) => state,
     user: (state = initialUserState) => state,
   }),

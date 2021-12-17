@@ -47,7 +47,7 @@ export function ConfiguratorForm() {
 
   useEffect(() => {
     thunkDispatch(fetchIngredients());
-  }, [dispatch]);
+  }, [thunkDispatch]);
 
   if (isLoading) {
     return <>Загрузка...</>;

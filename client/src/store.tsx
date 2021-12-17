@@ -3,12 +3,12 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import { ingredientsReducer } from "./state/ingredients/reducer";
-import { pizzaReducer } from "./state/pizza/reducer";
+import { orderReducer } from "./state/pizza/reducer";
 import { userReducer } from "./state/user/reducer";
 
 export const store = createStore(
   combineReducers({
-    pizza: pizzaReducer,
+    order: orderReducer,
     ingredients: ingredientsReducer,
     user: userReducer,
   }),

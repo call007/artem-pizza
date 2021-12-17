@@ -10,9 +10,7 @@ import {
 
 describe("getIngredients", () => {
   it("returns the ingredients from the state", () => {
-    expect(getIngredients(mockState)).toEqual(
-      mockState.ingredients.ingredients
-    );
+    expect(getIngredients(mockState)).toEqual(mockState.ingredients.data);
   });
 });
 

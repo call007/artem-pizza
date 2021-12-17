@@ -1,6 +1,6 @@
 import { Ingredient } from "../types";
 
-export const mockData: Ingredient[] = [
+export const mockDataIngredients: Ingredient[] = [
   {
     id: "Odd5HuC4",
     name: "Бекон",

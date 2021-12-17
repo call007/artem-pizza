@@ -1,35 +1,35 @@
 import { Pizza } from "../../types";
 
-export type PizzaState = {
+export type OrderState = {
   pizza?: Pizza;
   price?: number;
 };
 
-export type PizzaAction =
+export type OrderAction =
   | {
       type: "set_pizza";
-      payload: PizzaState["pizza"];
+      payload: OrderState["pizza"];
     }
   | {
       type: "set_price";
-      payload: PizzaState["price"];
+      payload: OrderState["price"];
     };
 
-export function pizzaReducer(
-  state: PizzaState = {},
-  { type, payload }: PizzaAction
-): PizzaState {
+export function orderReducer(
+  state: OrderState = {},
+  { type, payload }: OrderAction
+): OrderState {
   switch (type) {
     case "set_pizza":
       return {
         ...state,
-        pizza: payload as PizzaState["pizza"],
+        pizza: payload as OrderState["pizza"],
       };
 
     case "set_price":
       return {
         ...state,
-        price: payload as PizzaState["price"],
+        price: payload as OrderState["price"],
       };
 
     default:
