@@ -1,6 +1,5 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { Ingredient } from "../../types";
-import { setIngredientsDataAction, setIngredientsErrorAction } from "./actions";
 
 export type IngredientsState = {
   data: Ingredient[];
@@ -13,14 +12,17 @@ const initialState: IngredientsState = {
   isLoading: true,
 };
 
-export const ingredientsReducer = createReducer(initialState, (builder) => {
-  builder
-    .addCase(setIngredientsDataAction, (state, action) => {
+export const ingredients = createSlice({
+  name: "ingredients",
+  initialState,
+  reducers: {
+    setData: (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
-    })
-    .addCase(setIngredientsErrorAction, (state, action) => {
+    },
+    setError: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-    });
+    },
+  },
 });

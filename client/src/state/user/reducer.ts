@@ -1,8 +1,4 @@
-import { createReducer } from "@reduxjs/toolkit";
-import {
-  setUserIsAuthorizedAction,
-  setUserIsCheckoutSuccessAction,
-} from "./actions";
+import { createSlice } from "@reduxjs/toolkit";
 
 export type UserState = {
   isAuthorized?: boolean;
@@ -14,12 +10,15 @@ const initialState: UserState = {
   isCheckoutSuccess: false,
 };
 
-export const userReducer = createReducer(initialState, (builder) => {
-  builder
-    .addCase(setUserIsAuthorizedAction, (state, action) => {
+export const user = createSlice({
+  name: "user",
+  initialState,
+  reducers: {
+    setIsAuthorized: (state, action) => {
       state.isAuthorized = action.payload;
-    })
-    .addCase(setUserIsCheckoutSuccessAction, (state, action) => {
+    },
+    setIsCheckoutSuccess: (state, action) => {
       state.isCheckoutSuccess = action.payload;
-    });
+    },
+  },
 });

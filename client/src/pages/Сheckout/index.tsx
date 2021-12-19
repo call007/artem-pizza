@@ -4,7 +4,7 @@ import { Redirect, useHistory } from "react-router";
 import { postOrder } from "../../api";
 import { PATH } from "../../consts";
 import { getPizza, getPizzaPrice } from "../../state/pizza/selectors";
-import { setUserIsCheckoutSuccessAction } from "../../state/user/actions";
+import { user } from "../../state/user/reducer";
 import { FormValues, СheckoutForm } from "./СheckoutForm";
 
 export function Сheckout() {
@@ -36,7 +36,7 @@ export function Сheckout() {
     postOrder(orderData)
       .then(() => {
         setIsLoading(false);
-        dispatch(setUserIsCheckoutSuccessAction(true));
+        dispatch(user.actions.setIsCheckoutSuccess(true));
         history.push(PATH.CheckoutSuccess);
       })
       .catch((error) => {

@@ -1,6 +1,5 @@
 import { mockState } from "../../mocks/mockStore";
-import { setIngredientsDataAction, setIngredientsErrorAction } from "./actions";
-import { ingredientsReducer, IngredientsState } from "./reducer";
+import { ingredients, IngredientsState } from "./reducer";
 
 describe("ingredientsReducer", () => {
   describe("set_ingredients", () => {
@@ -9,10 +8,10 @@ describe("ingredientsReducer", () => {
         data: [],
         isLoading: true,
       };
-      const action = setIngredientsDataAction(mockState.ingredients.data);
+      const action = ingredients.actions.setData(mockState.ingredients.data);
 
       expect(
-        ingredientsReducer(initialState, action)
+        ingredients.reducer(initialState, action)
       ).toEqual<IngredientsState>({
         data: mockState.ingredients.data,
         isLoading: false,
@@ -27,10 +26,10 @@ describe("ingredientsReducer", () => {
         data: [],
         isLoading: true,
       };
-      const action = setIngredientsErrorAction(error);
+      const action = ingredients.actions.setError(error);
 
       expect(
-        ingredientsReducer(initialState, action)
+        ingredients.reducer(initialState, action)
       ).toEqual<IngredientsState>({
         error,
         data: [],

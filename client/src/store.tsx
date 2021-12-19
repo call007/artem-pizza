@@ -1,14 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
-import { ingredientsReducer } from "./state/ingredients/reducer";
-import { orderReducer } from "./state/pizza/reducer";
-import { userReducer } from "./state/user/reducer";
+import { ingredients } from "./state/ingredients/reducer";
+import { order } from "./state/pizza/reducer";
+import { user } from "./state/user/reducer";
 
 export const store = configureStore({
   reducer: {
-    order: orderReducer,
-    ingredients: ingredientsReducer,
-    user: userReducer,
+    order: order.reducer,
+    ingredients: ingredients.reducer,
+    user: user.reducer,
   },
   devTools: process.env.NODE_ENV !== "production",
 });

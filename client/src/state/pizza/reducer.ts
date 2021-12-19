@@ -1,6 +1,5 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { Pizza } from "../../types";
-import { setOrderPizzaAction, setOrderPriceAction } from "./actions";
 
 export type OrderState = {
   pizza?: Pizza;
@@ -9,12 +8,15 @@ export type OrderState = {
 
 const initialState: OrderState = {};
 
-export const orderReducer = createReducer(initialState, (builder) => {
-  builder
-    .addCase(setOrderPizzaAction, (state, action) => {
+export const order = createSlice({
+  name: "order",
+  initialState,
+  reducers: {
+    setPizza: (state, action) => {
       state.pizza = action.payload;
-    })
-    .addCase(setOrderPriceAction, (state, action) => {
+    },
+    setPrice: (state, action) => {
       state.price = action.payload;
-    });
+    },
+  },
 });
