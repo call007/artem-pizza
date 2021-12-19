@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router";
 import { postOrder } from "../../api";
 import { PATH } from "../../consts";
 import { getPizza, getPizzaPrice } from "../../state/pizza/selectors";
+import { setUserIsCheckoutSuccessAction } from "../../state/user/actions";
 import { FormValues, СheckoutForm } from "./СheckoutForm";
 
 export function Сheckout() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const pizza = useSelector(getPizza);
   const price = useSelector(getPizzaPrice);
   const [isLoading, setIsLoading] = useState(false);
@@ -34,6 +36,7 @@ export function Сheckout() {
     postOrder(orderData)
       .then(() => {
         setIsLoading(false);
+        dispatch(setUserIsCheckoutSuccessAction(true));
         history.push(PATH.CheckoutSuccess);
       })
       .catch((error) => {

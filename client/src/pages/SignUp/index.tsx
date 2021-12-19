@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { PATH } from "../../consts";
+import { setUserIsAuthorizedAction } from "../../state/user/actions";
 import { getIsAuthorized } from "../../state/user/selectors";
 import { AppDispatch } from "../../store";
 import { FormValues, SignUpForm } from "./SignUpForm";
@@ -14,7 +15,7 @@ export function SignUp() {
   const isVisibleNote = isSubmitted && isAuthorized;
 
   const handleSubmit = (data: FormValues) => {
-    dispatch({ type: "set_isAuthorized", payload: true });
+    dispatch(setUserIsAuthorizedAction(true));
     setIsSubmitted(true);
     console.log(data);
   };

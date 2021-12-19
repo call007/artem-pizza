@@ -1,5 +1,4 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import thunk from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit";
 import { IngredientsState } from "../state/ingredients/reducer";
 import { OrderState } from "../state/pizza/reducer";
 import { UserState } from "../state/user/reducer";
@@ -240,11 +239,11 @@ export const mockState: RootState = {
   user: initialUserState,
 };
 
-export const mockStore = createStore(
-  combineReducers({
+export const mockStore = configureStore({
+  reducer: {
     order: (state = initialOrderState) => state,
     ingredients: (state = initialIngredientsState) => state,
     user: (state = initialUserState) => state,
-  }),
-  applyMiddleware(thunk)
-);
+  },
+  devTools: false,
+});

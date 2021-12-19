@@ -1,24 +1,22 @@
+import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { getPizzaIngredients } from "../../api";
 import { AppDispatch, RootState } from "../../store";
-import { IngredientsAction } from "./reducer";
+import { setIngredientsDataAction, setIngredientsErrorAction } from "./actions";
 
 export function fetchIngredients(): ThunkAction<
   void,
   RootState,
   unknown,
-  IngredientsAction
+  AnyAction
 > {
   return (dispatch: AppDispatch) =>
     getPizzaIngredients().then(
       (ingredients) => {
-        dispatch({ type: "set_ingredients", payload: ingredients });
+        dispatch(setIngredientsDataAction(ingredients));
       },
       (error) => {
-        dispatch({
-          type: "set_ingredients_error",
-          payload: error,
-        });
+        dispatch(setIngredientsErrorAction(error));
       }
     );
 }

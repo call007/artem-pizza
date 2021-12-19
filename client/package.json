@@ -6,6 +6,7 @@
   "repository": "https://github.com/call007/artem-pizza",
   "dependencies": {
     "@hookform/resolvers": "^2.8.2",
+    "@reduxjs/toolkit": "^1.7.1",
     "@sentry/react": "^6.13.3",
     "@sentry/tracing": "^6.13.3",
     "@testing-library/jest-dom": "^5.11.4",
@@ -21,8 +22,6 @@
     "react-scripts": "4.0.3",
     "react-test-renderer": "^17.0.2",
     "redux": "^4.1.2",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.1",
     "typescript": "^4.4.4",
     "web-vitals": "^1.0.1"
   },

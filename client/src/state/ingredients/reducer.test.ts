@@ -1,9 +1,6 @@
 import { mockState } from "../../mocks/mockStore";
-import {
-  IngredientsAction,
-  ingredientsReducer,
-  IngredientsState,
-} from "./reducer";
+import { setIngredientsDataAction, setIngredientsErrorAction } from "./actions";
+import { ingredientsReducer, IngredientsState } from "./reducer";
 
 describe("ingredientsReducer", () => {
   describe("set_ingredients", () => {
@@ -12,10 +9,7 @@ describe("ingredientsReducer", () => {
         data: [],
         isLoading: true,
       };
-      const action: IngredientsAction = {
-        type: "set_ingredients",
-        payload: mockState.ingredients.data,
-      };
+      const action = setIngredientsDataAction(mockState.ingredients.data);
 
       expect(
         ingredientsReducer(initialState, action)
@@ -33,10 +27,7 @@ describe("ingredientsReducer", () => {
         data: [],
         isLoading: true,
       };
-      const action: IngredientsAction = {
-        type: "set_ingredients_error",
-        payload: error,
-      };
+      const action = setIngredientsErrorAction(error);
 
       expect(
         ingredientsReducer(initialState, action)

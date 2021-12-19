@@ -1,4 +1,6 @@
+import { createReducer } from "@reduxjs/toolkit";
 import { Ingredient } from "../../types";
+import { setIngredientsDataAction, setIngredientsErrorAction } from "./actions";
 
 export type IngredientsState = {
   data: Ingredient[];
@@ -6,33 +8,19 @@ export type IngredientsState = {
   error?: Error;
 };
 
-export type IngredientsAction =
-  | {
-      type: "set_ingredients";
-      payload: Ingredient[];
-    }
-  | {
-      type: "set_ingredients_error";
-      payload: Error;
-    };
-
 const initialState: IngredientsState = {
   data: [],
   isLoading: true,
 };
 
-export function ingredientsReducer(
-  state: IngredientsState = initialState,
-  action: IngredientsAction
-): IngredientsState {
-  switch (action.type) {
-    case "set_ingredients":
-      return { data: action.payload, isLoading: false };
-
-    case "set_ingredients_error":
-      return { ...state, error: action.payload, isLoading: false };
-
-    default:
-      return state;
-  }
-}
+export const ingredientsReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(setIngredientsDataAction, (state, action) => {
+      state.isLoading = false;
+      state.data = action.payload;
+    })
+    .addCase(setIngredientsErrorAction, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+});

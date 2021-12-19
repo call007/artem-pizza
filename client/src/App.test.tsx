@@ -64,18 +64,6 @@ describe("App navigation", () => {
     });
   });
 
-  describe("checkout success link click", () => {
-    it("navigates to checkout success page", () => {
-      const { container, getByText } = renderApp();
-
-      fireEvent.click(getByText("Оформление заказа (успех)"));
-
-      expect(container.innerHTML).toMatch(
-        "Заказ успешно оплачен, ждите вашу пиццу уже через час"
-      );
-    });
-  });
-
   describe("orders link click", () => {
     it("navigates to orders page", () => {
       const { container, getByText } = renderApp();
