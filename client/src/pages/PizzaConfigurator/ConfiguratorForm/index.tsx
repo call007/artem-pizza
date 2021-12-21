@@ -11,7 +11,7 @@ import {
   getIsLoading,
 } from "../../../state/ingredients/selectors";
 import { fetchIngredients } from "../../../state/ingredients/thunk";
-import { order } from "../../../state/pizza/reducer";
+import { orderSlice } from "../../../state/pizza/reducer";
 import { AppDispatch } from "../../../store";
 import { Category, Pizza } from "../../../types";
 import { FieldsetCheckboxGroup } from "../FieldsetCheckboxGroup";
@@ -55,8 +55,10 @@ export function ConfiguratorForm() {
 
   const handleSubmit: React.ReactEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    dispatch(order.actions.setPizza(formValues));
-    dispatch(order.actions.setPrice(calculatePrice(formValues, ingredients)));
+    dispatch(orderSlice.actions.setPizza(formValues));
+    dispatch(
+      orderSlice.actions.setPrice(calculatePrice(formValues, ingredients))
+    );
     history.push(PATH.PizzaPreview);
   };
 

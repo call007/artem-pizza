@@ -10,7 +10,7 @@ const initialState: UserState = {
   isCheckoutSuccess: false,
 };
 
-export const user = createSlice({
+export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {

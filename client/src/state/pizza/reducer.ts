@@ -8,7 +8,7 @@ export type OrderState = {
 
 const initialState: OrderState = {};
 
-export const order = createSlice({
+export const orderSlice = createSlice({
   name: "order",
   initialState,
   reducers: {

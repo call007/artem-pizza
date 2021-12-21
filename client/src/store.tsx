@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { ingredients } from "./state/ingredients/reducer";
-import { order } from "./state/pizza/reducer";
-import { user } from "./state/user/reducer";
+import { ingredientsSlice } from "./state/ingredients/reducer";
+import { orderSlice } from "./state/pizza/reducer";
+import { userSlice } from "./state/user/reducer";
 
 export const store = configureStore({
   reducer: {
-    order: order.reducer,
-    ingredients: ingredients.reducer,
-    user: user.reducer,
+    order: orderSlice.reducer,
+    ingredients: ingredientsSlice.reducer,
+    user: userSlice.reducer,
   },
   devTools: process.env.NODE_ENV !== "production",
 });

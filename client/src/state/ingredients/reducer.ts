@@ -13,7 +13,7 @@ const initialState: IngredientsState = {
   isLoading: true,
 };
 
-export const ingredients = createSlice({
+export const ingredientsSlice = createSlice({
   name: "ingredients",
   initialState,
   reducers: {},
