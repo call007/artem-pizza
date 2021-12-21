@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Ingredient } from "../../types";
+import { fetchIngredients } from "./thunk";
 
 export type IngredientsState = {
   data: Ingredient[];
-  isLoading: boolean;
+  isLoading?: boolean;
   error?: Error;
 };
 
@@ -15,14 +16,16 @@ const initialState: IngredientsState = {
 export const ingredients = createSlice({
   name: "ingredients",
   initialState,
-  reducers: {
-    setData: (state, action) => {
-      state.isLoading = false;
-      state.data = action.payload;
-    },
-    setError: (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchIngredients.fulfilled, (state, action) => {
+        state.data = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchIngredients.rejected, (state, action) => {
+        state.error = new Error(action.error.message);
+        state.isLoading = false;
+      });
   },
 });

@@ -12,7 +12,7 @@ import {
 } from "../../../state/ingredients/selectors";
 import { fetchIngredients } from "../../../state/ingredients/thunk";
 import { order } from "../../../state/pizza/reducer";
-import { AppDispatch, useThunkDispatch } from "../../../store";
+import { AppDispatch } from "../../../store";
 import { Category, Pizza } from "../../../types";
 import { FieldsetCheckboxGroup } from "../FieldsetCheckboxGroup";
 import { FieldsetRadioGroup } from "../FieldsetRadioGroup";
@@ -20,7 +20,6 @@ import { FieldsetRadioGroup } from "../FieldsetRadioGroup";
 export function ConfiguratorForm() {
   const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
-  const thunkDispatch = useThunkDispatch();
 
   const isLoading = useSelector(getIsLoading);
   const error = useSelector(getError);
@@ -47,8 +46,8 @@ export function ConfiguratorForm() {
   const formValues = watch();
 
   useEffect(() => {
-    thunkDispatch(fetchIngredients());
-  }, [thunkDispatch]);
+    dispatch(fetchIngredients());
+  }, [dispatch]);
 
   if (isLoading) {
     return <>Загрузка...</>;
