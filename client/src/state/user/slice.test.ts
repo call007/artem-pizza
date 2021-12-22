@@ -1,4 +1,4 @@
-import { userSlice, UserState } from "./reducer";
+import { userSlice, UserState } from "./slice";
 
 describe("pizzaReducer", () => {
   describe("set_isAuthorized", () => {

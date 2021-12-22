@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { PATH } from "../../consts";
-import { userSlice } from "../../state/user/reducer";
 import { getIsAuthorized } from "../../state/user/selectors";
+import { userSlice } from "../../state/user/slice";
 import { AppDispatch } from "../../store";
 import { FormValues, LogInForm } from "./LogInForm";
 

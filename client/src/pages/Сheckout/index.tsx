@@ -4,7 +4,7 @@ import { Redirect, useHistory } from "react-router";
 import { postOrder } from "../../api";
 import { PATH } from "../../consts";
 import { getPizza, getPizzaPrice } from "../../state/pizza/selectors";
-import { userSlice } from "../../state/user/reducer";
+import { userSlice } from "../../state/user/slice";
 import { FormValues, СheckoutForm } from "./СheckoutForm";
 
 export function Сheckout() {

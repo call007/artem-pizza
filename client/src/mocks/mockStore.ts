@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { IngredientsState } from "../state/ingredients/reducer";
-import { OrderState } from "../state/pizza/reducer";
-import { UserState } from "../state/user/reducer";
+import { IngredientsState } from "../state/ingredients/slice";
+import { OrderState } from "../state/pizza/slice";
+import { UserState } from "../state/user/slice";
 import { RootState } from "../store";
 
 const initialOrderState: OrderState = {

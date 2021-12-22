@@ -1,5 +1,5 @@
 import { mockState } from "../../mocks/mockStore";
-import { orderSlice, OrderState } from "./reducer";
+import { orderSlice, OrderState } from "./slice";
 
 describe("pizzaReducer", () => {
   describe("set_pizza", () => {

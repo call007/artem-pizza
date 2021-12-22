@@ -11,7 +11,7 @@ import {
   getIsLoading,
 } from "../../../state/ingredients/selectors";
 import { fetchIngredients } from "../../../state/ingredients/thunk";
-import { orderSlice } from "../../../state/pizza/reducer";
+import { orderSlice } from "../../../state/pizza/slice";
 import { AppDispatch } from "../../../store";
 import { Category, Pizza } from "../../../types";
 import { FieldsetCheckboxGroup } from "../FieldsetCheckboxGroup";
