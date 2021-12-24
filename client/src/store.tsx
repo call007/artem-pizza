@@ -1,21 +1,16 @@
-import { useDispatch } from "react-redux";
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
-import { ingredientsReducer } from "./state/ingredients/reducer";
-import { orderReducer } from "./state/pizza/reducer";
-import { userReducer } from "./state/user/reducer";
+import { configureStore } from "@reduxjs/toolkit";
+import { ingredientsSlice } from "./state/ingredients/slice";
+import { orderSlice } from "./state/pizza/slice";
+import { userSlice } from "./state/user/slice";
 
-export const store = createStore(
-  combineReducers({
-    order: orderReducer,
-    ingredients: ingredientsReducer,
-    user: userReducer,
-  }),
-  composeWithDevTools(applyMiddleware(thunk))
-);
-
-export const useThunkDispatch = () => useDispatch();
+export const store = configureStore({
+  reducer: {
+    order: orderSlice.reducer,
+    ingredients: ingredientsSlice.reducer,
+    user: userSlice.reducer,
+  },
+  devTools: process.env.NODE_ENV !== "production",
+});
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

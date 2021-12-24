@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { PATH } from "../../consts";
 import { getIsAuthorized } from "../../state/user/selectors";
+import { userSlice } from "../../state/user/slice";
 import { AppDispatch } from "../../store";
 import { FormValues, LogInForm } from "./LogInForm";
 
@@ -10,7 +11,7 @@ export function LogIn() {
   const isAuthorized = useSelector(getIsAuthorized);
 
   const handleSubmit = (data: FormValues) => {
-    dispatch({ type: "set_isAuthorized", payload: true });
+    dispatch(userSlice.actions.setIsAuthorized(true));
     console.log(data);
   };
 

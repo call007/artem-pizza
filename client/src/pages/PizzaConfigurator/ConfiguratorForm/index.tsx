@@ -11,7 +11,8 @@ import {
   getIsLoading,
 } from "../../../state/ingredients/selectors";
 import { fetchIngredients } from "../../../state/ingredients/thunk";
-import { AppDispatch, useThunkDispatch } from "../../../store";
+import { orderSlice } from "../../../state/pizza/slice";
+import { AppDispatch } from "../../../store";
 import { Category, Pizza } from "../../../types";
 import { FieldsetCheckboxGroup } from "../FieldsetCheckboxGroup";
 import { FieldsetRadioGroup } from "../FieldsetRadioGroup";
@@ -19,7 +20,6 @@ import { FieldsetRadioGroup } from "../FieldsetRadioGroup";
 export function ConfiguratorForm() {
   const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
-  const thunkDispatch = useThunkDispatch();
 
   const isLoading = useSelector(getIsLoading);
   const error = useSelector(getError);
@@ -46,8 +46,8 @@ export function ConfiguratorForm() {
   const formValues = watch();
 
   useEffect(() => {
-    thunkDispatch(fetchIngredients());
-  }, [thunkDispatch]);
+    dispatch(fetchIngredients());
+  }, [dispatch]);
 
   if (isLoading) {
     return <>Загрузка...</>;
@@ -55,11 +55,10 @@ export function ConfiguratorForm() {
 
   const handleSubmit: React.ReactEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    dispatch({ type: "set_pizza", payload: formValues });
-    dispatch({
-      type: "set_price",
-      payload: calculatePrice(formValues, ingredients),
-    });
+    dispatch(orderSlice.actions.setPizza(formValues));
+    dispatch(
+      orderSlice.actions.setPrice(calculatePrice(formValues, ingredients))
+    );
     history.push(PATH.PizzaPreview);
   };
 
