@@ -2,10 +2,12 @@ import { render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import { Provider as ReduxProvider } from "react-redux";
 import { Router } from "react-router";
+import { ThemeProvider } from "styled-components";
 import { Сheckout } from ".";
 import { PATH } from "../../consts";
 import { mockStore } from "../../mocks/mockStore";
 import { store } from "../../store";
+import { theme } from "../../styles";
 
 describe("Сheckout", () => {
   describe("if the user has not submitted PizzaConfigurator form", () => {
@@ -35,7 +37,9 @@ describe("Сheckout", () => {
       const { getByText } = render(
         <ReduxProvider store={mockStore}>
           <Router history={history}>
-            <Сheckout />
+            <ThemeProvider theme={theme}>
+              <Сheckout />
+            </ThemeProvider>
           </Router>
         </ReduxProvider>
       );

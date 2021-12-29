@@ -24,7 +24,7 @@ export function Menu() {
           <Link to={PATH.CheckoutSuccess}>Оформление заказа (успех)</Link>
         </li>
         <li>
-          <Link to={PATH.Orders}>Мои заказы</Link>
+          <Link to={PATH.Orders}>Мои заказы 2</Link>
         </li>
       </ul>
     </nav>

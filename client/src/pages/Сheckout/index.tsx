@@ -5,6 +5,7 @@ import { postOrder } from "../../api";
 import { PATH } from "../../consts";
 import { getPizza, getPizzaPrice } from "../../state/pizza/selectors";
 import { userSlice } from "../../state/user/slice";
+import { Button, Header } from "../../ui-kit";
 import { FormValues, СheckoutForm } from "./СheckoutForm";
 
 export function Сheckout() {
@@ -46,11 +47,13 @@ export function Сheckout() {
   };
 
   return (
-    <div>
-      <h1>Оформление заказа</h1>
+    <>
+      <Header title="Оформление заказа">
+        <Button to={PATH.PizzaConfigurator} view="ghost" icon="error" />
+      </Header>
 
       <СheckoutForm formSubmit={handleSubmit} isLoading={isLoading} />
       {error && <p style={{ color: "red" }}>{error.message}</p>}
-    </div>
+    </>
   );
 }

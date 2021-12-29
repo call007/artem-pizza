@@ -3,8 +3,10 @@ import { createMemoryHistory } from "history";
 import { act } from "react-dom/test-utils";
 import { Provider as ReduxProvider } from "react-redux";
 import { Router } from "react-router";
+import { ThemeProvider } from "styled-components";
 import { PizzaConfigurator } from ".";
 import { mockStore } from "../../mocks/mockStore";
+import { theme } from "../../styles";
 
 function renderPizzaConfigurator() {
   const history = createMemoryHistory();
@@ -13,7 +15,9 @@ function renderPizzaConfigurator() {
     ...render(
       <ReduxProvider store={mockStore}>
         <Router history={history}>
-          <PizzaConfigurator />
+          <ThemeProvider theme={theme}>
+            <PizzaConfigurator />
+          </ThemeProvider>
         </Router>
       </ReduxProvider>
     ),

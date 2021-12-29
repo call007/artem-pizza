@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router-dom";
-import { Menu } from "./components/Menu";
+import { Menu } from "./components";
 import { PrivateRoute } from "./components/PrivatePage";
 import { PATH } from "./consts";
 import {
@@ -16,8 +16,6 @@ import {
 function App() {
   return (
     <div className="App">
-      <Menu />
-
       <Switch>
         <Route path={PATH.PizzaConfigurator} exact>
           <PizzaConfigurator />
@@ -51,6 +49,8 @@ function App() {
           <NotFound />
         </Route>
       </Switch>
+
+      <Menu />
     </div>
   );
 }

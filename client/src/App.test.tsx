@@ -2,8 +2,10 @@ import { fireEvent, render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import { Provider as ReduxProvider } from "react-redux";
 import { Router } from "react-router";
+import { ThemeProvider } from "styled-components";
 import App from "./App";
 import { mockStore } from "./mocks/mockStore";
+import { theme } from "./styles";
 
 function renderApp() {
   const history = createMemoryHistory();
@@ -12,7 +14,9 @@ function renderApp() {
     ...render(
       <ReduxProvider store={mockStore}>
         <Router history={history}>
-          <App />
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
         </Router>
       </ReduxProvider>
     ),
