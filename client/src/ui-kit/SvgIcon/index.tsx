@@ -1,4 +1,4 @@
-import React from "react";
+import { FunctionComponent, SVGProps } from "react";
 import { ReactComponent as AccountIcon } from "./icons/account.svg";
 import { ReactComponent as ArrowLeftIcon } from "./icons/arrow-left.svg";
 import { ReactComponent as CheckIcon } from "./icons/check.svg";
@@ -25,7 +25,7 @@ export interface SvgIconProps {
 }
 
 const icons: {
-  [key in SvgSrc]: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  [key in SvgSrc]: FunctionComponent<SVGProps<SVGSVGElement>>;
 } = {
   "arrow-left": ArrowLeftIcon,
   check: CheckIcon,
@@ -37,6 +37,13 @@ const icons: {
   logout: LogoutIcon,
 };
 
-export function SvgIcon({ size = 16, src }: SvgIconProps) {
-  return <Styled.Container size={size} as={icons[src]} aria-hidden="true" />;
+export function SvgIcon({ size = 16, src, ...restProps }: SvgIconProps) {
+  return (
+    <Styled.Container
+      size={size}
+      as={icons[src]}
+      aria-hidden="true"
+      {...restProps}
+    />
+  );
 }

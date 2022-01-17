@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { Typography } from "..";
+import { Typography } from "../Typography";
 import logo from "./logo.svg";
 import * as Styled from "./styles";
 

@@ -10,5 +10,4 @@ export const Container = styled.svg<ContainerProps>`
   width: ${(props) => `${props.size / 16}rem`};
   height: ${(props) => `${props.size / 16}rem`};
   fill: currentColor;
-  transform: translateZ(0);
 `;
