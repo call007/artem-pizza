@@ -15,6 +15,8 @@ export const Container = styled.div`
   background-image: url(${plate});
   background-repeat: no-repeat;
   background-size: contain;
+  filter: drop-shadow(0 0.313rem 0.375rem rgba(46, 49, 55, 0.05))
+    drop-shadow(0 0 0.188rem rgba(46, 49, 55, 0.1));
 
   &:before {
     content: "";
