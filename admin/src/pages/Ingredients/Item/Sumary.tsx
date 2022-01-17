@@ -44,6 +44,16 @@ export function Summary({ ingredient, setIsEditing }: Props) {
           <dd style={{ display: "inline" }}>{value}</dd>
         </dl>
       ))}
+      <div>
+        <img
+          src={`${process.env.REACT_APP_API_URL}/${ingredient.thumbnail}`}
+          alt=""
+        />
+        <img
+          src={`${process.env.REACT_APP_API_URL}/${ingredient.image}`}
+          alt=""
+        />
+      </div>
       <button type="button" onClick={() => onRemoveIngredient(ingredient.id)}>
         <span style={{ color: "red" }}>
           {isLoading ? "Загрузка..." : "Удалить"}
