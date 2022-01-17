@@ -1,6 +1,10 @@
 import { Ingredient, Pizza } from "./types";
 
 export function calculatePrice(statePizza: Pizza, dataPizza: Ingredient[]) {
+  if (dataPizza.length === 0) {
+    return 0;
+  }
+
   const prices = Object.entries(statePizza)
     .map(([category, slug]) => {
       const slugs = typeof slug === "string" ? [slug] : slug;

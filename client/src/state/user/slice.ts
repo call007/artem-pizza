@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type UserState = {
   isAuthorized?: boolean;
@@ -14,10 +14,16 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setIsAuthorized: (state, action) => {
+    setIsAuthorized: (
+      state,
+      action: PayloadAction<UserState["isAuthorized"]>
+    ) => {
       state.isAuthorized = action.payload;
     },
-    setIsCheckoutSuccess: (state, action) => {
+    setIsCheckoutSuccess: (
+      state,
+      action: PayloadAction<UserState["isCheckoutSuccess"]>
+    ) => {
       state.isCheckoutSuccess = action.payload;
     },
   },

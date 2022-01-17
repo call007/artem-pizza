@@ -1,10 +1,16 @@
 import { useMediaDesktop, useMediaPhone, useMediaTablet } from ".";
 import { MediaProp } from "../types";
 
-export const useMediaProp = <T extends {}>(prop: T | MediaProp<T>): T => {
+export const useMediaProp = <T extends {}>(
+  prop?: T | MediaProp<T>
+): T | undefined => {
   const isDesktop = useMediaDesktop();
   const isTablet = useMediaTablet();
   const isPhone = useMediaPhone();
+
+  if (!prop) {
+    return;
+  }
 
   if (typeof prop === "string") {
     return prop;

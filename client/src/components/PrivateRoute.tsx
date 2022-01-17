@@ -7,7 +7,12 @@ interface Props extends RouteProps {
   redirectPath: PATH;
 }
 
-export function PrivateRoute({ redirectPath, ...props }: Props) {
+export function PrivateRoute({ redirectPath, ...restProps }: Props) {
   const isAuthorized = useSelector(getIsAuthorized);
-  return isAuthorized ? <Route {...props} /> : <Redirect to={redirectPath} />;
+
+  return isAuthorized ? (
+    <Route {...restProps} />
+  ) : (
+    <Redirect to={redirectPath} />
+  );
 }

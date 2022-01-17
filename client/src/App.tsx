@@ -1,13 +1,11 @@
 import { Route, Switch } from "react-router-dom";
-import { Menu } from "./components";
-import { PrivateRoute } from "./components/PrivatePage";
+import { PrivateRoute } from "./components";
 import { PATH } from "./consts";
 import {
   LogIn,
   NotFound,
   Orders,
   PizzaConfigurator,
-  PizzaPreview,
   SignUp,
   Сheckout,
   СheckoutSuccess,
@@ -19,10 +17,6 @@ function App() {
       <Switch>
         <Route path={PATH.PizzaConfigurator} exact>
           <PizzaConfigurator />
-        </Route>
-
-        <Route path={PATH.PizzaPreview}>
-          <PizzaPreview />
         </Route>
 
         <Route path={PATH.Login}>
@@ -49,8 +43,6 @@ function App() {
           <NotFound />
         </Route>
       </Switch>
-
-      <Menu />
     </div>
   );
 }

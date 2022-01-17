@@ -4,6 +4,6 @@ export type Ingredient = {
   slug: string;
   price: number;
   category: string;
-  image?: string;
-  thumbnail?: string;
+  image: string;
+  thumbnail: string;
 };
