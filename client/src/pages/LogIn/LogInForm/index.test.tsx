@@ -1,12 +1,16 @@
 import { fireEvent, render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import { ThemeProvider } from "styled-components";
 import { LogInForm } from ".";
 import { MESSAGES } from "../../../consts";
+import { theme } from "../../../styles";
 
 describe("LogInForm", () => {
   it("renders correctly", () => {
     const { getByText, getByLabelText } = render(
-      <LogInForm formSubmit={() => null} />
+      <ThemeProvider theme={theme}>
+        <LogInForm formSubmit={() => null} />
+      </ThemeProvider>
     );
 
     expect(getByLabelText("E-mail")).toBeInTheDocument();
@@ -18,7 +22,9 @@ describe("LogInForm", () => {
     it("collects email and password", async () => {
       const formSubmit = jest.fn();
       const { getByText, getByLabelText } = render(
-        <LogInForm formSubmit={formSubmit} />
+        <ThemeProvider theme={theme}>
+          <LogInForm formSubmit={formSubmit} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByLabelText("E-mail"), {
@@ -40,7 +46,9 @@ describe("LogInForm", () => {
 
     it("validates that email and password are filled in", async () => {
       const { getByText, getByLabelText } = render(
-        <LogInForm formSubmit={() => null} />
+        <ThemeProvider theme={theme}>
+          <LogInForm formSubmit={() => null} />
+        </ThemeProvider>
       );
 
       await act(async () => {
@@ -58,7 +66,9 @@ describe("LogInForm", () => {
 
     it("validates that email is the correct email", async () => {
       const { getByText, getByLabelText } = render(
-        <LogInForm formSubmit={() => null} />
+        <ThemeProvider theme={theme}>
+          <LogInForm formSubmit={() => null} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByLabelText("E-mail"), {

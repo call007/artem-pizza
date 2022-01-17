@@ -1,5 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Button, Input } from "../../../ui-kit";
 import { validators } from "../../../validators";
+import * as Styled from "./styles";
 
 export type FormValues = {
   email: string;
@@ -21,35 +23,35 @@ export function LogInForm({ formSubmit }: Props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <ul role="none">
-        <li>
-          <label htmlFor="login-email">E-mail</label>
-          <input
-            type="text"
-            id="login-email"
-            inputMode="email"
-            autoComplete="username"
-            {...register("email", {
-              ...validators.required,
-              ...validators.email,
-            })}
-          />
-          {errors.email?.message}
-        </li>
+      <Styled.Box>
+        <Input
+          label="E-mail"
+          type="text"
+          id="login-email"
+          inputMode="email"
+          autoComplete="username"
+          errorMessage={errors.email?.message}
+          {...register("email", {
+            ...validators.required,
+            ...validators.email,
+          })}
+        />
+      </Styled.Box>
 
-        <li>
-          <label htmlFor="login-password">Пароль</label>
-          <input
-            type="password"
-            id="login-password"
-            autoComplete="current-password"
-            {...register("password", { ...validators.required })}
-          />
-          {errors.password?.message}
-        </li>
-      </ul>
+      <Styled.Box>
+        <Input
+          label="Пароль"
+          type="password"
+          id="login-password"
+          autoComplete="current-password"
+          errorMessage={errors.password?.message}
+          {...register("password", { ...validators.required })}
+        />
+      </Styled.Box>
 
-      <button type="submit">Войти</button>
+      <Button type="submit" size="large" isLong={true}>
+        Войти
+      </Button>
     </form>
   );
 }

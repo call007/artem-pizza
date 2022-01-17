@@ -7,8 +7,9 @@ import { useMediaPhone } from "../../hooks";
 import { getIsAuthorized } from "../../state/user/selectors";
 import { userSlice } from "../../state/user/slice";
 import { AppDispatch } from "../../store";
-import { Button, Header } from "../../ui-kit";
+import { Button, Header, Plate, Typography, Wrapper } from "../../ui-kit";
 import { FormValues, SignUpForm } from "./SignUpForm";
+import * as Styled from "./styles";
 
 export function SignUp() {
   const dispatch = useDispatch<AppDispatch>();
@@ -26,7 +27,7 @@ export function SignUp() {
   };
 
   return (
-    <div>
+    <>
       <Header title="Регистрация">
         <Button onClick={() => history.goBack()} view="ghost" icon="arrow-left">
           {!isPhone && "Назад"}
@@ -37,17 +38,28 @@ export function SignUp() {
         </Button>
       </Header>
 
-      {isVisibleNote ? (
-        <p>Вы успешно зарегистрировались и автоматически авторизовались</p>
-      ) : (
-        <>
-          <SignUpForm formSubmit={handleSubmit} />
-          <p>
-            Если вы уже зарегистрированы{" "}
-            <Link to={PATH.Login}>авторизуйтесь</Link>
-          </p>
-        </>
-      )}
-    </div>
+      <Wrapper size="sm">
+        <Plate>
+          <Styled.PlateWrapper>
+            {isVisibleNote ? (
+              <Typography>
+                Вы успешно зарегистрировались и автоматически авторизовались
+              </Typography>
+            ) : (
+              <>
+                <SignUpForm formSubmit={handleSubmit} />
+
+                <Styled.Footer>
+                  <Typography>
+                    Если вы уже зарегистрированы{" "}
+                    <Link to={PATH.Login}>авторизуйтесь</Link>
+                  </Typography>
+                </Styled.Footer>
+              </>
+            )}
+          </Styled.PlateWrapper>
+        </Plate>
+      </Wrapper>
+    </>
   );
 }

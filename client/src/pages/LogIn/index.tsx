@@ -6,8 +6,9 @@ import { useMediaPhone } from "../../hooks";
 import { getIsAuthorized } from "../../state/user/selectors";
 import { userSlice } from "../../state/user/slice";
 import { AppDispatch } from "../../store";
-import { Button, Header } from "../../ui-kit";
+import { Button, Header, Plate, Typography, Wrapper } from "../../ui-kit";
 import { FormValues, LogInForm } from "./LogInForm";
+import * as Styled from "./styles";
 
 export function LogIn() {
   const dispatch = useDispatch<AppDispatch>();
@@ -32,18 +33,26 @@ export function LogIn() {
         </Button>
       </Header>
 
-      {isAuthorized ? (
-        <p>Вы успешно авторизовались.</p>
-      ) : (
-        <>
-          <LogInForm formSubmit={handleSubmit} />
+      <Wrapper size="sm">
+        <Plate>
+          <Styled.PlateWrapper>
+            {isAuthorized ? (
+              <Typography>Вы успешно авторизовались.</Typography>
+            ) : (
+              <>
+                <LogInForm formSubmit={handleSubmit} />
 
-          <p>
-            Если вы не зарегистрированы{" "}
-            <Link to={PATH.Signup}>пройдите регистрацию</Link>
-          </p>
-        </>
-      )}
+                <Styled.Footer>
+                  <Typography>
+                    Если вы не зарегистрированы{" "}
+                    <Link to={PATH.Signup}>пройдите регистрацию</Link>
+                  </Typography>
+                </Styled.Footer>
+              </>
+            )}
+          </Styled.PlateWrapper>
+        </Plate>
+      </Wrapper>
     </>
   );
 }

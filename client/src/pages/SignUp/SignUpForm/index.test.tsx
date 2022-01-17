@@ -1,12 +1,16 @@
 import { fireEvent, render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import { ThemeProvider } from "styled-components";
 import { SignUpForm } from ".";
 import { MESSAGES } from "../../../consts";
+import { theme } from "../../../styles";
 
 describe("SignUpForm", () => {
   it("renders correctly", () => {
     const { getByText, getByLabelText } = render(
-      <SignUpForm formSubmit={() => null} />
+      <ThemeProvider theme={theme}>
+        <SignUpForm formSubmit={() => null} />
+      </ThemeProvider>
     );
 
     expect(getByLabelText("E-mail")).toBeInTheDocument();
@@ -19,7 +23,9 @@ describe("SignUpForm", () => {
     it("collects email, password and password repeat", async () => {
       const formSubmit = jest.fn();
       const { getByText, getByLabelText } = render(
-        <SignUpForm formSubmit={formSubmit} />
+        <ThemeProvider theme={theme}>
+          <SignUpForm formSubmit={formSubmit} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByLabelText("E-mail"), {
@@ -45,7 +51,9 @@ describe("SignUpForm", () => {
 
     it("validates that email, password and repeat password are filled in", async () => {
       const { getByText, getByLabelText } = render(
-        <SignUpForm formSubmit={() => null} />
+        <ThemeProvider theme={theme}>
+          <SignUpForm formSubmit={() => null} />
+        </ThemeProvider>
       );
 
       await act(async () => {
@@ -67,7 +75,9 @@ describe("SignUpForm", () => {
 
     it("validates that email is the correct email", async () => {
       const { getByText, getByLabelText } = render(
-        <SignUpForm formSubmit={() => null} />
+        <ThemeProvider theme={theme}>
+          <SignUpForm formSubmit={() => null} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByLabelText("E-mail"), {
@@ -85,7 +95,9 @@ describe("SignUpForm", () => {
 
     it("validates that password is longer than 6 symbols", async () => {
       const { getByText, getByLabelText } = render(
-        <SignUpForm formSubmit={() => null} />
+        <ThemeProvider theme={theme}>
+          <SignUpForm formSubmit={() => null} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByLabelText("Пароль"), {
@@ -103,7 +115,9 @@ describe("SignUpForm", () => {
 
     it("validates that password has numbers", async () => {
       const { getByText, getByLabelText } = render(
-        <SignUpForm formSubmit={() => null} />
+        <ThemeProvider theme={theme}>
+          <SignUpForm formSubmit={() => null} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByLabelText("Пароль"), {
@@ -121,7 +135,9 @@ describe("SignUpForm", () => {
 
     it("validates that password has special symbols", async () => {
       const { getByText, getByLabelText } = render(
-        <SignUpForm formSubmit={() => null} />
+        <ThemeProvider theme={theme}>
+          <SignUpForm formSubmit={() => null} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByLabelText("Пароль"), {
@@ -139,7 +155,9 @@ describe("SignUpForm", () => {
 
     it("validates that password has not cyrillic characters", async () => {
       const { getByText, getByLabelText } = render(
-        <SignUpForm formSubmit={() => null} />
+        <ThemeProvider theme={theme}>
+          <SignUpForm formSubmit={() => null} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByLabelText("Пароль"), {
