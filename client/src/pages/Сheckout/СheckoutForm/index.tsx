@@ -1,5 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Input, Typography } from "../../../ui-kit";
 import { validators } from "../../../validators";
+import * as Styled from "./styles";
+import { getPaymentSystem } from "./utils";
 
 export type FormValues = {
   address: string;
@@ -17,19 +20,6 @@ interface Props {
   isLoading: boolean;
 }
 
-const getPaymentSystem = (value?: string) => {
-  if (!value) return null;
-
-  switch (value[0]) {
-    case "4":
-      return "Visa";
-    case "5":
-      return "MasterCard";
-    default:
-      return null;
-  }
-};
-
 export function СheckoutForm({ formSubmit, isLoading }: Props) {
   const {
     register,
@@ -45,116 +35,131 @@ export function СheckoutForm({ formSubmit, isLoading }: Props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <fieldset>
-        <legend>Адрес доставки</legend>
+      <Styled.Fieldset>
+        <Typography
+          size={{ all: "lg", phone: "base" }}
+          weight="medium"
+          component="legend"
+        >
+          Адрес доставки
+        </Typography>
 
-        <ul role="none">
-          <li>
-            <input
-              type="text"
-              placeholder="Введите адрес"
-              autoComplete="street-address"
-              {...register("address", validators.required)}
-            />
-            {errors.address?.message}
-          </li>
+        <Styled.Box>
+          <Input
+            type="text"
+            id="address"
+            placeholder="Введите адрес"
+            autoComplete="street-address"
+            errorMessage={errors.address?.message}
+            {...register("address", validators.required)}
+          />
+        </Styled.Box>
 
-          <li>
-            <label htmlFor="order-entrance">подъезд</label>{" "}
-            <input
-              type="text"
-              inputMode="decimal"
-              id="order-entrance"
-              {...register("entrance")}
-            />
-          </li>
+        <Styled.ExtraAddressBox>
+          <Input
+            label="подъезд"
+            type="text"
+            inputMode="decimal"
+            id="order-entrance"
+            size="sm"
+            {...register("entrance")}
+          />
 
-          <li>
-            <label htmlFor="order-floor">этаж</label>{" "}
-            <input
-              type="text"
-              inputMode="decimal"
-              id="order-floor"
-              {...register("floor")}
-            />
-          </li>
+          <Input
+            label="этаж"
+            type="text"
+            inputMode="decimal"
+            id="order-floor"
+            size="sm"
+            {...register("floor")}
+          />
 
-          <li>
-            <label htmlFor="order-apartment">квартира</label>{" "}
-            <input
-              type="text"
-              id="order-apartment"
-              {...register("apartment")}
-            />
-          </li>
-        </ul>
-      </fieldset>
+          <Input
+            label="квартира"
+            type="text"
+            id="order-apartment"
+            size="sm"
+            {...register("apartment")}
+          />
+        </Styled.ExtraAddressBox>
+      </Styled.Fieldset>
 
-      <fieldset>
-        <legend>Данные для оплаты</legend>
+      <Styled.Separator />
 
-        <ul role="none">
-          <li>
-            <input
-              type="text"
-              placeholder="Номер карты"
-              inputMode="decimal"
-              autoComplete="cc-number"
-              {...register("card_number", {
-                ...validators.required,
-                ...validators.cardNumber,
-              })}
-            />
-            {errors.card_number?.message || paymentSystem}
-          </li>
+      <Styled.Fieldset>
+        <Typography
+          size={{ all: "lg", phone: "base" }}
+          weight="medium"
+          component="legend"
+        >
+          Данные для оплаты
+        </Typography>
 
-          <li>
-            <input
-              type="text"
-              placeholder="MM/YYYY"
-              inputMode="decimal"
-              autoComplete="cc-exp"
-              {...register("card_expiration", {
-                ...validators.required,
-                ...validators.cardExpiration,
-              })}
-            />
-            {errors.card_expiration?.message}
-          </li>
+        <Styled.Box>
+          <Input
+            type="text"
+            id="card_number"
+            placeholder="Номер карты"
+            inputMode="decimal"
+            autoComplete="cc-number"
+            errorMessage={errors.card_number?.message}
+            {...register("card_number", {
+              ...validators.required,
+              ...validators.cardNumber,
+            })}
+          />
+          {paymentSystem}
+        </Styled.Box>
 
-          <li>
-            <input
-              type="text"
-              placeholder="CVV"
-              inputMode="decimal"
-              autoComplete="cc-csc"
-              {...register("card_CVV", {
-                ...validators.required,
-                ...validators.cardCVV,
-              })}
-            />
-            {errors.card_CVV?.message}
-          </li>
+        <Styled.ExpirationCVVBox>
+          <Input
+            type="text"
+            id="card_expiration"
+            placeholder="MM/YYYY"
+            inputMode="decimal"
+            autoComplete="cc-exp"
+            errorMessage={errors.card_expiration?.message}
+            {...register("card_expiration", {
+              ...validators.required,
+              ...validators.cardExpiration,
+            })}
+          />
 
-          <li>
-            <input
-              type="text"
-              placeholder="Имя как на карте"
-              autoComplete="cc-name"
-              {...register("name", {
-                ...validators.required,
-                ...validators.cardName,
-              })}
-            />
-            {errors.name?.message}
-          </li>
-        </ul>
-      </fieldset>
+          <Input
+            type="text"
+            id="card_CVV"
+            placeholder="CVV"
+            inputMode="decimal"
+            autoComplete="cc-csc"
+            errorMessage={errors.card_CVV?.message}
+            {...register("card_CVV", {
+              ...validators.required,
+              ...validators.cardCVV,
+            })}
+          />
+        </Styled.ExpirationCVVBox>
 
-      <p>
+        <Styled.Box>
+          <Input
+            type="text"
+            id="name"
+            placeholder="Имя как на карте"
+            autoComplete="cc-name"
+            errorMessage={errors.name?.message}
+            {...register("name", {
+              ...validators.required,
+              ...validators.cardName,
+            })}
+          />
+        </Styled.Box>
+      </Styled.Fieldset>
+
+      <Styled.Separator />
+
+      <Typography color={(color) => color.gray600}>
         Доставим пиццу в течение часа или вернем деньги. Артем слов на ветер не
         бросает.
-      </p>
+      </Typography>
 
       <button type="submit">{isLoading ? "Загрузка..." : "Отправить"}</button>
     </form>

@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router";
 import { postOrder } from "../../api";
 import { PATH } from "../../consts";
-import { getPizza, getPizzaPrice } from "../../state/pizza/selectors";
+import { getPizza, getPizzaPrice } from "../../state/order/selectors";
 import { userSlice } from "../../state/user/slice";
-import { Button, Header } from "../../ui-kit";
+import { Button, Header, Wrapper } from "../../ui-kit";
+import * as Styled from "./styles";
 import { FormValues, СheckoutForm } from "./СheckoutForm";
 
 export function Сheckout() {
@@ -52,8 +53,13 @@ export function Сheckout() {
         <Button to={PATH.PizzaConfigurator} view="ghost" icon="error" />
       </Header>
 
-      <СheckoutForm formSubmit={handleSubmit} isLoading={isLoading} />
-      {error && <p style={{ color: "red" }}>{error.message}</p>}
+      <Wrapper size="lg" as="main">
+        <Styled.Container>
+          <СheckoutForm formSubmit={handleSubmit} isLoading={isLoading} />
+        </Styled.Container>
+
+        {error && <p style={{ color: "red" }}>{error.message}</p>}
+      </Wrapper>
     </>
   );
 }

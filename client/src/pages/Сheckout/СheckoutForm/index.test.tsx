@@ -1,10 +1,16 @@
 import { fireEvent, render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import { ThemeProvider } from "styled-components";
 import { СheckoutForm } from ".";
 import { MESSAGES } from "../../../consts";
+import { theme } from "../../../styles";
 
 const renderСheckoutForm = () =>
-  render(<СheckoutForm formSubmit={() => null} isLoading={false} />);
+  render(
+    <ThemeProvider theme={theme}>
+      <СheckoutForm formSubmit={() => null} isLoading={false} />
+    </ThemeProvider>
+  );
 
 describe("СheckoutForm", () => {
   it("renders correctly", () => {
@@ -50,7 +56,9 @@ describe("СheckoutForm", () => {
 
       fireEvent.input(ccInput, { target: { value: "5555444433332222" } });
 
-      expect(ccInput.parentElement?.innerHTML).toMatch("MasterCard");
+      expect(ccInput.parentElement?.parentElement?.innerHTML).toMatch(
+        "MasterCard"
+      );
     });
 
     it("detects as Visa", () => {
@@ -60,7 +68,7 @@ describe("СheckoutForm", () => {
 
       fireEvent.input(ccInput, { target: { value: "4444333322221111" } });
 
-      expect(ccInput.parentElement?.innerHTML).toMatch("Visa");
+      expect(ccInput.parentElement?.parentElement?.innerHTML).toMatch("Visa");
     });
   });
 
@@ -108,7 +116,9 @@ describe("СheckoutForm", () => {
     it("collects address, apartment, entrance, floor, cardCVV, cardExpiration, cardName, cardNumber", async () => {
       const formSubmit = jest.fn();
       const { getByText, getByLabelText, getByPlaceholderText } = render(
-        <СheckoutForm formSubmit={formSubmit} isLoading={false} />
+        <ThemeProvider theme={theme}>
+          <СheckoutForm formSubmit={formSubmit} isLoading={false} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByPlaceholderText("Введите адрес"), {
