@@ -38,12 +38,15 @@ export function Checkbox({
       <Typography
         size={{ all: "base", phone: "sm" }}
         weight={checkboxRef.current?.checked ? "medium" : "normal"}
+        component="span"
       >
         {label}
       </Typography>
 
       <Styled.Footer>
-        <Typography weight="medium">{!!price && ` ${price} ₽`}</Typography>
+        <Typography weight="medium" component="span">
+          {!!price && ` ${price} ₽`}
+        </Typography>
 
         <UiKitCheckbox
           id={id}

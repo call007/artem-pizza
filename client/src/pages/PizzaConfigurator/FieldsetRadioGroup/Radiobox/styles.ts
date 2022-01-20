@@ -9,13 +9,13 @@ export const Container = styled.div`
 
 export const Label = styled.label(
   ({ theme }) => css`
-    -webkit-tap-highlight-color: transparent;
     user-select: none;
     cursor: pointer;
     display: block;
     position: relative;
     padding: ${theme.space.xs} ${theme.space.base};
     color: transparent;
+    -webkit-tap-highlight-color: transparent;
     font-size: ${theme.typography.fontSize.base};
     font-weight: ${theme.typography.fontWeight.medium};
     line-height: ${theme.typography.lineHeight.base};

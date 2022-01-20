@@ -4,31 +4,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { calculatePrice } from "../../../calculatePrice";
 import { PATH } from "../../../consts";
-import { useMediaPhone } from "../../../hooks";
 import {
-  getError,
   getIngredients,
   getIngredientsByCategory,
-  getIsLoading,
+  getIngredientsError,
 } from "../../../state/ingredients/selectors";
 import { fetchIngredients } from "../../../state/ingredients/thunk";
 import { getPizza } from "../../../state/order/selectors";
 import { orderSlice } from "../../../state/order/slice";
 import { AppDispatch } from "../../../store";
 import { Category, Pizza } from "../../../types";
-import { Typography } from "../../../ui-kit";
 import { FieldsetCheckboxGroup } from "../FieldsetCheckboxGroup";
 import { FieldsetRadioGroup } from "../FieldsetRadioGroup";
 import * as Styled from "./styles";
 
-export function ConfiguratorForm() {
-  const isPhone = useMediaPhone();
+interface ConfiguratorFormProps {
+  isLoading?: boolean;
+}
 
+export function ConfiguratorForm({ isLoading }: ConfiguratorFormProps) {
   const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
 
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
+  const error = useSelector(getIngredientsError);
   const ingredients = useSelector(getIngredients);
   const pizza = useSelector(getPizza);
 
@@ -70,29 +68,20 @@ export function ConfiguratorForm() {
     history.push(PATH.Checkout);
   };
 
-  if (isLoading) {
-    return <Styled.Container>Загрузка...</Styled.Container>;
-  }
-
   if (error) {
-    return <Styled.Container>{error.message}</Styled.Container>;
+    return <Styled.Box>{error.message}</Styled.Box>;
   }
 
   return (
-    <Styled.Container>
-      {!isPhone && (
-        <Typography size="xxl" weight="bold" component="h1">
-          Собери свою пиццу
-        </Typography>
-      )}
-
-      <form onSubmit={handleSubmit} id="configurator-form">
+    <form onSubmit={handleSubmit} id="configurator-form">
+      <Styled.BaseBox>
         <Styled.Box>
           <FieldsetRadioGroup
             title="Размер"
             dataIngredients={size}
             isVisiblePrice={false}
             register={register}
+            isLoading={isLoading}
           />
         </Styled.Box>
 
@@ -102,42 +91,47 @@ export function ConfiguratorForm() {
             dataIngredients={dough}
             isVisiblePrice={false}
             register={register}
+            isLoading={isLoading}
           />
         </Styled.Box>
+      </Styled.BaseBox>
 
-        <Styled.Box>
-          <FieldsetRadioGroup
-            title="Выберите соус"
-            dataIngredients={sauces}
-            isVisiblePrice={false}
-            register={register}
-          />
-        </Styled.Box>
+      <Styled.Box>
+        <FieldsetRadioGroup
+          title="Выберите соус"
+          dataIngredients={sauces}
+          isVisiblePrice={false}
+          register={register}
+          isLoading={isLoading}
+        />
+      </Styled.Box>
 
-        <Styled.Box>
-          <FieldsetCheckboxGroup
-            title="Добавьте сыр"
-            dataIngredients={cheese}
-            register={register}
-          />
-        </Styled.Box>
+      <Styled.Box>
+        <FieldsetCheckboxGroup
+          title="Добавьте сыр"
+          dataIngredients={cheese}
+          register={register}
+          isLoading={isLoading}
+        />
+      </Styled.Box>
 
-        <Styled.Box>
-          <FieldsetCheckboxGroup
-            title="Добавьте овощи"
-            dataIngredients={vegetables}
-            register={register}
-          />
-        </Styled.Box>
+      <Styled.Box>
+        <FieldsetCheckboxGroup
+          title="Добавьте овощи"
+          dataIngredients={vegetables}
+          register={register}
+          isLoading={isLoading}
+        />
+      </Styled.Box>
 
-        <Styled.Box>
-          <FieldsetCheckboxGroup
-            title="Добавьте мясо"
-            dataIngredients={meat}
-            register={register}
-          />
-        </Styled.Box>
-      </form>
-    </Styled.Container>
+      <Styled.Box>
+        <FieldsetCheckboxGroup
+          title="Добавьте мясо"
+          dataIngredients={meat}
+          register={register}
+          isLoading={isLoading}
+        />
+      </Styled.Box>
+    </form>
   );
 }

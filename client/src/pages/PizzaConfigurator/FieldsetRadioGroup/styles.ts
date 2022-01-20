@@ -14,3 +14,15 @@ export const Container = styled.div`
     white-space: nowrap;
   }
 `;
+
+export const SkeletonWrapper = styled.div`
+  .skeleton {
+    width: 9.625rem;
+    height: 2.75rem;
+
+    @media ${({ theme }) => theme.media.phone} {
+      width: 8.375rem;
+      height: 2rem;
+    }
+  }
+`;

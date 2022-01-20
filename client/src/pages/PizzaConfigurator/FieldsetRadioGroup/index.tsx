@@ -1,4 +1,5 @@
 import { FieldValues, UseFormRegister } from "react-hook-form";
+import Skeleton from "react-loading-skeleton";
 import { Ingredient } from "../../../types";
 import { HorizontalScroller } from "../../../ui-kit";
 import { Fieldset } from "../Fieldset";
@@ -10,27 +11,35 @@ interface Props {
   dataIngredients?: Ingredient[];
   register: UseFormRegister<FieldValues>;
   isVisiblePrice?: boolean;
+  isLoading?: boolean;
 }
 
 export function FieldsetRadioGroup({
   isVisiblePrice = true,
-  ...restPprops
+  title,
+  dataIngredients,
+  register,
+  isLoading,
 }: Props) {
   return (
-    <Fieldset legend={restPprops.title}>
+    <Fieldset legend={title} isLoading={isLoading}>
       <HorizontalScroller>
-        <Styled.Container>
-          {restPprops.dataIngredients?.map((ingredient) => (
-            <Radiobox
-              key={ingredient.id}
-              value={ingredient.slug}
-              label={ingredient.name}
-              price={isVisiblePrice ? ingredient.price : undefined}
-              id={`${ingredient.slug}-${ingredient.category}`}
-              {...restPprops.register(ingredient.category)}
-            />
-          ))}
-        </Styled.Container>
+        {isLoading ? (
+          <Skeleton className="skeleton" wrapper={Styled.SkeletonWrapper} />
+        ) : (
+          <Styled.Container>
+            {dataIngredients?.map((ingredient) => (
+              <Radiobox
+                key={ingredient.id}
+                value={ingredient.slug}
+                label={ingredient.name}
+                price={isVisiblePrice ? ingredient.price : undefined}
+                id={`${ingredient.slug}-${ingredient.category}`}
+                {...register(ingredient.category)}
+              />
+            ))}
+          </Styled.Container>
+        )}
       </HorizontalScroller>
     </Fieldset>
   );

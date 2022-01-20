@@ -1,3 +1,4 @@
+import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import { PATH } from "../../../consts";
@@ -8,7 +9,11 @@ import { Pizza } from "../Pizza";
 import { SelectedIngredients } from "../SelectedIngredients";
 import * as Styled from "./styles";
 
-export function PizzaPreview() {
+interface PizzaPreviewProps {
+  isLoading?: boolean;
+}
+
+export function PizzaPreview({ isLoading }: PizzaPreviewProps) {
   const pizza = useSelector(getPizza);
   const price = useSelector(getPizzaPrice);
 
@@ -19,7 +24,7 @@ export function PizzaPreview() {
   }
 
   return (
-    <Styled.Container>
+    <>
       <Styled.Pizza>
         <Pizza />
       </Styled.Pizza>
@@ -34,15 +39,19 @@ export function PizzaPreview() {
         </Typography>
       </Styled.TitleBox>
 
-      <SelectedIngredients />
+      <SelectedIngredients isLoading={isLoading} />
 
       {!isPhone && (
         <Styled.ButtonBox>
-          <Button type="submit" form="configurator-form" size="large">
-            Заказать за {price} руб
-          </Button>
+          {isLoading || !price ? (
+            <Skeleton width={248} height={56} />
+          ) : (
+            <Button type="submit" form="configurator-form" size="large">
+              Заказать за {price} руб
+            </Button>
+          )}
         </Styled.ButtonBox>
       )}
-    </Styled.Container>
+    </>
   );
 }

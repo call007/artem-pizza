@@ -7,7 +7,6 @@ type LabelProps = {
 
 export const Label = styled.label<LabelProps>(
   ({ theme, isChecked }) => css`
-    -webkit-tap-highlight-color: transparent;
     user-select: none;
     cursor: pointer;
     flex-shrink: 0;
@@ -18,6 +17,7 @@ export const Label = styled.label<LabelProps>(
     margin-left: ${theme.space.base};
     margin-top: ${theme.space.xl};
     padding: ${theme.space.sm};
+    -webkit-tap-highlight-color: transparent;
     border: 2px solid ${isChecked ? theme.colors.primary : "transparent"};
     border-radius: 0.75rem;
     box-shadow: ${theme.shadow.outer.lg};
@@ -36,7 +36,7 @@ export const Label = styled.label<LabelProps>(
   `
 );
 
-export const Footer = styled.div`
+export const Footer = styled.span`
   display: flex;
   justify-content: space-between;
   margin-top: ${(props) => props.theme.space.sm};
@@ -46,7 +46,7 @@ export const Footer = styled.div`
   }
 `;
 
-export const ThumbnailCover = styled.div`
+export const ThumbnailCover = styled.span`
   display: flex;
   justify-content: center;
   align-items: flex-end;

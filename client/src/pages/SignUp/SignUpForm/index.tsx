@@ -11,10 +11,10 @@ export type FormValues = {
 };
 
 interface Props {
-  formSubmit: (data: FormValues) => void;
+  onFormSubmit?: (data: FormValues) => void;
 }
 
-export function SignUpForm({ formSubmit }: Props) {
+export function SignUpForm({ onFormSubmit }: Props) {
   const {
     register,
     handleSubmit,
@@ -24,7 +24,7 @@ export function SignUpForm({ formSubmit }: Props) {
 
   const watchPassword = watch("password");
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => formSubmit(data);
+  const onSubmit: SubmitHandler<FormValues> = (data) => onFormSubmit?.(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

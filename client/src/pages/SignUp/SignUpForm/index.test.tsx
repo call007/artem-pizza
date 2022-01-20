@@ -9,7 +9,7 @@ describe("SignUpForm", () => {
   it("renders correctly", () => {
     const { getByText, getByLabelText } = render(
       <ThemeProvider theme={theme}>
-        <SignUpForm formSubmit={() => null} />
+        <SignUpForm onFormSubmit={() => null} />
       </ThemeProvider>
     );
 
@@ -24,7 +24,7 @@ describe("SignUpForm", () => {
       const formSubmit = jest.fn();
       const { getByText, getByLabelText } = render(
         <ThemeProvider theme={theme}>
-          <SignUpForm formSubmit={formSubmit} />
+          <SignUpForm onFormSubmit={formSubmit} />
         </ThemeProvider>
       );
 
@@ -52,7 +52,7 @@ describe("SignUpForm", () => {
     it("validates that email, password and repeat password are filled in", async () => {
       const { getByText, getByLabelText } = render(
         <ThemeProvider theme={theme}>
-          <SignUpForm formSubmit={() => null} />
+          <SignUpForm onFormSubmit={() => null} />
         </ThemeProvider>
       );
 
@@ -76,7 +76,7 @@ describe("SignUpForm", () => {
     it("validates that email is the correct email", async () => {
       const { getByText, getByLabelText } = render(
         <ThemeProvider theme={theme}>
-          <SignUpForm formSubmit={() => null} />
+          <SignUpForm onFormSubmit={() => null} />
         </ThemeProvider>
       );
 
@@ -96,7 +96,7 @@ describe("SignUpForm", () => {
     it("validates that password is longer than 6 symbols", async () => {
       const { getByText, getByLabelText } = render(
         <ThemeProvider theme={theme}>
-          <SignUpForm formSubmit={() => null} />
+          <SignUpForm onFormSubmit={() => null} />
         </ThemeProvider>
       );
 
@@ -116,7 +116,7 @@ describe("SignUpForm", () => {
     it("validates that password has numbers", async () => {
       const { getByText, getByLabelText } = render(
         <ThemeProvider theme={theme}>
-          <SignUpForm formSubmit={() => null} />
+          <SignUpForm onFormSubmit={() => null} />
         </ThemeProvider>
       );
 
@@ -136,7 +136,7 @@ describe("SignUpForm", () => {
     it("validates that password has special symbols", async () => {
       const { getByText, getByLabelText } = render(
         <ThemeProvider theme={theme}>
-          <SignUpForm formSubmit={() => null} />
+          <SignUpForm onFormSubmit={() => null} />
         </ThemeProvider>
       );
 
@@ -156,7 +156,7 @@ describe("SignUpForm", () => {
     it("validates that password has not cyrillic characters", async () => {
       const { getByText, getByLabelText } = render(
         <ThemeProvider theme={theme}>
-          <SignUpForm formSubmit={() => null} />
+          <SignUpForm onFormSubmit={() => null} />
         </ThemeProvider>
       );
 

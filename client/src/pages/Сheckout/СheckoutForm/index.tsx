@@ -16,11 +16,10 @@ export type FormValues = {
 };
 
 interface Props {
-  formSubmit: (data: FormValues) => void;
-  isLoading: boolean;
+  onFormSubmit?: (data: FormValues) => void;
 }
 
-export function СheckoutForm({ formSubmit, isLoading }: Props) {
+export function СheckoutForm({ onFormSubmit }: Props) {
   const {
     register,
     handleSubmit,
@@ -31,10 +30,10 @@ export function СheckoutForm({ formSubmit, isLoading }: Props) {
   const watchCardNumber = watch("card_number");
   const paymentSystem = getPaymentSystem(watchCardNumber);
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => formSubmit(data);
+  const onSubmit: SubmitHandler<FormValues> = (data) => onFormSubmit?.(data);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form id="checkout-form" onSubmit={handleSubmit(onSubmit)}>
       <Styled.Fieldset>
         <Typography
           size={{ all: "lg", phone: "base" }}
@@ -160,8 +159,6 @@ export function СheckoutForm({ formSubmit, isLoading }: Props) {
         Доставим пиццу в течение часа или вернем деньги. Артем слов на ветер не
         бросает.
       </Typography>
-
-      <button type="submit">{isLoading ? "Загрузка..." : "Отправить"}</button>
     </form>
   );
 }

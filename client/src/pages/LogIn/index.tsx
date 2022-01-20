@@ -40,7 +40,7 @@ export function LogIn() {
               <Typography>Вы успешно авторизовались.</Typography>
             ) : (
               <>
-                <LogInForm formSubmit={handleSubmit} />
+                <LogInForm onFormSubmit={handleSubmit} />
 
                 <Styled.Footer>
                   <Typography>

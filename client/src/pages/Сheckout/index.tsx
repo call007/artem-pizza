@@ -6,6 +6,7 @@ import { PATH } from "../../consts";
 import { getPizza, getPizzaPrice } from "../../state/order/selectors";
 import { userSlice } from "../../state/user/slice";
 import { Button, Header, Wrapper } from "../../ui-kit";
+import { OrderSummary } from "./OrderSummary";
 import * as Styled from "./styles";
 import { FormValues, СheckoutForm } from "./СheckoutForm";
 
@@ -17,7 +18,7 @@ export function Сheckout() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  if (!pizza) {
+  if (!price) {
     return <Redirect to={PATH.PizzaConfigurator} />;
   }
 
@@ -55,7 +56,11 @@ export function Сheckout() {
 
       <Wrapper size="lg" as="main">
         <Styled.Container>
-          <СheckoutForm formSubmit={handleSubmit} isLoading={isLoading} />
+          <СheckoutForm onFormSubmit={handleSubmit} />
+
+          <Styled.Aside>
+            <OrderSummary isLoading={isLoading} />
+          </Styled.Aside>
         </Styled.Container>
 
         {error && <p style={{ color: "red" }}>{error.message}</p>}

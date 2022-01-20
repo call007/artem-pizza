@@ -51,6 +51,22 @@ export enum Space {
   "xxl" = "2rem",
 }
 
+// colors: {
+//   white: "#0e141b",
+//   black: "#f2f5f7",
+//   primary: "#00A896",
+//   primaryDark: "#009485",
+//   secondary: "#F3752B",
+//   secondaryLight: "#F79D5C",
+//   gray600: "#9ca8b4",
+//   gray400: "#606e7c",
+//   gray200: "#2b333b",
+//   gray100: "#1e262f",
+//   statusSuccess: "#00A896",
+//   statusError: "#E3170A",
+//   specBg: "#FF00FF",
+// },
+
 export const theme = {
   colors: {
     white: "#fff",

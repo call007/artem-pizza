@@ -16,6 +16,6 @@ describe("Сheckout", () => {
     );
 
     expect(getByText("Оформление заказа")).toBeInTheDocument();
-    expect(getByText("Отправить")).toBeInTheDocument();
+    expect(getByText("Оплатить 1700 руб")).toBeInTheDocument();
   });
 });

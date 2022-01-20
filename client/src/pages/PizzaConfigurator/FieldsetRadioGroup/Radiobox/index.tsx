@@ -6,6 +6,7 @@ interface RadioboxProps extends HTMLAttributes<HTMLInputElement> {
   value: string;
   id: string;
   price?: number;
+  isLoading?: boolean;
 }
 
 export const Radiobox = React.forwardRef<HTMLInputElement, RadioboxProps>(

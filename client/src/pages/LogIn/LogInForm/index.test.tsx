@@ -9,7 +9,7 @@ describe("LogInForm", () => {
   it("renders correctly", () => {
     const { getByText, getByLabelText } = render(
       <ThemeProvider theme={theme}>
-        <LogInForm formSubmit={() => null} />
+        <LogInForm onFormSubmit={() => null} />
       </ThemeProvider>
     );
 
@@ -23,7 +23,7 @@ describe("LogInForm", () => {
       const formSubmit = jest.fn();
       const { getByText, getByLabelText } = render(
         <ThemeProvider theme={theme}>
-          <LogInForm formSubmit={formSubmit} />
+          <LogInForm onFormSubmit={formSubmit} />
         </ThemeProvider>
       );
 
@@ -47,7 +47,7 @@ describe("LogInForm", () => {
     it("validates that email and password are filled in", async () => {
       const { getByText, getByLabelText } = render(
         <ThemeProvider theme={theme}>
-          <LogInForm formSubmit={() => null} />
+          <LogInForm onFormSubmit={() => null} />
         </ThemeProvider>
       );
 
@@ -67,7 +67,7 @@ describe("LogInForm", () => {
     it("validates that email is the correct email", async () => {
       const { getByText, getByLabelText } = render(
         <ThemeProvider theme={theme}>
-          <LogInForm formSubmit={() => null} />
+          <LogInForm onFormSubmit={() => null} />
         </ThemeProvider>
       );
 

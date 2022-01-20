@@ -47,7 +47,7 @@ export function SignUp() {
               </Typography>
             ) : (
               <>
-                <SignUpForm formSubmit={handleSubmit} />
+                <SignUpForm onFormSubmit={handleSubmit} />
 
                 <Styled.Footer>
                   <Typography>

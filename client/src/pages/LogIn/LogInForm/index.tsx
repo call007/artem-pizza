@@ -9,17 +9,17 @@ export type FormValues = {
 };
 
 interface Props {
-  formSubmit: (data: FormValues) => void;
+  onFormSubmit?: (data: FormValues) => void;
 }
 
-export function LogInForm({ formSubmit }: Props) {
+export function LogInForm({ onFormSubmit }: Props) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => formSubmit(data);
+  const onSubmit: SubmitHandler<FormValues> = (data) => onFormSubmit?.(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

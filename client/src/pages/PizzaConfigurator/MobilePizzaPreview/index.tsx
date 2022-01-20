@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import { getPizzaPrice } from "../../../state/order/selectors";
 import { Button, Typography } from "../../../ui-kit";
@@ -6,7 +7,11 @@ import { Pizza } from "../Pizza";
 import { SelectedIngredients } from "../SelectedIngredients";
 import * as Styled from "./styles";
 
-export function MobilePizzaPreview() {
+interface MobilePizzaPreviewProps {
+  isLoading?: boolean;
+}
+
+export function MobilePizzaPreview({ isLoading }: MobilePizzaPreviewProps) {
   const price = useSelector(getPizzaPrice);
   const [isVisiblePizzaInfo, setIsVisiblePizzaInfo] = useState(false);
 
@@ -36,7 +41,7 @@ export function MobilePizzaPreview() {
             <Typography weight="medium">Твоя пицца</Typography>
 
             <Styled.Box>
-              <SelectedIngredients />
+              <SelectedIngredients isLoading={isLoading} />
             </Styled.Box>
           </Styled.Summary>
 
@@ -48,9 +53,18 @@ export function MobilePizzaPreview() {
         </Styled.Wrapper>
       )}
 
-      <Button type="submit" form="configurator-form" size="large" isLong={true}>
-        Заказать за {price} руб
-      </Button>
+      {isLoading ? (
+        <Skeleton width="100%" height={48} />
+      ) : (
+        <Button
+          type="submit"
+          form="configurator-form"
+          size="large"
+          isLong={true}
+        >
+          Заказать за {price} руб
+        </Button>
+      )}
     </Styled.Container>
   );
 }

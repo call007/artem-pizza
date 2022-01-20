@@ -52,7 +52,7 @@ describe("App navigation", () => {
     const { history, container } = renderApp();
     history.push(PATH.Checkout);
 
-    expect(container.innerHTML).toMatch("Отправить");
+    expect(container.innerHTML).toMatch("Оплатить 1700 руб");
   });
 
   it("navigates to orders page", () => {
