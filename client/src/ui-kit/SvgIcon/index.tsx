@@ -41,6 +41,7 @@ export function SvgIcon({ size = 16, src, ...restProps }: SvgIconProps) {
   return (
     <Styled.Container
       size={size}
+      viewBox={`0 0 ${size} ${size}`}
       as={icons[src]}
       aria-hidden="true"
       {...restProps}
