@@ -10,7 +10,6 @@ export const Container = styled.div(
     flex-direction: column;
     min-width: 320px;
     padding: ${theme.space.sm} ${theme.space.base};
-    line-height: 1;
     background-color: ${theme.colors.white};
     box-shadow: ${theme.shadow.outer.panel};
   `
@@ -19,9 +18,9 @@ export const Container = styled.div(
 export const Wrapper = styled.div`
   display: flex;
   margin-bottom: ${(props) => props.theme.space.base};
-  animation: fadeIn ${(props) => props.theme.transitionDuration} forwards;
+  animation: fade-in ${(props) => props.theme.transitionDuration} forwards;
 
-  @keyframes fadeIn {
+  @keyframes fade-in {
     from {
       opacity: 0;
     }

@@ -25,7 +25,11 @@ export function FieldsetRadioGroup({
     <Fieldset legend={title} isLoading={isLoading}>
       <HorizontalScroller>
         {isLoading ? (
-          <Skeleton className="skeleton" wrapper={Styled.SkeletonWrapper} />
+          <Skeleton
+            width="100%"
+            height="100%"
+            wrapper={Styled.SkeletonWrapper}
+          />
         ) : (
           <Styled.Container>
             {dataIngredients?.map((ingredient) => (

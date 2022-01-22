@@ -15,14 +15,14 @@ export const Container = styled.div`
   }
 `;
 
-export const SkeletonWrapper = styled.div`
-  .skeleton {
-    width: 9.625rem;
-    height: 2.75rem;
+export const SkeletonWrapper = styled.span`
+  display: block;
+  width: 9.625rem;
+  height: 2.75rem;
+  line-height: 1;
 
-    @media ${({ theme }) => theme.media.phone} {
-      width: 8.375rem;
-      height: 2rem;
-    }
+  @media ${({ theme }) => theme.media.phone} {
+    width: 8.375rem;
+    height: 2rem;
   }
 `;

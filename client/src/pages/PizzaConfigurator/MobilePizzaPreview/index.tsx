@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getPizzaPrice } from "../../../state/order/selectors";
-import { Button, Typography } from "../../../ui-kit";
+import { Button, Typography, TypographySkeleton } from "../../../ui-kit";
 import { Pizza } from "../Pizza";
 import { SelectedIngredients } from "../SelectedIngredients";
 import * as Styled from "./styles";
@@ -37,7 +37,13 @@ export function MobilePizzaPreview({ isLoading }: MobilePizzaPreviewProps) {
       {isVisiblePizzaInfo && (
         <Styled.Wrapper>
           <Styled.Summary>
-            <Typography weight="medium">Твоя пицца</Typography>
+            <Typography weight="medium">
+              {isLoading ? (
+                <TypographySkeleton width="5.375rem" />
+              ) : (
+                "Твоя пицца"
+              )}
+            </Typography>
 
             <Styled.Box>
               <SelectedIngredients isLoading={isLoading} />

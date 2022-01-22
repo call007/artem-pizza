@@ -1,10 +1,8 @@
-import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
-import { useTheme } from "styled-components";
 import { getIngredientsByCategory } from "../../../state/ingredients/selectors";
 import { getPizza } from "../../../state/order/selectors";
 import { Category } from "../../../types";
-import { Typography } from "../../../ui-kit";
+import { Typography, TypographySkeleton } from "../../../ui-kit";
 import * as Styled from "./styles";
 import { getIngredient, getIngredients, getPizzaDoughText } from "./utils";
 
@@ -13,7 +11,6 @@ interface SelectedIngredientsProps {
 }
 
 export function SelectedIngredients({ isLoading }: SelectedIngredientsProps) {
-  const theme = useTheme();
   const pizza = useSelector(getPizza);
 
   const size = useSelector(getIngredientsByCategory(Category.Size));
@@ -31,11 +28,7 @@ export function SelectedIngredients({ isLoading }: SelectedIngredientsProps) {
           color={(color) => color.gray600}
         >
           {isLoading ? (
-            <Skeleton
-              width="9.063rem"
-              baseColor={theme.colors.gray200}
-              highlightColor={theme.colors.gray100}
-            />
+            <TypographySkeleton width="9.063rem" />
           ) : (
             <>
               {getIngredient(pizza.size, size)?.name}{" "}
@@ -50,11 +43,7 @@ export function SelectedIngredients({ isLoading }: SelectedIngredientsProps) {
         color={(color) => color.gray600}
       >
         {isLoading ? (
-          <Skeleton
-            width="11.25rem"
-            baseColor={theme.colors.gray200}
-            highlightColor={theme.colors.gray100}
-          />
+          <TypographySkeleton width="11.25rem" />
         ) : (
           <>
             {getIngredient(pizza.sauces, sauces)?.name} соус

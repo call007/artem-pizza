@@ -24,7 +24,12 @@ export function FieldsetCheckboxGroup({
       <HorizontalScroller>
         <Styled.Container>
           {isLoading ? (
-            <Skeleton count={3} inline={true} className="skeleton" />
+            <Skeleton
+              count={3}
+              width="100%"
+              height="100%"
+              wrapper={Styled.SkeletonWrapper}
+            />
           ) : (
             dataIngredients?.map((ingredient) => (
               <Checkbox

@@ -21,6 +21,8 @@ export default createGlobalStyle`
   body {
     min-width: 320px;
     background-color: ${(props) => props.theme.colors.gray100};
+    transition: background-color calc(${(props) =>
+      props.theme.transitionDuration} * 2);
   }
 
   h1, h2, h3, h4, h5, h6, p {

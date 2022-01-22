@@ -18,5 +18,4 @@ export const TitleBox = styled.div`
 
 export const ButtonBox = styled.div`
   margin-top: ${(props) => props.theme.space.xxl};
-  line-height: 1;
 `;

@@ -14,18 +14,23 @@ export const Container = styled.div(
       margin-left: ${`-${theme.space.xs}`};
       padding-top: ${theme.space.sm};
     }
+  `
+);
 
-    .skeleton {
-      width: 7rem;
-      height: 9.75rem;
-      margin-left: ${theme.space.base};
-      margin-top: ${theme.space.xl};
+export const SkeletonWrapper = styled.span(
+  ({ theme }) => css`
+    display: inline-block;
+    vertical-align: top;
+    width: 7rem;
+    height: 9.938rem;
+    margin-left: ${theme.space.base};
+    margin-top: ${theme.space.xl};
+    line-height: 1;
 
-      @media ${theme.media.phone} {
-        width: 6.5rem;
-        height: 8.25rem;
-        margin-left: ${theme.space.xs};
-      }
+    @media ${theme.media.phone} {
+      width: 6.5rem;
+      height: 8.188rem;
+      margin-left: ${theme.space.xs};
     }
   `
 );
