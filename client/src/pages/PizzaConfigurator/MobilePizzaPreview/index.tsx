@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import { getPizzaPrice } from "../../../state/order/selectors";
 import { Button, Typography } from "../../../ui-kit";
@@ -53,18 +52,15 @@ export function MobilePizzaPreview({ isLoading }: MobilePizzaPreviewProps) {
         </Styled.Wrapper>
       )}
 
-      {isLoading ? (
-        <Skeleton width="100%" height={48} />
-      ) : (
-        <Button
-          type="submit"
-          form="configurator-form"
-          size="large"
-          isLong={true}
-        >
-          Заказать за {price} руб
-        </Button>
-      )}
+      <Button
+        type="submit"
+        form="configurator-form"
+        size="large"
+        isLoading={isLoading}
+        isLong={true}
+      >
+        Заказать за {price} руб
+      </Button>
     </Styled.Container>
   );
 }

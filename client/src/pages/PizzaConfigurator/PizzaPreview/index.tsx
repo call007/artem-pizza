@@ -1,6 +1,7 @@
 import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
+import { useTheme } from "styled-components";
 import { PATH } from "../../../consts";
 import { useMediaPhone } from "../../../hooks";
 import { getPizza, getPizzaPrice } from "../../../state/order/selectors";
@@ -14,6 +15,7 @@ interface PizzaPreviewProps {
 }
 
 export function PizzaPreview({ isLoading }: PizzaPreviewProps) {
+  const theme = useTheme();
   const pizza = useSelector(getPizza);
   const price = useSelector(getPizzaPrice);
 
@@ -35,7 +37,15 @@ export function PizzaPreview({ isLoading }: PizzaPreviewProps) {
           weight="medium"
           component="h2"
         >
-          Твоя пицца
+          {isLoading ? (
+            <Skeleton
+              width="8.125rem"
+              baseColor={theme.colors.gray200}
+              highlightColor={theme.colors.gray100}
+            />
+          ) : (
+            "Твоя пицца"
+          )}
         </Typography>
       </Styled.TitleBox>
 
@@ -43,13 +53,14 @@ export function PizzaPreview({ isLoading }: PizzaPreviewProps) {
 
       {!isPhone && (
         <Styled.ButtonBox>
-          {isLoading || !price ? (
-            <Skeleton width={248} height={56} />
-          ) : (
-            <Button type="submit" form="configurator-form" size="large">
-              Заказать за {price} руб
-            </Button>
-          )}
+          <Button
+            type="submit"
+            form="configurator-form"
+            size="large"
+            isLoading={isLoading || !price}
+          >
+            Заказать за {price} руб
+          </Button>
         </Styled.ButtonBox>
       )}
     </>

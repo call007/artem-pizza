@@ -12,6 +12,7 @@ export interface ButtonProps extends ButtonOrAnchorHTMLAttributes {
   icon?: SvgSrc;
   to?: PATH;
   isDisabled?: boolean;
+  isLoading?: boolean;
   isLong?: boolean;
 }
 
@@ -50,16 +51,29 @@ export const Button = forwardRef<
       size={size}
       view={view}
       ref={ref}
+      disabled={!to && (props.isDisabled ?? props.isLoading)}
       {...restProps}
     >
       <Styled.Wrapper>
-        {icon && (
-          <Styled.Icon>
-            <SvgIcon src={icon} />
-          </Styled.Icon>
+        {props.isLoading ? (
+          <>
+            <Styled.Preloader>
+              <Styled.PreloaderItem />
+              <Styled.PreloaderItem />
+              <Styled.PreloaderItem />
+              <Styled.PreloaderItem />
+            </Styled.Preloader>
+          </>
+        ) : (
+          <>
+            {icon && (
+              <Styled.Icon>
+                <SvgIcon src={icon} />
+              </Styled.Icon>
+            )}
+            {children && <Styled.Text>{children}</Styled.Text>}
+          </>
         )}
-
-        {children && <Styled.Text>{children}</Styled.Text>}
       </Styled.Wrapper>
     </Styled.Container>
   );
