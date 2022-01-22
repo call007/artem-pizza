@@ -55,13 +55,13 @@ describe("LogInForm", () => {
         fireEvent.click(getByText("Войти"));
       });
 
-      expect(getByLabelText("E-mail").parentElement?.innerHTML).toMatch(
-        MESSAGES.Required
-      );
+      expect(
+        getByLabelText("E-mail").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Required);
 
-      expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        MESSAGES.Required
-      );
+      expect(
+        getByLabelText("Пароль").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Required);
     });
 
     it("validates that email is the correct email", async () => {
@@ -79,9 +79,9 @@ describe("LogInForm", () => {
         fireEvent.click(getByText("Войти"));
       });
 
-      expect(getByLabelText("E-mail").parentElement?.innerHTML).toMatch(
-        MESSAGES.Email
-      );
+      expect(
+        getByLabelText("E-mail").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Email);
     });
   });
 });

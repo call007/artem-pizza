@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { calculatePrice } from "../../../calculatePrice";
 import { PATH } from "../../../consts";
 import {
   getIngredients,
@@ -14,6 +13,7 @@ import { getPizza } from "../../../state/order/selectors";
 import { orderSlice } from "../../../state/order/slice";
 import { AppDispatch } from "../../../store";
 import { Category, Pizza } from "../../../types";
+import { calculatePrice } from "../../../utils";
 import { FieldsetCheckboxGroup } from "../FieldsetCheckboxGroup";
 import { FieldsetRadioGroup } from "../FieldsetRadioGroup";
 import * as Styled from "./styles";

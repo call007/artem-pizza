@@ -6,6 +6,7 @@ import { PATH } from "../../consts";
 import { getPizza, getPizzaPrice } from "../../state/order/selectors";
 import { userSlice } from "../../state/user/slice";
 import { Button, Header, Wrapper } from "../../ui-kit";
+import { OrderPreview } from "./OrderPreview";
 import { OrderSummary } from "./OrderSummary";
 import * as Styled from "./styles";
 import { FormValues, СheckoutForm } from "./СheckoutForm";
@@ -59,6 +60,7 @@ export function Сheckout() {
           <СheckoutForm onFormSubmit={handleSubmit} />
 
           <Styled.Aside>
+            <OrderPreview price={price} />
             <OrderSummary isLoading={isLoading} />
           </Styled.Aside>
         </Styled.Container>

@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { InputSize } from ".";
+import { mixins } from "../../styles";
 
 export const Container = styled.div`
   font-size: 1rem;
@@ -64,6 +65,20 @@ export const Input = styled.input<InputProps>(
   `
 );
 
+export const InputCover = styled.div`
+  position: relative;
+`;
+
+export const Icon = styled.div`
+  ${mixins.fadeIn};
+  position: absolute;
+  top: 0;
+  right: ${(props) => props.theme.space.base};
+  display: flex;
+  align-items: center;
+  height: 100%;
+`;
+
 type LabelProps = {
   size: InputSize;
 };
@@ -95,6 +110,7 @@ export const Label = styled.label<LabelProps>(
 
 export const ErrorMessage = styled.p(
   ({ theme }) => css`
+    ${mixins.fadeIn};
     margin-top: 0.5rem;
     color: ${theme.colors.statusError};
     font-size: ${theme.typography.fontSize.base};

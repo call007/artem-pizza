@@ -1,10 +1,14 @@
 import styled, { css } from "styled-components";
 
+export const Container = styled.div`
+  padding-top: ${(props) => props.theme.space.xs};
+`;
+
 export const Dl = styled.dl(
   ({ theme }) => css`
     display: flex;
     justify-content: space-between;
-    margin: ${theme.space.xs} 0;
+    margin: ${theme.space.xs} ${theme.space.base};
     color: ${theme.colors.gray600};
     font-size: ${theme.typography.fontSize.sm};
     line-height: ${theme.typography.lineHeight.sm};

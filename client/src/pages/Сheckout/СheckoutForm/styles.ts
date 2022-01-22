@@ -1,5 +1,10 @@
 import styled, { css } from "styled-components";
 import { mixins } from "../../../styles";
+import { StyledInput } from "../../../ui-kit";
+
+export const Container = styled.div`
+  max-width: 33.125rem;
+`;
 
 export const Fieldset = styled.fieldset`
   ${mixins.fieldsetReset};
@@ -43,10 +48,33 @@ export const ExpirationCVVBox = styled(Box)`
   justify-content: space-between;
 
   & > *:first-of-type {
-    max-width: 7.813em;
+    ${StyledInput} {
+      max-width: 7.813em;
+    }
   }
 
   & > *:last-of-type {
-    max-width: 4.813em;
+    margin-left: ${(props) => props.theme.space.xl};
+    text-align: right;
+
+    ${StyledInput} {
+      display: inline-block;
+      vertical-align: top;
+      max-width: 4.813em;
+    }
+  }
+`;
+
+export const Payment = styled.div`
+  position: relative;
+`;
+
+export const PaymentIcon = styled.div`
+  width: 2rem;
+  height: 1.25rem;
+
+  svg {
+    width: 100%;
+    height: 100%;
   }
 `;

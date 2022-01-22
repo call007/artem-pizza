@@ -1,4 +1,4 @@
-import { Ingredient, Pizza } from "./types";
+import { Ingredient, Pizza } from "../types";
 
 export function calculatePrice(statePizza: Pizza, dataPizza: Ingredient[]) {
   if (dataPizza.length === 0) {

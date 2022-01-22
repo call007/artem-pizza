@@ -3,8 +3,12 @@ import { getIngredientsByCategory } from "../../../state/ingredients/selectors";
 import { getPizza } from "../../../state/order/selectors";
 import { Category } from "../../../types";
 import { Typography, TypographySkeleton } from "../../../ui-kit";
+import {
+  getIngredient,
+  getIngredients,
+  getPizzaDoughText,
+} from "../../../utils";
 import * as Styled from "./styles";
-import { getIngredient, getIngredients, getPizzaDoughText } from "./utils";
 
 interface SelectedIngredientsProps {
   isLoading?: boolean;

@@ -15,6 +15,7 @@ export const Aside = styled.div(
     top: calc(${theme.header.height} + ${theme.header.marginBottom});
     flex-shrink: 0;
     width: 21.875rem;
-    margin-left: ${theme.space.xxl};
+    margin-left: auto;
+    padding-left: ${theme.space.xxl};
   `
 );

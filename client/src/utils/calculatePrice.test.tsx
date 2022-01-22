@@ -1,5 +1,5 @@
+import { mockDataIngredients } from "../mocks/mockDataIngredients";
 import { calculatePrice } from "./calculatePrice";
-import { mockDataIngredients } from "./mocks/mockDataIngredients";
 
 describe("calculatePrice", () => {
   it("returns the sum price of all selected pizza parts", () => {

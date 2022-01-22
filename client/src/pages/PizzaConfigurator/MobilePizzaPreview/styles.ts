@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { mixins } from "../../../styles";
 
 export const Container = styled.div(
   ({ theme }) => css`
@@ -16,15 +17,9 @@ export const Container = styled.div(
 );
 
 export const Wrapper = styled.div`
+  ${mixins.fadeIn};
   display: flex;
   margin-bottom: ${(props) => props.theme.space.base};
-  animation: fade-in ${(props) => props.theme.transitionDuration} forwards;
-
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-  }
 `;
 
 export const Summary = styled.div`

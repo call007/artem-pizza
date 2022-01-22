@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { СheckoutForm } from ".";
 import { MESSAGES } from "../../../consts";
 import { theme } from "../../../styles";
+import { PaymentSystem } from "../../../types";
 
 const renderСheckoutForm = () =>
   render(
@@ -47,25 +48,23 @@ describe("СheckoutForm", () => {
     });
 
     it("detects as MasterCard", () => {
-      const { getByPlaceholderText } = renderСheckoutForm();
+      const { getByPlaceholderText, getByLabelText } = renderСheckoutForm();
 
       const ccInput = getByPlaceholderText("Номер карты");
 
       fireEvent.input(ccInput, { target: { value: "5555444433332222" } });
 
-      expect(ccInput.parentElement?.parentElement?.innerHTML).toMatch(
-        "MasterCard"
-      );
+      expect(getByLabelText(PaymentSystem.Mastercard)).toBeInTheDocument();
     });
 
     it("detects as Visa", () => {
-      const { getByPlaceholderText } = renderСheckoutForm();
+      const { getByPlaceholderText, getByLabelText } = renderСheckoutForm();
 
       const ccInput = getByPlaceholderText("Номер карты");
 
       fireEvent.input(ccInput, { target: { value: "4444333322221111" } });
 
-      expect(ccInput.parentElement?.parentElement?.innerHTML).toMatch("Visa");
+      expect(getByLabelText(PaymentSystem.Visa)).toBeInTheDocument();
     });
   });
 
@@ -173,23 +172,26 @@ describe("СheckoutForm", () => {
       });
 
       expect(
-        getByPlaceholderText("Введите адрес").parentElement?.innerHTML
+        getByPlaceholderText("Введите адрес").parentElement?.parentElement
+          ?.innerHTML
       ).toMatch(MESSAGES.Required);
 
       expect(
-        getByPlaceholderText("Номер карты").parentElement?.innerHTML
+        getByPlaceholderText("Номер карты").parentElement?.parentElement
+          ?.innerHTML
       ).toMatch(MESSAGES.Required);
 
-      expect(getByPlaceholderText("MM/YYYY").parentElement?.innerHTML).toMatch(
-        MESSAGES.Required
-      );
-
-      expect(getByPlaceholderText("CVV").parentElement?.innerHTML).toMatch(
-        MESSAGES.Required
-      );
+      expect(
+        getByPlaceholderText("MM/YYYY").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Required);
 
       expect(
-        getByPlaceholderText("Имя как на карте").parentElement?.innerHTML
+        getByPlaceholderText("CVV").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Required);
+
+      expect(
+        getByPlaceholderText("Имя как на карте").parentElement?.parentElement
+          ?.innerHTML
       ).toMatch(MESSAGES.Required);
     });
 
@@ -209,7 +211,8 @@ describe("СheckoutForm", () => {
       });
 
       expect(
-        getByPlaceholderText("Номер карты").parentElement?.innerHTML
+        getByPlaceholderText("Номер карты").parentElement?.parentElement
+          ?.innerHTML
       ).toMatch(MESSAGES.CardNumber);
     });
 
@@ -228,7 +231,9 @@ describe("СheckoutForm", () => {
         fireEvent.submit(formEl);
       });
 
-      expect(ccInput.parentElement?.innerHTML).toMatch(MESSAGES.CardExpiration);
+      expect(ccInput.parentElement?.parentElement?.innerHTML).toMatch(
+        MESSAGES.CardExpiration
+      );
     });
 
     it("validates that card CVV code is correct", async () => {
@@ -246,7 +251,9 @@ describe("СheckoutForm", () => {
         fireEvent.submit(formEl);
       });
 
-      expect(ccInput.parentElement?.innerHTML).toMatch(MESSAGES.CardCVV);
+      expect(ccInput.parentElement?.parentElement?.innerHTML).toMatch(
+        MESSAGES.CardCVV
+      );
     });
 
     it("validates that card name is correct", async () => {
@@ -264,7 +271,9 @@ describe("СheckoutForm", () => {
         fireEvent.submit(formEl);
       });
 
-      expect(ccInput.parentElement?.innerHTML).toMatch(MESSAGES.CardName);
+      expect(ccInput.parentElement?.parentElement?.innerHTML).toMatch(
+        MESSAGES.CardName
+      );
     });
   });
 });

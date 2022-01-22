@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { mixins } from "../styles";
 
 type WrapperSize = "sm" | "base" | "lg";
 
@@ -13,6 +14,7 @@ type WrapperProps = {
 };
 
 export const Wrapper = styled.div<WrapperProps>`
+  ${mixins.fadeIn};
   box-sizing: content-box;
   margin-left: auto;
   margin-right: auto;

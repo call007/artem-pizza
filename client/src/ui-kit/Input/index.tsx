@@ -9,10 +9,11 @@ interface InputProps
   label?: string;
   errorMessage?: string;
   size?: InputSize;
+  icon?: JSX.Element;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { label, size = "base", ...restProps } = props;
+  const { label, size = "base", icon, ...restProps } = props;
 
   return (
     <Styled.Container>
@@ -21,10 +22,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           {label}
         </Styled.Label>
       )}
-      <Styled.Input inputSize={size} ref={ref} {...restProps} />
+
+      <Styled.InputCover>
+        <Styled.Input inputSize={size} ref={ref} {...restProps} />
+        {icon && <Styled.Icon>{icon}</Styled.Icon>}
+      </Styled.InputCover>
+
       {props.errorMessage && (
         <Styled.ErrorMessage>{props.errorMessage}</Styled.ErrorMessage>
       )}
     </Styled.Container>
   );
 });
+
+export { Input as StyledInput } from "./styles";

@@ -60,16 +60,17 @@ describe("SignUpForm", () => {
         fireEvent.click(getByText("Зарегистрироваться"));
       });
 
-      expect(getByLabelText("E-mail").parentElement?.innerHTML).toMatch(
-        MESSAGES.Required
-      );
-
-      expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        MESSAGES.Required
-      );
+      expect(
+        getByLabelText("E-mail").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Required);
 
       expect(
-        getByLabelText("Подтвердите пароль").parentElement?.innerHTML
+        getByLabelText("Пароль").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Required);
+
+      expect(
+        getByLabelText("Подтвердите пароль").parentElement?.parentElement
+          ?.innerHTML
       ).toMatch(MESSAGES.Required);
     });
 
@@ -88,9 +89,9 @@ describe("SignUpForm", () => {
         fireEvent.click(getByText("Зарегистрироваться"));
       });
 
-      expect(getByLabelText("E-mail").parentElement?.innerHTML).toMatch(
-        MESSAGES.Email
-      );
+      expect(
+        getByLabelText("E-mail").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Email);
     });
 
     it("validates that password is longer than 6 symbols", async () => {
@@ -108,9 +109,9 @@ describe("SignUpForm", () => {
         fireEvent.click(getByText("Зарегистрироваться"));
       });
 
-      expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        MESSAGES.Password
-      );
+      expect(
+        getByLabelText("Пароль").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Password);
     });
 
     it("validates that password has numbers", async () => {
@@ -128,9 +129,9 @@ describe("SignUpForm", () => {
         fireEvent.click(getByText("Зарегистрироваться"));
       });
 
-      expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        MESSAGES.Password
-      );
+      expect(
+        getByLabelText("Пароль").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Password);
     });
 
     it("validates that password has special symbols", async () => {
@@ -148,9 +149,9 @@ describe("SignUpForm", () => {
         fireEvent.click(getByText("Зарегистрироваться"));
       });
 
-      expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        MESSAGES.Password
-      );
+      expect(
+        getByLabelText("Пароль").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Password);
     });
 
     it("validates that password has not cyrillic characters", async () => {
@@ -168,9 +169,9 @@ describe("SignUpForm", () => {
         fireEvent.click(getByText("Зарегистрироваться"));
       });
 
-      expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        MESSAGES.Password
-      );
+      expect(
+        getByLabelText("Пароль").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Password);
     });
   });
 });

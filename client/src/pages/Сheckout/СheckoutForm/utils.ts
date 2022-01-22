@@ -1,12 +1,14 @@
+import { PaymentSystem } from "../../../types";
+
 export const getPaymentSystem = (value?: string) => {
-  if (!value) return null;
+  if (!value) return undefined;
 
   switch (value[0]) {
     case "4":
-      return "Visa";
+      return PaymentSystem.Visa;
     case "5":
-      return "MasterCard";
+      return PaymentSystem.Mastercard;
     default:
-      return null;
+      return undefined;
   }
 };
