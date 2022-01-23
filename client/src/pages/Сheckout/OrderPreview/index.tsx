@@ -27,15 +27,15 @@ export function OrderPreview({ price, cardNumber }: OrderPreviewProps) {
   const pizzaSize = getIngredient(pizza.size, size)?.name;
   const pizzaDough = getPizzaDoughText(getIngredient(pizza.dough, dough)?.name);
   const pizzaSauces = getIngredient(pizza.sauces, sauces)?.name;
-  const pizzaCheese = getIngredients(pizza.cheese, cheese).map(
-    (ingredient) => ` • ${ingredient.name}`
-  );
-  const pizzaVegetables = getIngredients(pizza.vegetables, vegetables).map(
-    (ingredient) => ` • ${ingredient.name}`
-  );
-  const pizzaMeat = getIngredients(pizza.meat, meat).map(
-    (ingredient) => ` • ${ingredient.name}`
-  );
+  const pizzaCheese = getIngredients(pizza.cheese, cheese)
+    .map((ingredient) => ` • ${ingredient.name}`)
+    .join("");
+  const pizzaVegetables = getIngredients(pizza.vegetables, vegetables)
+    .map((ingredient) => ` • ${ingredient.name}`)
+    .join("");
+  const pizzaMeat = getIngredients(pizza.meat, meat)
+    .map((ingredient) => ` • ${ingredient.name}`)
+    .join("");
 
   return (
     <OrderCard
