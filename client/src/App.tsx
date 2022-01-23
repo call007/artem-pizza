@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router-dom";
-import { PrivateRoute } from "./components";
+import { PrivateRoute, ScrollToTop } from "./components";
 import { PATH } from "./consts";
 import {
   LogIn,
@@ -14,6 +14,8 @@ import {
 function App() {
   return (
     <div className="App">
+      <ScrollToTop />
+
       <Switch>
         <Route path={PATH.PizzaConfigurator} exact>
           <PizzaConfigurator />

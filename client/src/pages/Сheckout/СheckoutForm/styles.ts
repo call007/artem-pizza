@@ -2,10 +2,6 @@ import styled, { css } from "styled-components";
 import { mixins } from "../../../styles";
 import { StyledInput } from "../../../ui-kit";
 
-export const Container = styled.div`
-  max-width: 33.125rem;
-`;
-
 export const Fieldset = styled.fieldset`
   ${mixins.fieldsetReset};
 `;
@@ -17,7 +13,7 @@ export const Separator = styled.div(
     border-top: 1px solid ${theme.colors.gray200};
 
     @media ${theme.media.phone} {
-      margin-top: ${theme.space.base};
+      margin: ${theme.space.base} 0;
     }
   `
 );
@@ -69,12 +65,7 @@ export const Payment = styled.div`
   position: relative;
 `;
 
-export const PaymentIcon = styled.div`
+export const PaymentIcon = styled.svg`
   width: 2rem;
   height: 1.25rem;
-
-  svg {
-    width: 100%;
-    height: 100%;
-  }
 `;

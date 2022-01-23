@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router";
 import { postOrder } from "../../api";
 import { PATH } from "../../consts";
+import { useMediaPhone } from "../../hooks";
 import { getPizza, getPizzaPrice } from "../../state/order/selectors";
 import { userSlice } from "../../state/user/slice";
 import { Button, Header, Wrapper } from "../../ui-kit";
@@ -18,6 +19,8 @@ export function Сheckout() {
   const price = useSelector(getPizzaPrice);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  const [cardNumber, setCardNumber] = useState<string>();
+  const isPhone = useMediaPhone();
 
   if (!price) {
     return <Redirect to={PATH.PizzaConfigurator} />;
@@ -57,16 +60,23 @@ export function Сheckout() {
 
       <Wrapper size="lg" as="main">
         <Styled.Container>
-          <СheckoutForm onFormSubmit={handleSubmit} />
+          <Styled.Content>
+            <СheckoutForm
+              onFormSubmit={handleSubmit}
+              onCardNumberChange={(value) => setCardNumber(value)}
+            />
+          </Styled.Content>
 
           <Styled.Aside>
-            <OrderPreview price={price} />
-            <OrderSummary isLoading={isLoading} />
+            <OrderPreview price={price} cardNumber={cardNumber} />
+            {!isPhone && <OrderSummary isLoading={isLoading} />}
           </Styled.Aside>
         </Styled.Container>
 
         {error && <p style={{ color: "red" }}>{error.message}</p>}
       </Wrapper>
+
+      {isPhone && <OrderSummary isLoading={isLoading} />}
     </>
   );
 }

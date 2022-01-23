@@ -3,10 +3,9 @@ import { RegisterOptions } from "react-hook-form";
 import { MESSAGES, REG_EXP } from "../consts";
 import { normalizeCardNumber } from "../normalize";
 
-export const cardNumber: Pick<
-  RegisterOptions,
-  "pattern" | "maxLength" | "onChange"
-> = {
+export const cardNumber = (
+  onChangeCallback?: (value: string) => void
+): Pick<RegisterOptions, "pattern" | "maxLength" | "onChange"> => ({
   pattern: {
     value: REG_EXP.cardNumber,
     message: MESSAGES.CardNumber,
@@ -14,6 +13,8 @@ export const cardNumber: Pick<
   maxLength: 19,
   onChange: (event: ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
-    target.value = normalizeCardNumber(target.value);
+    const normalizeValue = normalizeCardNumber(target.value);
+    target.value = normalizeValue;
+    onChangeCallback?.(normalizeValue);
   },
-};
+});
