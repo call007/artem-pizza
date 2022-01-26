@@ -7,7 +7,7 @@ export const getIngredientsIsLoading = (state: RootState) =>
   state.ingredients.isLoading;
 
 export const getIngredientsError = (state: RootState) =>
-  state.ingredients.error;
+  state.ingredients.errorMessage;
 
 export const getIngredientsByCategory =
   (category: Category) => (state: RootState) =>

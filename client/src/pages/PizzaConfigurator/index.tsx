@@ -13,7 +13,7 @@ import * as Styled from "./styles";
 
 export function PizzaConfigurator() {
   const isLoading = useSelector(getIngredientsIsLoading);
-  const error = useSelector(getIngredientsError);
+  const errorMessage = useSelector(getIngredientsError);
   const isPhone = useMediaPhone();
 
   return (
@@ -41,16 +41,21 @@ export function PizzaConfigurator() {
               </Typography>
             )}
 
-            <ConfiguratorForm isLoading={isLoading} />
+            <ConfiguratorForm
+              isLoading={isLoading}
+              errorMessage={errorMessage}
+            />
           </Styled.Content>
 
           <Styled.Sidebar>
-            <PizzaPreview isLoading={isLoading || !!error} />
+            <PizzaPreview isLoading={isLoading || !!errorMessage} />
           </Styled.Sidebar>
         </Styled.Container>
       </Wrapper>
 
-      {isPhone && <MobilePizzaPreview isLoading={isLoading || !!error} />}
+      {isPhone && (
+        <MobilePizzaPreview isLoading={isLoading || !!errorMessage} />
+      )}
     </>
   );
 }

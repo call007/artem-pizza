@@ -8,7 +8,6 @@ import {
   PizzaConfigurator,
   SignUp,
   Сheckout,
-  СheckoutSuccess,
 } from "./pages";
 
 function App() {
@@ -31,10 +30,6 @@ function App() {
 
         <Route path={PATH.Checkout}>
           <Сheckout />
-        </Route>
-
-        <Route path={PATH.CheckoutSuccess}>
-          <СheckoutSuccess />
         </Route>
 
         <PrivateRoute path={PATH.Orders} redirectPath={PATH.Login}>

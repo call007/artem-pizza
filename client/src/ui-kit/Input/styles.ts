@@ -31,9 +31,7 @@ export const Input = styled.input<InputProps>(
     appearance: none;
     display: block;
     width: 100%;
-
     color: ${theme.colors.black};
-
     background-color: ${theme.colors.white};
     border: 2px solid ${theme.colors.gray200};
     border-radius: 0.5rem;
@@ -42,7 +40,8 @@ export const Input = styled.input<InputProps>(
 
     ${props.errorMessage &&
     css`
-      border-color: ${theme.colors.statusError} !important;
+      color: ${theme.colors.statusError};
+      border-color: currentColor !important;
     `};
 
     &:hover {

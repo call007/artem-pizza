@@ -2,12 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type UserState = {
   isAuthorized?: boolean;
-  isCheckoutSuccess?: boolean;
 };
 
 const initialState: UserState = {
   isAuthorized: false,
-  isCheckoutSuccess: false,
 };
 
 export const userSlice = createSlice({
@@ -19,12 +17,6 @@ export const userSlice = createSlice({
       action: PayloadAction<UserState["isAuthorized"]>
     ) => {
       state.isAuthorized = action.payload;
-    },
-    setIsCheckoutSuccess: (
-      state,
-      action: PayloadAction<UserState["isCheckoutSuccess"]>
-    ) => {
-      state.isCheckoutSuccess = action.payload;
     },
   },
 });

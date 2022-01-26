@@ -1,35 +1,3 @@
-// type Shadow = "sm" | "md";
-// type Colors =
-//   | "white"
-//   | "black"
-//   | "primary"
-//   | "primaryDark"
-//   | "secondary"
-//   | "secondaryLight"
-//   | "gray600"
-//   | "gray400"
-//   | "gray200"
-//   | "gray100"
-//   | "statusSuccess"
-//   | "statusError"
-//   | "specBg";
-
-// type Theme = {
-//   colors: Record<Colors, string>;
-//   shadow: {
-//     outer: { [key in Shadow]?: string };
-//     inner: { [key in Shadow]?: string };
-//   };
-//   media: { [key in Exclude<Breakpoints, "all">]: string };
-//   typography: {
-//     fontSize: Record<TypographySize, string>;
-//     lineHeight: Record<TypographySize, number>;
-//     fontWeight: Record<TypographyWeight, number>;
-//   };
-//   transitionDuration: string;
-//   space: Record<Space, number>;
-// };
-
 export enum Space {
   /**2px */
   xxxs = ".125rem",
@@ -51,39 +19,40 @@ export enum Space {
   "xxl" = "2rem",
 }
 
-// colors: {
-//   white: "#0e141b",
-//   black: "#f2f5f7",
-//   primary: "#00A896",
-//   primaryDark: "#009485",
-//   secondary: "#F3752B",
-//   secondaryLight: "#F79D5C",
-//   gray600: "#9ca8b4",
-//   gray400: "#606e7c",
-//   gray200: "#2b333b",
-//   gray100: "#1e262f",
-//   statusSuccess: "#00A896",
-//   statusError: "#E3170A",
-//   specBg: "#FF00FF",
-// },
+const lightColors = {
+  white: "#fff",
+  black: "#1F1F33",
+  primary: "#00A896",
+  primaryDark: "#009485",
+  secondary: "#F3752B",
+  secondaryLight: "#F79D5C",
+  gray600: "#4B4B7C",
+  gray400: "#8181B1",
+  gray200: "#E1E1ED",
+  gray100: "#F9F9FB",
+  statusSuccess: "#00A896",
+  statusError: "#E3170A",
+  specBg: "#FF00FF",
+};
+
+export const darkColors = {
+  white: "#0e141b",
+  black: "#f2f5f7",
+  primary: "#00A896",
+  primaryDark: "#009485",
+  secondary: "#F3752B",
+  secondaryLight: "#F79D5C",
+  gray600: "#9ca8b4",
+  gray400: "#606e7c",
+  gray200: "#2b333b",
+  gray100: "#1e262f",
+  statusSuccess: "#00A896",
+  statusError: "#E3170A",
+  specBg: "#FF00FF",
+};
 
 export const theme = {
-  colors: {
-    white: "#fff",
-    black: "#1F1F33",
-    primary: "#00A896",
-    primaryDark: "#009485",
-    secondary: "#F3752B",
-    secondaryLight: "#F79D5C",
-    gray600: "#4B4B7C",
-    gray400: "#8181B1",
-    gray200: "#E1E1ED",
-    gray100: "#F9F9FB",
-    statusSuccess: "#00A896",
-    statusError: "#E3170A",
-    specBg: "#FF00FF",
-  },
-
+  colors: lightColors,
   shadow: {
     outer: {
       sm: "0 0.188rem 0.25rem rgba(75, 75, 124, 0.05), 0 0 0.125rem rgba(75, 75, 124, 0.2), inset 0 0 0 transparent",

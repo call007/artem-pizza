@@ -197,7 +197,7 @@ export const PreloaderItem = styled.div`
       transform: translateX(0);
     }
     100% {
-      transform: translateX(16px);
+      transform: translateX(1em);
     }
   }
 `;

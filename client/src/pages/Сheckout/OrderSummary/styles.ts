@@ -47,3 +47,7 @@ export const Total = styled.div(
     }
   `
 );
+
+export const ErrorBox = styled.div`
+  margin-top: ${(props) => props.theme.space.sm};
+`;

@@ -230,12 +230,10 @@ const initialIngredientsState: IngredientsState = {
 
 const initialUserState: UserState = {
   isAuthorized: false,
-  isCheckoutSuccess: true,
 };
 
 const initialAuthorizedUserState: UserState = {
   isAuthorized: true,
-  isCheckoutSuccess: true,
 };
 
 export const mockState: RootState = {

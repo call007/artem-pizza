@@ -3,6 +3,5 @@ export enum PATH {
   Login = "/log-in",
   Signup = "/sign-up",
   Checkout = "/checkout",
-  CheckoutSuccess = "/checkout-success",
   Orders = "/orders",
 }

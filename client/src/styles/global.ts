@@ -10,7 +10,7 @@ export default createGlobalStyle`
   }
 
   html {
-    font-size: 1rem;
+    font-size: 1em;
     line-height: 1.5;
     color: ${(props) => props.theme.colors.black};
     font-family: 'Nunito', sans-serif;
@@ -26,7 +26,9 @@ export default createGlobalStyle`
   }
 
   h1, h2, h3, h4, h5, h6, p {
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: normal;
   }
 
   img {

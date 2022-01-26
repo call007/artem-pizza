@@ -6,13 +6,13 @@ import { PATH } from "../../../consts";
 import {
   getIngredients,
   getIngredientsByCategory,
-  getIngredientsError,
 } from "../../../state/ingredients/selectors";
 import { fetchIngredients } from "../../../state/ingredients/thunk";
 import { getPizza } from "../../../state/order/selectors";
 import { orderSlice } from "../../../state/order/slice";
 import { AppDispatch } from "../../../store";
 import { Category, Pizza } from "../../../types";
+import { Typography } from "../../../ui-kit";
 import { calculatePrice } from "../../../utils";
 import { FieldsetCheckboxGroup } from "../FieldsetCheckboxGroup";
 import { FieldsetRadioGroup } from "../FieldsetRadioGroup";
@@ -20,13 +20,16 @@ import * as Styled from "./styles";
 
 interface ConfiguratorFormProps {
   isLoading?: boolean;
+  errorMessage?: string;
 }
 
-export function ConfiguratorForm({ isLoading }: ConfiguratorFormProps) {
+export function ConfiguratorForm({
+  isLoading,
+  errorMessage,
+}: ConfiguratorFormProps) {
   const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
 
-  const error = useSelector(getIngredientsError);
   const ingredients = useSelector(getIngredients);
   const pizza = useSelector(getPizza);
 
@@ -68,8 +71,14 @@ export function ConfiguratorForm({ isLoading }: ConfiguratorFormProps) {
     history.push(PATH.Checkout);
   };
 
-  if (error) {
-    return <Styled.Box>{error.message}</Styled.Box>;
+  if (errorMessage) {
+    return (
+      <Styled.Box>
+        <Typography color={(color) => color.statusError}>
+          {errorMessage}
+        </Typography>
+      </Styled.Box>
+    );
   }
 
   return (

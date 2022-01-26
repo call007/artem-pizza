@@ -3,15 +3,15 @@ import { createMemoryHistory } from "history";
 import { Provider as ReduxProvider } from "react-redux";
 import { MemoryRouter, Router } from "react-router";
 import { СheckoutSuccess } from ".";
-import { mockStore } from "../../mocks/mockStore";
-import { store } from "../../store";
+import { mockStore } from "../../../mocks/mockStore";
+import { store } from "../../../store";
 
 describe("СheckoutSuccess", () => {
   it("renders correctly", async () => {
     const { container } = render(
       <MemoryRouter>
         <ReduxProvider store={mockStore}>
-          <СheckoutSuccess />
+          <СheckoutSuccess price={400} />
         </ReduxProvider>
       </MemoryRouter>
     );
@@ -28,7 +28,7 @@ describe("СheckoutSuccess", () => {
       render(
         <ReduxProvider store={store}>
           <Router history={history}>
-            <СheckoutSuccess />
+            <СheckoutSuccess price={400} />
           </Router>
         </ReduxProvider>
       );

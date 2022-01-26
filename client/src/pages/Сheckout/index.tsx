@@ -1,29 +1,33 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router";
 import { postOrder } from "../../api";
 import { PATH } from "../../consts";
 import { useMediaPhone } from "../../hooks";
 import { getPizza, getPizzaPrice } from "../../state/order/selectors";
-import { userSlice } from "../../state/user/slice";
-import { Button, Header, Wrapper } from "../../ui-kit";
+import { Wrapper } from "../../ui-kit";
+import { CheckoutHeader } from "./CheckoutHeader";
 import { OrderPreview } from "./OrderPreview";
 import { OrderSummary } from "./OrderSummary";
 import * as Styled from "./styles";
 import { FormValues, СheckoutForm } from "./СheckoutForm";
+import { СheckoutSuccess } from "./СheckoutSuccess";
 
 export function Сheckout() {
-  const history = useHistory();
-  const dispatch = useDispatch();
   const pizza = useSelector(getPizza);
   const price = useSelector(getPizzaPrice);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<Error>();
   const [cardNumber, setCardNumber] = useState<string>();
+  const [isCeckoutSuccess, setIsCeckoutSuccess] = useState(false);
   const isPhone = useMediaPhone();
 
   if (!price) {
     return <Redirect to={PATH.PizzaConfigurator} />;
+  }
+
+  if (isCeckoutSuccess) {
+    return <СheckoutSuccess price={price} cardNumber={cardNumber} />;
   }
 
   const handleSubmit = (data: FormValues) => {
@@ -43,20 +47,17 @@ export function Сheckout() {
     postOrder(orderData)
       .then(() => {
         setIsLoading(false);
-        dispatch(userSlice.actions.setIsCheckoutSuccess(true));
-        history.push(PATH.CheckoutSuccess);
+        setIsCeckoutSuccess(true);
       })
       .catch((error) => {
         setIsLoading(false);
-        setError(error);
+        setError(new Error(error));
       });
   };
 
   return (
     <>
-      <Header title="Оформление заказа">
-        <Button to={PATH.PizzaConfigurator} view="ghost" icon="error" />
-      </Header>
+      <CheckoutHeader />
 
       <Wrapper size="lg" as="main">
         <Styled.Container>
@@ -69,14 +70,19 @@ export function Сheckout() {
 
           <Styled.Aside>
             <OrderPreview price={price} cardNumber={cardNumber} />
-            {!isPhone && <OrderSummary isLoading={isLoading} />}
+            {!isPhone && (
+              <OrderSummary
+                isLoading={isLoading}
+                errorMessage={error?.message}
+              />
+            )}
           </Styled.Aside>
         </Styled.Container>
-
-        {error && <p style={{ color: "red" }}>{error.message}</p>}
       </Wrapper>
 
-      {isPhone && <OrderSummary isLoading={isLoading} />}
+      {isPhone && (
+        <OrderSummary isLoading={isLoading} errorMessage={error?.message} />
+      )}
     </>
   );
 }
