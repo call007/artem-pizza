@@ -23,9 +23,9 @@ describe("getIsLoading", () => {
 describe("getError", () => {
   it("returns ingredients property 'error' from the state", () => {
     const state: RootState = { ...mockState };
-    state.ingredients.error = new Error("Some error");
+    state.ingredients.errorMessage = "Some error";
 
-    expect(getIngredientsError(state)).toEqual(new Error("Some error"));
+    expect(getIngredientsError(state)).toEqual("Some error");
   });
 });
 
