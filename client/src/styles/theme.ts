@@ -69,7 +69,7 @@ export const theme = {
   media: {
     all: "(min-width: 0px)",
     desktop: "(min-width: 51.875em)", // 830px
-    tablet: "(max-width: 51.813em)", // 829px
+    tablet: "(min-width: 48em) and (max-width: 51.813em)", // 768px and 829px
     phone: "(max-width: 47.938em)", // 767px
     retina: "(-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi)",
   },

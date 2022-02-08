@@ -37,7 +37,15 @@ export function LogIn() {
         <Plate>
           <Styled.PlateWrapper>
             {isAuthorized ? (
-              <Typography>Вы успешно авторизовались.</Typography>
+              <>
+                <Typography>Вы успешно авторизовались.</Typography>
+
+                <Styled.Footer>
+                  <Button view="secondary" to={PATH.Orders}>
+                    Мои заказы
+                  </Button>
+                </Styled.Footer>
+              </>
             ) : (
               <>
                 <LogInForm onFormSubmit={handleSubmit} />

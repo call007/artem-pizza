@@ -17,7 +17,7 @@ export function LogInForm({ onFormSubmit }: Props) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<FormValues>({ mode: "onSubmit" });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => onFormSubmit?.(data);
 

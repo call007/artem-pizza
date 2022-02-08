@@ -14,7 +14,7 @@ describe("СheckoutSuccess", () => {
       <MemoryRouter>
         <ReduxProvider store={mockStore}>
           <ThemeProvider theme={theme}>
-            <СheckoutSuccess price={400} />
+            <СheckoutSuccess price={400} date="21 октября 2020, 13:40" />
           </ThemeProvider>
         </ReduxProvider>
       </MemoryRouter>
@@ -33,7 +33,7 @@ describe("СheckoutSuccess", () => {
         <ReduxProvider store={store}>
           <Router history={history}>
             <ThemeProvider theme={theme}>
-              <СheckoutSuccess price={400} />
+              <СheckoutSuccess price={400} date="21 октября 2020, 13:40" />
             </ThemeProvider>
           </Router>
         </ReduxProvider>

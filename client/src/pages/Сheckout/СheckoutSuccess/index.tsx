@@ -5,10 +5,15 @@ import * as Styled from "./styles";
 
 interface СheckoutSuccessProps {
   price: number;
+  date: string;
   cardNumber?: string;
 }
 
-export function СheckoutSuccess({ price, cardNumber }: СheckoutSuccessProps) {
+export function СheckoutSuccess({
+  price,
+  cardNumber,
+  date,
+}: СheckoutSuccessProps) {
   return (
     <>
       <CheckoutHeader />
@@ -37,7 +42,7 @@ export function СheckoutSuccess({ price, cardNumber }: СheckoutSuccessProps) {
           </Typography>
         </Styled.Container>
 
-        <OrderPreview price={price} cardNumber={cardNumber} />
+        <OrderPreview price={price} cardNumber={cardNumber} date={date} />
       </Wrapper>
     </>
   );

@@ -1,26 +1,39 @@
 import styled, { css } from "styled-components";
+import { OrderCardSize } from ".";
 
 export const PlateWrapper = styled.div`
   padding: ${(props) => props.theme.space.base};
 `;
 
-export const Ingredients = styled.p(
-  ({ theme }) => css`
+export const Header = styled.div`
+  display: flex;
+  margin-bottom: ${(props) => props.theme.space.base};
+
+  & > * + * {
+    margin-left: ${(props) => props.theme.space.base};
+  }
+`;
+
+type IngredientsBoxProps = {
+  size: OrderCardSize;
+};
+
+export const IngredientsBox = styled.div<IngredientsBoxProps>(
+  ({ theme, size }) => css`
     margin-top: ${theme.space.xxs};
-    font-size: ${theme.typography.fontSize.xs};
-    line-height: ${theme.typography.lineHeight.xs};
-    color: ${theme.colors.gray600};
+
+    ${size === "base" &&
+    css`
+      @media ${theme.media.desktop}, ${theme.media.tablet} {
+        margin-top: ${theme.space.xs};
+      }
+    `};
   `
 );
 
-export const Price = styled.span(
-  ({ theme }) => css`
-    margin-right: ${theme.space.base};
-    font-weight: ${theme.typography.fontWeight.medium};
-    font-size: ${theme.typography.fontSize.sm};
-    line-height: ${theme.typography.lineHeight.sm};
-  `
-);
+export const PriceBox = styled.div`
+  margin-right: ${(props) => props.theme.space.base};
+`;
 
 export const Footer = styled.div`
   display: flex;

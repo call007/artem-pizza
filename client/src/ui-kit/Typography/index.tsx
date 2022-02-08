@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
+import { useTheme } from "styled-components";
 import { useMediaProp } from "../../hooks";
-import { theme } from "../../styles";
 import { MediaProp, TypographySize, TypographyWeight } from "../../types";
 import { Theme } from "../../types/Theme";
 import * as Styled from "./styles";
@@ -19,6 +19,7 @@ export const Typography = forwardRef<
   TypographyProps
 >(({ children, size = "base", component, color, ...restProps }, ref) => {
   const mediaSize = useMediaProp(size);
+  const theme = useTheme();
 
   return (
     <Styled.Container

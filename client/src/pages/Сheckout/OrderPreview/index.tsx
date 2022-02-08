@@ -11,10 +11,11 @@ import {
 
 interface OrderPreviewProps {
   price: number;
+  date: string;
   cardNumber?: string;
 }
 
-export function OrderPreview({ price, cardNumber }: OrderPreviewProps) {
+export function OrderPreview({ price, cardNumber, date }: OrderPreviewProps) {
   const pizza = useSelector(getPizza);
 
   const size = useSelector(getIngredientsByCategory(Category.Size));
@@ -40,6 +41,7 @@ export function OrderPreview({ price, cardNumber }: OrderPreviewProps) {
   return (
     <OrderCard
       title="Твоя пицца"
+      date={date}
       price={price}
       cardNumber={cardNumber}
       ingredients={`${pizzaSize} ${pizzaDough} • ${pizzaSauces} соус ${pizzaCheese} ${pizzaVegetables} ${pizzaMeat}`}

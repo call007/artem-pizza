@@ -66,6 +66,6 @@ describe("App navigation", () => {
     const { history, container } = renderApp();
     history.push("/some/bad/route");
 
-    expect(container.innerHTML).toMatch("404 - page not found");
+    expect(container.innerHTML).toMatch("404 - страница не найдена");
   });
 });

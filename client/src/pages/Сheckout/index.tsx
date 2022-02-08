@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import { postOrder } from "../../api";
@@ -6,6 +6,7 @@ import { PATH } from "../../consts";
 import { useMediaPhone } from "../../hooks";
 import { getPizza, getPizzaPrice } from "../../state/order/selectors";
 import { Wrapper } from "../../ui-kit";
+import { getDateNow } from "../../utils";
 import { CheckoutHeader } from "./CheckoutHeader";
 import { OrderPreview } from "./OrderPreview";
 import { OrderSummary } from "./OrderSummary";
@@ -21,19 +22,33 @@ export function Сheckout() {
   const [cardNumber, setCardNumber] = useState<string>();
   const [isCeckoutSuccess, setIsCeckoutSuccess] = useState(false);
   const isPhone = useMediaPhone();
+  const [date, setDate] = useState<string>(getDateNow());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDate(getDateNow());
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   if (!price) {
     return <Redirect to={PATH.PizzaConfigurator} />;
   }
 
   if (isCeckoutSuccess) {
-    return <СheckoutSuccess price={price} cardNumber={cardNumber} />;
+    return (
+      <СheckoutSuccess price={price} cardNumber={cardNumber} date={date} />
+    );
   }
 
   const handleSubmit = (data: FormValues) => {
     setIsLoading(true);
 
     const orderData = {
+      date,
       name: data.name,
       address: `${data.address}, кв. ${data.apartment}, подъезд ${data.entrance}, этаж ${data.floor}`,
       card_number: data.card_number,
@@ -69,7 +84,7 @@ export function Сheckout() {
           </Styled.Content>
 
           <Styled.Aside>
-            <OrderPreview price={price} cardNumber={cardNumber} />
+            <OrderPreview price={price} cardNumber={cardNumber} date={date} />
             {!isPhone && (
               <OrderSummary
                 isLoading={isLoading}

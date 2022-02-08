@@ -7,5 +7,6 @@ export type Order = {
   price: number;
   sauce: string;
   size: number;
+  date: string;
   id?: string;
 };

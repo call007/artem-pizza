@@ -82,6 +82,8 @@ export const Container = styled.button<ContainerProps>(
   ({ theme, size, view, isDisabled, isLoading, isLong }) => css`
     ${mixins.buttonReset};
     position: relative;
+    display: inline-block;
+    vertical-align: middle;
     width: ${isLong && "100%"};
     height: ${templates.all[size].height};
     padding: ${templates.all[size].padding};

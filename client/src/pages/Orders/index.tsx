@@ -2,8 +2,8 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { useMediaPhone } from "../../hooks";
 import { getIsAuthorized } from "../../state/user/selectors";
-import { Button, Header } from "../../ui-kit";
-import { List } from "./List";
+import { Button, Header, Wrapper } from "../../ui-kit";
+import { OrderList } from "./OrderList";
 
 export function Orders() {
   const history = useHistory();
@@ -22,7 +22,9 @@ export function Orders() {
         </Button>
       </Header>
 
-      <List />
+      <Wrapper size="sm">
+        <OrderList />
+      </Wrapper>
     </>
   );
 }
