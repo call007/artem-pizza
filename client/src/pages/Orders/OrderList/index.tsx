@@ -53,7 +53,7 @@ export function OrderList() {
       <>
         {[1, 2, 3].map((item) => (
           <Styled.Item key={item}>
-            <OrderCard size="base" isLoading={true} />
+            <OrderCard size="base" />
           </Styled.Item>
         ))}
       </>

@@ -15,7 +15,6 @@ interface OrderCardProps {
   ingredients?: string;
   cardNumber?: string;
   size?: OrderCardSize;
-  isLoading?: boolean;
 }
 
 export function OrderCard({
@@ -25,7 +24,6 @@ export function OrderCard({
   ingredients,
   cardNumber,
   size = "sm",
-  isLoading,
 }: OrderCardProps) {
   const [paymentSystem, setPaymentSystem] = useState<PaymentSystem>();
   const [last4DigitsOfPaymentSystem, setLast4DigitsOfPaymentSystem] =
@@ -48,9 +46,9 @@ export function OrderCard({
           <Typography
             size={size === "base" ? { all: "base", phone: "xs" } : "xs"}
             color={(color) => color.gray400}
-            component="span"
+            as={Styled.HeaderItem}
           >
-            {isLoading ? <TypographySkeleton width="9.375rem" /> : date}
+            {date ?? <TypographySkeleton width="9.375rem" />}
           </Typography>
         </Styled.Header>
 
@@ -59,7 +57,7 @@ export function OrderCard({
           weight="medium"
           component="h2"
         >
-          {isLoading ? <TypographySkeleton width="70%" /> : title}
+          {title ?? <TypographySkeleton width="70%" />}
         </Typography>
 
         <Styled.IngredientsBox size={size}>
@@ -67,11 +65,7 @@ export function OrderCard({
             size={size === "base" ? { all: "sm", phone: "xs" } : "xs"}
             color={(color) => color.gray600}
           >
-            {isLoading || !ingredients ? (
-              <TypographySkeleton width="90%" />
-            ) : (
-              ingredients
-            )}
+            {ingredients ?? <TypographySkeleton width="90%" />}
           </Typography>
         </Styled.IngredientsBox>
 
@@ -81,11 +75,7 @@ export function OrderCard({
               size={size === "base" ? { all: "base", phone: "sm" } : "sm"}
               weight="bold"
             >
-              {isLoading ? (
-                <TypographySkeleton width="6.25rem" />
-              ) : (
-                `${price} руб`
-              )}
+              {price ? `${price} руб` : <TypographySkeleton width="6.25rem" />}
             </Typography>
           </Styled.PriceBox>
 
@@ -95,6 +85,7 @@ export function OrderCard({
               aria-label={PaymentSystem.Mastercard}
             />
           )}
+
           {paymentSystem === PaymentSystem.Visa && (
             <Styled.PaymentIcon as={VisaIcon} aria-label={PaymentSystem.Visa} />
           )}

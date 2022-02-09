@@ -8,8 +8,10 @@ export const PlateWrapper = styled.div`
 export const Header = styled.div`
   display: flex;
   margin-bottom: ${(props) => props.theme.space.base};
+`;
 
-  & > * + * {
+export const HeaderItem = styled.span`
+  &:not(:first-child) {
     margin-left: ${(props) => props.theme.space.base};
   }
 `;
