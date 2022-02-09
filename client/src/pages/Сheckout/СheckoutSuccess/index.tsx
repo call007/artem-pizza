@@ -24,15 +24,13 @@ export function СheckoutSuccess({
             <SvgIcon src="check" size={35} />
           </Styled.SuccessIcon>
 
-          <Styled.TitleBox>
-            <Typography
-              size={{ all: "xl", phone: "lg" }}
-              weight="medium"
-              component="h2"
-            >
-              Спасибо за заказ!
-            </Typography>
-          </Styled.TitleBox>
+          <Typography
+            size={{ all: "xl", phone: "lg" }}
+            weight="medium"
+            as={Styled.Title}
+          >
+            Спасибо за заказ!
+          </Typography>
 
           <Typography
             size={{ all: "lg", phone: "base" }}

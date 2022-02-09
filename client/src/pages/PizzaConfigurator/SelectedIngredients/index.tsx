@@ -26,21 +26,20 @@ export function SelectedIngredients({ isLoading }: SelectedIngredientsProps) {
 
   return (
     <>
-      <Styled.TitleBox>
-        <Typography
-          size={{ all: "sm", phone: "xs" }}
-          color={(color) => color.gray600}
-        >
-          {isLoading ? (
-            <TypographySkeleton width="9.063rem" />
-          ) : (
-            <>
-              {getIngredient(pizza.size, size)?.name}{" "}
-              {getPizzaDoughText(getIngredient(pizza.dough, dough)?.name)}
-            </>
-          )}
-        </Typography>
-      </Styled.TitleBox>
+      <Typography
+        size={{ all: "sm", phone: "xs" }}
+        color={(color) => color.gray600}
+        as={Styled.Box}
+      >
+        {isLoading ? (
+          <TypographySkeleton width="9.063rem" />
+        ) : (
+          <>
+            {getIngredient(pizza.size, size)?.name}{" "}
+            {getPizzaDoughText(getIngredient(pizza.dough, dough)?.name)}
+          </>
+        )}
+      </Typography>
 
       <Typography
         size={{ all: "sm", phone: "xs" }}

@@ -43,14 +43,13 @@ export function OrderSummary({ isLoading, errorMessage }: OrderSummaryProps) {
       </Button>
 
       {errorMessage && (
-        <Styled.ErrorBox>
-          <Typography
-            size={{ all: "base", phone: "sm" }}
-            color={(color) => color.statusError}
-          >
-            {errorMessage}
-          </Typography>
-        </Styled.ErrorBox>
+        <Typography
+          size={{ all: "base", phone: "sm" }}
+          color={(color) => color.statusError}
+          as={Styled.Error}
+        >
+          {errorMessage}
+        </Typography>
       )}
     </Styled.Container>
   );

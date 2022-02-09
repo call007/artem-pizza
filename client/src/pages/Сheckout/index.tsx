@@ -85,6 +85,7 @@ export function Сheckout() {
 
           <Styled.Aside>
             <OrderPreview price={price} cardNumber={cardNumber} date={date} />
+
             {!isPhone && (
               <OrderSummary
                 isLoading={isLoading}

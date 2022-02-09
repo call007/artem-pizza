@@ -11,6 +11,7 @@ export interface ButtonProps extends ButtonOrAnchorHTMLAttributes {
   size?: ButtonSize;
   icon?: SvgSrc;
   to?: PATH;
+  as?: ElementType;
   isDisabled?: boolean;
   isLoading?: boolean;
   isLong?: boolean;
@@ -71,6 +72,7 @@ export const Button = forwardRef<
                 <SvgIcon src={icon} />
               </Styled.Icon>
             )}
+
             {children && <Styled.Text>{children}</Styled.Text>}
           </>
         )}

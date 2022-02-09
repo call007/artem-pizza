@@ -39,25 +39,33 @@ export function SignUp() {
       </Header>
 
       <Wrapper size="sm">
-        <Plate>
-          <Styled.PlateWrapper>
-            {isVisibleNote ? (
+        <Plate as={Styled.Plate}>
+          {isVisibleNote && (
+            <>
               <Typography>
                 Вы успешно зарегистрировались и автоматически авторизовались
               </Typography>
-            ) : (
-              <>
-                <SignUpForm onFormSubmit={handleSubmit} />
 
-                <Styled.Footer>
-                  <Typography>
-                    Если вы уже зарегистрированы{" "}
-                    <Link to={PATH.Login}>авторизуйтесь</Link>
-                  </Typography>
-                </Styled.Footer>
-              </>
-            )}
-          </Styled.PlateWrapper>
+              <Styled.Footer>
+                <Button view="secondary" to={PATH.PizzaConfigurator}>
+                  На главную
+                </Button>
+              </Styled.Footer>
+            </>
+          )}
+
+          {!isVisibleNote && (
+            <>
+              <SignUpForm onFormSubmit={handleSubmit} />
+
+              <Styled.Footer>
+                <Typography>
+                  Если вы уже зарегистрированы{" "}
+                  <Link to={PATH.Login}>авторизуйтесь</Link>
+                </Typography>
+              </Styled.Footer>
+            </>
+          )}
         </Plate>
       </Wrapper>
     </>

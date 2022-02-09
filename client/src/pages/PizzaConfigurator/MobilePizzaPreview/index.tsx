@@ -62,7 +62,7 @@ export function MobilePizzaPreview({ isLoading }: MobilePizzaPreviewProps) {
         type="submit"
         form="configurator-form"
         size="large"
-        isLoading={isLoading}
+        isLoading={!price}
         isLong={true}
       >
         Заказать за {price} руб

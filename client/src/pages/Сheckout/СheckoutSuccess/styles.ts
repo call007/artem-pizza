@@ -35,6 +35,6 @@ export const SuccessIcon = styled.div(
   `
 );
 
-export const TitleBox = styled.div`
+export const Title = styled.h2`
   margin-bottom: ${(props) => props.theme.space.xs};
 `;

@@ -28,29 +28,26 @@ export function PizzaPreview({ isLoading }: PizzaPreviewProps) {
         <Pizza />
       </Styled.Pizza>
 
-      <Styled.TitleBox>
-        <Typography
-          size={{ all: "xl", phone: "lg" }}
-          weight="medium"
-          component="h2"
-        >
-          {isLoading ? <TypographySkeleton width="8.125rem" /> : "Твоя пицца"}
-        </Typography>
-      </Styled.TitleBox>
+      <Typography
+        size={{ all: "xl", phone: "lg" }}
+        weight="medium"
+        as={Styled.Title}
+      >
+        {isLoading ? <TypographySkeleton width="8.125rem" /> : "Твоя пицца"}
+      </Typography>
 
       <SelectedIngredients isLoading={isLoading} />
 
       {!isPhone && (
-        <Styled.ButtonBox>
-          <Button
-            type="submit"
-            form="configurator-form"
-            size="large"
-            isLoading={isLoading || !price}
-          >
-            Заказать за {price} руб
-          </Button>
-        </Styled.ButtonBox>
+        <Button
+          type="submit"
+          form="configurator-form"
+          size="large"
+          isLoading={!price}
+          as={Styled.Button}
+        >
+          Заказать за {price} руб
+        </Button>
       )}
     </>
   );

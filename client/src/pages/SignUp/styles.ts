@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PlateWrapper = styled.div`
+export const Plate = styled.div`
   padding: ${(props) => props.theme.space.xl};
 
   @media ${({ theme }) => theme.media.phone} {

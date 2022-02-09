@@ -12,10 +12,10 @@ export const Pizza = styled.div`
   }
 `;
 
-export const TitleBox = styled.div`
+export const Title = styled.h2`
   margin-bottom: ${(props) => props.theme.space.xs};
 `;
 
-export const ButtonBox = styled.div`
+export const Button = styled.button`
   margin-top: ${(props) => props.theme.space.xxl};
 `;

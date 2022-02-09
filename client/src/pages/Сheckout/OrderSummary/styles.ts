@@ -48,6 +48,6 @@ export const Total = styled.div(
   `
 );
 
-export const ErrorBox = styled.div`
+export const Error = styled.p`
   margin-top: ${(props) => props.theme.space.sm};
 `;

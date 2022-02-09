@@ -34,31 +34,31 @@ export function LogIn() {
       </Header>
 
       <Wrapper size="sm">
-        <Plate>
-          <Styled.PlateWrapper>
-            {isAuthorized ? (
-              <>
-                <Typography>Вы успешно авторизовались.</Typography>
+        <Plate as={Styled.Plate}>
+          {isAuthorized && (
+            <>
+              <Typography>Вы успешно авторизовались.</Typography>
 
-                <Styled.Footer>
-                  <Button view="secondary" to={PATH.Orders}>
-                    Мои заказы
-                  </Button>
-                </Styled.Footer>
-              </>
-            ) : (
-              <>
-                <LogInForm onFormSubmit={handleSubmit} />
+              <Styled.Footer>
+                <Button view="secondary" to={PATH.Orders}>
+                  Мои заказы
+                </Button>
+              </Styled.Footer>
+            </>
+          )}
 
-                <Styled.Footer>
-                  <Typography>
-                    Если вы не зарегистрированы{" "}
-                    <Link to={PATH.Signup}>пройдите регистрацию</Link>
-                  </Typography>
-                </Styled.Footer>
-              </>
-            )}
-          </Styled.PlateWrapper>
+          {!isAuthorized && (
+            <>
+              <LogInForm onFormSubmit={handleSubmit} />
+
+              <Styled.Footer>
+                <Typography>
+                  Если вы не зарегистрированы{" "}
+                  <Link to={PATH.Signup}>пройдите регистрацию</Link>
+                </Typography>
+              </Styled.Footer>
+            </>
+          )}
         </Plate>
       </Wrapper>
     </>

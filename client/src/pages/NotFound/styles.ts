@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PlateWrapper = styled.div`
+export const Plate = styled.div`
   padding: ${(props) => props.theme.space.xl};
   text-align: center;
 
@@ -9,11 +9,11 @@ export const PlateWrapper = styled.div`
   }
 `;
 
-export const TitleBox = styled.div`
+export const Title = styled.h1`
   margin-bottom: ${(props) => props.theme.space.xs};
 `;
 
-export const SubtitleBox = styled.div`
+export const Subtitle = styled.div`
   margin-bottom: ${(props) => props.theme.space.base};
 
   @media ${({ theme }) => theme.media.phone} {

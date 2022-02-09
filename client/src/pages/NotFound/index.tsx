@@ -17,26 +17,22 @@ export function NotFound() {
       </Header>
 
       <Wrapper size="sm" as="main">
-        <Plate>
-          <Styled.PlateWrapper>
-            <Styled.TitleBox>
-              <Typography
-                size={{ all: "xxl", phone: "xl" }}
-                weight="bold"
-                component="h1"
-              >
-                404 - страница не найдена
-              </Typography>
-            </Styled.TitleBox>
+        <Plate as={Styled.Plate}>
+          <Typography
+            size={{ all: "xxl", phone: "xl" }}
+            weight="bold"
+            as={Styled.Title}
+          >
+            404 - страница не найдена
+          </Typography>
 
-            <Styled.SubtitleBox>
-              <Typography>Такая страница больше не существует.</Typography>
-            </Styled.SubtitleBox>
+          <Typography as={Styled.Subtitle}>
+            Такая страница больше не существует.
+          </Typography>
 
-            <Button view="secondary" to={PATH.PizzaConfigurator}>
-              На главную
-            </Button>
-          </Styled.PlateWrapper>
+          <Button view="secondary" to={PATH.PizzaConfigurator}>
+            На главную
+          </Button>
         </Plate>
       </Wrapper>
     </>
