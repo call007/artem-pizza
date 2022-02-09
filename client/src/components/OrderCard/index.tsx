@@ -40,66 +40,63 @@ export function OrderCard({
   }, [cardNumber]);
 
   return (
-    <Plate as="section">
-      <Styled.PlateWrapper>
-        <Styled.Header>
-          <Typography
-            size={size === "base" ? { all: "base", phone: "xs" } : "xs"}
-            color={(color) => color.gray400}
-            as={Styled.HeaderItem}
-          >
-            {date ?? <TypographySkeleton width="9.375rem" />}
-          </Typography>
-        </Styled.Header>
-
+    <Plate as={Styled.Plate}>
+      <Styled.Header>
         <Typography
-          size={size === "base" ? { all: "lg", phone: "base" } : "base"}
-          weight="medium"
-          component="h2"
+          size={size === "base" ? { all: "base", phone: "xs" } : "xs"}
+          color={(color) => color.gray400}
+          as={Styled.HeaderItem}
         >
-          {title ?? <TypographySkeleton width="70%" />}
+          {date ?? <TypographySkeleton width="9.375rem" />}
+        </Typography>
+      </Styled.Header>
+
+      <Typography
+        size={size === "base" ? { all: "lg", phone: "base" } : "base"}
+        weight="medium"
+        component="h2"
+      >
+        {title ?? <TypographySkeleton width="70%" />}
+      </Typography>
+
+      <Styled.IngredientsBox size={size}>
+        <Typography
+          size={size === "base" ? { all: "sm", phone: "xs" } : "xs"}
+          color={(color) => color.gray600}
+        >
+          {ingredients ?? <TypographySkeleton width="90%" />}
+        </Typography>
+      </Styled.IngredientsBox>
+
+      <Styled.Footer>
+        <Typography
+          size={size === "base" ? { all: "base", phone: "sm" } : "sm"}
+          weight="bold"
+          as={Styled.Price}
+        >
+          {price ? `${price} руб` : <TypographySkeleton width="6.25rem" />}
         </Typography>
 
-        <Styled.IngredientsBox size={size}>
+        {paymentSystem === PaymentSystem.Mastercard && (
+          <Styled.PaymentIcon
+            as={MasterCardIcon}
+            aria-label={PaymentSystem.Mastercard}
+          />
+        )}
+
+        {paymentSystem === PaymentSystem.Visa && (
+          <Styled.PaymentIcon as={VisaIcon} aria-label={PaymentSystem.Visa} />
+        )}
+
+        {last4DigitsOfPaymentSystem && (
           <Typography
-            size={size === "base" ? { all: "sm", phone: "xs" } : "xs"}
-            color={(color) => color.gray600}
+            size={size === "base" ? { all: "base", phone: "sm" } : "sm"}
+            component="span"
           >
-            {ingredients ?? <TypographySkeleton width="90%" />}
+            {last4DigitsOfPaymentSystem}
           </Typography>
-        </Styled.IngredientsBox>
-
-        <Styled.Footer>
-          <Styled.PriceBox>
-            <Typography
-              size={size === "base" ? { all: "base", phone: "sm" } : "sm"}
-              weight="bold"
-            >
-              {price ? `${price} руб` : <TypographySkeleton width="6.25rem" />}
-            </Typography>
-          </Styled.PriceBox>
-
-          {paymentSystem === PaymentSystem.Mastercard && (
-            <Styled.PaymentIcon
-              as={MasterCardIcon}
-              aria-label={PaymentSystem.Mastercard}
-            />
-          )}
-
-          {paymentSystem === PaymentSystem.Visa && (
-            <Styled.PaymentIcon as={VisaIcon} aria-label={PaymentSystem.Visa} />
-          )}
-
-          {last4DigitsOfPaymentSystem && (
-            <Typography
-              size={size === "base" ? { all: "base", phone: "sm" } : "sm"}
-              component="span"
-            >
-              {last4DigitsOfPaymentSystem}
-            </Typography>
-          )}
-        </Styled.Footer>
-      </Styled.PlateWrapper>
+        )}
+      </Styled.Footer>
     </Plate>
   );
 }

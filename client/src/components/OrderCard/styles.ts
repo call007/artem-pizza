@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
 import { OrderCardSize } from ".";
 
-export const PlateWrapper = styled.div`
+export const Plate = styled.section`
   padding: ${(props) => props.theme.space.base};
 `;
 
-export const Header = styled.div`
+export const Header = styled.header`
   display: flex;
   margin-bottom: ${(props) => props.theme.space.base};
 `;
@@ -33,11 +33,11 @@ export const IngredientsBox = styled.div<IngredientsBoxProps>(
   `
 );
 
-export const PriceBox = styled.div`
+export const Price = styled.span`
   margin-right: ${(props) => props.theme.space.base};
 `;
 
-export const Footer = styled.div`
+export const Footer = styled.footer`
   display: flex;
   align-items: baseline;
   border-top: 1px dashed ${(props) => props.theme.colors.gray200};
