@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrders } from "../../../api";
 import { OrderCard } from "../../../components";
+import { PATH } from "../../../consts";
 import { getIngredientsByCategory } from "../../../state/ingredients/selectors";
 import { fetchIngredients } from "../../../state/ingredients/thunk";
 import { AppDispatch } from "../../../store";
 import { Category, Order } from "../../../types";
-import { Typography } from "../../../ui-kit";
+import { Typography, TypographyLink } from "../../../ui-kit";
 import {
   getIngredient,
   getIngredients,
@@ -51,8 +52,8 @@ export function OrderList() {
   if (isLoading) {
     return (
       <>
-        {[1, 2, 3].map((item) => (
-          <Styled.Item key={item}>
+        {Array.from({ length: 3 }, (value, index) => (
+          <Styled.Item key={index}>
             <OrderCard size="base" />
           </Styled.Item>
         ))}
@@ -86,8 +87,18 @@ export function OrderList() {
               date={order.date}
               title={order.name}
               price={order.price}
-              ingredients={dataIngredients ? ingredients : undefined}
+              ingredients={dataIngredients.length > 0 ? ingredients : undefined}
               cardNumber={order.card_number}
+              control={
+                <TypographyLink
+                  to={PATH.Checkout}
+                  size={{ all: "base", phone: "sm" }}
+                  weight="medium"
+                  icon="repeat"
+                >
+                  Повторить заказ
+                </TypographyLink>
+              }
             />
           </Styled.Item>
         );

@@ -1,4 +1,4 @@
-import { ElementType, forwardRef } from "react";
+import { ElementType } from "react";
 import { useTheme } from "styled-components";
 import { useMediaProp } from "../../hooks";
 import { MediaProp, TypographySize, TypographyWeight } from "../../types";
@@ -15,10 +15,14 @@ export interface TypographyProps
   color?: (color: Theme["colors"]) => string;
 }
 
-export const Typography = forwardRef<
-  HTMLParagraphElement | HTMLHeadingElement | HTMLSpanElement,
-  TypographyProps
->(({ children, size = "base", component, as, color, ...restProps }, ref) => {
+export function Typography({
+  children,
+  size = "base",
+  component,
+  as,
+  color,
+  ...restProps
+}: TypographyProps) {
   const mediaSize = useMediaProp(size);
   const theme = useTheme();
 
@@ -26,11 +30,10 @@ export const Typography = forwardRef<
     <Styled.Container
       as={component ?? as}
       size={mediaSize}
-      ref={ref}
       color={color?.(theme.colors)}
       {...restProps}
     >
       {children}
     </Styled.Container>
   );
-});
+}

@@ -15,6 +15,7 @@ interface OrderCardProps {
   ingredients?: string;
   cardNumber?: string;
   size?: OrderCardSize;
+  control?: JSX.Element;
 }
 
 export function OrderCard({
@@ -24,6 +25,7 @@ export function OrderCard({
   ingredients,
   cardNumber,
   size = "sm",
+  control,
 }: OrderCardProps) {
   const [paymentSystem, setPaymentSystem] = useState<PaymentSystem>();
   const [last4DigitsOfPaymentSystem, setLast4DigitsOfPaymentSystem] =
@@ -69,33 +71,37 @@ export function OrderCard({
       </Styled.IngredientsBox>
 
       <Styled.Footer>
-        <Typography
-          size={size === "base" ? { all: "base", phone: "sm" } : "sm"}
-          weight="bold"
-          as={Styled.Price}
-        >
-          {price ? `${price} руб` : <TypographySkeleton width="6.25rem" />}
-        </Typography>
-
-        {paymentSystem === PaymentSystem.Mastercard && (
-          <Styled.PaymentIcon
-            as={MasterCardIcon}
-            aria-label={PaymentSystem.Mastercard}
-          />
-        )}
-
-        {paymentSystem === PaymentSystem.Visa && (
-          <Styled.PaymentIcon as={VisaIcon} aria-label={PaymentSystem.Visa} />
-        )}
-
-        {last4DigitsOfPaymentSystem && (
+        <Styled.FooterSummary>
           <Typography
             size={size === "base" ? { all: "base", phone: "sm" } : "sm"}
-            component="span"
+            weight="bold"
+            as={Styled.Price}
           >
-            {last4DigitsOfPaymentSystem}
+            {price ? `${price} руб` : <TypographySkeleton width="6.25rem" />}
           </Typography>
-        )}
+
+          {paymentSystem === PaymentSystem.Mastercard && (
+            <Styled.PaymentIcon
+              as={MasterCardIcon}
+              aria-label={PaymentSystem.Mastercard}
+            />
+          )}
+
+          {paymentSystem === PaymentSystem.Visa && (
+            <Styled.PaymentIcon as={VisaIcon} aria-label={PaymentSystem.Visa} />
+          )}
+
+          {last4DigitsOfPaymentSystem && (
+            <Typography
+              size={size === "base" ? { all: "base", phone: "sm" } : "sm"}
+              component="span"
+            >
+              {last4DigitsOfPaymentSystem}
+            </Typography>
+          )}
+        </Styled.FooterSummary>
+
+        {control}
       </Styled.Footer>
     </Plate>
   );

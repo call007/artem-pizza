@@ -7,5 +7,6 @@ export { LazyImage } from "./LazyImage";
 export { Plate } from "./Plate";
 export { SvgIcon } from "./SvgIcon";
 export { Typography } from "./Typography";
+export { TypographyLink } from "./TypographyLink";
 export { TypographySkeleton } from "./TypographySkeleton";
 export { Wrapper } from "./Wrapper";

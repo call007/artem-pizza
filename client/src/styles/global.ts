@@ -11,7 +11,6 @@ export default createGlobalStyle`
 
   html {
     font-size: 1em;
-    line-height: 1.5;
     color: ${(props) => props.theme.colors.black};
     font-family: 'Nunito', sans-serif;
     -webkit-font-smoothing: antialiased;

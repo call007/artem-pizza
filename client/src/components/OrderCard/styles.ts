@@ -37,17 +37,28 @@ export const Price = styled.span`
   margin-right: ${(props) => props.theme.space.base};
 `;
 
-export const Footer = styled.footer`
-  display: flex;
-  align-items: baseline;
-  border-top: 1px dashed ${(props) => props.theme.colors.gray200};
-  margin-top: ${(props) => props.theme.space.base};
-  padding-top: ${(props) => props.theme.space.base};
-`;
+export const Footer = styled.footer(
+  ({ theme }) => css`
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border-top: 1px dashed ${theme.colors.gray200};
+    margin-top: ${theme.space.base};
+    padding-top: ${theme.space.base};
+  `
+);
 
 export const PaymentIcon = styled.svg`
   align-self: center;
   width: 1.5rem;
   height: 0.938rem;
   margin-right: ${(props) => props.theme.space.xxxs};
+`;
+
+export const FooterSummary = styled.div`
+  display: inherit;
+  align-items: inherit;
+  flex-grow: 1;
+  padding: ${(props) => props.theme.space.xxs} 0;
+  padding-right: ${(props) => props.theme.space.base};
 `;
