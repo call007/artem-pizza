@@ -35,7 +35,7 @@ export function ConfiguratorForm({
 
   const size = useSelector(getIngredientsByCategory(Category.Size));
   const dough = useSelector(getIngredientsByCategory(Category.Dough));
-  const sauces = useSelector(getIngredientsByCategory(Category.Sauces));
+  const sauce = useSelector(getIngredientsByCategory(Category.Sauce));
   const cheese = useSelector(getIngredientsByCategory(Category.Cheese));
   const meat = useSelector(getIngredientsByCategory(Category.Meat));
   const vegetables = useSelector(getIngredientsByCategory(Category.Vegetables));
@@ -44,7 +44,7 @@ export function ConfiguratorForm({
     defaultValues: {
       size: pizza.size,
       dough: pizza.dough,
-      sauces: pizza.sauces,
+      sauce: pizza.sauce,
       cheese: pizza.cheese,
       vegetables: pizza.vegetables,
       meat: pizza.meat,
@@ -108,7 +108,7 @@ export function ConfiguratorForm({
       <Styled.Box>
         <FieldsetRadioGroup
           title="Выберите соус"
-          dataIngredients={sauces}
+          dataIngredients={sauce}
           isVisiblePrice={false}
           register={register}
           isLoading={isLoading}

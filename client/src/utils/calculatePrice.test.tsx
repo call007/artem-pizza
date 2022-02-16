@@ -8,7 +8,7 @@ describe("calculatePrice", () => {
         {
           size: "30",
           dough: "lush",
-          sauces: "tomato",
+          sauce: "tomato",
           cheese: ["cheddar", "dor-blue", "mozarella"],
           vegetables: ["broccoli", "mushrooms", "olives"],
           meat: ["bacon", "chicken", "ham"],

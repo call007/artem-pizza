@@ -5,6 +5,7 @@ import { postOrder } from "../../api";
 import { PATH } from "../../consts";
 import { useMediaPhone } from "../../hooks";
 import { getPizza, getPizzaPrice } from "../../state/order/selectors";
+import { Order } from "../../types";
 import { Wrapper } from "../../ui-kit";
 import { getDateNow } from "../../utils";
 import { CheckoutHeader } from "./CheckoutHeader";
@@ -13,6 +14,8 @@ import { OrderSummary } from "./OrderSummary";
 import * as Styled from "./styles";
 import { FormValues, СheckoutForm } from "./СheckoutForm";
 import { СheckoutSuccess } from "./СheckoutSuccess";
+
+const DELIVERY_PRICE = 180;
 
 export function Сheckout() {
   const pizza = useSelector(getPizza);
@@ -47,16 +50,18 @@ export function Сheckout() {
   const handleSubmit = (data: FormValues) => {
     setIsLoading(true);
 
-    const orderData = {
+    const orderData: Order = {
       date,
       name: data.name,
       address: `${data.address}, кв. ${data.apartment}, подъезд ${data.entrance}, этаж ${data.floor}`,
       card_number: data.card_number,
       dough: pizza.dough,
       size: Number(pizza.size),
-      sauce: pizza.sauces,
-      ingredients: [...pizza.cheese, ...pizza.meat, ...pizza.vegetables],
-      price: price || 0,
+      sauce: pizza.sauce,
+      cheese: pizza.cheese,
+      meat: pizza.meat,
+      vegetables: pizza.vegetables,
+      price: price ? price + DELIVERY_PRICE : 0,
     };
 
     postOrder(orderData)
@@ -88,8 +93,10 @@ export function Сheckout() {
 
             {!isPhone && (
               <OrderSummary
+                price={price}
                 isLoading={isLoading}
                 errorMessage={error?.message}
+                deliveryPrice={DELIVERY_PRICE}
               />
             )}
           </Styled.Aside>
@@ -97,7 +104,12 @@ export function Сheckout() {
       </Wrapper>
 
       {isPhone && (
-        <OrderSummary isLoading={isLoading} errorMessage={error?.message} />
+        <OrderSummary
+          isLoading={isLoading}
+          errorMessage={error?.message}
+          price={price}
+          deliveryPrice={DELIVERY_PRICE}
+        />
       )}
     </>
   );

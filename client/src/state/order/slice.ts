@@ -10,7 +10,7 @@ const initialState: OrderState = {
   pizza: {
     size: "30",
     dough: "thin",
-    sauces: "tomato",
+    sauce: "tomato",
     cheese: ["cheddar"],
     vegetables: [],
     meat: [],

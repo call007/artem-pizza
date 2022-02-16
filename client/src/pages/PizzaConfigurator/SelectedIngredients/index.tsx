@@ -19,7 +19,7 @@ export function SelectedIngredients({ isLoading }: SelectedIngredientsProps) {
 
   const size = useSelector(getIngredientsByCategory(Category.Size));
   const dough = useSelector(getIngredientsByCategory(Category.Dough));
-  const sauces = useSelector(getIngredientsByCategory(Category.Sauces));
+  const sauce = useSelector(getIngredientsByCategory(Category.Sauce));
   const cheese = useSelector(getIngredientsByCategory(Category.Cheese));
   const meat = useSelector(getIngredientsByCategory(Category.Meat));
   const vegetables = useSelector(getIngredientsByCategory(Category.Vegetables));
@@ -49,7 +49,7 @@ export function SelectedIngredients({ isLoading }: SelectedIngredientsProps) {
           <TypographySkeleton width="11.25rem" />
         ) : (
           <>
-            {getIngredient(pizza.sauces, sauces)?.name} соус
+            {getIngredient(pizza.sauce, sauce)?.name} соус
             {getIngredients(pizza.cheese, cheese).map(
               (ingredient) => ` • ${ingredient.name}`
             )}

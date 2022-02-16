@@ -3,12 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOrders } from "../../../api";
 import { OrderCard } from "../../../components";
 import { PATH } from "../../../consts";
-import { getIngredientsByCategory } from "../../../state/ingredients/selectors";
+import {
+  getIngredients as selectorGetIngredients,
+  getIngredientsByCategory,
+} from "../../../state/ingredients/selectors";
 import { fetchIngredients } from "../../../state/ingredients/thunk";
+import { orderSlice } from "../../../state/order/slice";
 import { AppDispatch } from "../../../store";
-import { Category, Order } from "../../../types";
+import { Category, Order, Pizza } from "../../../types";
 import { Typography, TypographyLink } from "../../../ui-kit";
 import {
+  calculatePrice,
   getIngredient,
   getIngredients,
   getPizzaDoughText,
@@ -21,14 +26,14 @@ export function OrderList() {
   const [orders, setOrders] = useState<Order[]>([]);
   const dispatch = useDispatch<AppDispatch>();
 
+  const ingredients = useSelector(selectorGetIngredients);
+
   const size = useSelector(getIngredientsByCategory(Category.Size));
   const dough = useSelector(getIngredientsByCategory(Category.Dough));
-  const sauces = useSelector(getIngredientsByCategory(Category.Sauces));
+  const sauce = useSelector(getIngredientsByCategory(Category.Sauce));
   const cheese = useSelector(getIngredientsByCategory(Category.Cheese));
   const meat = useSelector(getIngredientsByCategory(Category.Meat));
   const vegetables = useSelector(getIngredientsByCategory(Category.Vegetables));
-
-  const dataIngredients = [...sauces, ...cheese, ...meat, ...vegetables];
 
   useEffect(() => {
     dispatch(fetchIngredients());
@@ -40,6 +45,20 @@ export function OrderList() {
       .catch((error) => setError(new Error(error)))
       .finally(() => setIsLoading(false));
   }, [dispatch]);
+
+  const handleRepeatOrderClick = (order: Order) => () => {
+    const pizza: Pizza = {
+      size: order.size.toString(),
+      dough: order.dough,
+      sauce: order.sauce,
+      cheese: order.cheese,
+      vegetables: order.vegetables,
+      meat: order.meat,
+    };
+
+    dispatch(orderSlice.actions.setPizza(pizza));
+    dispatch(orderSlice.actions.setPrice(calculatePrice(pizza, ingredients)));
+  };
 
   if (error) {
     return (
@@ -70,15 +89,19 @@ export function OrderList() {
           getIngredient(order.dough, dough)?.name
         );
 
-        const pizzaIngredients = getIngredients(
-          order.ingredients,
-          dataIngredients
-        ).map((ingredient) => ingredient.name);
+        const pizzaSauce = getIngredient(order.sauce, sauce)?.name;
 
-        const ingredients = [
-          `${pizzaSize} ${pizzaDough}`,
-          ...pizzaIngredients,
-        ].join(" • ");
+        const pizzaCheese = getIngredients(order.cheese, cheese)
+          .map((ingredient) => ` • ${ingredient.name}`)
+          .join("");
+
+        const pizzaVegetables = getIngredients(order.vegetables, vegetables)
+          .map((ingredient) => ` • ${ingredient.name}`)
+          .join("");
+
+        const pizzaMeat = getIngredients(order.meat, meat)
+          .map((ingredient) => ` • ${ingredient.name}`)
+          .join("");
 
         return (
           <Styled.Item key={order.id}>
@@ -86,8 +109,8 @@ export function OrderList() {
               size="base"
               date={order.date}
               title={order.name}
-              price={order.price}
-              ingredients={dataIngredients.length > 0 ? ingredients : undefined}
+              price={+order.price}
+              ingredients={`${pizzaSize} ${pizzaDough} • ${pizzaSauce} соус ${pizzaCheese} ${pizzaVegetables} ${pizzaMeat}`}
               cardNumber={order.card_number}
               control={
                 <TypographyLink
@@ -95,6 +118,7 @@ export function OrderList() {
                   size={{ all: "base", phone: "sm" }}
                   weight="medium"
                   icon="repeat"
+                  onClick={handleRepeatOrderClick(order)}
                 >
                   Повторить заказ
                 </TypographyLink>

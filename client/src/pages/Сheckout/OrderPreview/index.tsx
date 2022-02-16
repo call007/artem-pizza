@@ -20,20 +20,23 @@ export function OrderPreview({ price, cardNumber, date }: OrderPreviewProps) {
 
   const size = useSelector(getIngredientsByCategory(Category.Size));
   const dough = useSelector(getIngredientsByCategory(Category.Dough));
-  const sauces = useSelector(getIngredientsByCategory(Category.Sauces));
+  const sauce = useSelector(getIngredientsByCategory(Category.Sauce));
   const cheese = useSelector(getIngredientsByCategory(Category.Cheese));
   const meat = useSelector(getIngredientsByCategory(Category.Meat));
   const vegetables = useSelector(getIngredientsByCategory(Category.Vegetables));
 
   const pizzaSize = getIngredient(pizza.size, size)?.name;
   const pizzaDough = getPizzaDoughText(getIngredient(pizza.dough, dough)?.name);
-  const pizzaSauces = getIngredient(pizza.sauces, sauces)?.name;
+  const pizzaSauce = getIngredient(pizza.sauce, sauce)?.name;
+
   const pizzaCheese = getIngredients(pizza.cheese, cheese)
     .map((ingredient) => ` • ${ingredient.name}`)
     .join("");
+
   const pizzaVegetables = getIngredients(pizza.vegetables, vegetables)
     .map((ingredient) => ` • ${ingredient.name}`)
     .join("");
+
   const pizzaMeat = getIngredients(pizza.meat, meat)
     .map((ingredient) => ` • ${ingredient.name}`)
     .join("");
@@ -44,7 +47,7 @@ export function OrderPreview({ price, cardNumber, date }: OrderPreviewProps) {
       date={date}
       price={price}
       cardNumber={cardNumber}
-      ingredients={`${pizzaSize} ${pizzaDough} • ${pizzaSauces} соус ${pizzaCheese} ${pizzaVegetables} ${pizzaMeat}`}
+      ingredients={`${pizzaSize} ${pizzaDough} • ${pizzaSauce} соус ${pizzaCheese} ${pizzaVegetables} ${pizzaMeat}`}
     />
   );
 }

@@ -1,18 +1,19 @@
-import { useSelector } from "react-redux";
-import { getPizzaPrice } from "../../../state/order/selectors";
 import { Button, Typography } from "../../../ui-kit";
 import * as Styled from "./styles";
 
 interface OrderSummaryProps {
+  price: number;
+  deliveryPrice: number;
   isLoading?: boolean;
   errorMessage?: string;
 }
 
-const DELIVERY_PRICE = 180;
-
-export function OrderSummary({ isLoading, errorMessage }: OrderSummaryProps) {
-  const price = useSelector(getPizzaPrice);
-
+export function OrderSummary({
+  isLoading,
+  errorMessage,
+  price,
+  deliveryPrice,
+}: OrderSummaryProps) {
   return (
     <Styled.Container>
       <Styled.Dl>
@@ -22,13 +23,13 @@ export function OrderSummary({ isLoading, errorMessage }: OrderSummaryProps) {
 
       <Styled.Dl>
         <dt>Доставка</dt>
-        <dd>{DELIVERY_PRICE} руб</dd>
+        <dd>{deliveryPrice} руб</dd>
       </Styled.Dl>
 
       <Styled.Total>
         <Styled.Dl>
           <dt>К оплате</dt>
-          <dd>{price && price + DELIVERY_PRICE} руб</dd>
+          <dd>{price + deliveryPrice} руб</dd>
         </Styled.Dl>
       </Styled.Total>
 
@@ -39,7 +40,7 @@ export function OrderSummary({ isLoading, errorMessage }: OrderSummaryProps) {
         isLong={true}
         isLoading={isLoading}
       >
-        Оплатить {price} руб
+        Оплатить {price + deliveryPrice} руб
       </Button>
 
       {errorMessage && (
