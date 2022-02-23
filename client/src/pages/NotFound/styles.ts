@@ -1,22 +1,23 @@
 import styled from "styled-components";
+import { variables } from "../../styles";
 
 export const Plate = styled.div`
-  padding: ${(props) => props.theme.space.xl};
+  padding: ${variables.space.xl};
   text-align: center;
 
-  @media ${({ theme }) => theme.media.phone} {
-    padding: ${(props) => props.theme.space.base};
+  @media ${variables.media.phone} {
+    padding: ${variables.space.base};
   }
 `;
 
 export const Title = styled.h1`
-  margin-bottom: ${(props) => props.theme.space.xs};
+  margin-bottom: ${variables.space.xs};
 `;
 
 export const Subtitle = styled.div`
-  margin-bottom: ${(props) => props.theme.space.base};
+  margin-bottom: ${variables.space.base};
 
-  @media ${({ theme }) => theme.media.phone} {
-    margin-bottom: ${(props) => props.theme.space.sm};
+  @media ${variables.media.phone} {
+    margin-bottom: ${variables.space.sm};
   }
 `;

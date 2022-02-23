@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { variables } from "../../../../styles";
 import { LazyImage } from "../../../../ui-kit";
 
 type LabelProps = {
@@ -14,24 +15,24 @@ export const Label = styled.label<LabelProps>(
     vertical-align: top;
     flex-direction: column;
     width: 7rem;
-    margin-left: ${theme.space.base};
-    margin-top: ${theme.space.xl};
-    padding: ${theme.space.sm};
+    margin-left: ${variables.space.base};
+    margin-top: ${variables.space.xl};
+    padding: ${variables.space.sm};
     -webkit-tap-highlight-color: transparent;
     border: 2px solid ${isChecked ? theme.colors.primary : "transparent"};
     border-radius: 0.75rem;
     box-shadow: ${theme.shadow.outer.lg};
-    transition: border-color ${theme.transitionDuration};
+    transition: border-color ${variables.transitionDuration};
 
     &:hover {
       border-color: ${isChecked && theme.colors.primaryDark};
     }
 
-    @media ${theme.media.phone} {
+    @media ${variables.media.phone} {
       width: 6.5rem;
-      padding: ${theme.space.xs};
-      padding-bottom: calc(${theme.space.xs} + ${theme.space.xxxs});
-      margin-left: ${theme.space.xs};
+      padding: ${variables.space.xs};
+      padding-bottom: calc(${variables.space.xs} + ${variables.space.xxxs});
+      margin-left: ${variables.space.xs};
     }
   `
 );
@@ -39,10 +40,10 @@ export const Label = styled.label<LabelProps>(
 export const Footer = styled.span`
   display: flex;
   justify-content: space-between;
-  margin-top: ${(props) => props.theme.space.sm};
+  margin-top: ${variables.space.sm};
 
-  @media ${({ theme }) => theme.media.phone} {
-    margin-top: ${(props) => props.theme.space.xs};
+  @media ${variables.media.phone} {
+    margin-top: ${variables.space.xs};
   }
 `;
 
@@ -51,11 +52,11 @@ export const ThumbnailCover = styled.span`
   justify-content: center;
   align-items: flex-end;
   height: 3.75rem;
-  margin-bottom: ${(props) => props.theme.space.sm};
+  margin-bottom: ${variables.space.sm};
 
-  @media ${({ theme }) => theme.media.phone} {
+  @media ${variables.media.phone} {
     height: 3.125rem;
-    margin-bottom: ${(props) => props.theme.space.xs};
+    margin-bottom: ${variables.space.xs};
   }
 `;
 
@@ -64,7 +65,7 @@ export const Thumbnail = styled(LazyImage)`
   height: 5rem;
   object-fit: contain;
 
-  @media ${({ theme }) => theme.media.phone} {
+  @media ${variables.media.phone} {
     width: 4rem;
     height: 4rem;
   }

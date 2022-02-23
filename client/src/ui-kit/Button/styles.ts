@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { mixins, theme } from "../../styles";
+import { mixins, variables } from "../../styles";
 import { ButtonSize, ButtonView, Templates } from "./types";
 
 const templates: Templates = {
@@ -7,24 +7,24 @@ const templates: Templates = {
     base: {
       height: "3rem",
       padding: "0 1rem",
-      fontSize: theme.typography.fontSize.base,
+      fontSize: variables.typography.fontSize.base,
     },
     large: {
       height: "3.5rem",
       padding: "0 1.5rem",
-      fontSize: theme.typography.fontSize.lg,
+      fontSize: variables.typography.fontSize.lg,
     },
   },
   phone: {
     base: {
       height: "2.5rem",
       padding: "0 .75rem",
-      fontSize: theme.typography.fontSize.sm,
+      fontSize: variables.typography.fontSize.sm,
     },
     large: {
       height: "3rem",
       padding: "0 1rem",
-      fontSize: theme.typography.fontSize.base,
+      fontSize: variables.typography.fontSize.base,
     },
   },
 };
@@ -75,7 +75,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   height: 100%;
   text-align: center;
-  transition: opacity ${(props) => props.theme.transitionDuration};
+  transition: opacity ${variables.transitionDuration};
 `;
 
 export const Container = styled.button<ContainerProps>(
@@ -88,7 +88,7 @@ export const Container = styled.button<ContainerProps>(
     height: ${templates.all[size].height};
     padding: ${templates.all[size].padding};
     font-size: ${templates.all[size].fontSize};
-    font-weight: ${theme.typography.fontWeight.bold};
+    font-weight: ${variables.typography.fontWeight.bold};
     text-decoration: none;
     border-radius: 1rem;
 
@@ -115,7 +115,7 @@ export const Container = styled.button<ContainerProps>(
           }
         `};
 
-    @media ${theme.media.phone} {
+    @media ${variables.media.phone} {
       height: ${templates.phone[size].height};
       padding: ${templates.phone[size].padding};
       font-size: ${templates.phone[size].fontSize};
@@ -130,7 +130,7 @@ export const Icon = styled.div`
 
 export const Text = styled.div`
   &:not(:only-child) {
-    margin-left: ${(props) => props.theme.space.xs};
+    margin-left: ${variables.space.xs};
   }
 `;
 

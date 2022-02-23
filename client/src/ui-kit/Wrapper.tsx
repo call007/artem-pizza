@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { mixins } from "../styles";
+import styled from "styled-components";
+import { mixins, variables } from "../styles";
 
 type WrapperSize = "sm" | "base" | "lg";
 
@@ -18,11 +18,8 @@ export const Wrapper = styled.div<WrapperProps>`
   box-sizing: content-box;
   margin-left: auto;
   margin-right: auto;
-
-  ${(props) => css`
-    max-width: ${maxWidth[props.size ?? "base"]};
-    padding-left: ${props.theme.space.base};
-    padding-right: ${props.theme.space.base};
-    margin-bottom: ${props.theme.space.xxl};
-  `};
+  max-width: ${(props) => maxWidth[props.size ?? "base"]};
+  padding-left: ${variables.space.base};
+  padding-right: ${variables.space.base};
+  margin-bottom: ${variables.space.xxl};
 `;

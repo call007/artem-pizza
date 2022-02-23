@@ -1,16 +1,16 @@
 import styled, { css } from "styled-components";
-import { mixins } from "../../../styles";
+import { mixins, variables } from "../../../styles";
 
 export const Container = styled.div(
   ({ theme }) => css`
     overflow: hidden;
     position: sticky;
-    z-index: ${theme.zIndex.panel};
+    z-index: ${variables.zIndex.panel};
     bottom: 0;
     display: flex;
     flex-direction: column;
     min-width: 320px;
-    padding: ${theme.space.sm} ${theme.space.base};
+    padding: ${variables.space.sm} ${variables.space.base};
     background-color: ${theme.colors.white};
     box-shadow: ${theme.shadow.outer.panel};
   `
@@ -19,23 +19,23 @@ export const Container = styled.div(
 export const Wrapper = styled.div`
   ${mixins.fadeIn};
   display: flex;
-  margin-bottom: ${(props) => props.theme.space.base};
+  margin-bottom: ${variables.space.base};
 `;
 
 export const Summary = styled.div`
   flex-grow: 1;
-  margin-right: ${(props) => props.theme.space.xl};
+  margin-right: ${variables.space.xl};
 `;
 
 export const Box = styled.div`
-  margin-top: ${(props) => props.theme.space.xxs};
+  margin-top: ${variables.space.xxs};
 `;
 
 export const PizzaWrapper = styled.div`
   position: relative;
   flex-shrink: 0;
   width: 4rem;
-  margin-right: ${(props) => `-${props.theme.space.base}`};
+  margin-right: -${variables.space.base};
 `;
 
 export const Pizza = styled.div`

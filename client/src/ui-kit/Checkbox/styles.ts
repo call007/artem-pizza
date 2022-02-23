@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mixins } from "../../styles";
+import { mixins, variables } from "../../styles";
 
 export const Container = styled.div`
   display: inline-flex;
@@ -7,7 +7,7 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.label`
-  padding-left: ${(props) => props.theme.space.xs};
+  padding-left: ${variables.space.xs};
 `;
 
 export const Checkbox = styled.div`
@@ -21,7 +21,7 @@ export const Checkbox = styled.div`
   border: 2px solid ${(props) => props.theme.colors.gray200};
   border-radius: 0.25rem;
   transition-property: border-color, background-color;
-  transition-duration: ${(props) => props.theme.transitionDuration}; ;
+  transition-duration: ${variables.transitionDuration}; ;
 `;
 
 export const Input = styled.input`

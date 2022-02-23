@@ -1,4 +1,5 @@
 import { css, keyframes } from "styled-components";
+import { variables } from "..";
 
 const fadeInAnimation = keyframes`
   from {
@@ -7,6 +8,5 @@ const fadeInAnimation = keyframes`
 `;
 
 export const fadeIn = () => css`
-  animation: ${fadeInAnimation} ${(props) => props.theme.transitionDuration}
-    forwards;
+  animation: ${fadeInAnimation} ${variables.transitionDuration} forwards;
 `;

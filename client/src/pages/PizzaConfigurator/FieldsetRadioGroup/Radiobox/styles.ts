@@ -1,51 +1,49 @@
 import styled, { css } from "styled-components";
-import { mixins } from "../../../../styles";
+import { mixins, variables } from "../../../../styles";
 
 export const Container = styled.div`
   display: inline-block;
   vertical-align: top;
-  margin-left: calc(${(props) => props.theme.space.xxs} / 2);
+  margin-left: calc(${variables.space.xxs} / 2);
 `;
 
-export const Label = styled.label(
-  ({ theme }) => css`
-    user-select: none;
-    cursor: pointer;
-    display: block;
-    position: relative;
-    padding: ${theme.space.xs} ${theme.space.base};
-    color: transparent;
-    -webkit-tap-highlight-color: transparent;
-    font-size: ${theme.typography.fontSize.base};
-    font-weight: ${theme.typography.fontWeight.medium};
-    line-height: ${theme.typography.lineHeight.base};
-    border-radius: 0.75rem;
-    transition-property: color, background-color, box-shadow;
-    transition-duration: ${theme.transitionDuration};
+export const Label = styled.label`
+  user-select: none;
+  cursor: pointer;
+  display: block;
+  position: relative;
+  padding: ${variables.space.xs} ${variables.space.base};
+  color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  font-size: ${variables.typography.fontSize.base};
+  font-weight: ${variables.typography.fontWeight.medium};
+  line-height: ${variables.typography.lineHeight.base};
+  border-radius: 0.75rem;
+  transition-property: color, background-color, box-shadow;
+  transition-duration: ${variables.transitionDuration};
 
+  &:before {
+    content: attr(data-label);
+    position: absolute;
+    margin-left: 0.063em;
+    font-weight: ${variables.typography.fontWeight.normal};
+    color: ${(props) => props.theme.colors.gray600};
+    transition: inherit;
+  }
+
+  &:hover {
     &:before {
-      content: attr(data-label);
-      position: absolute;
-      margin-left: 0.063em;
-      font-weight: ${theme.typography.fontWeight.normal};
-      color: ${theme.colors.gray600};
-      transition: inherit;
+      color: ${(props) => props.theme.colors.primary};
     }
+  }
 
-    &:hover {
-      &:before {
-        color: ${theme.colors.primary};
-      }
-    }
-
-    @media ${theme.media.phone} {
-      padding: ${theme.space.xxs} ${theme.space.sm};
-      font-size: ${theme.typography.fontSize.sm};
-      line-height: ${theme.typography.lineHeight.sm};
-      border-radius: 0.625rem;
-    }
-  `
-);
+  @media ${variables.media.phone} {
+    padding: ${variables.space.xxs} ${variables.space.sm};
+    font-size: ${variables.typography.fontSize.sm};
+    line-height: ${variables.typography.lineHeight.sm};
+    border-radius: 0.625rem;
+  }
+`;
 
 export const Input = styled.input(
   ({ theme }) => css`

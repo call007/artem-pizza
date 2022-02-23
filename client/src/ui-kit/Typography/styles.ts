@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { variables } from "../../styles";
 import { TypographySize, TypographyWeight } from "../../types";
 
 type ContainerProps = {
@@ -10,11 +11,11 @@ type ContainerProps = {
 export const Container = styled.p.withConfig<ContainerProps>({
   shouldForwardProp: (prop) => !["weight", "color", "size"].includes(prop),
 })(
-  ({ theme, size, weight, color }) => css`
+  ({ size, weight, color }) => css`
     margin: 0;
-    font-size: ${size && theme.typography.fontSize[size]};
-    font-weight: ${weight && theme.typography.fontWeight[weight]};
-    line-height: ${size && theme.typography.lineHeight[size]};
+    font-size: ${size && variables.typography.fontSize[size]};
+    font-weight: ${weight && variables.typography.fontWeight[weight]};
+    line-height: ${size && variables.typography.lineHeight[size]};
     color: ${color};
   `
 );

@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { variables } from "../../../styles";
 
 export const Item = styled.div`
   & + & {
-    margin-top: ${(props) => props.theme.space.base};
+    margin-top: ${variables.space.base};
 
-    @media ${({ theme }) => theme.media.phone} {
-      margin-top: ${(props) => props.theme.space.xs};
+    @media ${variables.media.phone} {
+      margin-top: ${variables.space.xs};
     }
   }
 `;

@@ -1,13 +1,14 @@
 import styled from "styled-components";
+import { variables } from "../../styles";
 
 export const Plate = styled.div`
-  padding: ${(props) => props.theme.space.xl};
+  padding: ${variables.space.xl};
 
-  @media ${({ theme }) => theme.media.phone} {
-    padding: ${(props) => props.theme.space.base};
+  @media ${variables.media.phone} {
+    padding: ${variables.space.base};
   }
 `;
 
 export const Footer = styled.div`
-  margin-top: ${(props) => props.theme.space.base};
+  margin-top: ${variables.space.base};
 `;

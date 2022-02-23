@@ -1,4 +1,5 @@
 import { css } from "styled-components";
+import { variables } from "..";
 
 export const buttonReset = () => css`
   appearance: none;
@@ -7,7 +8,7 @@ export const buttonReset = () => css`
   background-color: transparent;
   border: 0;
   transition-property: background-color, border-color, color, box-shadow;
-  transition-duration: ${(props) => props.theme.transitionDuration};
+  transition-duration: ${variables.transitionDuration};
   -webkit-tap-highlight-color: transparent;
 
   &:focus {

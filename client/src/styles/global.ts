@@ -1,6 +1,7 @@
 import "normalize.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { createGlobalStyle } from "styled-components";
+import * as variables from "./variables";
 
 export default createGlobalStyle`
   *,
@@ -20,8 +21,8 @@ export default createGlobalStyle`
   body {
     min-width: 320px;
     background-color: ${(props) => props.theme.colors.gray100};
-    transition: ${(props) =>
-      `background-color calc(${props.theme.transitionDuration} * 2)`};
+    transition-property: background-color, color;
+    transition-duration: ${variables.transitionDuration};
   }
 
   h1, h2, h3, h4, h5, h6, p {

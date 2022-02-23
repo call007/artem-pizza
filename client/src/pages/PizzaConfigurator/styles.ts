@@ -1,4 +1,5 @@
-import styled, { createGlobalStyle, css } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+import { variables } from "../../styles";
 
 export const WhiteBodyBg = createGlobalStyle`
   body {
@@ -10,7 +11,7 @@ export const Container = styled.div`
   display: flex;
   align-items: flex-start;
 
-  @media ${({ theme }) => theme.media.phone} {
+  @media ${variables.media.phone} {
     align-items: stretch;
     flex-direction: column-reverse;
   }
@@ -20,27 +21,25 @@ export const Content = styled.section`
   flex-grow: 1;
 `;
 
-export const Sidebar = styled.section(
-  ({ theme }) => css`
-    position: sticky;
-    top: calc(${theme.header.height} + ${theme.header.marginBottom});
-    flex-shrink: 0;
-    width: 21.875rem;
-    margin-left: ${theme.space.xxl};
+export const Sidebar = styled.section`
+  position: sticky;
+  top: calc(${variables.header.height} + ${variables.header.marginBottom});
+  flex-shrink: 0;
+  width: 21.875rem;
+  margin-left: ${variables.space.xxl};
 
-    @media ${theme.media.tablet} {
-      width: 20.313rem;
-    }
+  @media ${variables.media.tablet} {
+    width: 20.313rem;
+  }
 
-    @media ${theme.media.phone} {
-      position: static;
-      width: auto;
-      margin-left: 0;
-      margin-top: ${theme.space.xl};
-    }
+  @media ${variables.media.phone} {
+    position: static;
+    width: auto;
+    margin-left: 0;
+    margin-top: ${variables.space.xl};
+  }
 
-    @media (max-height: ${670 / 16}em) {
-      position: static;
-    }
-  `
-);
+  @media (max-height: ${670 / 16}em) {
+    position: static;
+  }
+`;

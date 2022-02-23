@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { variables } from "../../../styles";
 
 export const Box = styled.p`
-  margin-bottom: ${(props) => props.theme.space.xs};
+  margin-bottom: ${variables.space.xs};
 
-  @media ${({ theme }) => theme.media.phone} {
-    margin-bottom: ${(props) => props.theme.space.xxxs};
+  @media ${variables.media.phone} {
+    margin-bottom: ${variables.space.xxxs};
   }
 `;

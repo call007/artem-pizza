@@ -1,10 +1,11 @@
 import { useMediaQuery } from "react-responsive";
-import { theme } from "../styles";
+import { variables } from "../styles";
 
 export const useMediaDesktop = () =>
-  useMediaQuery({ query: theme.media.desktop });
+  useMediaQuery({ query: variables.media.desktop });
 
 export const useMediaTablet = () =>
-  useMediaQuery({ query: theme.media.tablet });
+  useMediaQuery({ query: variables.media.tablet });
 
-export const useMediaPhone = () => useMediaQuery({ query: theme.media.phone });
+export const useMediaPhone = () =>
+  useMediaQuery({ query: variables.media.phone });

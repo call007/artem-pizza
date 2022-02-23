@@ -1,28 +1,26 @@
-import styled, { css } from "styled-components";
-import { mixins } from "../../../styles";
+import styled from "styled-components";
+import { mixins, variables } from "../../../styles";
 import { StyledInput } from "../../../ui-kit";
 
 export const Fieldset = styled.fieldset`
   ${mixins.fieldsetReset};
 `;
 
-export const Separator = styled.div(
-  ({ theme }) => css`
-    height: 0;
-    margin: ${theme.space.xl} 0;
-    border-top: 1px solid ${theme.colors.gray200};
+export const Separator = styled.div`
+  height: 0;
+  margin: ${variables.space.xl} 0;
+  border-top: 1px solid ${(props) => props.theme.colors.gray200};
 
-    @media ${theme.media.phone} {
-      margin: ${theme.space.base} 0;
-    }
-  `
-);
+  @media ${variables.media.phone} {
+    margin: ${variables.space.base} 0;
+  }
+`;
 
 export const Box = styled.div`
-  margin-top: ${(props) => props.theme.space.xl};
+  margin-top: ${variables.space.xl};
 
-  @media ${({ theme }) => theme.media.phone} {
-    margin-top: ${(props) => props.theme.space.base};
+  @media ${variables.media.phone} {
+    margin-top: ${variables.space.base};
   }
 `;
 
@@ -34,7 +32,7 @@ export const ExtraAddressBox = styled(Box)`
     flex-grow: 1;
 
     & + * {
-      margin-left: ${(props) => props.theme.space.xs};
+      margin-left: ${variables.space.xs};
     }
   }
 `;
@@ -50,7 +48,7 @@ export const ExpirationCVVBox = styled(Box)`
   }
 
   & > *:last-of-type {
-    margin-left: ${(props) => props.theme.space.xl};
+    margin-left: ${variables.space.xl};
     text-align: right;
 
     ${StyledInput} {

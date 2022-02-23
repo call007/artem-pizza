@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { InputSize } from ".";
-import { mixins } from "../../styles";
+import { mixins, variables } from "../../styles";
 
 export const Container = styled.div`
   font-size: 1rem;
@@ -14,15 +14,15 @@ type InputProps = {
 const baseSizeInputStyle = css`
   height: 3.5rem;
   padding: 0 1rem;
-  font-size: ${(props) => props.theme.typography.fontSize.lg};
-  line-height: ${(props) => props.theme.typography.lineHeight.lg};
+  font-size: ${variables.typography.fontSize.lg};
+  line-height: ${variables.typography.lineHeight.lg};
 `;
 
 const smallSizeInputStyle = css`
   height: 3rem;
   padding: 0 0.75rem;
-  font-size: ${(props) => props.theme.typography.fontSize.base};
-  line-height: ${(props) => props.theme.typography.lineHeight.base};
+  font-size: ${variables.typography.fontSize.base};
+  line-height: ${variables.typography.lineHeight.base};
 `;
 
 export const Input = styled.input<InputProps>(
@@ -36,7 +36,7 @@ export const Input = styled.input<InputProps>(
     border: 2px solid ${theme.colors.gray200};
     border-radius: 0.5rem;
     transition-property: background-color, border-color, color;
-    transition-duration: ${theme.transitionDuration};
+    transition-duration: ${variables.transitionDuration};
 
     ${props.errorMessage &&
     css`
@@ -58,7 +58,7 @@ export const Input = styled.input<InputProps>(
       color: ${theme.colors.gray400};
     }
 
-    @media ${theme.media.phone} {
+    @media ${variables.media.phone} {
       ${smallSizeInputStyle};
     }
   `
@@ -72,7 +72,7 @@ export const Icon = styled.div`
   ${mixins.fadeIn};
   position: absolute;
   top: 0;
-  right: ${(props) => props.theme.space.base};
+  right: ${variables.space.base};
   display: flex;
   align-items: center;
   height: 100%;
@@ -83,42 +83,40 @@ type LabelProps = {
 };
 
 const baseSizeLabelStyle = css`
-  margin-bottom: ${(props) => props.theme.space.xs};
-  font-size: ${(props) => props.theme.typography.fontSize.base};
-  line-height: ${(props) => props.theme.typography.lineHeight.base};
+  margin-bottom: ${variables.space.xs};
+  font-size: ${variables.typography.fontSize.base};
+  line-height: ${variables.typography.lineHeight.base};
 `;
 
 const smallSizeLabelStyle = css`
-  margin-bottom: ${(props) => props.theme.space.xxs};
-  font-size: ${(props) => props.theme.typography.fontSize.sm};
-  line-height: ${(props) => props.theme.typography.lineHeight.sm};
+  margin-bottom: ${variables.space.xxs};
+  font-size: ${variables.typography.fontSize.sm};
+  line-height: ${variables.typography.lineHeight.sm};
 `;
 
-export const Label = styled.label<LabelProps>(
-  ({ theme, size }) => css`
-    ${size === "sm" ? smallSizeLabelStyle : baseSizeLabelStyle};
-    display: block;
-    color: ${theme.colors.gray600};
-    font-weight: ${theme.typography.fontWeight.medium};
+export const Label = styled.label<LabelProps>`
+  ${(props) =>
+    props.size === "sm" ? smallSizeLabelStyle : baseSizeLabelStyle};
 
-    @media ${theme.media.phone} {
-      ${smallSizeLabelStyle};
-    }
-  `
-);
+  display: block;
+  color: ${(props) => props.theme.colors.gray600};
+  font-weight: ${variables.typography.fontWeight.medium};
 
-export const ErrorMessage = styled.p(
-  ({ theme }) => css`
-    ${mixins.fadeIn};
-    margin-top: 0.5rem;
-    color: ${theme.colors.statusError};
-    font-size: ${theme.typography.fontSize.base};
-    line-height: ${theme.typography.lineHeight.base};
+  @media ${variables.media.phone} {
+    ${smallSizeLabelStyle};
+  }
+`;
 
-    @media ${theme.media.phone} {
-      margin-top: 0.25rem;
-      font-size: ${theme.typography.fontSize.sm};
-      line-height: ${theme.typography.lineHeight.sm};
-    }
-  `
-);
+export const ErrorMessage = styled.p`
+  ${mixins.fadeIn};
+  margin-top: 0.5rem;
+  color: ${(props) => props.theme.colors.statusError};
+  font-size: ${variables.typography.fontSize.base};
+  line-height: ${variables.typography.lineHeight.base};
+
+  @media ${variables.media.phone} {
+    margin-top: 0.25rem;
+    font-size: ${variables.typography.fontSize.sm};
+    line-height: ${variables.typography.lineHeight.sm};
+  }
+`;

@@ -1,10 +1,11 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import { variables } from "../../styles";
 
 export const Container = styled.div`
   display: flex;
   align-items: flex-start;
 
-  @media ${({ theme }) => theme.media.phone} {
+  @media ${variables.media.phone} {
     flex-wrap: wrap-reverse;
   }
 `;
@@ -13,25 +14,23 @@ export const Content = styled.div`
   max-width: 33.125rem;
 `;
 
-export const Aside = styled.div(
-  ({ theme }) => css`
-    box-sizing: content-box;
-    position: sticky;
-    top: calc(${theme.header.height} + ${theme.header.marginBottom});
-    flex-shrink: 0;
-    width: 21.875rem;
-    margin-left: auto;
-    padding-left: ${theme.space.xxl};
+export const Aside = styled.div`
+  box-sizing: content-box;
+  position: sticky;
+  top: calc(${variables.header.height} + ${variables.header.marginBottom});
+  flex-shrink: 0;
+  width: 21.875rem;
+  margin-left: auto;
+  padding-left: ${variables.space.xxl};
 
-    @media ${theme.media.phone} {
-      position: static;
-      flex-grow: 1;
-      flex-shrink: initial;
-      width: auto;
-      max-width: 33.125rem;
-      margin-bottom: ${theme.space.base};
-      margin-left: 0;
-      padding-left: 0;
-    }
-  `
-);
+  @media ${variables.media.phone} {
+    position: static;
+    flex-grow: 1;
+    flex-shrink: initial;
+    width: auto;
+    max-width: 33.125rem;
+    margin-bottom: ${variables.space.base};
+    margin-left: 0;
+    padding-left: 0;
+  }
+`;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { variables } from "../../../../styles";
 
 type ContainerProps = {
   isVisible: boolean;
@@ -6,7 +7,7 @@ type ContainerProps = {
 
 export const Container = styled.div<ContainerProps>`
   animation-fill-mode: forwards;
-  animation-duration: ${(props) => props.theme.transitionDuration};
+  animation-duration: ${variables.transitionDuration};
   animation-name: ${(props) => !props.isVisible && "fade-out"};
 
   @keyframes fade-out {

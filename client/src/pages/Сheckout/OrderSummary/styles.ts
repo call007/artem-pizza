@@ -1,53 +1,48 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import { variables } from "../../../styles";
 
-export const Container = styled.div(
-  ({ theme }) => css`
-    margin-top: ${theme.space.base};
-    padding-top: ${theme.space.xs};
+export const Container = styled.div`
+  margin-top: ${variables.space.base};
+  padding-top: ${variables.space.xs};
 
-    @media ${theme.media.phone} {
-      position: sticky;
-      z-index: ${theme.zIndex.panel};
-      bottom: 0;
-      margin-bottom: -${theme.space.xxl};
-      padding-left: ${theme.space.base};
-      padding-right: ${theme.space.base};
-      padding-bottom: ${theme.space.sm};
-      background-color: ${theme.colors.white};
-      box-shadow: ${theme.shadow.outer.panel};
-    }
-  `
-);
+  @media ${variables.media.phone} {
+    position: sticky;
+    z-index: ${variables.zIndex.panel};
+    bottom: 0;
+    margin-bottom: -${variables.space.xxl};
+    padding-left: ${variables.space.base};
+    padding-right: ${variables.space.base};
+    padding-bottom: ${variables.space.sm};
+    background-color: ${(props) => props.theme.colors.white};
+    box-shadow: ${(props) => props.theme.shadow.outer.panel};
+  }
+`;
 
-export const Dl = styled.dl(
-  ({ theme }) => css`
-    display: flex;
-    justify-content: space-between;
-    margin: ${theme.space.xs} ${theme.space.base};
-    color: ${theme.colors.gray600};
-    font-size: ${theme.typography.fontSize.sm};
-    line-height: ${theme.typography.lineHeight.sm};
+export const Dl = styled.dl`
+  display: flex;
+  justify-content: space-between;
+  margin: ${variables.space.xs} ${variables.space.base};
+  color: ${(props) => props.theme.colors.gray600};
+  font-size: ${variables.typography.fontSize.sm};
+  line-height: ${variables.typography.lineHeight.sm};
 
-    @media ${theme.media.phone} {
-      margin: ${theme.space.xxs} 0;
-      font-size: ${theme.typography.fontSize.xs};
-      line-height: ${theme.typography.lineHeight.xs};
-    }
-  `
-);
+  @media ${variables.media.phone} {
+    margin: ${variables.space.xxs} 0;
+    font-size: ${variables.typography.fontSize.xs};
+    line-height: ${variables.typography.lineHeight.xs};
+  }
+`;
 
-export const Total = styled.div(
-  ({ theme }) => css`
-    margin-bottom: ${theme.space.xxl};
-    font-weight: ${theme.typography.fontWeight.medium};
-    border-top: 1px dashed ${theme.colors.gray200};
+export const Total = styled.div`
+  margin-bottom: ${variables.space.xxl};
+  font-weight: ${variables.typography.fontWeight.medium};
+  border-top: 1px dashed ${(props) => props.theme.colors.gray200};
 
-    @media ${theme.media.phone} {
-      margin-bottom: ${theme.space.base};
-    }
-  `
-);
+  @media ${variables.media.phone} {
+    margin-bottom: ${variables.space.base};
+  }
+`;
 
 export const Error = styled.p`
-  margin-top: ${(props) => props.theme.space.sm};
+  margin-top: ${variables.space.sm};
 `;

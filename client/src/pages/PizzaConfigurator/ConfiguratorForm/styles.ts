@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { variables } from "../../../styles";
 
 export const Box = styled.div`
-  margin-top: ${(props) => props.theme.space.xxl};
+  margin-top: ${variables.space.xxl};
 
-  @media ${({ theme }) => theme.media.phone} {
-    margin-top: ${(props) => props.theme.space.xl};
+  @media ${variables.media.phone} {
+    margin-top: ${variables.space.xl};
   }
 `;
 
@@ -12,13 +13,13 @@ export const BaseBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   max-width: 25rem;
-  margin-left: ${(props) => `-${props.theme.space.base}`};
+  margin-left: -${variables.space.base};
 
-  @media ${({ theme }) => theme.media.phone} {
+  @media ${variables.media.phone} {
     justify-content: space-between;
   }
 
   ${Box} {
-    margin-left: ${(props) => props.theme.space.base};
+    margin-left: ${variables.space.base};
   }
 `;

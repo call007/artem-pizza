@@ -1,21 +1,22 @@
 import styled from "styled-components";
+import { variables } from "../../../styles";
 
 export const Pizza = styled.div`
-  margin-bottom: ${(props) => props.theme.space.xl};
+  margin-bottom: ${variables.space.xl};
   text-align: center;
 
-  @media ${({ theme }) => theme.media.phone} {
+  @media ${variables.media.phone} {
     width: 91.5%;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: ${(props) => props.theme.space.base};
+    margin-bottom: ${variables.space.base};
   }
 `;
 
 export const Title = styled.h2`
-  margin-bottom: ${(props) => props.theme.space.xs};
+  margin-bottom: ${variables.space.xs};
 `;
 
 export const Button = styled.button`
-  margin-top: ${(props) => props.theme.space.xxl};
+  margin-top: ${variables.space.xxl};
 `;

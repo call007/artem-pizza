@@ -1,5 +1,6 @@
 import styled from "styled-components";
+import { variables } from "../../../styles";
 
 export const Box = styled.div`
-  margin-bottom: ${(props) => props.theme.space.base};
+  margin-bottom: ${variables.space.base};
 `;

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { variables } from "../../../styles";
 import plate from "./images/plate.png";
 import plate_2x from "./images/plate@2x.png";
 
@@ -24,7 +25,7 @@ export const Container = styled.div`
     padding-bottom: ${getPercent(320, 350)};
   }
 
-  @media ${({ theme }) => theme.media.retina} {
+  @media ${variables.media.retina} {
     background-image: url(${plate_2x});
   }
 `;

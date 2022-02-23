@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { variables } from "../../styles";
 
 export const Image = styled.img`
   &.lazyload,
@@ -8,6 +9,6 @@ export const Image = styled.img`
 
   &.lazyloaded {
     opacity: 1;
-    transition: opacity ${(props) => props.theme.transitionDuration};
+    transition: opacity ${variables.transitionDuration};
   }
 `;

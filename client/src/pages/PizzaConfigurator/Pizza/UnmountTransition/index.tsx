@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { theme } from "../../../../styles";
+import { variables } from "../../../../styles";
 import * as Styled from "./styles";
 
 interface TransitionProps {
@@ -18,7 +18,7 @@ export function UnmountTransition(props: TransitionProps) {
     } else {
       timeout = setTimeout(() => {
         setIsVisible(false);
-      }, parseFloat(theme.transitionDuration) * 1000);
+      }, parseFloat(variables.transitionDuration) * 1000);
     }
 
     return () => {
