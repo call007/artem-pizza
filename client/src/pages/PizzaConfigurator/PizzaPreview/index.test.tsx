@@ -4,14 +4,14 @@ import { MemoryRouter } from "react-router";
 import { ThemeProvider } from "styled-components";
 import { PizzaPreview } from ".";
 import { mockStore } from "../../../mocks/mockStore";
-import { theme } from "../../../styles";
+import { lightTheme } from "../../../styles";
 
 describe("PizzaPreview", () => {
   it("renders correctly", async () => {
     const { getByText, container } = render(
       <MemoryRouter>
         <ReduxProvider store={mockStore}>
-          <ThemeProvider theme={theme}>
+          <ThemeProvider theme={lightTheme}>
             <PizzaPreview />
           </ThemeProvider>
         </ReduxProvider>

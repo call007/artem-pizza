@@ -10,9 +10,11 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   ({ label, id, ...restProps }, ref) => (
     <Styled.Container>
       <Styled.Input {...restProps} type="checkbox" id={id} ref={ref} />
+
       <Styled.Checkbox>
         <SvgIcon src="check" />
       </Styled.Checkbox>
+
       {label && <Styled.Label htmlFor={id}>{label}</Styled.Label>}
     </Styled.Container>
   )

@@ -2,22 +2,39 @@ import { render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import { Provider as ReduxProvider } from "react-redux";
 import { Router } from "react-router";
-import { ThemeProvider } from "styled-components";
 import App from "./App";
 import { PATH } from "./consts";
 import { mockWhithAuthorizedUserStore } from "./mocks/mockStore";
-import { theme } from "./styles";
+import { ThemeContextProvider } from "./ThemeContext";
 
 function renderApp() {
   const history = createMemoryHistory();
+
+  /**
+   * Мокаем matchMedia для успешного теста компонентов, использующих
+   * window.matchMedia
+   */
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: jest.fn().mockImplementation((query) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(), // deprecated
+      removeListener: jest.fn(), // deprecated
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    })),
+  });
 
   return {
     ...render(
       <ReduxProvider store={mockWhithAuthorizedUserStore}>
         <Router history={history}>
-          <ThemeProvider theme={theme}>
+          <ThemeContextProvider>
             <App />
-          </ThemeProvider>
+          </ThemeContextProvider>
         </Router>
       </ReduxProvider>
     ),

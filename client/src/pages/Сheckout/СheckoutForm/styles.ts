@@ -10,6 +10,7 @@ export const Separator = styled.div`
   height: 0;
   margin: ${variables.space.xl} 0;
   border-top: 1px solid ${(props) => props.theme.colors.gray200};
+  transition: border-top-color ${variables.transitionDuration};
 
   @media ${variables.media.phone} {
     margin: ${variables.space.base} 0;

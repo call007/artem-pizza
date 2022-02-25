@@ -5,7 +5,7 @@ import { Router } from "react-router";
 import { ThemeProvider } from "styled-components";
 import { PizzaConfigurator } from ".";
 import { mockStore } from "../../mocks/mockStore";
-import { theme } from "../../styles";
+import { lightTheme } from "../../styles";
 
 function renderPizzaConfigurator() {
   const history = createMemoryHistory();
@@ -14,7 +14,7 @@ function renderPizzaConfigurator() {
     ...render(
       <ReduxProvider store={mockStore}>
         <Router history={history}>
-          <ThemeProvider theme={theme}>
+          <ThemeProvider theme={lightTheme}>
             <PizzaConfigurator />
           </ThemeProvider>
         </Router>

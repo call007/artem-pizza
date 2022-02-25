@@ -2,7 +2,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import { variables } from "../../styles";
 
 export const WhiteBodyBg = createGlobalStyle`
-  body {
+  .App {
     background-color: ${(props) => props.theme.colors.white};
   }
 `;

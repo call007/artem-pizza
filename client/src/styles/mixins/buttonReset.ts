@@ -9,6 +9,7 @@ export const buttonReset = () => css`
   border: 0;
   transition-property: background-color, border-color, color, box-shadow;
   transition-duration: ${variables.transitionDuration};
+  touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 
   &:focus {

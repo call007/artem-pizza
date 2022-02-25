@@ -4,6 +4,7 @@ import { variables } from "../../../styles";
 export const Container = styled.div`
   margin-top: ${variables.space.base};
   padding-top: ${variables.space.xs};
+  transition: background-color ${variables.transitionDuration};
 
   @media ${variables.media.phone} {
     position: sticky;
@@ -25,6 +26,7 @@ export const Dl = styled.dl`
   color: ${(props) => props.theme.colors.gray600};
   font-size: ${variables.typography.fontSize.sm};
   line-height: ${variables.typography.lineHeight.sm};
+  transition: color ${variables.transitionDuration};
 
   @media ${variables.media.phone} {
     margin: ${variables.space.xxs} 0;
@@ -37,6 +39,7 @@ export const Total = styled.div`
   margin-bottom: ${variables.space.xxl};
   font-weight: ${variables.typography.fontWeight.medium};
   border-top: 1px dashed ${(props) => props.theme.colors.gray200};
+  transition: border-top-color ${variables.transitionDuration};
 
   @media ${variables.media.phone} {
     margin-bottom: ${variables.space.base};

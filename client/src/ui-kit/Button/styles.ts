@@ -30,7 +30,7 @@ const templates: Templates = {
 };
 
 const primaryView = css`
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.button};
   background-color: ${(props) => props.theme.colors.primary};
 
   &:hover,

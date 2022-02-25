@@ -4,14 +4,14 @@ import { MemoryRouter } from "react-router";
 import { ThemeProvider } from "styled-components";
 import { Сheckout } from ".";
 import { mockStore } from "../../mocks/mockStore";
-import { theme } from "../../styles";
+import { lightTheme } from "../../styles";
 
 describe("Сheckout", () => {
   it("renders correctly", () => {
     const { getByText } = render(
       <ReduxProvider store={mockStore}>
         <MemoryRouter>
-          <ThemeProvider theme={theme}>
+          <ThemeProvider theme={lightTheme}>
             <Сheckout />
           </ThemeProvider>
         </MemoryRouter>

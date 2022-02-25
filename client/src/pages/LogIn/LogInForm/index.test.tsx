@@ -3,12 +3,12 @@ import { act } from "react-dom/test-utils";
 import { ThemeProvider } from "styled-components";
 import { LogInForm } from ".";
 import { MESSAGES } from "../../../consts";
-import { theme } from "../../../styles";
+import { lightTheme } from "../../../styles";
 
 describe("LogInForm", () => {
   it("renders correctly", () => {
     const { getByText, getByLabelText } = render(
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={lightTheme}>
         <LogInForm onFormSubmit={() => null} />
       </ThemeProvider>
     );
@@ -22,7 +22,7 @@ describe("LogInForm", () => {
     it("collects email and password", async () => {
       const formSubmit = jest.fn();
       const { getByText, getByLabelText } = render(
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={lightTheme}>
           <LogInForm onFormSubmit={formSubmit} />
         </ThemeProvider>
       );
@@ -46,7 +46,7 @@ describe("LogInForm", () => {
 
     it("validates that email and password are filled in", async () => {
       const { getByText, getByLabelText } = render(
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={lightTheme}>
           <LogInForm onFormSubmit={() => null} />
         </ThemeProvider>
       );
@@ -66,7 +66,7 @@ describe("LogInForm", () => {
 
     it("validates that email is the correct email", async () => {
       const { getByText, getByLabelText } = render(
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={lightTheme}>
           <LogInForm onFormSubmit={() => null} />
         </ThemeProvider>
       );

@@ -3,12 +3,12 @@ import { act } from "react-dom/test-utils";
 import { ThemeProvider } from "styled-components";
 import { СheckoutForm } from ".";
 import { MESSAGES } from "../../../consts";
-import { theme } from "../../../styles";
+import { lightTheme } from "../../../styles";
 import { PaymentSystem } from "../../../types";
 
 const renderСheckoutForm = () =>
   render(
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={lightTheme}>
       <СheckoutForm onFormSubmit={() => null} />
     </ThemeProvider>
   );
@@ -113,7 +113,7 @@ describe("СheckoutForm", () => {
       const formSubmit = jest.fn();
       const { getByText, getByLabelText, getByPlaceholderText, container } =
         render(
-          <ThemeProvider theme={theme}>
+          <ThemeProvider theme={lightTheme}>
             <СheckoutForm onFormSubmit={formSubmit} />
           </ThemeProvider>
         );

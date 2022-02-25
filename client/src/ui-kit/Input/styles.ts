@@ -101,6 +101,7 @@ export const Label = styled.label<LabelProps>`
   display: block;
   color: ${(props) => props.theme.colors.gray600};
   font-weight: ${variables.typography.fontWeight.medium};
+  transition: color ${variables.transitionDuration};
 
   @media ${variables.media.phone} {
     ${smallSizeLabelStyle};

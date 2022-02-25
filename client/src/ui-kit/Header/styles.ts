@@ -17,6 +17,7 @@ export const Container = styled.header`
   font-size: 1rem;
   box-shadow: ${(props) => props.theme.shadow.outer.md};
   background-color: ${(props) => props.theme.colors.white};
+  transition: background-color ${variables.transitionDuration};
 
   & > * {
     order: 0;
@@ -36,6 +37,11 @@ export const Container = styled.header`
     margin-bottom: ${variables.space.base};
     padding: ${`${variables.space.xs} ${variables.space.xs} ${variables.space.xs} ${variables.space.base}`};
   }
+`;
+
+export const ThemeSwitcherBox = styled("div")`
+  order: 1;
+  margin-left: ${variables.space.xl};
 `;
 
 export const Logo = styled(LazyImage)`

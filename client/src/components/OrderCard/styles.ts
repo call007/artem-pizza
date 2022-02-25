@@ -44,6 +44,7 @@ export const Footer = styled.footer`
   border-top: 1px dashed ${(props) => props.theme.colors.gray200};
   margin-top: ${variables.space.base};
   padding-top: ${variables.space.base};
+  transition: border-top-color ${variables.transitionDuration};
 `;
 
 export const PaymentIcon = styled.svg`

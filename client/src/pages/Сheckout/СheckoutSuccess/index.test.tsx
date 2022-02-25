@@ -6,14 +6,14 @@ import { ThemeProvider } from "styled-components";
 import { СheckoutSuccess } from ".";
 import { mockStore } from "../../../mocks/mockStore";
 import { store } from "../../../store";
-import { theme } from "../../../styles";
+import { lightTheme } from "../../../styles";
 
 describe("СheckoutSuccess", () => {
   it("renders correctly", async () => {
     const { container } = render(
       <MemoryRouter>
         <ReduxProvider store={mockStore}>
-          <ThemeProvider theme={theme}>
+          <ThemeProvider theme={lightTheme}>
             <СheckoutSuccess price={400} date="21 октября 2020, 13:40" />
           </ThemeProvider>
         </ReduxProvider>
@@ -32,7 +32,7 @@ describe("СheckoutSuccess", () => {
       render(
         <ReduxProvider store={store}>
           <Router history={history}>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={lightTheme}>
               <СheckoutSuccess price={400} date="21 октября 2020, 13:40" />
             </ThemeProvider>
           </Router>

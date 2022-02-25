@@ -20,6 +20,19 @@ export default createGlobalStyle`
 
   body {
     min-width: 320px;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  .App {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    min-height: 100%;
     background-color: ${(props) => props.theme.colors.gray100};
     transition-property: background-color, color;
     transition-duration: ${variables.transitionDuration};
