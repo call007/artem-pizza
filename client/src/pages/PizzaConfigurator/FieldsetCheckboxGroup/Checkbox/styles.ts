@@ -22,7 +22,8 @@ export const Label = styled.label<LabelProps>(
     border: 2px solid ${isChecked ? theme.colors.primary : "transparent"};
     border-radius: 0.75rem;
     box-shadow: ${theme.shadow.outer.lg};
-    transition: border-color ${variables.transitionDuration};
+    transition-property: border-color, box-shadow;
+    transition-duration: ${variables.transitionDuration};
 
     &:hover {
       border-color: ${isChecked && theme.colors.primaryDark};

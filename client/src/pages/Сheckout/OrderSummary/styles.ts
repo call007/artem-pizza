@@ -4,7 +4,8 @@ import { variables } from "../../../styles";
 export const Container = styled.div`
   margin-top: ${variables.space.base};
   padding-top: ${variables.space.xs};
-  transition: background-color ${variables.transitionDuration};
+  transition-property: background-color, box-shadow;
+  transition-duration: ${variables.transitionDuration};
 
   @media ${variables.media.phone} {
     position: sticky;

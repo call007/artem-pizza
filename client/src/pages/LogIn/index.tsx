@@ -1,12 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
 import { PATH } from "../../consts";
 import { useMediaPhone } from "../../hooks";
 import { getIsAuthorized } from "../../state/user/selectors";
 import { userSlice } from "../../state/user/slice";
 import { AppDispatch } from "../../store";
-import { Button, Header, Plate, Typography, Wrapper } from "../../ui-kit";
+import {
+  Button,
+  Header,
+  Plate,
+  Typography,
+  TypographyLink,
+  Wrapper,
+} from "../../ui-kit";
 import { FormValues, LogInForm } from "./LogInForm";
 import * as Styled from "./styles";
 
@@ -54,7 +60,9 @@ export function LogIn() {
               <Styled.Footer>
                 <Typography>
                   Если вы не зарегистрированы{" "}
-                  <Link to={PATH.Signup}>пройдите регистрацию</Link>
+                  <TypographyLink to={PATH.Signup}>
+                    пройдите регистрацию
+                  </TypographyLink>
                 </Typography>
               </Styled.Footer>
             </>

@@ -17,7 +17,8 @@ export const Container = styled.header`
   font-size: 1rem;
   box-shadow: ${(props) => props.theme.shadow.outer.md};
   background-color: ${(props) => props.theme.colors.white};
-  transition: background-color ${variables.transitionDuration};
+  transition-property: background-color, box-shadow;
+  transition-duration: ${variables.transitionDuration};
 
   & > * {
     order: 0;
