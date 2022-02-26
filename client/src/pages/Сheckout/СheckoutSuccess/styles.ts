@@ -22,7 +22,7 @@ export const SuccessIcon = styled.div`
   width: 4.188rem;
   height: 4.188rem;
   margin-bottom: ${variables.space.xl};
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.button};
   background-color: ${(props) => props.theme.colors.statusSuccess};
   border-radius: 50%;
 

@@ -12,7 +12,6 @@ export default createGlobalStyle`
 
   html {
     font-size: 1em;
-    color: ${(props) => props.theme.colors.black};
     font-family: 'Nunito', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -33,6 +32,7 @@ export default createGlobalStyle`
     vertical-align: top;
     width: 100%;
     min-height: 100%;
+    color: ${(props) => props.theme.colors.black};
     background-color: ${(props) => props.theme.colors.gray100};
     transition-property: background-color, color;
     transition-duration: ${variables.transitionDuration};

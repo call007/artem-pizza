@@ -28,7 +28,7 @@ export const Label = styled.label`
     margin-left: 0.063em;
     font-weight: ${variables.typography.fontWeight.normal};
     color: ${(props) => props.theme.colors.gray600};
-    transition: inherit;
+    transition: color ${variables.transitionDuration};
   }
 
   &:hover {
