@@ -5,7 +5,7 @@ import { fetchIngredients } from "./thunk";
 export type IngredientsState = {
   data: Ingredient[];
   isLoading?: boolean;
-  error?: Error;
+  errorMessage?: string;
 };
 
 const initialState: IngredientsState = {
@@ -24,7 +24,7 @@ export const ingredientsSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(fetchIngredients.rejected, (state, action) => {
-        state.error = new Error(action.error.message);
+        state.errorMessage = action.error.message;
         state.isLoading = false;
       });
   },

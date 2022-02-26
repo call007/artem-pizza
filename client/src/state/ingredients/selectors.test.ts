@@ -2,10 +2,10 @@ import { mockState } from "../../mocks/mockStore";
 import { RootState } from "../../store";
 import { Category } from "../../types";
 import {
-  getError,
   getIngredients,
   getIngredientsByCategory,
-  getIsLoading,
+  getIngredientsError,
+  getIngredientsIsLoading,
 } from "./selectors";
 
 describe("getIngredients", () => {
@@ -16,16 +16,16 @@ describe("getIngredients", () => {
 
 describe("getIsLoading", () => {
   it("returns ingredients property 'isLoading' from the state", () => {
-    expect(getIsLoading(mockState)).toEqual(false);
+    expect(getIngredientsIsLoading(mockState)).toEqual(false);
   });
 });
 
 describe("getError", () => {
   it("returns ingredients property 'error' from the state", () => {
     const state: RootState = { ...mockState };
-    state.ingredients.error = new Error("Some error");
+    state.ingredients.errorMessage = "Some error";
 
-    expect(getError(state)).toEqual(new Error("Some error"));
+    expect(getIngredientsError(state)).toEqual("Some error");
   });
 });
 

@@ -1,10 +1,11 @@
-import { fireEvent, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
-import { act } from "react-dom/test-utils";
 import { Provider as ReduxProvider } from "react-redux";
 import { Router } from "react-router";
+import { ThemeProvider } from "styled-components";
 import { PizzaConfigurator } from ".";
 import { mockStore } from "../../mocks/mockStore";
+import { lightTheme } from "../../styles";
 
 function renderPizzaConfigurator() {
   const history = createMemoryHistory();
@@ -13,7 +14,9 @@ function renderPizzaConfigurator() {
     ...render(
       <ReduxProvider store={mockStore}>
         <Router history={history}>
-          <PizzaConfigurator />
+          <ThemeProvider theme={lightTheme}>
+            <PizzaConfigurator />
+          </ThemeProvider>
         </Router>
       </ReduxProvider>
     ),
@@ -26,15 +29,5 @@ describe("PizzaConfigurator page", () => {
     const { getByText } = renderPizzaConfigurator();
 
     expect(getByText("Собери свою пиццу")).toBeInTheDocument();
-  });
-
-  describe(".handleChange", () => {
-    it("navigates to `/pizza-preview`", async () => {
-      const { getByText, history } = renderPizzaConfigurator();
-      await act(async () => {
-        fireEvent.click(getByText(/Заказать за/i));
-      });
-      expect(history.location.pathname).toEqual("/pizza-preview");
-    });
   });
 });

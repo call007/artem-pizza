@@ -1,7 +1,7 @@
 export enum Category {
   Size = "size",
   Dough = "dough",
-  Sauces = "sauces",
+  Sauce = "sauce",
   Cheese = "cheese",
   Vegetables = "vegetables",
   Meat = "meat",

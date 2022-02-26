@@ -1,26 +1,51 @@
 import { FieldValues, UseFormRegister } from "react-hook-form";
-import { Checkbox, Fieldset } from "../../../components";
+import Skeleton from "react-loading-skeleton";
 import { Ingredient } from "../../../types";
+import { HorizontalScroller } from "../../../ui-kit";
+import { Fieldset } from "../Fieldset";
+import { Checkbox } from "./Checkbox";
+import * as Styled from "./styles";
 
 interface Props {
   title: string;
   register: UseFormRegister<FieldValues>;
   dataIngredients?: Ingredient[];
+  isLoading?: boolean;
 }
 
-export function FieldsetCheckboxGroup(props: Props) {
+export function FieldsetCheckboxGroup({
+  title,
+  register,
+  dataIngredients,
+  isLoading,
+}: Props) {
   return (
-    <Fieldset legend={props.title}>
-      {props.dataIngredients?.map((ingredient) => (
-        <Checkbox
-          key={ingredient.id}
-          value={ingredient.slug}
-          label={ingredient.name}
-          price={ingredient.price}
-          id={`${ingredient.slug}-${ingredient.category}`}
-          {...props.register(ingredient.category)}
-        />
-      ))}
+    <Fieldset legend={title} isLoading={isLoading}>
+      <HorizontalScroller>
+        <Styled.Container>
+          {isLoading ? (
+            <Skeleton
+              count={3}
+              width="100%"
+              height="100%"
+              wrapper={Styled.SkeletonWrapper}
+            />
+          ) : (
+            dataIngredients?.map((ingredient) => (
+              <Checkbox
+                key={ingredient.id}
+                value={ingredient.slug}
+                label={ingredient.name}
+                price={ingredient.price}
+                thumbnail={ingredient.thumbnail}
+                id={`${ingredient.slug}-${ingredient.category}`}
+                category={ingredient.category}
+                register={register}
+              />
+            ))
+          )}
+        </Styled.Container>
+      </HorizontalScroller>
     </Fieldset>
   );
 }

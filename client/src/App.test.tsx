@@ -1,18 +1,40 @@
-import { fireEvent, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import { Provider as ReduxProvider } from "react-redux";
 import { Router } from "react-router";
 import App from "./App";
-import { mockStore } from "./mocks/mockStore";
+import { PATH } from "./consts";
+import { mockWhithAuthorizedUserStore } from "./mocks/mockStore";
+import { ThemeContextProvider } from "./ThemeContext";
 
 function renderApp() {
   const history = createMemoryHistory();
 
+  /**
+   * Мокаем matchMedia для успешного теста компонентов, использующих
+   * window.matchMedia
+   */
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: jest.fn().mockImplementation((query) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(), // deprecated
+      removeListener: jest.fn(), // deprecated
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    })),
+  });
+
   return {
     ...render(
-      <ReduxProvider store={mockStore}>
+      <ReduxProvider store={mockWhithAuthorizedUserStore}>
         <Router history={history}>
-          <App />
+          <ThemeContextProvider>
+            <App />
+          </ThemeContextProvider>
         </Router>
       </ReduxProvider>
     ),
@@ -21,65 +43,46 @@ function renderApp() {
 }
 
 describe("App navigation", () => {
-  describe("pizza configurator link click", () => {
-    it("navigates to pizza configurator page", () => {
-      const history = createMemoryHistory();
-      const { container, getByText } = renderApp();
+  it("navigates to pizza configurator page", () => {
+    const { history, container } = renderApp();
+    history.push(PATH.PizzaConfigurator);
 
-      expect(container.innerHTML).toMatch("Собери свою пиццу");
-
-      fireEvent.click(getByText(/Конфигуратор пиццы/i));
-
-      expect(history.location.pathname).toEqual("/");
-    });
+    expect(container.innerHTML).toMatch("Собери свою пиццу");
+    expect(history.location.pathname).toEqual("/");
   });
 
-  describe("log in link click", () => {
-    it("navigates to log in page", () => {
-      const { container, getByText } = renderApp();
+  it("navigates to log in page", () => {
+    const { history, container } = renderApp();
+    history.push(PATH.Login);
 
-      fireEvent.click(getByText(/Авторизация/i));
-
-      expect(container.innerHTML).toMatch("Если вы не зарегистрированы");
-    });
+    expect(container.innerHTML).toMatch("Вы успешно авторизовались.");
   });
 
-  describe("sign up link click", () => {
-    it("navigates to log in page", () => {
-      const { container, getByText } = renderApp();
+  it("navigates to sign up page", () => {
+    const { history, container } = renderApp();
+    history.push(PATH.Signup);
 
-      fireEvent.click(getByText(/Регистрация/i));
-
-      expect(container.innerHTML).toMatch("Если вы уже зарегистрированы");
-    });
+    expect(container.innerHTML).toMatch("Если вы уже зарегистрированы");
   });
 
-  describe("checkout link click", () => {
-    it("navigates to checkout page", () => {
-      const { container, getByText } = renderApp();
+  it("navigates to checkout page", () => {
+    const { history, container } = renderApp();
+    history.push(PATH.Checkout);
 
-      fireEvent.click(getByText("Оформление заказа"));
-
-      expect(container.innerHTML).toMatch("Отправить");
-    });
+    expect(container.innerHTML).toMatch("Оплатить 1880 руб");
   });
 
-  describe("orders link click", () => {
-    it("navigates to orders page", () => {
-      const { container, getByText } = renderApp();
+  it("navigates to orders page", () => {
+    const { history, container } = renderApp();
+    history.push(PATH.Orders);
 
-      fireEvent.click(getByText("Мои заказы"));
-
-      expect(container.innerHTML).toMatch("Мои заказы");
-    });
+    expect(container.innerHTML).toMatch("Мои заказы");
   });
 
-  describe("with an unsupported URL", () => {
-    it("shows 404 page", () => {
-      const { history, container } = renderApp();
-      history.push("/some/bad/route");
+  it("shows 404 page", () => {
+    const { history, container } = renderApp();
+    history.push("/some/bad/route");
 
-      expect(container.innerHTML).toMatch("404 - page not found");
-    });
+    expect(container.innerHTML).toMatch("404 - страница не найдена");
   });
 });

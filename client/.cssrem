@@ -1,0 +1,6 @@
+{
+  "rootFontSize": 16,
+  "fixedDigits": 3,
+  "ingoresViaCommand": [ "1px", "2px" ],
+  "hover": "always"
+}

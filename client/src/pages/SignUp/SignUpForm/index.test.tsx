@@ -1,12 +1,16 @@
 import { fireEvent, render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import { ThemeProvider } from "styled-components";
 import { SignUpForm } from ".";
 import { MESSAGES } from "../../../consts";
+import { lightTheme } from "../../../styles";
 
 describe("SignUpForm", () => {
   it("renders correctly", () => {
     const { getByText, getByLabelText } = render(
-      <SignUpForm formSubmit={() => null} />
+      <ThemeProvider theme={lightTheme}>
+        <SignUpForm onFormSubmit={() => null} />
+      </ThemeProvider>
     );
 
     expect(getByLabelText("E-mail")).toBeInTheDocument();
@@ -19,7 +23,9 @@ describe("SignUpForm", () => {
     it("collects email, password and password repeat", async () => {
       const formSubmit = jest.fn();
       const { getByText, getByLabelText } = render(
-        <SignUpForm formSubmit={formSubmit} />
+        <ThemeProvider theme={lightTheme}>
+          <SignUpForm onFormSubmit={formSubmit} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByLabelText("E-mail"), {
@@ -45,29 +51,34 @@ describe("SignUpForm", () => {
 
     it("validates that email, password and repeat password are filled in", async () => {
       const { getByText, getByLabelText } = render(
-        <SignUpForm formSubmit={() => null} />
+        <ThemeProvider theme={lightTheme}>
+          <SignUpForm onFormSubmit={() => null} />
+        </ThemeProvider>
       );
 
       await act(async () => {
         fireEvent.click(getByText("Зарегистрироваться"));
       });
 
-      expect(getByLabelText("E-mail").parentElement?.innerHTML).toMatch(
-        MESSAGES.Required
-      );
-
-      expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        MESSAGES.Required
-      );
+      expect(
+        getByLabelText("E-mail").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Required);
 
       expect(
-        getByLabelText("Подтвердите пароль").parentElement?.innerHTML
+        getByLabelText("Пароль").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Required);
+
+      expect(
+        getByLabelText("Подтвердите пароль").parentElement?.parentElement
+          ?.innerHTML
       ).toMatch(MESSAGES.Required);
     });
 
     it("validates that email is the correct email", async () => {
       const { getByText, getByLabelText } = render(
-        <SignUpForm formSubmit={() => null} />
+        <ThemeProvider theme={lightTheme}>
+          <SignUpForm onFormSubmit={() => null} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByLabelText("E-mail"), {
@@ -78,14 +89,16 @@ describe("SignUpForm", () => {
         fireEvent.click(getByText("Зарегистрироваться"));
       });
 
-      expect(getByLabelText("E-mail").parentElement?.innerHTML).toMatch(
-        MESSAGES.Email
-      );
+      expect(
+        getByLabelText("E-mail").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Email);
     });
 
     it("validates that password is longer than 6 symbols", async () => {
       const { getByText, getByLabelText } = render(
-        <SignUpForm formSubmit={() => null} />
+        <ThemeProvider theme={lightTheme}>
+          <SignUpForm onFormSubmit={() => null} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByLabelText("Пароль"), {
@@ -96,14 +109,16 @@ describe("SignUpForm", () => {
         fireEvent.click(getByText("Зарегистрироваться"));
       });
 
-      expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        MESSAGES.Password
-      );
+      expect(
+        getByLabelText("Пароль").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Password);
     });
 
     it("validates that password has numbers", async () => {
       const { getByText, getByLabelText } = render(
-        <SignUpForm formSubmit={() => null} />
+        <ThemeProvider theme={lightTheme}>
+          <SignUpForm onFormSubmit={() => null} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByLabelText("Пароль"), {
@@ -114,14 +129,16 @@ describe("SignUpForm", () => {
         fireEvent.click(getByText("Зарегистрироваться"));
       });
 
-      expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        MESSAGES.Password
-      );
+      expect(
+        getByLabelText("Пароль").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Password);
     });
 
     it("validates that password has special symbols", async () => {
       const { getByText, getByLabelText } = render(
-        <SignUpForm formSubmit={() => null} />
+        <ThemeProvider theme={lightTheme}>
+          <SignUpForm onFormSubmit={() => null} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByLabelText("Пароль"), {
@@ -132,14 +149,16 @@ describe("SignUpForm", () => {
         fireEvent.click(getByText("Зарегистрироваться"));
       });
 
-      expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        MESSAGES.Password
-      );
+      expect(
+        getByLabelText("Пароль").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Password);
     });
 
     it("validates that password has not cyrillic characters", async () => {
       const { getByText, getByLabelText } = render(
-        <SignUpForm formSubmit={() => null} />
+        <ThemeProvider theme={lightTheme}>
+          <SignUpForm onFormSubmit={() => null} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByLabelText("Пароль"), {
@@ -150,9 +169,9 @@ describe("SignUpForm", () => {
         fireEvent.click(getByText("Зарегистрироваться"));
       });
 
-      expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        MESSAGES.Password
-      );
+      expect(
+        getByLabelText("Пароль").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Password);
     });
   });
 });

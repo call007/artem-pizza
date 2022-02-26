@@ -1,117 +1,146 @@
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { calculatePrice } from "../../../calculatePrice";
 import { PATH } from "../../../consts";
 import {
-  getError,
   getIngredients,
   getIngredientsByCategory,
-  getIsLoading,
 } from "../../../state/ingredients/selectors";
 import { fetchIngredients } from "../../../state/ingredients/thunk";
-import { orderSlice } from "../../../state/pizza/slice";
+import { getPizza } from "../../../state/order/selectors";
+import { orderSlice } from "../../../state/order/slice";
 import { AppDispatch } from "../../../store";
 import { Category, Pizza } from "../../../types";
+import { Typography } from "../../../ui-kit";
+import { calculatePrice } from "../../../utils";
 import { FieldsetCheckboxGroup } from "../FieldsetCheckboxGroup";
 import { FieldsetRadioGroup } from "../FieldsetRadioGroup";
+import * as Styled from "./styles";
 
-export function ConfiguratorForm() {
+interface ConfiguratorFormProps {
+  isLoading?: boolean;
+  errorMessage?: string;
+}
+
+export function ConfiguratorForm({
+  isLoading,
+  errorMessage,
+}: ConfiguratorFormProps) {
   const history = useHistory();
   const dispatch = useDispatch<AppDispatch>();
 
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
   const ingredients = useSelector(getIngredients);
+  const pizza = useSelector(getPizza);
 
   const size = useSelector(getIngredientsByCategory(Category.Size));
   const dough = useSelector(getIngredientsByCategory(Category.Dough));
-  const sauces = useSelector(getIngredientsByCategory(Category.Sauces));
+  const sauce = useSelector(getIngredientsByCategory(Category.Sauce));
   const cheese = useSelector(getIngredientsByCategory(Category.Cheese));
   const meat = useSelector(getIngredientsByCategory(Category.Meat));
   const vegetables = useSelector(getIngredientsByCategory(Category.Vegetables));
 
-  const { register, watch } = useForm<Pizza>({
+  const { register, control } = useForm<Pizza>({
     defaultValues: {
-      size: "30",
-      dough: "thin",
-      sauces: "tomato",
-      cheese: [],
-      vegetables: [],
-      meat: [],
+      size: pizza.size,
+      dough: pizza.dough,
+      sauce: pizza.sauce,
+      cheese: pizza.cheese,
+      vegetables: pizza.vegetables,
+      meat: pizza.meat,
     },
   });
 
-  const formValues = watch();
+  const formValues = useWatch({
+    control,
+  }) as Pizza;
+
+  useEffect(() => {
+    dispatch(orderSlice.actions.setPizza(formValues));
+    dispatch(
+      orderSlice.actions.setPrice(calculatePrice(formValues, ingredients))
+    );
+  }, [formValues, dispatch, ingredients]);
 
   useEffect(() => {
     dispatch(fetchIngredients());
   }, [dispatch]);
 
-  if (isLoading) {
-    return <>Загрузка...</>;
-  }
-
   const handleSubmit: React.ReactEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    dispatch(orderSlice.actions.setPizza(formValues));
-    dispatch(
-      orderSlice.actions.setPrice(calculatePrice(formValues, ingredients))
-    );
-    history.push(PATH.PizzaPreview);
+    history.push(PATH.Checkout);
   };
 
-  if (error) {
-    return <>{error.message}</>;
+  if (errorMessage) {
+    return (
+      <Styled.Box>
+        <Typography color={(color) => color.statusError}>
+          {errorMessage}
+        </Typography>
+      </Styled.Box>
+    );
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <FieldsetRadioGroup
-        title="Размер"
-        dataIngredients={size}
-        isVisiblePrice={false}
-        register={register}
-      />
+    <form onSubmit={handleSubmit} id="configurator-form">
+      <Styled.BaseBox>
+        <Styled.Box>
+          <FieldsetRadioGroup
+            title="Размер"
+            dataIngredients={size}
+            isVisiblePrice={false}
+            register={register}
+            isLoading={isLoading}
+          />
+        </Styled.Box>
 
-      <FieldsetRadioGroup
-        title="Тесто"
-        dataIngredients={dough}
-        isVisiblePrice={false}
-        register={register}
-      />
+        <Styled.Box>
+          <FieldsetRadioGroup
+            title="Тесто"
+            dataIngredients={dough}
+            isVisiblePrice={false}
+            register={register}
+            isLoading={isLoading}
+          />
+        </Styled.Box>
+      </Styled.BaseBox>
 
-      <FieldsetRadioGroup
-        title="Выберите соус"
-        dataIngredients={sauces}
-        isVisiblePrice={false}
-        register={register}
-      />
+      <Styled.Box>
+        <FieldsetRadioGroup
+          title="Выберите соус"
+          dataIngredients={sauce}
+          isVisiblePrice={false}
+          register={register}
+          isLoading={isLoading}
+        />
+      </Styled.Box>
 
-      <FieldsetCheckboxGroup
-        title="Добавьте сыр"
-        dataIngredients={cheese}
-        register={register}
-      />
+      <Styled.Box>
+        <FieldsetCheckboxGroup
+          title="Добавьте сыр"
+          dataIngredients={cheese}
+          register={register}
+          isLoading={isLoading}
+        />
+      </Styled.Box>
 
-      <FieldsetCheckboxGroup
-        title="Добавьте овощи"
-        dataIngredients={vegetables}
-        register={register}
-      />
+      <Styled.Box>
+        <FieldsetCheckboxGroup
+          title="Добавьте овощи"
+          dataIngredients={vegetables}
+          register={register}
+          isLoading={isLoading}
+        />
+      </Styled.Box>
 
-      <FieldsetCheckboxGroup
-        title="Добавьте мясо"
-        dataIngredients={meat}
-        register={register}
-      />
-
-      <div>
-        <button type="submit">
-          Заказать за {calculatePrice(formValues, ingredients)} руб
-        </button>
-      </div>
+      <Styled.Box>
+        <FieldsetCheckboxGroup
+          title="Добавьте мясо"
+          dataIngredients={meat}
+          register={register}
+          isLoading={isLoading}
+        />
+      </Styled.Box>
     </form>
   );
 }

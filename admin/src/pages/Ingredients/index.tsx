@@ -36,9 +36,6 @@ export function Ingredients() {
       <h2>Сыр</h2>
       <List ingredients={cheese} />
 
-      <h2>Сыр</h2>
-      <List ingredients={cheese} />
-
       <h2>Мясо</h2>
       <List ingredients={meat} />
 

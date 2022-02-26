@@ -5,9 +5,9 @@ import ReactDOM from "react-dom";
 import { Provider as ReduxProvider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./store";
+import { ThemeContextProvider } from "./ThemeContext";
 
 Sentry.init({
   dsn: "https://bd8c58643e2244afaa46a6e31e91e60a@o1033219.ingest.sentry.io/6000000",
@@ -20,7 +20,9 @@ ReactDOM.render(
   <React.StrictMode>
     <ReduxProvider store={store}>
       <BrowserRouter>
-        <App />
+        <ThemeContextProvider>
+          <App />
+        </ThemeContextProvider>
       </BrowserRouter>
     </ReduxProvider>
   </React.StrictMode>,

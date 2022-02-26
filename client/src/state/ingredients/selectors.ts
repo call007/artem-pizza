@@ -3,9 +3,11 @@ import { Category } from "../../types";
 
 export const getIngredients = (state: RootState) => state.ingredients.data;
 
-export const getIsLoading = (state: RootState) => state.ingredients.isLoading;
+export const getIngredientsIsLoading = (state: RootState) =>
+  state.ingredients.isLoading;
 
-export const getError = (state: RootState) => state.ingredients.error;
+export const getIngredientsError = (state: RootState) =>
+  state.ingredients.errorMessage;
 
 export const getIngredientsByCategory =
   (category: Category) => (state: RootState) =>

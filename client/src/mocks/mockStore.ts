@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { IngredientsState } from "../state/ingredients/slice";
-import { OrderState } from "../state/pizza/slice";
+import { OrderState } from "../state/order/slice";
 import { UserState } from "../state/user/slice";
 import { RootState } from "../store";
 
@@ -8,7 +8,7 @@ const initialOrderState: OrderState = {
   pizza: {
     size: "30",
     dough: "thin",
-    sauces: "mayo",
+    sauce: "mayo",
     cheese: ["cheddar", "dor-blue", "mozarella"],
     vegetables: [
       "broccoli",
@@ -166,7 +166,7 @@ const initialIngredientsState: IngredientsState = {
       name: "Томатный",
       slug: "tomato",
       price: 0,
-      category: "sauces",
+      category: "sauce",
       image: "tomato.gif",
       thumbnail: "tomato-thumb.gif",
     },
@@ -175,7 +175,7 @@ const initialIngredientsState: IngredientsState = {
       name: "Майонез",
       slug: "mayo",
       price: 0,
-      category: "sauces",
+      category: "sauce",
       image: "mayo.gif",
       thumbnail: "mayo-thumb.gif",
     },
@@ -184,7 +184,7 @@ const initialIngredientsState: IngredientsState = {
       name: "Острый",
       slug: "spicy",
       price: 0,
-      category: "sauces",
+      category: "sauce",
       image: "spicy.gif",
       thumbnail: "spicy-thumb.gif",
     },
@@ -193,7 +193,7 @@ const initialIngredientsState: IngredientsState = {
       name: "Грибной",
       slug: "mushroom",
       price: 0,
-      category: "sauces",
+      category: "sauce",
       image: "mushroom.gif",
       thumbnail: "mushroom-thumb.gif",
     },
@@ -202,7 +202,7 @@ const initialIngredientsState: IngredientsState = {
       name: "Чесночный",
       slug: "garlic",
       price: 0,
-      category: "sauces",
+      category: "sauce",
       image: "garlic.gif",
       thumbnail: "garlic-thumb.gif",
     },
@@ -211,7 +211,7 @@ const initialIngredientsState: IngredientsState = {
       name: "Кисло-сладкий",
       slug: "sweet-and-sour",
       price: 0,
-      category: "sauces",
+      category: "sauce",
       image: "sweet-and-sour.gif",
       thumbnail: "sweet-and-sour-thumb.gif",
     },
@@ -230,7 +230,10 @@ const initialIngredientsState: IngredientsState = {
 
 const initialUserState: UserState = {
   isAuthorized: false,
-  isCheckoutSuccess: true,
+};
+
+const initialAuthorizedUserState: UserState = {
+  isAuthorized: true,
 };
 
 export const mockState: RootState = {
@@ -244,6 +247,15 @@ export const mockStore = configureStore({
     order: (state = initialOrderState) => state,
     ingredients: (state = initialIngredientsState) => state,
     user: (state = initialUserState) => state,
+  },
+  devTools: false,
+});
+
+export const mockWhithAuthorizedUserStore = configureStore({
+  reducer: {
+    order: (state = initialOrderState) => state,
+    ingredients: (state = initialIngredientsState) => state,
+    user: (state = initialAuthorizedUserState) => state,
   },
   devTools: false,
 });

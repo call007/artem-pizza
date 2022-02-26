@@ -10,14 +10,4 @@ describe("pizzaReducer", () => {
       });
     });
   });
-
-  describe("set_isCheckoutSuccess", () => {
-    it("sets isCheckoutSuccess", () => {
-      const initialState: UserState = {};
-      const action = userSlice.actions.setIsCheckoutSuccess(true);
-      expect(userSlice.reducer(initialState, action)).toEqual<UserState>({
-        isCheckoutSuccess: true,
-      });
-    });
-  });
 });

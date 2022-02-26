@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { ingredientsSlice } from "./state/ingredients/slice";
-import { orderSlice } from "./state/pizza/slice";
+import { orderSlice } from "./state/order/slice";
 import { userSlice } from "./state/user/slice";
 
 export const store = configureStore({
