@@ -9,7 +9,7 @@ export function ThemeSwitcher() {
     <Styled.Container
       type="button"
       title={`Переключить на ${theme === "light" ? "тёмную" : "светлую"} тему`}
-      aria-label="auto"
+      aria-label={theme}
       aria-live="polite"
       onClick={toggleTheme}
     >
