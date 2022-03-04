@@ -13,8 +13,7 @@ export const Container = styled.div(
     padding: ${variables.space.sm} ${variables.space.base};
     background-color: ${theme.colors.white};
     box-shadow: ${theme.shadow.outer.panel};
-    transition-property: background-color, color;
-    transition-duration: ${variables.transitionDuration};
+    transition: background-color ${variables.transitionDuration};
   `
 );
 

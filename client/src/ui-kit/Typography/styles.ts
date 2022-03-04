@@ -17,5 +17,6 @@ export const Container = styled.p.withConfig<ContainerProps>({
     font-weight: ${weight && variables.typography.fontWeight[weight]};
     line-height: ${size && variables.typography.lineHeight[size]};
     color: ${color};
+    transition: ${color && `color ${variables.transitionDuration}`};
   `
 );
