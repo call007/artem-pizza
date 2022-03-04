@@ -9,7 +9,8 @@ export const Container = styled.div`
   padding-left: 0;
   background-color: ${(props) => props.theme.colors.gray100};
   border-radius: 0.875rem;
-  transition: background-color ${variables.transitionDuration};
+  transition-property: background-color, color;
+  transition-duration: ${variables.transitionDuration};
 
   @media ${variables.media.phone} {
     max-width: none;
