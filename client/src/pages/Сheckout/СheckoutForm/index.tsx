@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ReactComponent as MasterCardIcon } from "../../../images/mastercard.svg";
 import { ReactComponent as VisaIcon } from "../../../images/visa.svg";
+import { useThemeContext } from "../../../ThemeContext";
 import { PaymentSystem } from "../../../types";
 import { Input, Typography } from "../../../ui-kit";
 import { getPaymentSystem } from "../../../utils";
@@ -24,6 +25,7 @@ interface Props {
 }
 
 export function СheckoutForm({ onFormSubmit, onCardNumberChange }: Props) {
+  const { theme } = useThemeContext();
   const {
     register,
     handleSubmit,
@@ -119,6 +121,7 @@ export function СheckoutForm({ onFormSubmit, onCardNumberChange }: Props) {
                     <Styled.PaymentIcon
                       as={VisaIcon}
                       aria-label={PaymentSystem.Visa}
+                      themeName={theme}
                     />
                   )}
                 </>

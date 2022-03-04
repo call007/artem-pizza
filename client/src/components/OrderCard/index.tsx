@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ReactComponent as MasterCardIcon } from "../../images/mastercard.svg";
 import { ReactComponent as VisaIcon } from "../../images/visa.svg";
+import { useThemeContext } from "../../ThemeContext";
 import { PaymentSystem } from "../../types";
 import { Plate, Typography, TypographySkeleton } from "../../ui-kit";
 import { getPaymentSystem } from "../../utils";
@@ -30,6 +31,7 @@ export function OrderCard({
   const [paymentSystem, setPaymentSystem] = useState<PaymentSystem>();
   const [last4DigitsOfPaymentSystem, setLast4DigitsOfPaymentSystem] =
     useState<string>();
+  const { theme } = useThemeContext();
 
   useEffect(() => {
     setPaymentSystem(getPaymentSystem(cardNumber));
@@ -88,7 +90,11 @@ export function OrderCard({
           )}
 
           {paymentSystem === PaymentSystem.Visa && (
-            <Styled.PaymentIcon as={VisaIcon} aria-label={PaymentSystem.Visa} />
+            <Styled.PaymentIcon
+              as={VisaIcon}
+              aria-label={PaymentSystem.Visa}
+              themeName={theme}
+            />
           )}
 
           {last4DigitsOfPaymentSystem && (

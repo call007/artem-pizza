@@ -5,9 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { themes } from "./styles";
-
-type Themes = keyof typeof themes;
+import { Themes } from "./types";
 
 const ThemeContext = createContext(
   {} as { theme: Themes; toggleTheme: () => void }

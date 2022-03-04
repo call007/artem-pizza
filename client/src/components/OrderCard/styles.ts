@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { OrderCardSize } from ".";
-import { variables } from "../../styles";
+import { mixins, variables } from "../../styles";
+import { PaymentSystem, Themes } from "../../types";
 
 export const Plate = styled.section`
   padding: ${variables.space.base};
@@ -47,11 +48,23 @@ export const Footer = styled.footer`
   transition: border-top-color ${variables.transitionDuration};
 `;
 
-export const PaymentIcon = styled.svg`
+type PaymentIconProps = {
+  themeName?: Themes;
+};
+
+export const PaymentIcon = styled.svg.withConfig<PaymentIconProps>({
+  shouldForwardProp: (prop) => prop !== "themeName",
+})`
+  ${mixins.fadeIn};
   align-self: center;
   width: 1.5rem;
   height: 0.938rem;
   margin-right: ${variables.space.xxxs};
+
+  &[aria-label="${PaymentSystem.Visa}"] {
+    filter: ${(props) =>
+      props.themeName === "dark" && "brightness(3.5) contrast(2)"};
+  }
 `;
 
 export const FooterSummary = styled.div`

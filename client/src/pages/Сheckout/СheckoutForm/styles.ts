@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { mixins, variables } from "../../../styles";
+import { PaymentSystem, Themes } from "../../../types";
 import { StyledInput } from "../../../ui-kit";
 
 export const Fieldset = styled.fieldset`
@@ -64,7 +65,19 @@ export const Payment = styled.div`
   position: relative;
 `;
 
-export const PaymentIcon = styled.svg`
+type PaymentIconProps = {
+  themeName?: Themes;
+};
+
+export const PaymentIcon = styled.svg.withConfig<PaymentIconProps>({
+  shouldForwardProp: (prop) => prop !== "themeName",
+})`
+  ${mixins.fadeIn};
   width: 2rem;
   height: 1.25rem;
+
+  &[aria-label="${PaymentSystem.Visa}"] {
+    filter: ${(props) =>
+      props.themeName === "dark" && "brightness(3.5) contrast(2)"};
+  }
 `;
