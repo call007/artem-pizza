@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { AuthProvider } from "./context/AuthContext";
 import { IngredientsProvider } from "./context/IngredientsContext";
 import reportWebVitals from "./reportWebVitals";
 
@@ -9,7 +10,9 @@ ReactDOM.render(
   <React.StrictMode>
     <IngredientsProvider>
       <BrowserRouter>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </BrowserRouter>
     </IngredientsProvider>
   </React.StrictMode>,

@@ -56,3 +56,27 @@ export const updateIngredient = (ingredientId: string, formData: FormData) =>
       throw new Error(response.statusText || ERROR_MESSAGE);
     }
   });
+
+export const serverLogin = (
+  email: string,
+  password: string
+): Promise<{ token: string }> =>
+  fetch(
+    `${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_VERSION}/admin-auth/login`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  ).then((response) => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      throw new Error(response.statusText || ERROR_MESSAGE);
+    }
+  });
