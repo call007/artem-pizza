@@ -20,6 +20,7 @@ export default createGlobalStyle`
 
   body {
     min-width: 320px;
+    background-color: ${(props) => props.theme.colors.gray100};
   }
 
   html,
