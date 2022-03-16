@@ -19,8 +19,8 @@ function App() {
 
   return (
     <ThemeProvider theme={themes[theme]}>
-      test2
       <GlobalStyles />
+
       <SkeletonTheme
         baseColor={themes[theme].colors.gray100}
         highlightColor={themes[theme].colors.white}

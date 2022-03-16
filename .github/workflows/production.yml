@@ -46,5 +46,5 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.PROD_NETLIFY_SITE_ID }}
         with:
-          args: deploy --dir=client/build --message 'Prod deploy ${{ github.event.head_commit.message }} --prod
+          args: deploy --dir=client/build --message 'Prod deploy ${{ github.event.head_commit.message }}' --prod
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
