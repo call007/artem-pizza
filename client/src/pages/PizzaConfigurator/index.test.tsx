@@ -1,19 +1,24 @@
-import { render, fireEvent } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
+import { render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
+import { Provider as ReduxProvider } from "react-redux";
 import { Router } from "react-router";
-import { PizzaProvider } from "../../PizzaContext";
+import { ThemeProvider } from "styled-components";
 import { PizzaConfigurator } from ".";
+import { mockStore } from "../../mocks/mockStore";
+import { lightTheme } from "../../styles";
 
 function renderPizzaConfigurator() {
   const history = createMemoryHistory();
 
   return {
     ...render(
-      <Router history={history}>
-        <PizzaConfigurator />
-      </Router>,
-      { wrapper: PizzaProvider }
+      <ReduxProvider store={mockStore}>
+        <Router history={history}>
+          <ThemeProvider theme={lightTheme}>
+            <PizzaConfigurator />
+          </ThemeProvider>
+        </Router>
+      </ReduxProvider>
     ),
     history,
   };
@@ -24,26 +29,5 @@ describe("PizzaConfigurator page", () => {
     const { getByText } = renderPizzaConfigurator();
 
     expect(getByText("Собери свою пиццу")).toBeInTheDocument();
-  });
-
-  describe(".handleChange", () => {
-    it("changes pizza price when ingredients value changed", () => {
-      const { getByText } = renderPizzaConfigurator();
-
-      fireEvent.click(getByText(/Моцарелла/i));
-      fireEvent.click(getByText(/Томаты/i));
-
-      expect(getByText("Заказать за 258 руб")).toBeInTheDocument();
-    });
-
-    it("navigates to `/pizza-preview`", async () => {
-      const { getByText, history } = renderPizzaConfigurator();
-
-      await act(async () => {
-        fireEvent.click(getByText(/Заказать за/i));
-      });
-
-      expect(history.location.pathname).toEqual("/pizza-preview");
-    });
   });
 });

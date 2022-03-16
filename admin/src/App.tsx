@@ -1,41 +1,31 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-
-type FormValues = {
-  price: string;
-  name: string;
-  slug: string;
-  picture: string;
-};
+import { Route, Switch } from "react-router";
+import { Link } from "react-router-dom";
+import { AddNewToppingForm } from "./pages/AddNewTopping";
+import { Ingredients } from "./pages/Ingredients";
 
 function App() {
-  const { register, handleSubmit } = useForm<FormValues>();
-
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="price">Цена:</label>
-        <input type="text" id="price" {...register("price")} />
-      </div>
+    <>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/add-toppings">Добавление топпингов</Link>
+          </li>
+          <li>
+            <Link to="/ingredients">Ингредиенты</Link>
+          </li>
+        </ul>
+      </nav>
 
-      <div>
-        <label htmlFor="name">Название:</label>
-        <input type="text" id="name" {...register("name")} />
-      </div>
-
-      <div>
-        <label htmlFor="slug">Идентификатор:</label>
-        <input type="text" id="slug" {...register("slug")} />
-      </div>
-
-      <div>
-        <label htmlFor="picture">Картинка:</label>
-        <input type="file" id="picture" {...register("picture")} />
-      </div>
-
-      <button type="submit">Оправить</button>
-    </form>
+      <Switch>
+        <Route path="/add-toppings">
+          <AddNewToppingForm />
+        </Route>
+        <Route path="/ingredients">
+          <Ingredients />
+        </Route>
+      </Switch>
+    </>
   );
 }
 

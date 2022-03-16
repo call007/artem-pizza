@@ -1,89 +1,61 @@
-import React from "react";
-import { useHistory } from "react-router";
-import { useForm } from "react-hook-form";
-import { data } from "../../data";
+import { useSelector } from "react-redux";
 import { PATH } from "../../consts";
-import { FieldsName, StatePizza } from "../../types";
-import { calculatePrice } from "../../calculatePrice";
-import { usePizzaContext } from "../../PizzaContext";
-import { FieldsetCheckboxGroup } from "./FieldsetCheckboxGroup";
-import { FieldsetRadioGroup } from "./FieldsetRadioGroup";
+import { useMediaPhone } from "../../hooks";
+import {
+  getIngredientsError,
+  getIngredientsIsLoading,
+} from "../../state/ingredients/selectors";
+import { Button, Header, Typography, Wrapper } from "../../ui-kit";
+import { ConfiguratorForm } from "./ConfiguratorForm";
+import { MobilePizzaPreview } from "./MobilePizzaPreview";
+import { PizzaPreview } from "./PizzaPreview";
+import * as Styled from "./styles";
 
 export function PizzaConfigurator() {
-  const history = useHistory();
-  const { dispatch } = usePizzaContext();
-
-  const { register, watch } = useForm<StatePizza>({
-    defaultValues: {
-      size: data.size[0].value,
-      dough: data.dough[0].value,
-      sauce: data.sauce[0].value,
-      cheese: [],
-      vegetables: [],
-      meat: [],
-    },
-  });
-
-  const formValues = watch();
-
-  const handleSubmit: React.ReactEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-    dispatch({ type: "update-pizza", payload: formValues });
-    history.push(PATH.PizzaPreview);
-  };
+  const isLoading = useSelector(getIngredientsIsLoading);
+  const errorMessage = useSelector(getIngredientsError);
+  const isPhone = useMediaPhone();
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Собери свою пиццу</h1>
+    <>
+      <Styled.WhiteBodyBg />
 
-      <FieldsetRadioGroup
-        title="Размер"
-        name={FieldsName.Size}
-        dataOptions={data.size}
-        isVisiblePrice={false}
-        register={register}
-      />
+      <Header>
+        <Button to={PATH.Orders} view="ghost" icon="account">
+          {!isPhone && "Мои заказы"}
+        </Button>
+      </Header>
 
-      <FieldsetRadioGroup
-        title="Тесто"
-        name={FieldsName.Dough}
-        dataOptions={data.dough}
-        register={register}
-      />
+      <Wrapper size="base" as="main">
+        {isPhone && (
+          <Typography size="xl" weight="bold" component="h1">
+            Собери свою пиццу
+          </Typography>
+        )}
 
-      <FieldsetRadioGroup
-        title="Выберите соус"
-        name={FieldsName.Sauce}
-        dataOptions={data.sauce}
-        register={register}
-      />
+        <Styled.Container>
+          <Styled.Content>
+            {!isPhone && (
+              <Typography size="xxl" weight="bold" component="h1">
+                Собери свою пиццу
+              </Typography>
+            )}
 
-      <FieldsetCheckboxGroup
-        title="Добавьте сыр"
-        name={FieldsName.Cheese}
-        dataOptions={data.cheese}
-        register={register}
-      />
+            <ConfiguratorForm
+              isLoading={isLoading}
+              errorMessage={errorMessage}
+            />
+          </Styled.Content>
 
-      <FieldsetCheckboxGroup
-        title="Добавьте овощи"
-        name={FieldsName.Vegetables}
-        dataOptions={data.vegetables}
-        register={register}
-      />
+          <Styled.Sidebar>
+            <PizzaPreview isLoading={isLoading || !!errorMessage} />
+          </Styled.Sidebar>
+        </Styled.Container>
+      </Wrapper>
 
-      <FieldsetCheckboxGroup
-        title="Добавьте мясо"
-        name={FieldsName.Meat}
-        dataOptions={data.meat}
-        register={register}
-      />
-
-      <div>
-        <button type="submit">
-          Заказать за {calculatePrice(formValues)} руб
-        </button>
-      </div>
-    </form>
+      {isPhone && (
+        <MobilePizzaPreview isLoading={isLoading || !!errorMessage} />
+      )}
+    </>
   );
 }

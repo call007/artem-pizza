@@ -1,56 +1,62 @@
-import { Menu } from "./components/Menu";
+import { SkeletonTheme } from "react-loading-skeleton";
 import { Route, Switch } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import { PrivateRoute, ScrollToTop } from "./components";
 import { PATH } from "./consts";
 import {
   LogIn,
   NotFound,
   Orders,
   PizzaConfigurator,
-  PizzaPreview,
   SignUp,
   Сheckout,
-  СheckoutSuccess,
 } from "./pages";
+import { GlobalStyles, themes } from "./styles";
+import { useThemeContext } from "./ThemeContext";
 
 function App() {
+  const { theme } = useThemeContext();
+
   return (
-    <div className="App">
-      <Menu />
+    <ThemeProvider theme={themes[theme]}>
+      <GlobalStyles />
 
-      <Switch>
-        <Route path={PATH.PizzaConfigurator} exact>
-          <PizzaConfigurator />
-        </Route>
+      <SkeletonTheme
+        baseColor={themes[theme].colors.gray100}
+        highlightColor={themes[theme].colors.white}
+        borderRadius=".875rem"
+      >
+        <div className="App">
+          <ScrollToTop />
 
-        <Route path={PATH.PizzaPreview}>
-          <PizzaPreview />
-        </Route>
+          <Switch>
+            <Route path={PATH.PizzaConfigurator} exact>
+              <PizzaConfigurator />
+            </Route>
 
-        <Route path={PATH.Login}>
-          <LogIn />
-        </Route>
+            <Route path={PATH.Login}>
+              <LogIn />
+            </Route>
 
-        <Route path={PATH.Signup}>
-          <SignUp />
-        </Route>
+            <Route path={PATH.Signup}>
+              <SignUp />
+            </Route>
 
-        <Route path={PATH.Checkout}>
-          <Сheckout />
-        </Route>
+            <Route path={PATH.Checkout}>
+              <Сheckout />
+            </Route>
 
-        <Route path={PATH.CheckoutSuccess}>
-          <СheckoutSuccess />
-        </Route>
+            <PrivateRoute path={PATH.Orders} redirectPath={PATH.Login}>
+              <Orders />
+            </PrivateRoute>
 
-        <Route path={PATH.Orders}>
-          <Orders />
-        </Route>
-
-        <Route>
-          <NotFound />
-        </Route>
-      </Switch>
-    </div>
+            <Route>
+              <NotFound />
+            </Route>
+          </Switch>
+        </div>
+      </SkeletonTheme>
+    </ThemeProvider>
   );
 }
 

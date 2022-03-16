@@ -1,12 +1,16 @@
-import { render, fireEvent } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import { ThemeProvider } from "styled-components";
 import { LogInForm } from ".";
 import { MESSAGES } from "../../../consts";
+import { lightTheme } from "../../../styles";
 
 describe("LogInForm", () => {
   it("renders correctly", () => {
     const { getByText, getByLabelText } = render(
-      <LogInForm formSubmit={() => null} />
+      <ThemeProvider theme={lightTheme}>
+        <LogInForm onFormSubmit={() => null} />
+      </ThemeProvider>
     );
 
     expect(getByLabelText("E-mail")).toBeInTheDocument();
@@ -18,7 +22,9 @@ describe("LogInForm", () => {
     it("collects email and password", async () => {
       const formSubmit = jest.fn();
       const { getByText, getByLabelText } = render(
-        <LogInForm formSubmit={formSubmit} />
+        <ThemeProvider theme={lightTheme}>
+          <LogInForm onFormSubmit={formSubmit} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByLabelText("E-mail"), {
@@ -40,25 +46,29 @@ describe("LogInForm", () => {
 
     it("validates that email and password are filled in", async () => {
       const { getByText, getByLabelText } = render(
-        <LogInForm formSubmit={() => null} />
+        <ThemeProvider theme={lightTheme}>
+          <LogInForm onFormSubmit={() => null} />
+        </ThemeProvider>
       );
 
       await act(async () => {
         fireEvent.click(getByText("Войти"));
       });
 
-      expect(getByLabelText("E-mail").parentElement?.innerHTML).toMatch(
-        MESSAGES.Required
-      );
+      expect(
+        getByLabelText("E-mail").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Required);
 
-      expect(getByLabelText("Пароль").parentElement?.innerHTML).toMatch(
-        MESSAGES.Required
-      );
+      expect(
+        getByLabelText("Пароль").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Required);
     });
 
     it("validates that email is the correct email", async () => {
       const { getByText, getByLabelText } = render(
-        <LogInForm formSubmit={() => null} />
+        <ThemeProvider theme={lightTheme}>
+          <LogInForm onFormSubmit={() => null} />
+        </ThemeProvider>
       );
 
       fireEvent.input(getByLabelText("E-mail"), {
@@ -69,9 +79,9 @@ describe("LogInForm", () => {
         fireEvent.click(getByText("Войти"));
       });
 
-      expect(getByLabelText("E-mail").parentElement?.innerHTML).toMatch(
-        MESSAGES.Email
-      );
+      expect(
+        getByLabelText("E-mail").parentElement?.parentElement?.innerHTML
+      ).toMatch(MESSAGES.Email);
     });
   });
 });

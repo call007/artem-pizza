@@ -1,55 +1,57 @@
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Button, Input } from "../../../ui-kit";
 import { validators } from "../../../validators";
+import * as Styled from "./styles";
 
-type FormValues = {
+export type FormValues = {
   email: string;
   password: string;
 };
 
 interface Props {
-  formSubmit: (data: FormValues) => void;
+  onFormSubmit?: (data: FormValues) => void;
 }
 
-export function LogInForm({ formSubmit }: Props) {
+export function LogInForm({ onFormSubmit }: Props) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<FormValues>({ mode: "onSubmit" });
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => formSubmit(data);
+  const onSubmit: SubmitHandler<FormValues> = (data) => onFormSubmit?.(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <ul role="none">
-        <li>
-          <label htmlFor="login-email">E-mail</label>
-          <input
-            type="text"
-            id="login-email"
-            inputMode="email"
-            autoComplete="username"
-            {...register("email", {
-              ...validators.required,
-              ...validators.email,
-            })}
-          />
-          {errors.email?.message}
-        </li>
+      <Styled.Box>
+        <Input
+          label="E-mail"
+          type="text"
+          id="login-email"
+          inputMode="email"
+          autoComplete="username"
+          errorMessage={errors.email?.message}
+          {...register("email", {
+            ...validators.required,
+            ...validators.email,
+          })}
+        />
+      </Styled.Box>
 
-        <li>
-          <label htmlFor="login-password">Пароль</label>
-          <input
-            type="password"
-            id="login-password"
-            autoComplete="current-password"
-            {...register("password", { ...validators.required })}
-          />
-          {errors.password?.message}
-        </li>
-      </ul>
+      <Styled.Box>
+        <Input
+          label="Пароль"
+          type="password"
+          id="login-password"
+          autoComplete="current-password"
+          errorMessage={errors.password?.message}
+          {...register("password", { ...validators.required })}
+        />
+      </Styled.Box>
 
-      <button type="submit">Войти</button>
+      <Button type="submit" size="large" isLong={true}>
+        Войти
+      </Button>
     </form>
   );
 }

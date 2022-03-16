@@ -1,46 +1,30 @@
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import { useMediaPhone } from "../../hooks";
+import { getIsAuthorized } from "../../state/user/selectors";
+import { Button, Header, Wrapper } from "../../ui-kit";
+import { OrderList } from "./OrderList";
+
 export function Orders() {
+  const history = useHistory();
+  const isPhone = useMediaPhone();
+  const isAuthorized = useSelector(getIsAuthorized);
+
   return (
-    <div>
-      <h1>Мои заказы</h1>
+    <>
+      <Header title="Мои заказы">
+        <Button onClick={() => history.goBack()} view="ghost" icon="arrow-left">
+          {!isPhone && "Назад"}
+        </Button>
 
-      <section>
-        <span>Заказ 2390</span> <span>21 октября 2020, 13:40 • Доставлен</span>
-        <h2>Пицца на обед в пятницу</h2>
-        <p>
-          <small>
-            30 см на толстом тесте• Томатный соус • Моцарелла • Томаты • Бекон
-          </small>
-        </p>
-        <strong>420 руб</strong> <span>Доставляется</span>
-      </section>
+        <Button view="ghost" icon="logout" isDisabled={!isAuthorized}>
+          {!isPhone && "Выйти"}
+        </Button>
+      </Header>
 
-      <br />
-      <br />
-
-      <section>
-        <span>Заказ 2390</span> <span>21 октября 2020, 13:40 • Доставлен</span>
-        <h2>Пицца на завтрак в понедельника</h2>
-        <p>
-          <small>
-            30 см на толстом тесте• Томатный соус • Моцарелла • Томаты • Бекон
-          </small>
-        </p>
-        <strong>420 руб</strong> <a href="/">Повторить заказ</a>
-      </section>
-
-      <br />
-      <br />
-
-      <section>
-        <span>Заказ 2390</span> <span>21 октября 2020, 13:40 • Доставлен</span>
-        <h2>Пицца на ужин в субботу</h2>
-        <p>
-          <small>
-            30 см на толстом тесте• Томатный соус • Моцарелла • Томаты • Бекон
-          </small>
-        </p>
-        <strong>420 руб</strong> <a href="/">Повторить заказ</a>
-      </section>
-    </div>
+      <Wrapper size="sm">
+        <OrderList />
+      </Wrapper>
+    </>
   );
 }

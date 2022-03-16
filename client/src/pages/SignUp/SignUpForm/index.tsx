@@ -1,18 +1,20 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { MESSAGES } from "../../../consts";
+import { Button, Input } from "../../../ui-kit";
 import { validators } from "../../../validators";
+import * as Styled from "./styles";
 
-type FormValues = {
+export type FormValues = {
   email: string;
   password: string;
   passwordRepeat: string;
 };
 
 interface Props {
-  formSubmit: (data: FormValues) => void;
+  onFormSubmit?: (data: FormValues) => void;
 }
 
-export function SignUpForm({ formSubmit }: Props) {
+export function SignUpForm({ onFormSubmit }: Props) {
   const {
     register,
     handleSubmit,
@@ -22,58 +24,58 @@ export function SignUpForm({ formSubmit }: Props) {
 
   const watchPassword = watch("password");
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => formSubmit(data);
+  const onSubmit: SubmitHandler<FormValues> = (data) => onFormSubmit?.(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <ul role="none">
-        <li>
-          <label htmlFor="signup-email">E-mail</label>
-          <input
-            type="text"
-            id="signup-email"
-            inputMode="email"
-            autoComplete="username"
-            {...register("email", {
-              ...validators.required,
-              ...validators.email,
-            })}
-          />
-          {errors.email?.message}
-        </li>
+      <Styled.Box>
+        <Input
+          label="E-mail"
+          type="text"
+          id="signup-email"
+          inputMode="email"
+          autoComplete="username"
+          errorMessage={errors.email?.message}
+          {...register("email", {
+            ...validators.required,
+            ...validators.email,
+          })}
+        />
+      </Styled.Box>
 
-        <li>
-          <label htmlFor="signup-password">Пароль</label>
-          <input
-            type="password"
-            id="signup-password"
-            autoComplete="new-password"
-            {...register("password", {
-              ...validators.required,
-              ...validators.password,
-            })}
-          />
-          {errors.password?.message}
-        </li>
+      <Styled.Box>
+        <Input
+          label="Пароль"
+          type="password"
+          id="signup-password"
+          autoComplete="new-password"
+          errorMessage={errors.password?.message}
+          {...register("password", {
+            ...validators.required,
+            ...validators.password,
+          })}
+        />
+      </Styled.Box>
 
-        <li>
-          <label htmlFor="signup-password-repeat">Подтвердите пароль</label>
-          <input
-            type="password"
-            id="signup-password-repeat"
-            autoComplete="new-password"
-            {...register("passwordRepeat", {
-              ...validators.required,
-              ...validators.password,
-              validate: (value) =>
-                value === watchPassword || MESSAGES.PasswordMismatch,
-            })}
-          />
-          {errors.passwordRepeat?.message}
-        </li>
-      </ul>
+      <Styled.Box>
+        <Input
+          label="Подтвердите пароль"
+          type="password"
+          id="signup-password-repeat"
+          autoComplete="new-password"
+          errorMessage={errors.passwordRepeat?.message}
+          {...register("passwordRepeat", {
+            ...validators.required,
+            ...validators.password,
+            validate: (value) =>
+              value === watchPassword || MESSAGES.PasswordMismatch,
+          })}
+        />
+      </Styled.Box>
 
-      <button type="submit">Зарегистрироваться</button>
+      <Button type="submit" size="large" isLong={true}>
+        Зарегистрироваться
+      </Button>
     </form>
   );
 }

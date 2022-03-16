@@ -1,18 +1,74 @@
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import { PATH } from "../../consts";
-import { LogInForm } from "./LogInForm";
+import { useMediaPhone } from "../../hooks";
+import { getIsAuthorized } from "../../state/user/selectors";
+import { userSlice } from "../../state/user/slice";
+import { AppDispatch } from "../../store";
+import {
+  Button,
+  Header,
+  Plate,
+  Typography,
+  TypographyLink,
+  Wrapper,
+} from "../../ui-kit";
+import { FormValues, LogInForm } from "./LogInForm";
+import * as Styled from "./styles";
 
 export function LogIn() {
+  const dispatch = useDispatch<AppDispatch>();
+  const isAuthorized = useSelector(getIsAuthorized);
+  const history = useHistory();
+  const isPhone = useMediaPhone();
+
+  const handleSubmit = (data: FormValues) => {
+    dispatch(userSlice.actions.setIsAuthorized(true));
+    console.log(data);
+  };
+
   return (
-    <div>
-      <h1>Авторизация</h1>
+    <>
+      <Header title="Авторизация">
+        <Button onClick={() => history.goBack()} view="ghost" icon="arrow-left">
+          {!isPhone && "Назад"}
+        </Button>
 
-      <LogInForm formSubmit={(data) => console.log(data)} />
+        <Button view="ghost" icon="logout" isDisabled={!isAuthorized}>
+          {!isPhone && "Выйти"}
+        </Button>
+      </Header>
 
-      <p>
-        Если вы не зарегистрированы{" "}
-        <Link to={PATH.Signup}>пройдите регистрацию</Link>
-      </p>
-    </div>
+      <Wrapper size="sm">
+        <Plate as={Styled.Plate}>
+          {isAuthorized && (
+            <>
+              <Typography>Вы успешно авторизовались.</Typography>
+
+              <Styled.Footer>
+                <Button view="secondary" to={PATH.Orders}>
+                  Мои заказы
+                </Button>
+              </Styled.Footer>
+            </>
+          )}
+
+          {!isAuthorized && (
+            <>
+              <LogInForm onFormSubmit={handleSubmit} />
+
+              <Styled.Footer>
+                <Typography>
+                  Если вы не зарегистрированы{" "}
+                  <TypographyLink to={PATH.Signup}>
+                    пройдите регистрацию
+                  </TypographyLink>
+                </Typography>
+              </Styled.Footer>
+            </>
+          )}
+        </Plate>
+      </Wrapper>
+    </>
   );
 }
