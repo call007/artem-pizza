@@ -5,7 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Themes } from "./types";
+import { Themes } from "../types";
 
 const ThemeContext = createContext(
   {} as { theme: Themes; toggleTheme: () => void }

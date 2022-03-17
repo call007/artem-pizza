@@ -27,6 +27,7 @@ export function LogInForm({ onFormSubmit }: Props) {
         <Input
           label="E-mail"
           type="text"
+          defaultValue="example@email.com"
           id="login-email"
           inputMode="email"
           autoComplete="username"
@@ -42,6 +43,7 @@ export function LogInForm({ onFormSubmit }: Props) {
         <Input
           label="Пароль"
           type="password"
+          defaultValue="password"
           id="login-password"
           autoComplete="current-password"
           errorMessage={errors.password?.message}

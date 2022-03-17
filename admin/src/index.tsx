@@ -2,8 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { AuthProvider } from "./context/AuthContext";
-import { IngredientsProvider } from "./context/IngredientsContext";
+import { AuthProvider, IngredientsProvider } from "./context";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(

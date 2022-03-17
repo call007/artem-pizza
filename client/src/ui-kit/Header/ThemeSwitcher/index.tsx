@@ -1,4 +1,4 @@
-import { useThemeContext } from "../../../ThemeContext";
+import { useThemeContext } from "../../../context";
 import * as Styled from "./styles";
 import { ReactComponent as Sunbeams } from "./sunbeams.svg";
 

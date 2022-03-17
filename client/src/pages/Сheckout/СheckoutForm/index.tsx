@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ReactComponent as MasterCardIcon } from "../../../images/mastercard.svg";
 import { ReactComponent as VisaIcon } from "../../../images/visa.svg";
-import { useThemeContext } from "../../../ThemeContext";
+import { useThemeContext } from "../../../context";
 import { PaymentSystem } from "../../../types";
 import { Input, Typography } from "../../../ui-kit";
 import { getPaymentSystem } from "../../../utils";

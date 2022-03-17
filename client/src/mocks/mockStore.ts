@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { IngredientsState } from "../state/ingredients/slice";
 import { OrderState } from "../state/order/slice";
-import { UserState } from "../state/user/slice";
 import { RootState } from "../store";
 
 const initialOrderState: OrderState = {
@@ -228,34 +227,15 @@ const initialIngredientsState: IngredientsState = {
   isLoading: false,
 };
 
-const initialUserState: UserState = {
-  isAuthorized: false,
-};
-
-const initialAuthorizedUserState: UserState = {
-  isAuthorized: true,
-};
-
 export const mockState: RootState = {
   order: initialOrderState,
   ingredients: initialIngredientsState,
-  user: initialUserState,
 };
 
 export const mockStore = configureStore({
   reducer: {
     order: (state = initialOrderState) => state,
     ingredients: (state = initialIngredientsState) => state,
-    user: (state = initialUserState) => state,
-  },
-  devTools: false,
-});
-
-export const mockWhithAuthorizedUserStore = configureStore({
-  reducer: {
-    order: (state = initialOrderState) => state,
-    ingredients: (state = initialIngredientsState) => state,
-    user: (state = initialAuthorizedUserState) => state,
   },
   devTools: false,
 });

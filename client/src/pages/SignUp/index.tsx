@@ -1,11 +1,8 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { PATH } from "../../consts";
+import { useAuth } from "../../context";
 import { useMediaPhone } from "../../hooks";
-import { getIsAuthorized } from "../../state/user/selectors";
-import { userSlice } from "../../state/user/slice";
-import { AppDispatch } from "../../store";
 import {
   Button,
   Header,
@@ -18,18 +15,19 @@ import { FormValues, SignUpForm } from "./SignUpForm";
 import * as Styled from "./styles";
 
 export function SignUp() {
-  const dispatch = useDispatch<AppDispatch>();
-  const isAuthorized = useSelector(getIsAuthorized);
+  const { logout, isLoggedIn } = useAuth();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const history = useHistory();
   const isPhone = useMediaPhone();
 
-  const isVisibleNote = isSubmitted && isAuthorized;
+  const isVisibleNote = isSubmitted && isLoggedIn;
 
   const handleSubmit = (data: FormValues) => {
-    dispatch(userSlice.actions.setIsAuthorized(true));
     setIsSubmitted(true);
     console.log(data);
+    alert(
+      "Форма регистрации не реализована. Попробуйте авторизоваться с изначально заполненными системой данными."
+    );
   };
 
   return (
@@ -39,7 +37,12 @@ export function SignUp() {
           {!isPhone && "Назад"}
         </Button>
 
-        <Button view="ghost" icon="logout" isDisabled={!isAuthorized}>
+        <Button
+          onClick={logout}
+          view="ghost"
+          icon="logout"
+          isDisabled={!isLoggedIn}
+        >
           {!isPhone && "Выйти"}
         </Button>
       </Header>

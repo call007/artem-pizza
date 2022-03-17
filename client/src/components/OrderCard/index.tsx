@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ReactComponent as MasterCardIcon } from "../../images/mastercard.svg";
 import { ReactComponent as VisaIcon } from "../../images/visa.svg";
-import { useThemeContext } from "../../ThemeContext";
+import { useThemeContext } from "../../context";
 import { PaymentSystem } from "../../types";
 import { Plate, Typography, TypographySkeleton } from "../../ui-kit";
 import { getPaymentSystem } from "../../utils";

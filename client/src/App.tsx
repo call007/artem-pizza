@@ -12,7 +12,7 @@ import {
   Сheckout,
 } from "./pages";
 import { GlobalStyles, themes } from "./styles";
-import { useThemeContext } from "./ThemeContext";
+import { useThemeContext } from "./context";
 
 function App() {
   const { theme } = useThemeContext();
