@@ -1,4 +1,4 @@
-import { useIngredientsContext } from "../../context/IngredientsContext";
+import { useIngredientsContext } from "../../context";
 import { List } from "./List";
 
 export function Ingredients() {

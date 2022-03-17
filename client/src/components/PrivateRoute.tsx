@@ -1,18 +1,13 @@
-import { useSelector } from "react-redux";
 import { Redirect, Route, RouteProps } from "react-router-dom";
 import { PATH } from "../consts";
-import { getIsAuthorized } from "../state/user/selectors";
+import { useAuth } from "../context";
 
 interface Props extends RouteProps {
   redirectPath: PATH;
 }
 
 export function PrivateRoute({ redirectPath, ...restProps }: Props) {
-  const isAuthorized = useSelector(getIsAuthorized);
+  const { isLoggedIn } = useAuth();
 
-  return isAuthorized ? (
-    <Route {...restProps} />
-  ) : (
-    <Redirect to={redirectPath} />
-  );
+  return isLoggedIn ? <Route {...restProps} /> : <Redirect to={redirectPath} />;
 }

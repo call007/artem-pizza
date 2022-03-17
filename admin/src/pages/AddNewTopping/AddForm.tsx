@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { addNewIngredient } from "../../api";
-import { useIngredientsContext } from "../../context/IngredientsContext";
+import { useIngredientsContext } from "../../context";
 import { validators } from "../../validators";
 
 type FormValues = {

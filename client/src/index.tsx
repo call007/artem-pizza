@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./store";
-import { ThemeContextProvider } from "./ThemeContext";
+import { AuthProvider, ThemeContextProvider } from "./context";
 
 Sentry.init({
   dsn: "https://bd8c58643e2244afaa46a6e31e91e60a@o1033219.ingest.sentry.io/6000000",
@@ -21,7 +21,9 @@ ReactDOM.render(
     <ReduxProvider store={store}>
       <BrowserRouter>
         <ThemeContextProvider>
-          <App />
+          <AuthProvider>
+            <App />
+          </AuthProvider>
         </ThemeContextProvider>
       </BrowserRouter>
     </ReduxProvider>

@@ -51,6 +51,14 @@ describe("LogInForm", () => {
         </ThemeProvider>
       );
 
+      fireEvent.input(getByLabelText("E-mail"), {
+        target: { value: "" },
+      });
+
+      fireEvent.input(getByLabelText("Пароль"), {
+        target: { value: "" },
+      });
+
       await act(async () => {
         fireEvent.click(getByText("Войти"));
       });

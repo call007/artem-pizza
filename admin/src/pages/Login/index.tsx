@@ -1,7 +1,7 @@
 import { MouseEvent } from "react";
 import { useHistory } from "react-router-dom";
 import { serverLogin } from "../../api";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../context";
 
 export function Login() {
   const history = useHistory();
@@ -10,9 +10,7 @@ export function Login() {
   const handleSubmit = (event: MouseEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // example@email.com
     const email = event.currentTarget.email.value;
-    // password
     const password = event.currentTarget.password.value;
 
     serverLogin(email, password)
@@ -34,13 +32,23 @@ export function Login() {
         <div>
           <label>
             Email
-            <input name="email" type="email" placeholder="Email" />
+            <input
+              name="email"
+              type="email"
+              defaultValue="example@email.com"
+              placeholder="Email"
+            />
           </label>
         </div>
         <div>
           <label>
             Password
-            <input name="password" type="password" placeholder="Password" />
+            <input
+              name="password"
+              type="password"
+              defaultValue="password"
+              placeholder="Password"
+            />
           </label>
         </div>
         <button type="submit">Log in</button>

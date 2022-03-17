@@ -4,8 +4,8 @@ import { Provider as ReduxProvider } from "react-redux";
 import { Router } from "react-router";
 import App from "./App";
 import { PATH } from "./consts";
-import { mockWhithAuthorizedUserStore } from "./mocks/mockStore";
-import { ThemeContextProvider } from "./ThemeContext";
+import { AuthProvider, ThemeContextProvider } from "./context";
+import { mockStore } from "./mocks/mockStore";
 
 function renderApp() {
   const history = createMemoryHistory();
@@ -30,10 +30,12 @@ function renderApp() {
 
   return {
     ...render(
-      <ReduxProvider store={mockWhithAuthorizedUserStore}>
+      <ReduxProvider store={mockStore}>
         <Router history={history}>
           <ThemeContextProvider>
-            <App />
+            <AuthProvider isLoggedIn={true}>
+              <App />
+            </AuthProvider>
           </ThemeContextProvider>
         </Router>
       </ReduxProvider>

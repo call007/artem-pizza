@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { removeIngredient } from "../../../api";
-import { useIngredientsContext } from "../../../context/IngredientsContext";
+import { useIngredientsContext } from "../../../context";
 import { Ingredient } from "../../../types";
 
 interface Props {

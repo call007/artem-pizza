@@ -1,10 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { serverLogin } from "../../api";
 import { PATH } from "../../consts";
+import { useAuth } from "../../context";
 import { useMediaPhone } from "../../hooks";
-import { getIsAuthorized } from "../../state/user/selectors";
-import { userSlice } from "../../state/user/slice";
-import { AppDispatch } from "../../store";
 import {
   Button,
   Header,
@@ -17,14 +15,20 @@ import { FormValues, LogInForm } from "./LogInForm";
 import * as Styled from "./styles";
 
 export function LogIn() {
-  const dispatch = useDispatch<AppDispatch>();
-  const isAuthorized = useSelector(getIsAuthorized);
   const history = useHistory();
   const isPhone = useMediaPhone();
+  const { login, logout, isLoggedIn } = useAuth();
 
   const handleSubmit = (data: FormValues) => {
-    dispatch(userSlice.actions.setIsAuthorized(true));
-    console.log(data);
+    serverLogin(data.email, data.password)
+      .then((data) => {
+        login(data.token);
+        history.push(PATH.Orders);
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("Error logging in please try again");
+      });
   };
 
   return (
@@ -34,14 +38,19 @@ export function LogIn() {
           {!isPhone && "Назад"}
         </Button>
 
-        <Button view="ghost" icon="logout" isDisabled={!isAuthorized}>
+        <Button
+          onClick={logout}
+          view="ghost"
+          icon="logout"
+          isDisabled={!isLoggedIn}
+        >
           {!isPhone && "Выйти"}
         </Button>
       </Header>
 
       <Wrapper size="sm">
         <Plate as={Styled.Plate}>
-          {isAuthorized && (
+          {isLoggedIn && (
             <>
               <Typography>Вы успешно авторизовались.</Typography>
 
@@ -53,7 +62,7 @@ export function LogIn() {
             </>
           )}
 
-          {!isAuthorized && (
+          {!isLoggedIn && (
             <>
               <LogInForm onFormSubmit={handleSubmit} />
 

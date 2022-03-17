@@ -1,14 +1,13 @@
-import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { useAuth } from "../../context";
 import { useMediaPhone } from "../../hooks";
-import { getIsAuthorized } from "../../state/user/selectors";
 import { Button, Header, Wrapper } from "../../ui-kit";
 import { OrderList } from "./OrderList";
 
 export function Orders() {
   const history = useHistory();
   const isPhone = useMediaPhone();
-  const isAuthorized = useSelector(getIsAuthorized);
+  const { logout, isLoggedIn } = useAuth();
 
   return (
     <>
@@ -17,7 +16,12 @@ export function Orders() {
           {!isPhone && "Назад"}
         </Button>
 
-        <Button view="ghost" icon="logout" isDisabled={!isAuthorized}>
+        <Button
+          onClick={logout}
+          view="ghost"
+          icon="logout"
+          isDisabled={!isLoggedIn}
+        >
           {!isPhone && "Выйти"}
         </Button>
       </Header>
