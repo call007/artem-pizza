@@ -9,10 +9,11 @@ export type FormValues = {
 };
 
 interface Props {
+  isLoading?: boolean;
   onFormSubmit?: (data: FormValues) => void;
 }
 
-export function LogInForm({ onFormSubmit }: Props) {
+export function LogInForm({ isLoading, onFormSubmit }: Props) {
   const {
     register,
     handleSubmit,
@@ -51,7 +52,7 @@ export function LogInForm({ onFormSubmit }: Props) {
         />
       </Styled.Box>
 
-      <Button type="submit" size="large" isLong={true}>
+      <Button type="submit" size="large" isLong={true} isLoading={isLoading}>
         Войти
       </Button>
     </form>

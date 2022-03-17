@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useHistory } from "react-router";
 import { serverLogin } from "../../api";
 import { PATH } from "../../consts";
@@ -18,14 +19,19 @@ export function LogIn() {
   const history = useHistory();
   const isPhone = useMediaPhone();
   const { login, logout, isLoggedIn } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (data: FormValues) => {
+    setIsLoading(true);
+
     serverLogin(data.email, data.password)
       .then((data) => {
+        setIsLoading(false);
         login(data.token);
         history.push(PATH.Orders);
       })
       .catch((err) => {
+        setIsLoading(false);
         console.error(err);
         alert("Error logging in please try again");
       });
@@ -64,7 +70,7 @@ export function LogIn() {
 
           {!isLoggedIn && (
             <>
-              <LogInForm onFormSubmit={handleSubmit} />
+              <LogInForm isLoading={isLoading} onFormSubmit={handleSubmit} />
 
               <Styled.Footer>
                 <Typography>
