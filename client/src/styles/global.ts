@@ -12,7 +12,7 @@ export default createGlobalStyle`
 
   html {
     overflow-y: scroll;
-    font-size: 100%;
+    font-size: 1em;
     font-family: 'Nunito', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -20,8 +20,6 @@ export default createGlobalStyle`
 
   body {
     min-width: 320px;
-    // font-size: 16px;
-    font-size: 1rem;
     background-color: ${(props) => props.theme.colors.gray100};
   }
 
