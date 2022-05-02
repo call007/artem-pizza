@@ -12,15 +12,15 @@ export function Header({ title, children }: PropsWithChildren<HeaderProps>) {
   return (
     <Styled.Container>
       {title && (
-        <Styled.Title>
+        <Styled.TitleCover>
           <Typography
             size={{ all: "xl", phone: "lg" }}
             weight="bold"
-            component="h1"
+            component={Styled.Title}
           >
             {title}
           </Typography>
-        </Styled.Title>
+        </Styled.TitleCover>
       )}
 
       <Styled.ThemeSwitcherBox>

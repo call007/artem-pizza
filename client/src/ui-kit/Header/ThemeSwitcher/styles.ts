@@ -7,10 +7,16 @@ export const Container = styled.button`
   vertical-align: middle;
   width: 1.5rem;
   height: 1.5rem;
+  margin-right: 0.625rem;
   color: ${(props) => props.theme.colors.gray600};
 
   &:hover {
     color: ${(props) => props.theme.colors.black};
+  }
+
+  @media ${variables.media.phone} {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 `;
 

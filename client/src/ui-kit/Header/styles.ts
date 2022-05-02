@@ -54,7 +54,7 @@ export const Logo = styled(LazyImage)`
   }
 `;
 
-export const Title = styled.div`
+export const TitleCover = styled.div`
   position: absolute;
   left: 0;
   right: 0;
@@ -62,6 +62,12 @@ export const Title = styled.div`
 
   @media ${variables.media.phone} {
     position: static;
+    min-width: 0;
     text-align: left;
   }
+`;
+
+export const Title = styled("h1")`
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
