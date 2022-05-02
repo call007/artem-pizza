@@ -18,7 +18,7 @@ export function ThemeSwitcher() {
       </Styled.Sun>
 
       <Styled.Sunbeams themeName={theme}>
-        <Sunbeams aria-hidden="true" />
+        <Sunbeams aria-hidden="true" width="100%" height="100%" />
       </Styled.Sunbeams>
     </Styled.Container>
   );

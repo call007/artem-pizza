@@ -11,15 +11,14 @@ export default createGlobalStyle`
   }
 
   html {
-    overflow-y: scroll;
-    font-size: 1em;
+    font-size: 100%;
     font-family: 'Nunito', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    min-width: 320px;
+    min-width: 280px;
     background-color: ${(props) => props.theme.colors.gray100};
   }
 

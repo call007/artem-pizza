@@ -9,7 +9,7 @@ export const Container = styled.div(
     bottom: 0;
     display: flex;
     flex-direction: column;
-    min-width: 320px;
+    min-width: 280px;
     padding: ${variables.space.sm} ${variables.space.base};
     background-color: ${theme.colors.white};
     box-shadow: ${theme.shadow.outer.panel};
