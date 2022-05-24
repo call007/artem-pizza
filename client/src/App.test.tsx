@@ -33,7 +33,7 @@ function renderApp() {
       <ReduxProvider store={mockStore}>
         <Router history={history}>
           <ThemeContextProvider>
-            <AuthProvider isLoggedIn={true}>
+            <AuthProvider isLoggedIn>
               <App />
             </AuthProvider>
           </ThemeContextProvider>

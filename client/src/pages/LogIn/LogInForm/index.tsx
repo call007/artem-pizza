@@ -52,7 +52,7 @@ export function LogInForm({ isLoading, onFormSubmit }: Props) {
         />
       </Styled.Box>
 
-      <Button type="submit" size="large" isLong={true} isLoading={isLoading}>
+      <Button type="submit" size="large" isLoading={isLoading} isLong>
         Войти
       </Button>
     </form>
