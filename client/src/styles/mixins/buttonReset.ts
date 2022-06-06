@@ -13,7 +13,12 @@ export const buttonReset = () => css`
   -webkit-tap-highlight-color: transparent;
 
   &:focus {
-    outline: none !important;
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${(props) => props.theme.colors.primary};
+    outline-offset: 2px;
   }
 
   &::-moz-focus-inner {

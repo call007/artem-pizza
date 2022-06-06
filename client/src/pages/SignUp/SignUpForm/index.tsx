@@ -73,7 +73,7 @@ export function SignUpForm({ onFormSubmit }: Props) {
         />
       </Styled.Box>
 
-      <Button type="submit" size="large" isLong={true}>
+      <Button type="submit" size="large" isLong>
         Зарегистрироваться
       </Button>
     </form>

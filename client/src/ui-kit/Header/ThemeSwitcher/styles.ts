@@ -9,9 +9,14 @@ export const Container = styled.button`
   height: 1.5rem;
   margin-right: 0.625rem;
   color: ${(props) => props.theme.colors.gray600};
+  border-radius: 0.188rem;
 
   &:hover {
     color: ${(props) => props.theme.colors.black};
+  }
+
+  &:focus-visible {
+    outline-offset: ${variables.space.xs};
   }
 
   @media ${variables.media.phone} {

@@ -37,8 +37,8 @@ export function OrderSummary({
         type="submit"
         form="checkout-form"
         size="large"
-        isLong={true}
         isLoading={isLoading}
+        isLong
       >
         Оплатить {price + deliveryPrice} руб
       </Button>

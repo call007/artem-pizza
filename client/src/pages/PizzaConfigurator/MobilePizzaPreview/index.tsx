@@ -63,7 +63,7 @@ export function MobilePizzaPreview({ isLoading }: MobilePizzaPreviewProps) {
         form="configurator-form"
         size="large"
         isLoading={!price}
-        isLong={true}
+        isLong
       >
         Заказать за {price} руб
       </Button>
