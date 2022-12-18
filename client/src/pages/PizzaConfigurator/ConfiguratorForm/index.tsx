@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useForm, useWatch } from "react-hook-form";
+import { FieldValues, useForm, useWatch } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { PATH } from "../../../consts";
@@ -40,7 +40,7 @@ export function ConfiguratorForm({
   const meat = useSelector(getIngredientsByCategory(Category.Meat));
   const vegetables = useSelector(getIngredientsByCategory(Category.Vegetables));
 
-  const { register, control } = useForm<Pizza>({
+  const { register, control } = useForm<FieldValues>({
     defaultValues: {
       size: pizza.size,
       dough: pizza.dough,
