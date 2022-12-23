@@ -2,16 +2,18 @@ import { Ingredient } from "./types";
 
 const ERROR_MESSAGE = "Something went wrong";
 
+const response = (response: Response) => {
+  if (response.ok) {
+    return response.json();
+  } else {
+    throw new Error(response.statusText || ERROR_MESSAGE);
+  }
+};
+
 export const getPizzaIngredients = (): Promise<Ingredient[]> =>
   fetch(
     `${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_VERSION}/ingredients`
-  ).then((response) => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error(response.statusText || ERROR_MESSAGE);
-    }
-  });
+  ).then(response);
 
 export const addNewIngredient = (formData: FormData) =>
   fetch(
@@ -20,13 +22,7 @@ export const addNewIngredient = (formData: FormData) =>
       method: "POST",
       body: formData,
     }
-  ).then((response) => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error(response.statusText || ERROR_MESSAGE);
-    }
-  });
+  ).then(response);
 
 export const removeIngredient = (ingredientId: string) =>
   fetch(
@@ -34,13 +30,7 @@ export const removeIngredient = (ingredientId: string) =>
     {
       method: "DELETE",
     }
-  ).then((response) => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error(response.statusText || ERROR_MESSAGE);
-    }
-  });
+  ).then(response);
 
 export const updateIngredient = (ingredientId: string, formData: FormData) =>
   fetch(
@@ -49,13 +39,7 @@ export const updateIngredient = (ingredientId: string, formData: FormData) =>
       method: "PUT",
       body: formData,
     }
-  ).then((response) => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error(response.statusText || ERROR_MESSAGE);
-    }
-  });
+  ).then(response);
 
 export const serverLogin = (
   email: string,
@@ -73,10 +57,4 @@ export const serverLogin = (
         "Content-Type": "application/json",
       },
     }
-  ).then((response) => {
-    if (response.status === 200) {
-      return response.json();
-    } else {
-      throw new Error(response.statusText || ERROR_MESSAGE);
-    }
-  });
+  ).then(response);
