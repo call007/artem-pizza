@@ -2,6 +2,9 @@
 
 This project is about Pizza Configurator
 
+## Demo
+https://call007-artem-pizza.netlify.app/
+
 ## Available Scripts
 
 In the project directory, you can run:
