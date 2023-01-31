@@ -5,9 +5,9 @@ const ERROR_MESSAGE = "Something went wrong";
 const response = (response: Response) => {
   if (response.ok) {
     return response.json();
-  } else {
-    throw new Error(response.statusText || ERROR_MESSAGE);
   }
+
+  throw new Error(response.statusText || ERROR_MESSAGE);
 };
 
 export const getPizzaIngredients = (): Promise<Ingredient[]> =>
