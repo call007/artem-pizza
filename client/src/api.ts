@@ -3,9 +3,9 @@ import { Ingredient, Order } from "./types";
 const response = (response: Response) => {
   if (response.ok) {
     return response.json();
-  } else {
-    throw new Error(response.statusText || "Something went wrong");
   }
+
+  throw new Error(response.statusText || "Something went wrong");
 };
 
 export const getPizzaIngredients = (): Promise<Ingredient[]> =>
