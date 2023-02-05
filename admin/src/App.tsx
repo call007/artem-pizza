@@ -14,10 +14,10 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/add-toppings">Добавление топпингов</Link>
+              <Link to="/add-toppings">Adding new topings</Link>
             </li>
             <li>
-              <Link to="/ingredients">Ингредиенты</Link>
+              <Link to="/ingredients">List of ingredients</Link>
             </li>
           </ul>
         </nav>
