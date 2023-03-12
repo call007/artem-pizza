@@ -1,33 +1,42 @@
-import { Route, Switch } from "react-router";
+import { Container, CssBaseline, Tab, Tabs } from "@mui/material";
+import { Route, Switch, useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import CssBaseline from "@mui/material/CssBaseline";
-import Container from "@mui/material/Container";
 import { AddNewToppingForm } from "./pages/AddNewTopping";
 import { Ingredients } from "./pages/Ingredients";
 
 function App() {
+  const { pathname } = useLocation();
+
   return (
     <>
       <CssBaseline enableColorScheme />
 
       <Container maxWidth="sm">
         <nav>
-          <ul>
-            <li>
-              <Link to="/add-toppings">Adding new topings</Link>
-            </li>
-            <li>
-              <Link to="/ingredients">List of ingredients</Link>
-            </li>
-          </ul>
+          <Tabs value={pathname}>
+            <Tab
+              label="List of ingredients"
+              value="/ingredients"
+              to="/ingredients"
+              component={Link}
+            />
+
+            <Tab
+              label="Adding new topings"
+              value="/add-toppings"
+              to="/add-toppings"
+              component={Link}
+            />
+          </Tabs>
         </nav>
 
         <Switch>
-          <Route path="/add-toppings">
-            <AddNewToppingForm />
-          </Route>
-          <Route path="/ingredients">
+          <Route path="/ingredients" exact>
             <Ingredients />
+          </Route>
+
+          <Route path="/add-toppings" exact>
+            <AddNewToppingForm />
           </Route>
         </Switch>
       </Container>

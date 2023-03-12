@@ -1,19 +1,20 @@
+import { LockOutlined, Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+  Alert,
+  AlertTitle,
+  Avatar,
+  Box,
+  Button,
+  Container,
+  CssBaseline,
+  IconButton,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { MouseEvent, useState } from "react";
 import { useHistory } from "react-router-dom";
-import Alert from "@mui/material/Alert";
-import AlertTitle from "@mui/material/AlertTitle";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import TextField from "@mui/material/TextField";
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import InputAdornment from "@mui/material/InputAdornment";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+
 import { serverLogin } from "../../api";
 import { useAuth } from "../../context";
 
@@ -38,7 +39,7 @@ export function Login() {
     serverLogin(email, password)
       .then((data) => {
         login(data.token);
-        history.push("/");
+        history.push("/ingredients");
       })
       .catch((err) => {
         console.error(err);
@@ -73,7 +74,7 @@ export function Login() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
+            <LockOutlined />
           </Avatar>
 
           <Typography component="h1" variant="h5">
