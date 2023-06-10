@@ -1,4 +1,4 @@
-import { ElementType, forwardRef, MouseEvent } from "react";
+import { forwardRef, MouseEvent } from "react";
 import { useHistory } from "react-router";
 import { SvgIcon } from "..";
 import { PATH } from "../../consts";
@@ -11,7 +11,7 @@ export interface ButtonProps extends ButtonOrAnchorHTMLAttributes {
   size?: ButtonSize;
   icon?: SvgSrc;
   to?: PATH;
-  as?: ElementType;
+  as?: any;
   isDisabled?: boolean;
   isLoading?: boolean;
   isLong?: boolean;
@@ -37,7 +37,7 @@ export const Button = forwardRef<
     type: type ?? "button",
   };
 
-  const linkProps: ButtonProps & { as: ElementType } = {
+  const linkProps: ButtonProps & { as: any } = {
     as: "a",
     href: to,
     onClick: (e: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {

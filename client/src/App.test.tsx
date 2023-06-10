@@ -28,6 +28,14 @@ function renderApp() {
     })),
   });
 
+  /**
+   * Мокаем scrollTo для успешного теста компонентов, использующих
+   * window.scrollTo
+   */
+  Object.defineProperty(window, "scrollTo", {
+    value: jest.fn(),
+  });
+
   return {
     ...render(
       <ReduxProvider store={mockStore}>

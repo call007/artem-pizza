@@ -1,4 +1,3 @@
-import { ElementType } from "react";
 import { useTheme } from "styled-components";
 import { useMediaProp } from "../../hooks";
 import { MediaProp, TypographySize, TypographyWeight } from "../../types";
@@ -10,8 +9,8 @@ export interface TypographyProps
   extends Omit<TypographyHTMLAttributes, "color"> {
   size?: TypographySize | MediaProp<TypographySize>;
   weight?: TypographyWeight;
-  component?: ElementType;
-  as?: ElementType;
+  component?: any;
+  as?: any;
   color?: (color: Theme["colors"]) => string;
 }
 
